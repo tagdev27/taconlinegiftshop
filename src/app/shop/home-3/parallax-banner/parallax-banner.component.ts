@@ -8,7 +8,7 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 })
 export class ParallaxBannerThreeComponent implements OnInit {
 
-  constructor(private productsService: ProductsService) { }
+  constructor(public productsService: ProductsService) { }
 
   ngOnInit() {
   }

@@ -67,7 +67,7 @@
                                     </div>
                                     <div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.pattern"
                                         class="text text-danger">
-                                        Phone No is must be number.
+                                        Phone No must be number.
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -139,8 +139,8 @@
                                 <div class="form-group col-md-12 col-sm-6 col-xs-12">
                                     <div class="field-label">Special Instructions</div>
                                     <textarea name="specialinstructions"
-                                        [formControl]="checkoutForm.controls['specialinstructions']" value="" placeholder=""
-                                        autocomplete="off" rows="4"></textarea>
+                                        [formControl]="checkoutForm.controls['specialinstructions']" value=""
+                                        placeholder="" autocomplete="off" rows="4"></textarea>
                                 </div>
                             </div>
                             <div class="checkout-title">
@@ -174,19 +174,21 @@
                                     <div class="checkout-title">
                                         <h3>Select Card Style {{selected_card_style}}</h3>
                                     </div>
-                                    <div class="col-12 p-0">
-                                        <ngx-slick-carousel class="slider-nav" #slickModal="slick-carousel"
-                                            [config]="slideNavConfig">
-                                            <div ngxSlickItem *ngFor="let cs of card_styles">
-                                                <div>
-                                                    <img [src]="cs.image" alt="" (click)="selectCardStyle(cs.title)"
-                                                        class="img-fluid">
+                                    <div class="row">
+                                        <div class="col-12 p-0">
+                                            <ngx-slick-carousel (init)="slickInit($event)" class="slider-nav"
+                                                #slickModal="slick-carousel" [config]="slideNavConfig">
+                                                <div ngxSlickItem *ngFor="let cs of card_styles">
+                                                    <div>
+                                                        <img [src]="cs.image" alt="" (click)="selectCardStyle(cs.title)"
+                                                            class="img-fluid">
+                                                    </div>
+                                                    <div class="text">
+                                                        Style {{cs.title}}
+                                                    </div>
                                                 </div>
-                                                <div class="text">
-                                                    Style {{cs.title}}
-                                                </div>
-                                            </div>
-                                        </ngx-slick-carousel>
+                                            </ngx-slick-carousel>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

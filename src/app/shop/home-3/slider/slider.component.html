@@ -1,6 +1,6 @@
 <!-- Home slider -->
 <section class="p-0">
-    <ngx-slick-carousel class="home-slider" #slickModal="slick-carousel" [config]="sliderConfig">
+    <ngx-slick-carousel class="home-slider" #slickModal="slick-carousel" (init)="slickInit($event)" [config]="sliderConfig">
         <div ngxSlickItem>
             <div class="home home111 text-center" [ngStyle]="getMyStyles1()">
                 <div class="container">

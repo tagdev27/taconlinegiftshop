@@ -8,9 +8,13 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 })
 export class SliderThreeComponent implements OnInit {
 
-  constructor(private productsService: ProductsService) { }
+  constructor(public productsService: ProductsService) { }
 
   ngOnInit() {
+  }
+
+  slickInit(e){
+
   }
 
   getMyStyles1() {

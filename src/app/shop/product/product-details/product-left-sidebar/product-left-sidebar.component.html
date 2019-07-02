@@ -40,7 +40,7 @@
             <div class="row">
               <div class="col-lg-6">
                 <ngx-slick-carousel class="product-slick" id="p-zoom" #slickModal="slick-carousel"
-                  [config]="slideConfig">
+                  [config]="slideConfig" (init)="slickInit($event)">
                   <div ngxSlickItem *ngFor="let image of product.pictures">
                     <div>
                       <ngx-img-zoom [previewImageSrc]="image" [zoomImageSrc]="image"
@@ -55,7 +55,7 @@
                 </ngx-slick-carousel>
                 <div class="row">
                   <div class="col-12 p-0">
-                    <ngx-slick-carousel class="slider-nav" #slickModal="slick-carousel" [config]="slideNavConfig">
+                    <ngx-slick-carousel class="slider-nav" #slickModal="slick-carousel" [config]="slideNavConfig" (init)="slickInit($event)">
                       <div ngxSlickItem *ngFor="let it of product.items">
                         <div>
                           <img [src]="it.value" alt="" class="img-fluid">
@@ -213,7 +213,7 @@
                             <td>Weight</td>
                             <td>{{product.weight}} Kg</td>
                           </tr>
-                          <tr *ngIf="product.colors.length">
+                          <tr>
                             <td>Color</td>
                             <td>{{product.colors}}</td>
                           </tr>
@@ -221,11 +221,11 @@
                       </table>
                       <table>
                         <tbody>
-                          <tr *ngIf="product.tags.length">
+                          <tr>
                             <td>Tags</td>
                             <td>{{product.tags}}</td>
                           </tr>
-                          <tr *ngIf="product.size.length">
+                          <tr>
                             <td>Size</td>
                             <td>{{product.size}}</td>
                           </tr>

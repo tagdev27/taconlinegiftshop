@@ -9,15 +9,15 @@ import { AppConfig } from 'src/app/services/global.service';
   styleUrls: ['./new-product.component.scss']
 })
 export class NewProductComponent implements OnInit {
-  
-  public products : Product[] = [];	
-config:AppConfig
-  constructor(private productsService: ProductsService) { 
+
+  public products: Product[] = [];
+  config: AppConfig
+  constructor(private productsService: ProductsService) {
     this.config = new AppConfig(productsService)
   }
 
   ngOnInit() {
-  	this.productsService.getProducts().subscribe(product => this.products = product);
+    this.productsService.getProducts().subscribe(product => this.products = product);
   }
-
+  slickInit(e) { }
 }

@@ -41,7 +41,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   finished = false  // boolean when end of data is reached
   config:AppConfig
   constructor(private route: ActivatedRoute, private router: Router,
-    private productsService: ProductsService) { 
+    public productsService: ProductsService) { 
       this.config = new AppConfig(productsService)
        this.route.params.subscribe(params => {
           const category = params['category'];

@@ -18,7 +18,7 @@ export class SuccessComponent implements OnInit {
   }
 
   date = new Date()
-  months = [""]
+  months = ["January","Febuary","March","April","May","June","July","August","September","October","November","December"]
 
   getDateNow() {
     return `${this.months[this.date.getUTCMonth()]} ${this.date.getUTCDate()}, ${this.date.getUTCFullYear()}`

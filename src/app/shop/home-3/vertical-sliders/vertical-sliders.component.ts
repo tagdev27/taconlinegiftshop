@@ -22,6 +22,10 @@ export class VerticalSlidersComponent implements OnInit {
   ngOnInit() {
   }
 
+  slickInit(e){
+    
+  }
+
   // convertPrice(price: number){
   //   //console.log(`price  ===============  ${price}`)
   //   const currency = this.productsService.currency

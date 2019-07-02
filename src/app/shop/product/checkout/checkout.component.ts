@@ -54,17 +54,6 @@ export class CheckoutComponent implements OnInit {
     //this.character_left = 450 - `${this.checkoutForm.value.card_message}`.length
   }
 
-  getGiftCardStyles() {
-    firebase.firestore().collection('db').doc('tacadmin').collection('gift-card-styles').onSnapshot(query => {
-      this.card_styles = []
-      var index = 0
-      query.forEach(data => {
-        const st = <Styles>data.data()
-        this.card_styles.push(st)
-      })
-    });
-  }
-
   getRemainingCharacter() {
     return 250 - `${this.checkoutForm.value.card_message}`.length
   }
@@ -73,14 +62,14 @@ export class CheckoutComponent implements OnInit {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-
+  slickInit(e){}
 
   ngOnInit() {
     this.cartItems = this.cartService.getItems();
     this.cartItems.subscribe(products => this.checkOutItems = products);
     this.getTotal().subscribe(amount => this.amount = amount);
     this.initConfig();
-    this.getGiftCardStyles()
+    //this.card_styles = JSON.parse(localStorage.getItem("card_styles"))
   }
 
   selectCardStyle(id: any) {
@@ -157,16 +146,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   public slideNavConfig = {
-    vertical: false,
-    slidesToShow: 4,
+    slidesToShow: 1,
     slidesToScroll: 1,
-    asNavFor: '.product-slick',
     arrows: true,
-    dots: false,
-    focusOnSelect: true
+    fade: true
   }
 
   ngAfterViewInit() {
+    //setTimeout(())
+    //this.card_styles = this.productsService.my_card_styles
+    //this.getGiftCardStyles()
     // const htmlScriptElement = document.createElement('script');
     // htmlScriptElement.src = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js';
     // this.elementRef.nativeElement.appendChild(htmlScriptElement);

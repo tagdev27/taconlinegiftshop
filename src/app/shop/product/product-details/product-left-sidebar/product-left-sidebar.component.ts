@@ -90,7 +90,7 @@ export class ProductLeftSidebarComponent implements OnInit {
     })
   }
 
-  
+  slickInit(e){}
 
   ngOnInit() {
     this.productsService.getProducts().subscribe(product => this.products = product);

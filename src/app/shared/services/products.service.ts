@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as cors from "cors";
 import { Banners } from 'src/app/models/banner';
 import { AppConfig } from 'src/app/services/global.service';
+import { Styles } from 'src/app/models/style';
 
 // Get product from Localstorage
 let products = JSON.parse(localStorage.getItem("compareItem")) || [];
@@ -32,6 +33,8 @@ export class ProductsService {
   public observer: Subscriber<{}>;
 
   FProducts: Product[] = []
+
+  my_card_styles: Styles[] = []
 
   // Initialize 
   constructor(private http: Http, private toastrService: ToastrService, private mHttp: HttpClient) {
@@ -71,6 +74,20 @@ export class ProductsService {
         //console.log(`country == ${this.currency}`)
       });
     })
+    this.getGiftCardStyles()
+  }
+
+  getGiftCardStyles() {
+    //console.log('poped up baby')
+    firebase.firestore().collection('db').doc('tacadmin').collection('gift-card-styles').onSnapshot(query => {
+      this.my_card_styles = []
+      query.forEach(data => {
+        const st = <Styles>data.data()
+        this.my_card_styles.push(st)
+      })
+      localStorage.setItem("card_styles", JSON.stringify(this.my_card_styles))
+      //console.log(`${this.my_card_styles}`)
+    });
   }
 
   apiHeaderDict = {
