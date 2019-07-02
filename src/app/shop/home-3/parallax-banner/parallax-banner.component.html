@@ -1,0 +1,18 @@
+<!-- Parallax banner -->
+<!-- <style parse-style>.css_class {background-image: {{ angular_variable }};}</style> -->
+<section class="p-0">
+    <div class="full-banner parallax-banner100 parallax text-center p-left" [ngStyle]="getMyStyles()">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="banner-contain">
+                        <h2>{{productsService.banner.parallax_banner_title}}</h2>
+                        <h3>{{productsService.banner.parallax_banner_sub_title}}</h3>
+                        <h4>{{productsService.banner.parallax_banner_last_text}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Parallax banner end -->

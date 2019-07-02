@@ -1,0 +1,289 @@
+#social_main_con {
+	background: #ec008c;
+	padding-bottom: 100px;
+}
+
+.st_header {
+	position: relative;
+	min-height: 500px;
+
+	.lft {
+		position: relative;
+		padding-left: 140px;
+
+		.annot_con {
+			overflow: hidden;
+			display: inline-flex;
+			margin: 50px 0px 40px 40px;
+
+			> span {
+				background: #c50276;
+				width: 34px;
+				height: 34px;
+				display: inline-flex;
+				border-radius: 20px;
+			}
+
+			> p {
+				color: #ffffff;
+				display: inline-flex;
+				margin: -1px 0px 0px 10px;
+				max-width: 200px;
+				line-height: 17px;
+				font-weight: 100;
+			}
+		}
+
+		> h3 {
+			color: #ffffff;
+			font-size: 96px;
+			font-weight: bold;
+			font-family: 'Avenir Next';
+			line-height: 81px;
+			letter-spacing: -0.06em;
+			margin-bottom: 30px;
+
+			> span.tree {
+				color: #c50276;
+			}
+		}
+
+		> a {
+			background: white;
+			color: #ec008c;
+			text-transform: unset;
+			border-radius: 30px;
+			padding: 9px 20px;
+			font-weight: 400;
+		}
+	}
+
+	.tree_con_fcd {
+		background: #c50276;
+		position: absolute;
+		top: 0px;
+		left: 60%;
+		width: 4px;
+		bottom: 0px;
+		//text-align: center;
+
+		.trunk {
+			//background: yellow;
+			width: 250px;
+			height: 300px;
+			position: relative;
+			left: -123px;
+			top: 20%;
+
+			ul {
+				display: block;
+
+				li {
+					display: inline-flex;
+					background: #fff;
+					padding: 8px;
+					border-radius: 40px;
+					margin-bottom: 40px;
+					box-shadow: 7px 3px 18px 1px #00000033;
+					position: relative;
+
+					&:after {
+						content: '';
+						background: #c50276;
+						width: 16px;
+						height: 16px;
+						border-radius: 10px;
+						bottom: -4px;
+						position: absolute;
+						top: 69px;
+						border: 3px solid #ec008c;
+					}
+
+					.tri {
+						display: inline-block;
+						background: #f5f5f5;
+						width: 40px;
+						height: 40px;
+						border-radius: 20px;
+						text-align: center;
+						margin-right: 10px;
+						line-height: 36px;
+						overflow: hidden;
+
+						img {
+							width: 40px;
+						}
+					}
+
+					.trn {
+						display: inline-block;
+
+						p {
+							margin: 2px 0 0 0; 
+							font-size: 16px;
+							color: #ec008c;
+						}
+
+						small {
+							font-weight: 100;
+							color: #1f1f1fba;
+							font-size: 12px;
+						}
+					}
+
+					.trc {
+						display: inline-block;
+						background: none;
+						width: 40px;
+						height: 40px;
+						line-height: 32px;
+						text-align: center;
+						border-radius: 20px;
+						margin: 0 0px 0px 10px; 
+
+						img {
+							width: 20px;
+						}
+					}
+				}
+
+				#l_add {
+					background: #c50276;
+					color: #ec008c; 
+					top: 25px;
+					width: 50px;
+					line-height: 50px;
+					left: 100px;
+					height: 50px;
+					box-shadow: none;
+					border: 4px solid #ec008c;
+					text-align: center;
+
+					&:after {
+						display: none;
+					}
+
+					&:hover {
+						cursor: pointer;	
+						background: #ffffff;	
+					}
+
+					i {
+						width: 20px;
+						height: 20px;
+						text-align: center;
+						line-height: 20px;
+						margin: auto;
+						font-size: 14px;
+					}
+
+				}
+			}
+		}
+	}
+}
+
+
+#l_a {
+	right: 20px;
+
+	&:before {
+		content: '2 more reminders!';
+		color: #ffffffc9;
+		display: block;
+		position: absolute;
+		top: 58px;		
+		left: 10px;		
+		font-size: 10px;		
+	}
+
+	&:after {
+		left: 137px;
+	}
+}
+
+#l_b {
+	left: 60px;
+
+	.trn p {
+		color: #00acec;
+	}
+
+	&:after {
+		left: 57px;
+	}
+
+	.trc {
+		img {
+			width: 30px;
+		}
+	}
+}
+
+#l_c {
+	left: 20px;
+
+	.trn p {
+		color: #fdaf5a;
+	}
+
+	&:after {
+		left: 97px;
+	}
+}
+
+
+
+
+#stage_a {
+	position: relative;
+	font-family: 'Avenir Next';
+	padding: 100px 0px;
+
+	.lft {
+		padding-left: 200px;
+		padding-top: 48px;
+
+		header {
+			display: inline-flex;
+			margin-bottom: 20px;
+
+			span {
+				display: inline-block;
+				width: 40px;
+				height: 60px;
+				line-height: 60px;
+				margin-right: 20px;
+			}
+
+			h2 {
+				text-transform: unset;
+				font-size: 26px;
+				margin-top: 20px;
+				font-weight: 600;
+			}
+		}
+
+		.btm {
+			overflow: hidden;
+
+			p {
+				font-size: 16px;
+				font-weight: normal;
+				line-height: 20px;
+				max-width: 320px;
+			}
+		}
+	}
+
+	.rgt {
+		img {
+			width: 336px;
+		}
+	}
+}
+
+
+
+
+
