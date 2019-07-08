@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LandingFixService } from '../../services/landing-fix.service';
-declare var $: any;
+//declare var $: any;
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-left-sidebar',

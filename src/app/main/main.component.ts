@@ -3,7 +3,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { ProductsService } from '../shared/services/products.service';
 import { CartService } from '../shared/services/cart.service';
 import { WishlistService } from '../shared/services/wishlist.service';
-declare var $: any;
+//declare var $: any;
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-main',

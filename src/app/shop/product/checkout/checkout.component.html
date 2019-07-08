@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-sm-12 col-xs-12">
                             <div class="checkout-title">
-                                <h3>Shipping Details</h3>
+                                <h3>User Details</h3>
                             </div>
                             <div class="row check-out">
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <div class="field-label">Phone</div>
+                                    <div class="field-label">Phone Number</div>
                                     <input type="text" name="phone" [formControl]="checkoutForm.controls['phone']"
                                         value="" placeholder="" autocomplete="off">
                                     <div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.required"
@@ -83,6 +83,36 @@
                                         Invalid Email
                                     </div>
                                 </div>
+                                <div class="checkout-title">
+                                    <h3>Recipient Details</h3>
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <div class="field-label">Full Name</div>
+                                    <input type="text" name="fullname" [formControl]="checkoutForm.controls['fullname']"
+                                        value="" placeholder="" autocomplete="off">
+                                    <div *ngIf="checkoutForm.controls.fullname.touched && checkoutForm.controls.fullname.errors?.required"
+                                        class="text text-danger">
+                                        Full Name is required.
+                                    </div>
+                                    <div *ngIf="checkoutForm.controls.fullname.touched && checkoutForm.controls.fullname.errors?.pattern"
+                                        class="text text-danger">
+                                        Full Name must be an alphabates.
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <div class="field-label">Phone Number</div>
+                                    <input type="text" name="recipientphone"
+                                        [formControl]="checkoutForm.controls['recipientphone']" value="" placeholder=""
+                                        autocomplete="off">
+                                    <div *ngIf="checkoutForm.controls.recipientphone.touched && checkoutForm.controls.recipientphone.errors?.required"
+                                        class="text text-danger">
+                                        Recipient Phone No is required.
+                                    </div>
+                                    <div *ngIf="checkoutForm.controls.recipientphone.touched && checkoutForm.controls.recipientphone.errors?.pattern"
+                                        class="text text-danger">
+                                        Recipient Phone No must be number.
+                                    </div>
+                                </div>
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                     <div class="field-label">Address</div>
                                     <input type="text" name="address" [formControl]="checkoutForm.controls['address']"
@@ -93,7 +123,7 @@
                                     </div>
                                     <div *ngIf="checkoutForm.controls.address.touched && checkoutForm.controls.address.errors?.maxlength"
                                         class="text text-danger">
-                                        Maximum 50 character
+                                        Maximum 250 character
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
@@ -106,15 +136,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12 col-sm-6 col-xs-12">
-                                    <div class="field-label">State</div>
-                                    <input type="text" name="state" [formControl]="checkoutForm.controls['state']"
-                                        value="" placeholder="" autocomplete="off">
+                                    <div class="field-label">State<small> More states will be added soon</small></div>
+                                    <select name="state" [formControl]="checkoutForm.controls['state']">
+                                        <option value="" selected>Select State</option>
+                                        <option value="Lagos">Lagos</option>
+                                    </select>
+                                    <!-- <input type="text" name="state" [formControl]="checkoutForm.controls['state']"
+                                        value="" placeholder="" autocomplete="off"> -->
                                     <div *ngIf="checkoutForm.controls.state.touched && checkoutForm.controls.state.errors?.required"
                                         class="text text-danger">
                                         State is required
                                     </div>
                                 </div>
-                                <div class="form-group col-md-12 col-sm-6 col-xs-12">
+
+                                <!-- <div class="form-group col-md-12 col-sm-6 col-xs-12">
                                     <div class="field-label">Country</div>
                                     <input type="text" name="country" [formControl]="checkoutForm.controls['country']"
                                         value="" placeholder="" autocomplete="off">
@@ -122,20 +157,20 @@
                                         class="text text-danger">
                                         Country is required
                                     </div>
-                                </div>
-                                <!-- <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                </div> -->
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                     <div class="field-label">Country</div>
                                     <select name="country" [formControl]="checkoutForm.controls['country']">
                                         <option value="" selected>Select Country</option>
-                                        <option value="India">India</option>
-                                        <option value="USA">USA</option>
-                                        <option value="Australia">Australia</option>
+                                        <option value="Nigeria">Nigeria</option>
+                                        <!-- <option value="USA">USA</option>
+                                        <option value="Australia">Australia</option> -->
                                     </select>
                                     <div *ngIf="checkoutForm.controls.country.touched && checkoutForm.controls.country.errors?.required"
                                         class="text text-danger">
                                         Country is required
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="form-group col-md-12 col-sm-6 col-xs-12">
                                     <div class="field-label">Special Instructions</div>
                                     <textarea name="specialinstructions"
@@ -149,7 +184,7 @@
                             <div class="row check-out">
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                     <!-- <div class="field-label">GIFT CARD MESSAGE</div> -->
-                                    <textarea rows="5" name="card_message"
+                                    <textarea rows="5" name="card_message" [(ngModel)]="mcard_message"
                                         [formControl]="checkoutForm.controls['card_message']" value=""
                                         placeholder="Write your message here or write 'blank card'" autocomplete="off"
                                         style="height: 150px;"></textarea>
@@ -159,8 +194,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 text">
-                                            <a href="javascript:void(0)" class="btn gen-message-pop"
-                                                style="display: inline-block;"><i class="fa fa-question-circle"></i>
+                                            <a href="javascript:void(0)" (click)="giftMessages()"
+                                                class="btn gen-message-pop" style="display: inline-block;"><i
+                                                    class="fa fa-question-circle"></i>
                                                 Stuck for words?</a>
                                         </div>
                                         <div class="col-lg-6 text">
@@ -178,13 +214,13 @@
                                         <div class="col-12 p-0">
                                             <ngx-slick-carousel (init)="slickInit($event)" class="slider-nav"
                                                 #slickModal="slick-carousel" [config]="slideNavConfig">
-                                                <div ngxSlickItem *ngFor="let cs of card_styles">
+                                                <div ngxSlickItem *ngFor="let cs of card_styles; trackBy: trackStyle">
                                                     <div>
                                                         <img [src]="cs.image" alt="" (click)="selectCardStyle(cs.title)"
                                                             class="img-fluid">
                                                     </div>
                                                     <div class="text">
-                                                        Style {{cs.title}}
+                                                        {{cs.title}}
                                                     </div>
                                                 </div>
                                             </ngx-slick-carousel>
@@ -265,9 +301,12 @@
                                                 class="count">{{ getTotal() | async | currency:productsService?.currency:'symbol'}}</span>
                                         </li>
                                         <li *ngIf='checkOutItems.length'>
-                                            Shipping
+                                            Tax
                                             <div class="shipping">
-                                                <div class="shopping-option">
+                                                <span>
+                                                    {{ config.convertPrice(tax_amount) | currency:productsService?.currency:'symbol' }}
+                                                </span>
+                                                <!-- <div class="shopping-option">
                                                     <input type="radio" name="shipping" checked="checked"
                                                         id="free-shipping">
                                                     <label for="free-shipping">Shipping</label>
@@ -275,19 +314,37 @@
                                                 <div class="shopping-option">
                                                     <input type="radio" name="shipping" id="local-pickup">
                                                     <label for="local-pickup">Local Pickup</label>
+                                                </div> -->
+                                            </div>
+                                        </li>
+                                        <li *ngIf='checkOutItems.length'>
+                                            Delivery
+                                            <div class="shipping">
+                                                <span>
+                                                    {{ config.convertPrice(delivery_amount) | currency:productsService?.currency:'symbol' }}
+                                                </span>
+                                                <!-- <div class="shopping-option">
+                                                    <input type="radio" name="shipping" checked="checked"
+                                                        id="free-shipping">
+                                                    <label for="free-shipping">Shipping</label>
                                                 </div>
+                                                <div class="shopping-option">
+                                                    <input type="radio" name="shipping" id="local-pickup">
+                                                    <label for="local-pickup">Local Pickup</label>
+                                                </div> -->
                                             </div>
                                         </li>
                                     </ul>
                                     <ul class="total">
                                         <li>Total <span
-                                                class="count">{{ getTotal() | async | currency:productsService?.currency:'symbol'}}</span>
+                                                class="count">{{ config.convertPrice(amount) | currency:productsService?.currency:'symbol'}}
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div class="payment-box" *ngIf='checkOutItems.length'>
-                                    <div class="upper-box">
+                                    <div class="upper-box" *ngIf="showPaymentOption">
                                         <div class="payment-options">
                                             <ul>
                                                 <li>
@@ -315,18 +372,19 @@
                                     </div>
                                     <div class="text-right">
                                         <button class="btn-solid btn" [disabled]="!checkoutForm.valid"
-                                            (click)="stripeCheckout()" type="submit" *ngIf="!payment">
+                                            (click)="stripeCheckout()" type="submit" *ngIf="payment">
                                             Place Order
                                         </button>
                                         <!-- <ngx-paypal [config]="payPalConfig" [ngClass]="{'btn disabled': !checkoutForm.valid}" *ngIf="payment">
                                         </ngx-paypal> -->
-                                        <button angular4-paystack *ngIf="payment" [disabled]="!checkoutForm.valid"
-                                            [key]="'pk_test_fe5e7a92b2ac1e14defe1172eec62d743f974915'"
+                                        <button angular4-paystack *ngIf="!payment" [disabled]="!checkoutForm.valid"
+                                            [key]="'pk_test_5529c0350c28ac1b2306ef2b8180e36dc24b3f17'"
                                             [email]="checkoutForm.value.email"
                                             [amount]="this.config.convertPrice(amount) * 100" [ref]="reference"
-                                            [channels]="['card','bank']" [currency]="NGN" class="btn-solid btn"
-                                            (close)="paymentCancel()" (callback)="paymentDone($event)">Pay with
-                                            Paystack</button>
+                                            [channels]="['card','bank']"
+                                            [currency]="(productsService.currency == '₦') ? 'NGN' : this.productsService.currency"
+                                            class="btn-solid btn" (close)="paymentCancel()"
+                                            (callback)="paymentDone($event)">Place Order</button>
                                     </div>
                                 </div>
                             </div>
@@ -338,3 +396,43 @@
         </div>
     </div>
 </section>
+
+<ng-template #gifts let-c="close" let-d="dismiss">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-header card-header-rose card-header-icon">
+                        <div class="card-icon">
+                            <!-- <i class="material-icons">mail_outline</i> -->
+                        </div>
+                        <h4 class="card-title">Gift Card Messages</h4>
+                    </div>
+                    <div class="card-body ">
+                        <form method="#" action="#">
+                            <mat-form-field>
+                                <mat-select color="accent" placeholder="Select a Category" style="width: 100%;"
+                                    [(ngModel)]="selected_category" name="Category" ariaLabel="card_categories[0]">
+                                    <mat-option *ngFor="let cc of card_categories" [value]="cc">
+                                        {{cc}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div *ngFor="let msg of selected_messages_array">
+                                <button type="button" class="btn-solid btn"
+                                    (click)="addMessageToField(msg.text)">{{msg.text}}</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer ">
+                        <button type="button" class="btn-solid btn" (click)="viewMessages()">View Messages</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                (click)="c('Close click')">Close</button>
+        </div>
+    </div>
+</ng-template>

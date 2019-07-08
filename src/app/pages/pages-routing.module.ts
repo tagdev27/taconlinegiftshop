@@ -27,6 +27,8 @@ import { MasonaryTwoGridComponent } from './portfolio/masonary-two-grid/masonary
 import { MasonaryThreeGridComponent } from './portfolio/masonary-three-grid/masonary-three-grid.component';
 import { MasonaryFourGridComponent } from './portfolio/masonary-four-grid/masonary-four-grid.component';
 import { MasonaryFullwidthComponent } from './portfolio/masonary-fullwidth/masonary-fullwidth.component';
+import { LoginRouteGuard, DashboardRouteGuard } from '../route.guard';
+import { TrackComponent } from './track/track.component';
 
 const routes: Routes = [
   {
@@ -50,11 +52,13 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [LoginRouteGuard]
       },
       {
         path: 'register',
-        component: RegisterComponent
+        component: RegisterComponent,
+        canActivate: [LoginRouteGuard]
       },
       {
         path: 'search',
@@ -74,7 +78,8 @@ const routes: Routes = [
       },
       {
         path: 'forgetpassword',
-        component: ForgetPasswordComponent
+        component: ForgetPasswordComponent,
+        canActivate: [LoginRouteGuard]
       },
       {
         path: 'contact',
@@ -94,7 +99,12 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [DashboardRouteGuard]
+      },
+      {
+        path: 'track-your-order',
+        component: TrackComponent
       },
       {
         path: 'typography',

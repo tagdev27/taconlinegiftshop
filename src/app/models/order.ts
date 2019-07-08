@@ -12,6 +12,14 @@ export interface TacOrder {
     status:string
     total_amount:number
     shipping_details:any
+    other_payment_detals:any
     gift_card_style:string
-    tracking_details:any
+    tracking_details:Tracking[]
+}
+
+export interface Tracking {
+    title: string
+    text: string
+    icon: string
+    time: string
 }

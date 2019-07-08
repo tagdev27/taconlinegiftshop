@@ -20,6 +20,7 @@ import { DemoComponent } from './demo/demo.component';
 
 import { AppOverlayModule } from './overlay/overlay.module';
 import { ProgressSpinnerModule,ProgressSpinnerComponent } from './progress-spinner/progress-spinner.module';
+import { LoginRouteGuard, DashboardRouteGuard } from './route.guard';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -60,7 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     
   ],
   entryComponents: [ProgressSpinnerComponent],
-  providers: [],
+  providers: [LoginRouteGuard,DashboardRouteGuard],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

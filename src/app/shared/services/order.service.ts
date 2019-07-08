@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ProductsService } from './products.service';
-import { TacOrder } from 'src/app/models/order';
+import { TacOrder, Tracking } from 'src/app/models/order';
 import * as firebase from 'firebase';
 import { Order } from '../classes/order';
 
@@ -17,6 +17,7 @@ export class OrderService {
 
   // Array
   public OrderDetails;
+  public OtherDetailsPayment;
 
   constructor(private router: Router, private productService: ProductsService) { }
 
@@ -25,18 +26,31 @@ export class OrderService {
     return this.OrderDetails;
   }
 
+  // Get other items
+  public getOtherItems(): {} {
+    return this.OtherDetailsPayment;
+  }
+
   // Create order
-  public createOrder(product: any, details: any, orderId: any, amount: any, gcs: any) {
-    this.addOrderToFirebase(product, details, orderId, amount, gcs)
+  public createOrder(product: any, details: any, other_payment_detals: any, orderId: any, amount: any, gcs: any) {
+    this.addOrderToFirebase(product, details, other_payment_detals, orderId, amount, gcs)
   }
 
   randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  addOrderToFirebase(product: any, details: any, orderId: any, amount: any, gcs: any) {
+  addOrderToFirebase(product: any, details: any, other_payment_detals: any, orderId: any, amount: any, gcs: any) {
     const key = firebase.database().ref().push().key
     const track = this.randomInt(0, 999999999999)
+    const track_details: Tracking[] = []
+    const mT: Tracking = {
+      title: 'Order Placed',
+      text: 'We have received your order',
+      icon: 'start',
+      time: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+    }
+    track_details.push(mT)
     const order: TacOrder = {
       carts: product,
       currency_used: this.productService.currency,
@@ -46,16 +60,12 @@ export class OrderService {
       email: details.email,
       created_date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
       track_id: track,
-      status: 'PENDING',
+      status: 'pending',
       total_amount: amount,
       shipping_details: details,
       gift_card_style: gcs,
-      tracking_details: [{
-        'title': 'Order Placed',
-        'text': 'We have received your order',
-        'icon': 'start',
-        'time': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
-      }]
+      tracking_details: track_details,
+      other_payment_detals: other_payment_detals
     }
     firebase.firestore().collection('orders').doc(order.id).set(order).then(done => {
       var item: Order = {
@@ -66,6 +76,7 @@ export class OrderService {
         tracking_id: track
       };
       this.OrderDetails = item;
+      this.OtherDetailsPayment = other_payment_detals
       this.router.navigate(['/home/checkout/success']);
     })
   }

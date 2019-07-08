@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { IsotopeModule } from 'ngx-isotope';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
@@ -30,13 +31,15 @@ import { MasonaryFourGridComponent } from './portfolio/masonary-four-grid/masona
 import { MasonaryFullwidthComponent } from './portfolio/masonary-fullwidth/masonary-fullwidth.component';
 
 import { SocialTreeComponent } from "./social-tree/social-tree.component";
+import { TrackComponent } from "./track/track.component";
 
 @NgModule({
   imports: [
     CommonModule,
     PagesRoutingModule,
     SlickCarouselModule,
-    IsotopeModule
+    IsotopeModule,
+    NgbModule.forRoot(),
   ],
   declarations: [
     AboutUsComponent,
@@ -63,7 +66,8 @@ import { SocialTreeComponent } from "./social-tree/social-tree.component";
     MasonaryThreeGridComponent,
     MasonaryFourGridComponent,
     MasonaryFullwidthComponent,
-    SocialTreeComponent
+    SocialTreeComponent,
+    TrackComponent
   ]
 })
 export class PagesModule { }

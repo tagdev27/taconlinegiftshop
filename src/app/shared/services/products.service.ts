@@ -49,7 +49,7 @@ export class ProductsService {
       this.country = res['country_name']
       this.user_country = { latitude: res['latitude'], longitude: res['longitude'] }
       //const country = res['country']
-      //console.log(`country == ${country}`)
+      console.log(`country == ${this.country}`)
       firebase.firestore().collection('db').doc('tacadmin').collection('currency').get().then(query => {//where("country", "==", country)
         this.currencies = []
         query.forEach(q => {
@@ -65,11 +65,11 @@ export class ProductsService {
               this.currency = getSelectedCurrency[0].name
               this.exchange_rate = getSelectedCurrency[0].exchange_rate
             } else {
-              this.currency = '₦'
+              this.currency = 'USD'
             }
           }
         } else {
-          this.currency = '₦'
+          this.currency = '₦'//if country not nigeria
         }
         //console.log(`country == ${this.currency}`)
       });

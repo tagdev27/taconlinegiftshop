@@ -1,0 +1,150 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>track your order</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="['/home/three']">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">track your order</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="pwd-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2>Track Your Order</h2>
+                <form class="theme-form">
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <input type="number" class="form-control" id="track_id" placeholder="Enter Your Tracking ID"
+                                required="">
+                        </div>
+                        <button type="button" class="btn btn-solid" (click)="track()">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" *ngIf="error">
+            <div class="col-sm-12 text-center">
+                <img src="assets/images/empty-search.jpg" class="img-fluid mb-4">
+                <h3>Sorry! Couldn't find the order you were looking For!!!</h3>
+                <p>Please check if the id is entered correctly or try with another tracking id.</p>
+                <a [routerLink]="['/home/three']" class="btn btn-solid">continue shopping</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->
+
+<section class="section-b-space light-layout" *ngIf="order">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="success-text">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <h2>your order</h2>
+                    <p>Order Placed: {{order.created_date}}</p>
+                    <p>Transaction ID: {{order.transaction_id}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section ends -->
+<!-- order-detail section start -->
+<section class="section-b-space" *ngIf="order">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product-order">
+                    <h3>your order details</h3>
+                    <div class="row product-order-detail" *ngFor="let item of order.carts">
+                        <div class="col-3">
+                            <img [src]="item.product.pictures[0]" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>product name</h4>
+                                <h5>{{item.product.name}}</h5>
+                            </div>
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>quantity</h4>
+                                <h5>{{item.quantity}}</h5>
+                            </div>
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>price</h4>
+                                <h5>{{order.currency_used}}{{item.product.price}}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="total-sec">
+                        <div class="final-total">
+                            <h3>total <span>{{order.currency_used}}{{order.total_amount}}</span></h3>
+                        </div>
+                        <!-- <ul>
+                                <li>Subtotal <span>{{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</span></li>
+                                <li>Subtotal <span>{{getSubTotal() | async | currency:productsService?.currency:'symbol'}}</span></li>
+                                <li>Shipping <span>{{config.convertPrice(order.other_payment_detals.delivery) | currency:productsService?.currency:'symbol'}}</span></li>
+                                <li>Tax <span>{{config.convertPrice(order.other_payment_detals.tax) | currency:productsService?.currency:'symbol'}}</span></li>
+                            </ul> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row order-success-sec">
+                    <div class="col-md-12">
+                        <div class="delivery-sec">
+                            <div class="product-order">
+                                <h3>tracking details</h3>
+                                <div class="row product-order-detail" *ngFor="let item of order.tracking_details">
+                                    <div class="col-3 success-text">
+                                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                        <!-- <img [src]="item.product.pictures[0]" alt="" class="img-fluid"> -->
+                                    </div>
+                                    <div class="col-3 order_detail">
+                                        <div>
+                                            <h5>Title</h5>
+                                            <h6>{{item.title}}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 order_detail">
+                                        <div>
+                                            <h5>Description</h5>
+                                            <h6>{{item.text}}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 order_detail">
+                                        <div>
+                                            <h5>Time</h5>
+                                            <h6>{{item.time}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Section ends -->

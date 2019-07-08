@@ -11,7 +11,7 @@
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a [routerLink]="['/home/three']">Home</a></li>
-                        <li class="breadcrumb-item active" >login</li>
+                        <li class="breadcrumb-item active">login</li>
                     </ol>
                 </nav>
             </div>
@@ -27,24 +27,45 @@
                 <h3>Login</h3>
                 <div class="theme-card">
                     <form class="theme-form">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-solid" (click)="signinWithGoogle()">Sign in with
+                                        google</button>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-solid" (click)="signinWithFacebook()">Sign in with
+                                        facebook</button>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" class="form-control" id="email" placeholder="Email" required="">
                         </div>
                         <div class="form-group">
                             <label for="review">Password</label>
-                            <input type="password" class="form-control" id="review" placeholder="Enter your password" required="">
+                            <input type="password" class="form-control" id="review" placeholder="Enter your password"
+                                required="">
                         </div>
-                        <button class="btn btn-solid">Login</button>
+                        <button type="button" class="btn btn-solid" (click)="signinWithEmailAndPassword()">Login</button>
                     </form>
+                    <br>
+                    <a href="javascript:void(0)" [routerLink]="['/pages/forgetpassword']"><u>Reset Password</u></a>
                 </div>
             </div>
             <div class="col-lg-6 right-login">
                 <h3>New Customer</h3>
                 <div class="theme-card authentication-right">
                     <h6 class="title-font">Create Account</h6>
-                    <p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop. To start shopping click register.</p>
-                    <button class="btn btn-solid">Create an Account</button>
+                    <p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be able
+                        to order from our shop. To start shopping click register.</p>
+                    <a href="javascript:void(0)" [routerLink]="['/pages/register']" class="btn btn-solid">Create an
+                        Account</a>
                 </div>
             </div>
         </div>

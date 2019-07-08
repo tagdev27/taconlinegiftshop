@@ -1,9 +1,9 @@
 <!-- 1st Level Menu -->
 <!-- Sample menu definition -->
 <ul id="sub-menu" class="sm pixelstrap sm-vertical">
-  <li *ngFor="let menuItem of menuItems">
-      <!-- Sub -->
-      <a href="javascript:void(0)" (click)="gotoCat(menuItem.path)" *ngIf="menuItem.type === 'sub'">
+  <li *ngFor="let menuItem of menuItems; trackBy: trackMenu">
+      <!-- Sub href="javascript:void(0)" (click)="gotoCat(menuItem.path)"-->
+      <a *ngIf="menuItem.type === 'sub'">
          {{menuItem.title}}
       </a>
       <!-- Link -->

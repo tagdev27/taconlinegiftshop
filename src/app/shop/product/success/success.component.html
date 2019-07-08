@@ -85,9 +85,9 @@
                     <div class="total-sec">
                         <ul>
                             <!-- <li>Subtotal <span>{{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</span></li> -->
-                            <li>Subtotal <span>{{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</span></li>
-                            <li>Shipping <span>$00.00</span></li>
-                            <li>Tax <span>$00.00</span></li>
+                            <li>Subtotal <span>{{getSubTotal() | async | currency:productsService?.currency:'symbol'}}</span></li>
+                            <li>Shipping <span>{{config.convertPrice(OtherDetailsPayment.delivery) | currency:productsService?.currency:'symbol'}}</span></li>
+                            <li>Tax <span>{{config.convertPrice(OtherDetailsPayment.tax) | currency:productsService?.currency:'symbol'}}</span></li>
                         </ul>
                     </div>
                     <div class="final-total">
@@ -100,7 +100,7 @@
                     <div class="col-sm-6">
                         <h4>summery</h4>
                         <ul class="order-detail">
-                            <li>tracking ID: {{orderDetails.tracking_id}}</li>
+                            <!-- <li><b>tracking ID: {{orderDetails.tracking_id}}</b></li> -->
                             <li>order ID: {{orderDetails.orderId}}</li>
                             <li>Order Date: {{getDateNow()}}</li>
                             <li>Order Total: {{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</li>
@@ -112,18 +112,20 @@
                             <li>{{orderDetails.shippingDetails.address}}</li>
                             <li>{{orderDetails.shippingDetails.state}}</li>
                             <li>{{orderDetails.shippingDetails.country}}, {{orderDetails.shippingDetails.postalcode}}</li>
-                            <li>Contact No. {{orderDetails.shippingDetails.phone}}</li>
+                            <li>Contact No. {{orderDetails.shippingDetails.recipientphone}}</li>
                         </ul>
                     </div>
 
                     <div class="col-sm-12 payment-mode">
                         <h4>payment method</h4>
-                        <p>Online Stripe Payment</p>
+                        <p>Online Paystack Payment</p>
                     </div>
                     <div class="col-md-12">
                         <div class="delivery-sec">
                             <h3>expected date of delivery</h3>
-                            <h2>March 21, 2019</h2>
+                            <h2>{{getDateNow()}}</h2>
+                            <h3>tracking ID</h3>
+                            <h2>{{orderDetails.tracking_id}}</h2>
                         </div>
                     </div>
                 </div>

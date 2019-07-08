@@ -48,7 +48,8 @@
                 <h4>{{ item.product.name }}</h4>
               </a>
               <h4><span>{{ item.quantity }} x
-                  {{ config.convertPrice(item.product.price) | currency:productsService?.currency:'symbol' }}</span></h4>
+                  {{ config.convertPrice(item.product.price) | currency:productsService?.currency:'symbol' }}</span>
+              </h4>
             </div>
           </div>
           <div class="close-circle">
@@ -80,10 +81,17 @@
           <div class="col-xl-12">
             <form>
               <div class="form-group">
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Search a Product">
+                <input type="text" name="q" [(ngModel)]="query" class="form-control" id="exampleInputPassword1"
+                  placeholder="Search a Product">
               </div>
-              <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              <button type="button" (click)="onSearchPressed()" class="btn btn-primary"><i class="fa fa-search"></i></button>
             </form>
+          </div>
+          <div class="col-xl-12 text-center" *ngIf="display_error">
+            <img src="assets/images/empty-search.jpg" class="img-fluid mb-4">
+            <h3>Sorry! Couldn't find the product you were looking For!!! </h3>
+            <p>Please check if you have misspelt something or try searching with other words.</p>
+            <a [routerLink]="['/home/three']" class="btn btn-solid">continue shopping</a>
           </div>
         </div>
       </div>

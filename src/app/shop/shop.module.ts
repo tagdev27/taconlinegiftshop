@@ -10,6 +10,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MatSelectModule } from "@angular/material";
 
 import { MatProgressSpinnerModule } from "@angular/material";
 // Home-one components
@@ -185,7 +187,9 @@ import { NewsletterComponent } from './product/widgets/newsletter/newsletter.com
     NgxPayPalModule,
     NgxImgZoomModule,
     Angular4PaystackModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgbModule.forRoot(),
+    MatSelectModule
   ],
   declarations: [
     // Home one
