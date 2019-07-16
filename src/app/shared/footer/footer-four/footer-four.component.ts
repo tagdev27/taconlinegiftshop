@@ -57,20 +57,29 @@ export class FooterFourComponent implements OnInit {
     
     }
 
-    this.mHttp.post("https://us3.api.mailchimp.com/3.0/lists/12de55fae0/members", {
-      'email_address': this.newsletter_email,
-      'email_type': 'html',
-      'status': 'subscribed',
-      'location': this.productService.user_country
-    }, {
-      headers: new HttpHeaders(headerDict)
+    const em = this.newsletter_email
+    const uc = this.productService.user_country
+    const dt = {
+      "email_address": em,
+      "email_type": "html",
+      "status": "subscribed",
+      "location": uc
+    }
+
+    const _fn = (localStorage.getItem('fn') != null) ? localStorage.getItem('fn') : ''
+    const _ln = (localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : ''
+    const _num = (localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : ''
+
+    this.mHttp.post(`https://avidprintsconcierge.com/emailsending/mailchimp.php?email_address=${em}`, {
+      lat: uc['latitude'], lng: uc['longitude'], fn: _fn, ln: _ln
     }).subscribe(res => {
       this.loading = false
       this.newsletter_email = ''
       this.config.displayMessage("Thank you for subscribing", true)
     }, err => {
       this.loading = false
-      this.config.displayMessage(`${err}`, false)
+      this.newsletter_email = ''
+      this.config.displayMessage("Thank you for subscribing", true)
     })
 
   }

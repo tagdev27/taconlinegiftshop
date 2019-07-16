@@ -45,26 +45,26 @@
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="email">First Name</label>
-                                <input type="text" class="form-control" id="fname" placeholder="First Name" required="">
+                                <label for="fname">First Name</label>
+                                <input type="text" class="form-control" name="fn" id="fname" placeholder="First Name" required="">
                             </div>
                             <div class="col-md-6">
-                                <label for="review">Last Name</label>
-                                <input type="password" class="form-control" id="lname" placeholder="Last Name"
+                                <label for="lname">Last Name</label>
+                                <input type="text" class="form-control" name="ln" id="lname" placeholder="Last Name"
                                     required="">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="email">email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Email" required="">
                             </div>
                             <div class="col-md-6">
                                 <label for="review">Password</label>
                                 <input type="password" class="form-control" id="review"
                                     placeholder="Enter your password" required="">
                             </div>
-                            <button type="button" class="btn btn-solid">create Account</button>
+                            <button type="button" (click)="signupWithEmailAndPassword()" class="btn btn-solid">create Account</button>
                         </div>
                         <div class="form-row">
                             <br>

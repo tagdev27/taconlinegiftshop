@@ -184,7 +184,7 @@
                             <div class="row check-out">
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                     <!-- <div class="field-label">GIFT CARD MESSAGE</div> -->
-                                    <textarea rows="5" name="card_message" [(ngModel)]="mcard_message"
+                                    <textarea rows="5" name="card_message"
                                         [formControl]="checkoutForm.controls['card_message']" value=""
                                         placeholder="Write your message here or write 'blank card'" autocomplete="off"
                                         style="height: 150px;"></textarea>
@@ -208,7 +208,7 @@
                                             Address is required
                                         </div> -->
                                     <div class="checkout-title">
-                                        <h3>Select Card Style {{selected_card_style}}</h3>
+                                        <h3>Select Card Style: {{selected_card_style}}</h3>
                                     </div>
                                     <div class="row">
                                         <div class="col-12 p-0">

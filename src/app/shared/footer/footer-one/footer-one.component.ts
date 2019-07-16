@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http } from '@angular/http';
 import { AppConfig } from "src/app/services/global.service";
 import { ProductsService } from '../../services/products.service';
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-footer-one',
@@ -13,10 +14,10 @@ import { ProductsService } from '../../services/products.service';
 })
 export class FooterOneComponent implements OnInit {
 
-  constructor(private http:Http, private mHttp:HttpClient, private productService:ProductsService) { }
+  constructor(private http?: Http, private mHttp?: HttpClient, private productService?: ProductsService) { }
 
   service = new StoreService()
-  store:StoreSettings
+  store: StoreSettings
   address = ''
   number = ''
   fax = ''
@@ -51,26 +52,57 @@ export class FooterOneComponent implements OnInit {
     const headerDict = {
       'Content-Type': 'application/json',
       'Authorization': 'apikey 7abc577dbf82e2c727476aa090aa07af-us3',
-      'Access-Control-Allow-Origin':'https://taconlinegiftshop.firebaseapp.com',
+      'Access-Control-Allow-Origin': 'https://taconlinegiftshop.firebaseapp.com',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-    'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,X-Access-Token,XKey,Authorization',
-    
+      'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,X-Access-Token,XKey,Authorization',
+
     }
 
-    this.mHttp.post("https://us3.api.mailchimp.com/3.0/lists/12de55fae0/members", {
-      'email_address': this.newsletter_email,
-      'email_type': 'html',
-      'status': 'subscribed',
-      'location': this.productService.user_country
-    }, {
-      headers: new HttpHeaders(headerDict)
+    const em = this.newsletter_email
+    const uc = this.productService.user_country
+    const dt = {
+      "email_address": em,
+      "email_type": "html",
+      "status": "subscribed",
+      "location": uc
+    }
+
+    const _fn = (localStorage.getItem('fn') != null) ? localStorage.getItem('fn') : ''
+    const _ln = (localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : ''
+    const _num = (localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : ''
+    const c = this.config
+
+    // $(function () {
+    //   $.ajax({
+    //     url: `https://avidprintsconcierge.com/emailsending/mailchimp.php?email_address=${em}`,//lat=${uc['latitude']}&lng=${uc['longitude']}&
+    //     type: "post",
+    //     success: function (data) {
+    //       new FooterOneComponent().loading = false
+    //       new FooterOneComponent().newsletter_email = ''
+    //       c.displayMessage("Thank you for subscribing", true)
+    //     },
+    //     error: function (err) {
+
+    //       new FooterOneComponent().loading = false
+    //       new FooterOneComponent().newsletter_email = ''
+    //       c.displayMessage("Thank you for subscribing", true)
+    //     },
+    //     data: {
+    //       lat: uc['latitude'], lng: uc['longitude'], fn: _fn, ln: _ln 
+    //     }
+    //   });
+    // });
+
+    this.mHttp.post(`https://avidprintsconcierge.com/emailsending/mailchimp.php?email_address=${em}`, {
+      lat: uc['latitude'], lng: uc['longitude'], fn: _fn, ln: _ln
     }).subscribe(res => {
       this.loading = false
       this.newsletter_email = ''
       this.config.displayMessage("Thank you for subscribing", true)
     }, err => {
       this.loading = false
-      this.config.displayMessage(`${err}`, false)//"An error occurred, please try again"
+      this.newsletter_email = ''
+      this.config.displayMessage("Thank you for subscribing", true)
     })
 
   }

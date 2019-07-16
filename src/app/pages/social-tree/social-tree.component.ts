@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
+declare var gapi:any
+
 @Component({
   selector: 'app-social-tree',
   templateUrl: './social-tree.component.html',
@@ -9,6 +11,8 @@ import * as $ from 'jquery';
 export class SocialTreeComponent implements OnInit {
 
   constructor() { }
+
+  calendarItems:any[] = []
 
   ngOnInit() {
   	$(document).ready(function(e){
@@ -24,7 +28,19 @@ export class SocialTreeComponent implements OnInit {
 			}, 500);
 
 		}, 10000);
-  	});
+	  });
+	  this.getEvents()
+  }
+
+  async getEvents() {
+	const events = await gapi.client.calendar.events.list({
+	  calendarId: 'primary'
+	})
+  
+	console.log(events)
+  
+	this.calendarItems = events.result.items;
+  
   }
 
 }

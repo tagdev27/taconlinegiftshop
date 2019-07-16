@@ -38,7 +38,8 @@ export class AppConfig {
         return item.name == currency
       })
       //console.log(`exchange rate  ===============  ${getSelectedCurrency[0].exchange_rate}`)
-      return price / Number(getSelectedCurrency[0].exchange_rate)
+      const fixed_amount = (price / Number(getSelectedCurrency[0].exchange_rate)).toFixed(2)
+      return Number(fixed_amount)
     }
   }
 
@@ -55,7 +56,8 @@ export class AppConfig {
       })
       //console.log(`exchange rate  ===============  ${getSelectedCurrency[0].exchange_rate}`)
       return price.map(pr => {
-        return pr / Number(getSelectedCurrency[0].exchange_rate)
+        const fixed_amount = (pr / Number(getSelectedCurrency[0].exchange_rate)).toFixed(2)
+        return Number(fixed_amount)
       })
     }
   }

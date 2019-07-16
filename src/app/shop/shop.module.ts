@@ -12,6 +12,7 @@ import { Angular4PaystackModule } from 'angular4-paystack';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MatSelectModule } from "@angular/material";
+import { ExportAsModule } from 'ngx-export-as';
 
 import { MatProgressSpinnerModule } from "@angular/material";
 // Home-one components
@@ -189,7 +190,8 @@ import { NewsletterComponent } from './product/widgets/newsletter/newsletter.com
     Angular4PaystackModule,
     MatProgressSpinnerModule,
     NgbModule.forRoot(),
-    MatSelectModule
+    MatSelectModule,
+    ExportAsModule
   ],
   declarations: [
     // Home one

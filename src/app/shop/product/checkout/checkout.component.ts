@@ -93,6 +93,11 @@ export class CheckoutComponent implements OnInit {
   slickInit(e) { }
 
   ngOnInit() {
+    this.checkoutForm.controls['firstname'].setValue((localStorage.getItem('fn') != null) ? localStorage.getItem('fn') : '')
+    this.checkoutForm.controls['lastname'].setValue((localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : '')
+    this.checkoutForm.controls['email'].setValue((localStorage.getItem('email') != null) ? localStorage.getItem('email') : '') 
+    this.checkoutForm.controls['phone'].setValue((localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : '') 
+
     this.cartItems = this.cartService.getItems();
     this.cartItems.subscribe(products => this.checkOutItems = products);
     this.getTotal().subscribe(amount => this.amount = (amount + this.tax_amount + this.delivery_amount));
@@ -110,7 +115,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   selectCardStyle(id: any) {
-    this.selected_card_style = `- ${id} selected`
+    this.selected_card_style = `${id} selected`
   }
 
   // Get sub Total
@@ -195,6 +200,7 @@ export class CheckoutComponent implements OnInit {
     if (current_email == null) {
       localStorage.setItem('email', this.checkoutForm.value.email)
     }
+    localStorage.setItem('phone', this.checkoutForm.value.phone)
     this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, trans, this.config.convertPrice(this.amount), this.selected_card_style);
   }
 
@@ -284,7 +290,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   viewMessages() {
-    if(this.selected_category == ''){
+    if (this.selected_category == '') {
       return
     }
     this.selected_messages_array = this.messages.filter((item, index, arr) => {
@@ -294,7 +300,8 @@ export class CheckoutComponent implements OnInit {
 
   addMessageToField(text: string) {
     this.modalService.dismissAll()
-    this.mcard_message = text
+    this.checkoutForm.controls['card_message'].setValue(text)
+    //this.mcard_message = text
     //document.getElementById("mcard_message").setAttribute("value", text)// = text
     //this.checkoutForm.setValue({ 'card_message': text })
   }

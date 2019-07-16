@@ -76,16 +76,16 @@ $(document).ready(function() {
   /*=====================
    05.RTL js
    ==========================*/
-  $(".rtl-btn").click(function() {
-    $(this).toggleClass("active");
-    if ($(this).hasClass('active')) {
-      $("html").attr("dir", "rtl");
-      $("body").addClass('rtl');
-    } else {
-      $("html").attr("dir", "ltr");
-      $("body").removeClass('rtl');
-    }
-  });
+  // $(".rtl-btn").click(function() {
+  //   $(this).toggleClass("active");
+  //   if ($(this).hasClass('active')) {
+  //     $("html").attr("dir", "rtl");
+  //     $("body").addClass('rtl');
+  //   } else {
+  //     $("html").attr("dir", "ltr");
+  //     $("body").removeClass('rtl');
+  //   }
+  // });
 
 
   /*=====================
@@ -93,30 +93,36 @@ $(document).ready(function() {
    ==========================*/
 
   (function() {
-    $('<div class="color-picker" id="color-picker">' +
-      '<a href="#" class="handle">' +
-      '<i class="fa fa-cog"></i>' +
-      '</a><div class="sec-position"><div class="settings-header">' +
-      '<h3>Select Color:</h3>' +
-      '</div>' +
-      '<div class="section">' +
-      '<div class="colors o-auto">' +
-      '<a href="#" class="color1" ></a>' +
-      '<a href="#" class="color2" ></a>' +
-      '<a href="#" class="color3" ></a>' +
-      '<a href="#" class="color4" ></a>' +
-      '<a href="#" class="color5" ></a>' +
-      '<a href="#" class="color6" ></a>' +
-      '<a href="#" class="color7" ></a>' +
-      '<a href="#" class="color8" ></a>' +
-      '<a href="#" class="color9" ></a>' +
-      '<a href="#" class="color10" ></a>' +
-      '<a href="#" class="color11" ></a>' +
-      '<a href="#" class="color12" ></a>' +
-      '</div>' +
-      '</div>' +
-      '</div>' +
-      '</div>').appendTo($('body'));
+    // $('<div class="color-picker" id="color-picker">' +
+    //   '<a href="#" class="handle">' +
+    //   '<i class="fa fa-cog"></i>' +
+    //   '</a><div class="sec-position"><div class="settings-header">' +
+    //   '<h3>Select Color:</h3>' +
+    //   '</div>' +
+    //   '<div class="section">' +
+    //   '<div class="colors o-auto">' +
+    //   '<a href="#" class="color1" ></a>' +
+    //   '<a href="#" class="color2" ></a>' +
+    //   '<a href="#" class="color3" ></a>' +
+    //   '<a href="#" class="color4" ></a>' +
+    //   '<a href="#" class="color5" ></a>' +
+    //   '<a href="#" class="color6" ></a>' +
+    //   '<a href="#" class="color7" ></a>' +
+    //   '<a href="#" class="color8" ></a>' +
+    //   '<a href="#" class="color9" ></a>' +
+    //   '<a href="#" class="color10" ></a>' +
+    //   '<a href="#" class="color11" ></a>' +
+    //   '<a href="#" class="color12" ></a>' +
+    //   '</div>' +
+    //   '</div>' +
+    //   '</div>' +
+    //   '</div>').appendTo($('body'));
+    var link = $("<link />", {
+      rel: "stylesheet",
+      type: "text/css",
+      href: "assets/css/color8.css"
+    });
+    $('#color').html(link);
   })();
   var body_event = $("body");
   body_event.on("click", ".color1", function() {

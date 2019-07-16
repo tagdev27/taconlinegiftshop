@@ -10,7 +10,7 @@
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="'/home/one'">Home</a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="['/home/three']">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
@@ -38,9 +38,9 @@
                     <div class="block-content">
                         <ul>
                             <li class="active"><a href='#'>Account Info</a></li>
-                            <li><a [routerLink]="">Address Book</a></li>
+                            <li><a [routerLink]="['/pages/track-your-order']">Track Your Order</a></li>
                             <li><a [routerLink]="">My Orders</a></li>
-                            <li><a [routerLink]="">My Wishlist</a></li>
+                            <li><a [routerLink]="['/home/wishlist']">My Wishlist</a></li>
                             <li><a [routerLink]="">Newsletter</a></li>
                             <li><a [routerLink]="">My Account</a></li>
                             <li><a [routerLink]="">Change Password</a></li>

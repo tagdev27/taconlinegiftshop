@@ -75,6 +75,7 @@ export class ProductsService {
       });
     })
     this.getGiftCardStyles()
+    this.getCalendarList()
   }
 
   getGiftCardStyles() {
@@ -170,6 +171,12 @@ export class ProductsService {
     const index = products.indexOf(product);
     products.splice(index, 1);
     localStorage.setItem("compareItem", JSON.stringify(products));
+  }
+
+  getCalendarList() {
+    // this.mHttp.get('https://www.googleapis.com/calendar/v3/calendars/primary/events', {headers: new HttpHeaders({'Authorization':'Bearer ya29.Gls_BxF-gXvGwf7VUjiejdkymdQxB3n5U_K4yKpIaXb45_uIRNu9nsXXMkcw6WXSe7zW2ofKGX4p061CSW0tXNprTspG8muURLAx2BnwBgzZ7xOGnWt6dHvdLl8G'})}).toPromise().then(res => {
+    //   console.log(res)
+    // })
   }
 
 }

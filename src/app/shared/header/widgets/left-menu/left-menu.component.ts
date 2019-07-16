@@ -4,8 +4,8 @@ import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-import 'jquery'
-import 'smartmenus'
+import 'jquery';
+import 'smartmenus';
 declare var $: any;
 
 export interface Menu {
@@ -111,6 +111,7 @@ export class LeftMenuComponent implements OnInit {
           //   this.menuItems.push(mi)
           // })
           this.menuItems = this.MENUITEMS.filter(menuItem => menuItem);
+          $('#sub-menu').smartmenus('refresh');
           console.log(JSON.stringify(this.menuItems))
         }
       })
