@@ -58,7 +58,7 @@ export class ProductLeftSidebarComponent implements OnInit {
       email: `${this.reviewForm.value.email}`,
       title: `${this.reviewForm.value.title}`,
       text: `${this.reviewForm.value.text}`,
-      product_id: this.product.id,
+      product_id: this.product.key,
       rating: this.rating,
       created_date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
     }
@@ -122,13 +122,13 @@ export class ProductLeftSidebarComponent implements OnInit {
   };
 
   public slideNavConfig = {
-    vertical: false,
+    vertical: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     asNavFor: '.product-slick',
     arrows: false,
     dots: false,
-    focusOnSelect: true
+    focusOnSelect: false
   }
 
   public increment() {

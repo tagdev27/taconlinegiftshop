@@ -42,7 +42,7 @@ export class EmailService {
                                                             style="text-decoration:none!important;text-decoration:none"
                                                             target="_blank"
                                                             data-saferedirecturl="https://www.google.com/url?q=http://www.tacgifts.com&amp;source=gmail&amp;ust=1562683897626000&amp;usg=AFQjCNGK-hpAHc_rnmWUspALhLBnV3-MSQ">
-                                                            <img src="https://firebasestorage.googleapis.com/v0/b/taconlinegiftshop.appspot.com/o/logo-3.png?alt=media&token=92f27f22-efdb-4455-9628-8e9ac7ae99c6"
+                                                            <img src="https://firebasestorage.googleapis.com/v0/b/taconlinegiftshop.appspot.com/o/logos%2Ftac_logo.png?alt=media&token=a760ac9c-ffce-4aa7-a578-ca7ff24132eb"
                                                                 alt="logo-img" border="0"
                                                                 class="m_-7433457280851606022header-avangate-logo-img CToWUd"
                                                                 style="width:115px" width="115"
@@ -291,7 +291,7 @@ export class EmailService {
 
                                                     <img alt="img" width="128" border="0"
                                                         style="display:block;width:128px"
-                                                        src="https://firebasestorage.googleapis.com/v0/b/taconlinegiftshop.appspot.com/o/logo-3.png?alt=media&token=92f27f22-efdb-4455-9628-8e9ac7ae99c6"
+                                                        src="https://firebasestorage.googleapis.com/v0/b/taconlinegiftshop.appspot.com/o/logos%2Ftac_logo.png?alt=media&token=a760ac9c-ffce-4aa7-a578-ca7ff24132eb"
                                                         class="CToWUd">
 
                                                 </a>

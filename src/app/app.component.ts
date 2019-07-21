@@ -45,22 +45,22 @@ export class AppComponent implements OnInit {
       this.checkLoggedInAccess()
       this.checkblockeduser()
       this.recordWebsiteVisits()
-      this.initClient()
+      //this.initClient()
    }
 
    // Initialize the Google API client with desired scopes
-   initClient() {
-      gapi.load('client', () => {
-         // It's OK to expose these credentials, they are client safe.
-         gapi.client.init({
-            apiKey: 'AIzaSyAu77RE_S5__DnrmaR1LKJvqtNNyR0mSzo',
-            clientId: '640531224553-f2a9jad8al1as2kh1h53uijt2ij47peg.apps.googleusercontent.com',
-            discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
-            scope: 'https://www.googleapis.com/auth/calendar'
-         })
-         gapi.client.load('calendar', 'v3', () => console.log(''));
-      });
-   }
+   // initClient() {
+   //    gapi.load('client', () => {
+   //       // It's OK to expose these credentials, they are client safe.
+   //       gapi.client.init({
+   //          apiKey: 'AIzaSyAu77RE_S5__DnrmaR1LKJvqtNNyR0mSzo',
+   //          clientId: '640531224553-f2a9jad8al1as2kh1h53uijt2ij47peg.apps.googleusercontent.com',
+   //          discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
+   //          scope: 'https://www.googleapis.com/auth/calendar'
+   //       })
+   //       gapi.client.load('calendar', 'v3', () => console.log(''));
+   //    });
+   // }
 
    checkLoggedInAccess() {
       this.email = localStorage.getItem('email');

@@ -73,6 +73,7 @@ export class RegisterComponent implements OnInit {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
     firebase.auth().createUserWithEmailAndPassword(email, password).then(result => {
       result.user.sendEmailVerification().then(d => {
+        localStorage.setItem("verified", "false");
         this.previewProgressSpinner.close()
         const data = {
           fn: fname,
@@ -415,8 +416,8 @@ export class RegisterComponent implements OnInit {
               localStorage.setItem('email', email)
               localStorage.setItem('fn', user_data['firstname'])
               localStorage.setItem('ln', user_data['lastname'])
-              if(other_result != null){
-                cf.displayMessage('', true)
+              if (other_result != null) {
+                //cf.displayMessage('', true)
               }
               rt.navigate(['/home/three'])
             },
@@ -425,8 +426,8 @@ export class RegisterComponent implements OnInit {
               localStorage.setItem('email', email)
               localStorage.setItem('fn', user_data['firstname'])
               localStorage.setItem('ln', user_data['lastname'])
-              if(other_result != null){
-                cf.displayMessage('', true)
+              if (other_result != null) {
+                //cf.displayMessage('', true)
               }
               rt.navigate(['/home/three'])
             },
@@ -441,6 +442,6 @@ export class RegisterComponent implements OnInit {
       })
     })
   }
-  
+
 
 }

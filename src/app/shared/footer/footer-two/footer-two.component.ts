@@ -76,10 +76,12 @@ export class FooterTwoComponent implements OnInit {
     }).subscribe(res => {
       this.loading = false
       this.newsletter_email = ''
+      localStorage.setItem("subcribed", "true")
       this.config.displayMessage("Thank you for subscribing", true)
     }, err => {
       this.loading = false
       this.newsletter_email = ''
+      localStorage.setItem("subcribed", "true")
       this.config.displayMessage("Thank you for subscribing", true)
     })
 

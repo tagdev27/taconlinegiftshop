@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AMENUITEMS } from './navbar-items';
 import { Router, ActivatedRoute } from "@angular/router";
 declare var $: any;
+import 'jquery';
+import 'smartmenus';
 import * as firebase from "firebase";
 import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
@@ -106,6 +108,7 @@ export class NavbarComponent implements OnInit {
           }
           this.MENUITEMS.push(menu)
           this.menuItems = this.MENUITEMS.filter(menuItem => menuItem);
+          $('#sub-menu').smartmenus('refresh');
           //console.log('=============menu===============')
           //console.log(JSON.stringify(this.MENUITEMS))
         }

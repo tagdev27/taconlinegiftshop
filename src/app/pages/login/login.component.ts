@@ -23,10 +23,11 @@ export class LoginComponent implements OnInit {
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
+    provider.addScope('https://www.googleapis.com/auth/calendar.events.readonly')
     firebase.auth().signInWithPopup(provider).then(result => {
       //console.log(result)
       const user_email = result.user.email
-      this.checkFirestoreAndRedirect(user_email)
+      this.checkFirestoreAndRedirect(user_email, result)
     }).catch(err => {
       this.previewProgressSpinner.close()
       this.config.displayMessage(`${err}`, false)
@@ -39,10 +40,11 @@ export class LoginComponent implements OnInit {
     provider.addScope('email');
     provider.addScope('user_birthday');
     provider.addScope('user_friends');
+    provider.addScope('user_gender')
     firebase.auth().signInWithPopup(provider).then(result => {
       console.log(result)
       const user_email = result.user.email
-      this.checkFirestoreAndRedirect(user_email)
+      this.checkFirestoreAndRedirect(user_email, result)
     }).catch(err => {
       this.previewProgressSpinner.close()
       this.config.displayMessage(`${err}`, false)
@@ -60,16 +62,16 @@ export class LoginComponent implements OnInit {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
     firebase.auth().signInWithEmailAndPassword(email, password).then(result => {
       this.previewProgressSpinner.close()
-      this.checkFirestoreAndRedirect(email)
+      this.checkFirestoreAndRedirect(email, null)
     }).catch(err => {
       this.previewProgressSpinner.close()
       this.config.displayMessage(`${err}`, false)
     })
   }
 
-  checkFirestoreAndRedirect(email: string) {
+  checkFirestoreAndRedirect(email: string, social_result: firebase.auth.UserCredential) {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
-    firebase.firestore().collection('users').doc(email.toLowerCase()).get().then(result => {
+    firebase.firestore().collection('users').doc(email.toLowerCase()).get().then(async result => {
       this.previewProgressSpinner.close()
       if (!result.exists) {
         firebase.auth().signOut()
@@ -83,7 +85,14 @@ export class LoginComponent implements OnInit {
         this.config.displayMessage('Sorry, user has been blocked. Please contact support.', false)
         return
       }
+      if (social_result != null) {
+        await firebase.firestore().collection('users').doc(email.toLowerCase()).update({
+          'Tokens': social_result.credential.toJSON()
+        })
+      }
       localStorage.setItem('email', email)
+      localStorage.setItem('fn', user['firstname'])
+      localStorage.setItem('ln', user['lastname'])
       this.router.navigate(['/home/three'])
     }).catch(err => {
       this.previewProgressSpinner.close()

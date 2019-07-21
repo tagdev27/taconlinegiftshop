@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
 // import {  IPayPalConfig,  ICreateOrderRequest } from 'ngx-paypal';
@@ -13,6 +13,8 @@ import * as firebase from 'firebase';
 import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { OverlayService } from 'src/app/overlay/overlay.module';
+import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
 
 declare interface Messages {
   id: string;
@@ -25,7 +27,7 @@ declare interface Messages {
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
 
   showPaymentOption = false
   // form group
@@ -50,7 +52,7 @@ export class CheckoutComponent implements OnInit {
   config: AppConfig
   // Form Validator
   constructor(private fb: FormBuilder, private cartService: CartService, private modalService: NgbModal,
-    public productsService: ProductsService, private orderService: OrderService, private elementRef: ElementRef) {
+    public productsService: ProductsService, private orderService: OrderService, private elementRef: ElementRef, private previewProgressSpinner: OverlayService) {
     this.config = new AppConfig(productsService)
     this.checkoutForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
@@ -106,6 +108,10 @@ export class CheckoutComponent implements OnInit {
     this.card_styles = JSON.parse(localStorage.getItem("card_styles"))
     this.getGiftCardMessages()
     this.getMainCategories()
+  }
+
+  ngOnDestroy() {
+    this.previewProgressSpinner.close()
   }
 
   trackStyle(index, style) {
@@ -188,7 +194,16 @@ export class CheckoutComponent implements OnInit {
     this.config.displayMessage("Payment cancelled", false)
   }
 
+  async checkIfLoggedIn(){
+    const logged = localStorage.getItem("logged")
+    if(logged == null || logged == "false"){
+      await firebase.auth().signInAnonymously()
+    }
+  }
+
   paymentDone(paystackData: any) {
+    this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
+    this.checkIfLoggedIn()
     const other_payment_detals = {
       tax: this.tax_amount,
       delivery: this.delivery_amount

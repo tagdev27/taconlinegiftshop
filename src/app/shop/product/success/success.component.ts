@@ -140,6 +140,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
         await firebase.firestore().collection("products-in-cart").doc(`${localStorage.getItem('unique-id-for-cart')}${pro.id}`).delete()
       })
       localStorage.setItem("cartItem", "[]")
+      location.href = "/home/three"
     })
   }
 

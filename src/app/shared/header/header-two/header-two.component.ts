@@ -4,7 +4,8 @@ import { DOCUMENT } from "@angular/common";
 import { WINDOW } from '../../services/windows.service';
 import { CartItem } from '../../classes/cart-item';
 import { CartService } from '../../services/cart.service';
-declare var $: any;
+import * as $ from 'jquery'
+//declare var $: any;
 
 @Component({
   selector: 'app-header-two',

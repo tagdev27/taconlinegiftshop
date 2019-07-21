@@ -18,7 +18,7 @@ export class DashboardRouteGuard implements CanActivate {
     canActivate() {
         const logged = localStorage.getItem('logged')
 
-        if (logged == 'true' || logged != null) {
+        if (logged == 'true' && logged != null) {
             return true
         } else {
             return false

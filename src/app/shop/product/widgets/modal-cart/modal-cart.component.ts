@@ -26,7 +26,7 @@ export class ModalCartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     //$('.addTocartModal').modal('hide');
-    $('.addTocartModal').hide();
+    $('.addTocartModal').hide("fast");
   }
 
   relatedProducts(pro) {

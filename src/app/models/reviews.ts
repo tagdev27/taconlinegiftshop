@@ -6,5 +6,5 @@ export interface Reviews {
     text:string
     rating:number
     created_date:string
-    product_id:number
+    product_id:string
 }

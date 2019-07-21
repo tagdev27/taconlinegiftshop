@@ -112,7 +112,7 @@ export class LeftMenuComponent implements OnInit {
           // })
           this.menuItems = this.MENUITEMS.filter(menuItem => menuItem);
           $('#sub-menu').smartmenus('refresh');
-          console.log(JSON.stringify(this.menuItems))
+          //console.log(JSON.stringify(this.menuItems))
         }
       })
 
