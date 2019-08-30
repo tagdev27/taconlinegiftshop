@@ -18,7 +18,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getSubCategories() {
-    firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').where("deleted", "==", false).limit(4).onSnapshot(query => {
+    firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').where("deleted", "==", false).limit(5).onSnapshot(query => {
       this.sub_categories = []
       query.forEach(data => {
         const category = <SubCategory>data.data()
@@ -32,7 +32,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   gotocat(id:string){
-    this.router.navigate([`/home/left-sidebar/collection/${id}`])
+    location.href = `/home/left-sidebar/collection/${id}`
   }
 
 }

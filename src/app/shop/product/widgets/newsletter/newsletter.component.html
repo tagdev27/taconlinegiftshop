@@ -10,10 +10,24 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <div class="offer-content"><img src="assets/images/Offer-banner.png" class="img-fluid" alt="">
                                     <h2>newsletter</h2>
-                                    <form action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda" class="auth-form needs-validation" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                                    <form>
                                         <div class="form-group mx-sm-3">
-                                            <input type="text" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required="required">
-                                            <button type="submit" class="btn btn-solid" id="mc-submit">subscribe</button>
+                                            <input type="text" class="form-control" name="EMAIL" [(ngModel)]="newsletter_email" id="mce-EMAIL" placeholder="Enter your email" required="required">
+                                            <div class="row">
+                                                <div class="col-lg-3"></div>
+                                                <div class="col-lg-6"><small style="color: red;" *ngIf="errorShown">Enter
+                                                        email address please</small></div>
+                                                <div class="col-lg-3"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4"></div>
+                                                <div class="col-lg-4">
+                                                    <mat-spinner color="accent" diameter="24" *ngIf="loading"></mat-spinner>
+                                                </div>
+                                                <div class="col-lg-4"></div>
+                                            </div>
+                                            <button type="submit" class="btn btn-solid" id="mc-submit" *ngIf="!loading"
+                                            (click)="subscribe()">subscribe</button>
                                         </div>
                                     </form>
                                 </div>
@@ -25,4 +39,4 @@
         </div>
     </div>
 </div>
-<!--modal popup end-->
+<!--modal popup end action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda" class="auth-form needs-validation" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank"-->

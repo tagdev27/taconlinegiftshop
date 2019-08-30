@@ -15,7 +15,7 @@
   <!-- <script src="https://apis.google.com/js/api.js" type="text/javascript"></script> -->
   <!-- <link rel="manifest" href="/src/manifest.json"> -->
   <!-- <script src="https://unpkg.com/slick-carousel@1.6.0/slick/slick.js"></script> -->
-<link rel="stylesheet" href="styles.ec5a7583325d530c953a.css"></head>
+<link rel="stylesheet" href="styles.a96fb95f7cbc03d05409.css"></head>
 <body>
   <!-- pre-loader start -->
   <div class="loader-wrapper">
@@ -57,6 +57,15 @@
   <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
   <!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
   <!-- <script src="../node_modules/slick-carousel/slick/slick.js"></script> -->
-<script src="runtime.589dc433b5a65300ee2b.js"></script><script src="polyfills-es5.be0cb5ffe41e7dbda932.js" nomodule></script><script src="polyfills.14064cb96b8a1fd66d67.js"></script><script src="scripts.ebc796c71332c1e2a7c3.js"></script><script src="main.7f84e2f6091ddaa91299.js"></script></body>
+  <script>
+    function initFreshChat() {
+      window.fcWidget.init({
+        token: "0c93f235-404a-48fc-9c27-d04592f2ff74",
+        host: "https://wchat.freshchat.com"
+      });
+    }
+    function initialize(i,t){var e;i.getElementById(t)?initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,i.head.appendChild(e))}function initiateCall(){initialize(document,"freshchat-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);
+  </script>
+<script src="runtime.8355b0504d9404d3a3fc.js"></script><script src="polyfills-es5.be0cb5ffe41e7dbda932.js" nomodule></script><script src="polyfills.14064cb96b8a1fd66d67.js"></script><script src="scripts.ebc796c71332c1e2a7c3.js"></script><script src="main.03c23b38339c424f18b3.js"></script></body>
 
 </html>

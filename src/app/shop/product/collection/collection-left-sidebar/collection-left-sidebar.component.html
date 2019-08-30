@@ -32,7 +32,7 @@
             </div>
             <div class="collection-filter-block">
               <app-brand [tagsFilters]="tags" (tagFilters)="updateTagFilters($event)" *ngIf="tags.length"></app-brand>
-              <app-color [colorsFilters]="colors" (colorFilters)="updateColorFilters($event)" *ngIf="colors.length"></app-color>
+              <!-- <app-color [colorsFilters]="colors" (colorFilters)="updateColorFilters($event)" *ngIf="colors.length"></app-color> -->
               <app-price (priceFilters)="updatePriceFilters($event)"></app-price>
             </div>
             <app-new-product></app-new-product>

@@ -57,6 +57,15 @@
   <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
   <!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
   <!-- <script src="../node_modules/slick-carousel/slick/slick.js"></script> -->
+  <script>
+    function initFreshChat() {
+      window.fcWidget.init({
+        token: "0c93f235-404a-48fc-9c27-d04592f2ff74",
+        host: "https://wchat.freshchat.com"
+      });
+    }
+    function initialize(i,t){var e;i.getElementById(t)?initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,i.head.appendChild(e))}function initiateCall(){initialize(document,"freshchat-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);
+  </script>
 </body>
 
 </html>

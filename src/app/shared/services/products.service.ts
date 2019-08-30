@@ -49,7 +49,7 @@ export class ProductsService {
       this.country = res['country_name']
       this.user_country = { latitude: res['latitude'], longitude: res['longitude'] }
       //const country = res['country']
-      console.log(`country == ${this.country}`)
+      //console.log(`country == ${this.country}`)
       firebase.firestore().collection('db').doc('tacadmin').collection('currency').get().then(query => {//where("country", "==", country)
         this.currencies = []
         query.forEach(q => {

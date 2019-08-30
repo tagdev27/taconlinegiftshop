@@ -207,7 +207,7 @@
                                             class="text text-danger">
                                             Address is required
                                         </div> -->
-                                    <div class="checkout-title">
+                                    <!-- <div class="checkout-title">
                                         <h3>Select Card Style: {{selected_card_style}}</h3>
                                     </div>
                                     <div class="row">
@@ -225,7 +225,7 @@
                                                 </div>
                                             </ngx-slick-carousel>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="row" *ngIf="showDummy">
@@ -376,9 +376,9 @@
                                             Place Order
                                         </button>
                                         <!-- <ngx-paypal [config]="payPalConfig" [ngClass]="{'btn disabled': !checkoutForm.valid}" *ngIf="payment">
-                                        </ngx-paypal> -->
+                                        </ngx-paypal> pk_test_5529c0350c28ac1b2306ef2b8180e36dc24b3f17-->
                                         <button angular4-paystack *ngIf="!payment" [disabled]="!checkoutForm.valid"
-                                            [key]="'pk_test_5529c0350c28ac1b2306ef2b8180e36dc24b3f17'"
+                                            [key]="'pk_test_8be8b3b21803dcb62514b6e55f3c6f90f4a74483'"
                                             [email]="checkoutForm.value.email"
                                             [amount]="this.config.convertPrice(amount) * 100" [ref]="reference"
                                             [channels]="['card','bank']"

@@ -94,11 +94,22 @@ export class SettingsComponent implements OnInit {
       if (subcat.meta.toLowerCase().includes(this.query.toLowerCase()) || subcat.name.toLowerCase().includes(this.query.toLowerCase()) || subcat.description.toLowerCase().includes(this.query.toLowerCase())) {
         //console.log('yassss')
         result.push('okay')
+        // this.router.navigate([`/home/left-sidebar/collection/${subcat.id}`])
         this.router.navigate([`/home/left-sidebar/collection/${subcat.id}`])
       }
     })
     if(result.length == 0){
-      this.display_error = true
+      this.productsService.getProducts().subscribe(pro => {
+        pro.forEach(p => {
+          if(p.name.toLowerCase().includes(this.query.toLowerCase())){
+            this.router.navigate([`/home/left-sidebar/collection/${p.category}`])
+            result.push('okay')
+          }
+        })
+        if(result.length == 0){
+          this.display_error = true
+        }
+      })
     }
   }
 

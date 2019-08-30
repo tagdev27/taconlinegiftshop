@@ -65,8 +65,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
      products.map((product, index) => { 
         if(product.tags) {
            product.tags.map((tag) => {
-           const index = uniqueBrands.indexOf(tag);
-           if(index === -1)  uniqueBrands.push(tag);
+           const index = uniqueBrands.indexOf(tag.value);
+           if(index === -1)  uniqueBrands.push(tag.value);
         })
        }
      });

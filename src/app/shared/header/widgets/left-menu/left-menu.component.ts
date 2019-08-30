@@ -31,8 +31,8 @@ export class LeftMenuComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    //this.menuItems = MENUITEMS.filter(menuItem => menuItem);
-    this.getMainCategories()
+    this.menuItems = MENUITEMS.filter(menuItem => menuItem);
+    //this.getMainCategories()
   }
 
   gotoCat(id: string) {

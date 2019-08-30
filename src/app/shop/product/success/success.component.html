@@ -86,12 +86,15 @@
                         <ul>
                             <!-- <li>Subtotal <span>{{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</span></li> -->
                             <li>Subtotal <span>{{getSubTotal() | async | currency:productsService?.currency:'symbol'}}</span></li>
-                            <li>Shipping <span>{{config.convertPrice(OtherDetailsPayment.delivery) | currency:productsService?.currency:'symbol'}}</span></li>
-                            <li>Tax <span>{{config.convertPrice(OtherDetailsPayment.tax) | currency:productsService?.currency:'symbol'}}</span></li>
+                            <!-- <li>Shipping <span>{{config.convertPrice(OtherDetailsPayment.delivery) | currency:productsService?.currency:'symbol'}}</span></li>
+                            <li>Tax <span>{{config.convertPrice(OtherDetailsPayment.tax) | currency:productsService?.currency:'symbol'}}</span></li> -->
+                            <li>Shipping <span>{{OtherDetailsPayment.delivery | currency:productsService?.currency:'symbol'}}</span></li>
+                            <li>Tax <span>{{OtherDetailsPayment.tax | currency:productsService?.currency:'symbol'}}</span></li>
                         </ul>
                     </div>
                     <div class="final-total">
-                        <h3>total <span>{{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</span></h3>
+                        <!-- <h3>total <span>{{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</span></h3> -->
+                        <h3>total <span>{{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</span></h3>
                     </div>
                 </div>
             </div>
@@ -103,7 +106,8 @@
                             <!-- <li><b>tracking ID: {{orderDetails.tracking_id}}</b></li> -->
                             <li>order ID: {{orderDetails.orderId}}</li>
                             <li>Order Date: {{getDateNow()}}</li>
-                            <li>Order Total: {{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</li>
+                            <!-- <li>Order Total: {{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</li> -->
+                            <li>Order Total: {{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</li>
                         </ul>
                     </div>
                     <div class="col-sm-6">
@@ -122,8 +126,8 @@
                     </div>
                     <div class="col-md-12">
                         <div class="delivery-sec">
-                            <h3>expected date of delivery</h3>
-                            <h2>{{getDateNow()}}</h2>
+                            <!-- <h3>expected date of delivery</h3>
+                            <h2>{{getDateNow()}}</h2> -->
                             <h3>tracking ID</h3>
                             <h2>{{orderDetails.tracking_id}}</h2>
                         </div>

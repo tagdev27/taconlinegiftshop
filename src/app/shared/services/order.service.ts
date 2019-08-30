@@ -18,6 +18,7 @@ export class OrderService {
   // Array
   public OrderDetails;
   public OtherDetailsPayment;
+  public locData;
 
   constructor(private router: Router, private productService: ProductsService) { }
 
@@ -31,16 +32,28 @@ export class OrderService {
     return this.OtherDetailsPayment;
   }
 
+  // Get other items
+  public getLocationData(): {} {
+    return this.locData;
+  }
+
   // Create order
-  public createOrder(product: any, details: any, other_payment_detals: any, orderId: any, amount: any, gcs: any) {
-    this.addOrderToFirebase(product, details, other_payment_detals, orderId, amount, gcs)
+  public createOrder(product: any, details: any, other_payment_detals: any, orderId: any, amount: any, gcs: any, locationData:any) {
+    this.addOrderToFirebase(product, details, other_payment_detals, orderId, amount, gcs, locationData)
   }
 
   randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  addOrderToFirebase(product: any, details: any, other_payment_detals: any, orderId: any, amount: any, gcs: any) {
+  date = new Date()
+  months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+  getDateNow() {
+    return `${this.months[this.date.getUTCMonth()]} ${this.date.getUTCDate()}, ${this.date.getUTCFullYear()}`
+  }
+
+  addOrderToFirebase(product: any, details: any, other_payment_detals: any, orderId: any, amount: any, gcs: any, locationData:any) {
     const key = firebase.database().ref().push().key
     const track = this.randomInt(0, 999999999999)
     const track_details: Tracking[] = []
@@ -53,12 +66,12 @@ export class OrderService {
     track_details.push(mT)
     const order: TacOrder = {
       carts: product,
-      currency_used: this.productService.currency,
+      currency_used: locationData['currency'],
       transaction_id: orderId,
       id: key,
-      country: this.productService.country,
+      country: locationData['country'],
       email: details.email,
-      created_date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+      created_date: `${this.getDateNow()} - ${new Date().toLocaleTimeString()}`,
       track_id: track,
       status: 'pending',
       total_amount: amount,
@@ -67,18 +80,31 @@ export class OrderService {
       tracking_details: track_details,
       other_payment_detals: other_payment_detals
     }
-    firebase.firestore().collection('orders').doc(order.id).set(order).then(done => {
-      var item: Order = {
-        shippingDetails: details,
-        product: product,
-        orderId: orderId,
-        totalAmount: amount,
-        tracking_id: track
-      };
-      this.OrderDetails = item;
-      this.OtherDetailsPayment = other_payment_detals
-      this.router.navigate(['/home/checkout/success']);
+
+    firebase.firestore().collection("alert-new-order").doc(key).set({
+      'country': locationData['country'],
+      'product_image': product[0].product['pictures'][0],
+      'product_link': product[0].product['dynamic_link'],
+      'product_name': product[0].product['name'],
+      'product_price': product[0].product['price'],
+      'username': details,
+    }).then((d) => {
+      firebase.firestore().collection('orders').doc(order.id).set(order).then(done => {
+        var item: Order = {
+          shippingDetails: details,
+          product: product,
+          orderId: orderId,
+          totalAmount: amount,
+          tracking_id: track
+        };
+        this.OrderDetails = item;
+        this.OtherDetailsPayment = other_payment_detals
+        this.locData = locationData
+        this.router.navigate(['/home/checkout/success']);
+      })
     })
+
+    
   }
 
 }

@@ -35,35 +35,35 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const initMenu: Menu[] = [
-      {
-        type: 'link',
-        title: 'home',
-        path: '/home/three'
-      },
-      {
-        type: 'link',
-        title: 'social tree',
-        path: '/pages/social-tree'
-      },
-      {
-        type: 'link',
-        title: 'about us',
-        path: '/pages/404'
-      },
-      {
-        type: 'link',
-        title: 'contact',
-        path: '/pages/404'
-      }
-    ]
-    initMenu.forEach(item => {
-      this.MENUITEMS.push(item)
-    })
-    this.menuItems = this.MENUITEMS.filter(menuItem => menuItem);
+    // const initMenu: Menu[] = [
+    //   {
+    //     type: 'link',
+    //     title: 'home',
+    //     path: '/home/three'
+    //   },
+    //   {
+    //     type: 'link',
+    //     title: 'social tree',
+    //     path: '/pages/social-tree'
+    //   },
+    //   {
+    //     type: 'link',
+    //     title: 'about us',
+    //     path: '/pages/404'
+    //   },
+    //   {
+    //     type: 'link',
+    //     title: 'contact',
+    //     path: '/pages/404'
+    //   }
+    // ]
+    // initMenu.forEach(item => {
+    //   this.MENUITEMS.push(item)
+    // })
+    //this.menuItems = this.MENUITEMS.filter(menuItem => menuItem);
 
     //this.getMainCategories()
-    //this.menuItems = AMENUITEMS.filter(menuItem => menuItem);
+    this.menuItems = AMENUITEMS.filter(menuItem => menuItem);
   }
 
   getMainCategories() {

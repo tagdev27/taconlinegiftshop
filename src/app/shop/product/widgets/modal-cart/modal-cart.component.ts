@@ -26,13 +26,18 @@ export class ModalCartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     //$('.addTocartModal').modal('hide');
+    //$('').remove()
     $('.addTocartModal').hide("fast");
   }
 
   relatedProducts(pro) {
     var relatedItems = this.products.filter(function (products) {
-      if (products.id != pro.id)
-        return products.category.includes(pro.category);
+      if (products.id != pro.id){
+        //console.log(`hey ============ ${pro.category}`)
+        var cs:string[] = `${pro.category}`.split(',')
+        //console.log(`hello ============ ${cs[0]}`)
+        return products.category.includes(cs[0]);
+      }
     });
     return relatedItems;
   }

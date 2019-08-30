@@ -75,7 +75,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   getTaxValue() {
     firebase.firestore().collection('db').doc('tacadmin').collection('settings').doc('tax').get().then(snap => {
       const tax: number = snap.data()['tax_value']
-      this.getTotal().subscribe(subtotal => {
+      this.cartService.getTotalAmount().subscribe(subtotal => {
         this.tax_amount = (subtotal * tax) / 100
         //this.amount = (this.productsService.country == 'Nigeria') ? (this.amount + this.tax_amount) : (this.amount + this.tax_amount) * 100
         this.amount = (this.amount + this.tax_amount)
@@ -102,10 +102,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     this.cartItems = this.cartService.getItems();
     this.cartItems.subscribe(products => this.checkOutItems = products);
-    this.getTotal().subscribe(amount => this.amount = (amount + this.tax_amount + this.delivery_amount));
+    // this.getTotal().subscribe(amount => this.amount = (amount + this.tax_amount + this.delivery_amount));
+    this.cartService.getTotalAmount().subscribe(amount => this.amount = (amount + this.tax_amount + this.delivery_amount));
     this.getTaxValue()
     //this.initConfig();
-    this.card_styles = JSON.parse(localStorage.getItem("card_styles"))
+    ////this.card_styles = JSON.parse(localStorage.getItem("card_styles"))
     this.getGiftCardMessages()
     this.getMainCategories()
   }
@@ -132,8 +133,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   // stripe payment gateway
   stripeCheckout() {
     const other_payment_detals = {
-      tax: this.tax_amount,
-      delivery: this.delivery_amount
+      tax: this.config.convertPrice(this.tax_amount),
+      delivery: this.config.convertPrice(this.delivery_amount)
     }
     var handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_mXCVfFRwmNqgqmZnKqgVmiW1', // publishble key
@@ -142,7 +143,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       token: (token: any) => {
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
-        this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, token.id, this.config.convertPrice(this.amount), this.selected_card_style);
+        this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, token.id, this.config.convertPrice(this.amount), this.selected_card_style, null);
       }
     });
     handler.open({
@@ -172,7 +173,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         //tagline: false  
       },
       onPaymentComplete: (data, actions) => {
-        this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, data.orderID, this.config.convertPrice(this.amount), this.selected_card_style);
+        this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, data.orderID, this.config.convertPrice(this.amount), this.selected_card_style, null);
       },
       onCancel: (data, actions) => {
         this.config.displayMessage("Payment cancelled", false)
@@ -205,8 +206,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
     this.checkIfLoggedIn()
     const other_payment_detals = {
-      tax: this.tax_amount,
-      delivery: this.delivery_amount
+      tax: this.config.convertPrice(this.tax_amount),
+      delivery: this.config.convertPrice(this.delivery_amount)
+    }
+    const locationData = {
+      currency: this.productsService.currency,
+      country: this.productsService.country
     }
     const status = paystackData['status'];
     const message = paystackData['message'];
@@ -216,7 +221,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       localStorage.setItem('email', this.checkoutForm.value.email)
     }
     localStorage.setItem('phone', this.checkoutForm.value.phone)
-    this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, trans, this.config.convertPrice(this.amount), this.selected_card_style);
+    localStorage.setItem('fn', this.checkoutForm.value.firstname)
+    localStorage.setItem('ln', this.checkoutForm.value.lastname)
+    this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, trans, this.config.convertPrice(this.amount), this.selected_card_style, locationData);
   }
 
   public slideNavConfig = {

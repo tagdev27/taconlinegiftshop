@@ -25,6 +25,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
 
   public orderDetails: Order = {};
   public OtherDetailsPayment = {};
+  public locData = {};
   config: AppConfig
 
   emailService = new EmailService()
@@ -41,20 +42,26 @@ export class SuccessComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    $('cart_qty_cls').text("0")
     this.orderDetails = this.orderService.getOrderItems();
     this.OtherDetailsPayment = this.orderService.getOtherItems()
+    this.locData = this.orderService.getLocationData()
     this.updateStockLevelForProduct()
-    const curr = (this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency
+    // const curr = (this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency
+    const curr = (this.locData['currency'] == '₦') ? 'NGN' : this.locData['currency']
     //send email automaticatlly
     const billing_name = `${this.orderDetails.shippingDetails.firstname} ${this.orderDetails.shippingDetails.lastname}`
-    const currency_total_amount = `${curr}${this.config.convertPrice(this.orderDetails.totalAmount)}`
+    // const currency_total_amount = `${curr}${this.config.convertPrice(this.orderDetails.totalAmount)}`
+    const currency_total_amount = `${curr}${this.orderDetails.totalAmount}`
     const trans_id = this.orderDetails.orderId
     const shipping_details = `${this.orderDetails.shippingDetails.fullname}
                               <br> ${this.orderDetails.shippingDetails.address}
                               <br> ${this.orderDetails.shippingDetails.state}, ${this.orderDetails.shippingDetails.country}<br>
                               Contact No. ${this.orderDetails.shippingDetails.recipientphone}`
-    const currency_shipping_fee = `${curr}${this.config.convertPrice(this.OtherDetailsPayment['delivery'])}`
-    const currency_tax_fee = `${curr}${this.config.convertPrice(this.OtherDetailsPayment['tax'])}`
+    // const currency_shipping_fee = `${curr}${this.config.convertPrice(this.OtherDetailsPayment['delivery'])}`
+    // const currency_tax_fee = `${curr}${this.config.convertPrice(this.OtherDetailsPayment['tax'])}`
+    const currency_shipping_fee = `${curr}${this.OtherDetailsPayment['delivery']}`
+    const currency_tax_fee = `${curr}${this.OtherDetailsPayment['tax']}`
 
     var cart_items = ''
 
@@ -126,7 +133,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.clearAllCartFromFirebaseAndLocalStorage()
+    //this.clearAllCartFromFirebaseAndLocalStorage()
   }
 
   public getSubTotal(): Observable<number> {
@@ -140,20 +147,32 @@ export class SuccessComponent implements OnInit, OnDestroy {
         await firebase.firestore().collection("products-in-cart").doc(`${localStorage.getItem('unique-id-for-cart')}${pro.id}`).delete()
       })
       localStorage.setItem("cartItem", "[]")
-      location.href = "/home/three"
+      //location.href = "/home/three"
     })
   }
 
   updateStockLevelForProduct() {
     this.cartService.getItems().subscribe(mCart => {
       mCart.forEach(cart => {
-        this.productsService.getProduct(cart.product.id).subscribe(async pro => {
-          const quantity = cart.quantity
-          await firebase.firestore().collection('db').doc('tacadmin').collection('products').doc(cart.product.key).update({
-            'stock': pro.stock - quantity
+        this.productsService.getProduct(cart.product.id).subscribe(pro => {
+          const pro_items = pro.items
+          pro_items.forEach(async item => {
+            if(item.id != null){
+            this.runFireStoreTransaction(item.id)
+            }
           })
         })
       })
+      this.clearAllCartFromFirebaseAndLocalStorage()
+    })
+  }
+
+  runFireStoreTransaction(id:string) {
+    const itemRef = firebase.firestore().collection('db').doc('tacadmin').collection('items').doc(id)
+    const trans = firebase.firestore().runTransaction(async t => {
+      const doc = await t.get(itemRef);
+      let newstock_level = doc.data().stock_level - 1;
+      t.update(itemRef, { stock_level: newstock_level });
     })
   }
 
