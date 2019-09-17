@@ -11,17 +11,17 @@ export interface Menu {
 
 export const AMENUITEMS: Menu[] = [
 	{
-		title: 'home', type: 'extLink', path: '/home/three'
+		title: 'home', type: 'extLink', path: '/home'
 	},
 	{
 		title: 'social tree', type: 'extLink', path: '/pages/social-tree'
 	},
 	{
-		title: 'about us', type: 'extLink', path: '/pages/404'
+		title: 'about us', type: 'extLink', path: '/pages/about-us'
 	},
-	{
-		title: 'contact us', type: 'extLink', path: '/pages/404'
-	},
+	// {
+	// 	title: 'contact us', type: 'extLink', path: '/pages/404'
+	// },
 	{
 		title: 'shop', type: 'sub', megaMenu: true, megaMenuType: 'large', children: [
 	      { 
@@ -114,7 +114,7 @@ export const AMENUITEMS: Menu[] = [
 // 		title: 'home', type: 'sub', children: [
 // 	      { path: 'home/one', title: 'Fashion-01', type: 'extTabLink' },          
 // 	      { path: 'home/two', title: 'Fashion-02', type: 'extTabLink'},         
-// 	      { path: 'home/three', title: 'Fashion-03', type: 'extTabLink' },         
+// 	      { path: 'home', title: 'Fashion-03', type: 'extTabLink' },         
 // 	      { path: 'home/four', title: 'vegetable', type: 'extTabLink' },        
 // 	      { path: 'home/five', title: 'watch', type: 'extTabLink' },        
 // 	      { path: 'home/six', title: 'furniture', type: 'extTabLink' },        

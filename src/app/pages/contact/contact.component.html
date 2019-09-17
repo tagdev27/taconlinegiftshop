@@ -10,7 +10,7 @@
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="'/home/one'">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
                         <li class="breadcrumb-item active">contact</li>
                     </ol>
                 </nav>
@@ -24,7 +24,8 @@
     <div class="container">
         <div class="row section-b-space">
             <div class="col-lg-7 map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d50059.12775918716!2d72.78534673554945!3d21.16564923510817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1533793756956"   allowfullscreen></iframe>
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d50059.12775918716!2d72.78534673554945!3d21.16564923510817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1533793756956"   allowfullscreen></iframe> -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.365468670222!2d3.3476206152770183!3d6.601422995226051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b923031137439%3A0x2b4dce89de34f690!2s47%20Abiodun%20Oshowole%20Cl%2C%20Allen%2C%20Ikeja!5e0!3m2!1sen!2sng!4v1568313436379!5m2!1sen!2sng" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
             </div>
             <div class="col-lg-5">
                 <div class="contact-right">
@@ -35,8 +36,10 @@
                                 <h6>Contact Us</h6>
                             </div>
                             <div class="media-body">
-                                <p>+91 123 - 456 - 7890</p>
-                                <p>+86 163 - 451 - 7894</p>
+                                <!-- <p>+91 123 - 456 - 7890</p>
+                                <p>+86 163 - 451 - 7894</p> -->
+                                <p>{{number}}</p>
+                                <p>{{fax}}</p>
                             </div>
                         </li>
                         <li>
@@ -45,21 +48,23 @@
                                 <h6>Address</h6>
                             </div>
                             <div class="media-body">
-                                <p>ABC Complex,Near xyz, New York</p>
-                                <p>USA 123456</p>
+                                <!-- <p>ABC Complex,Near xyz, New York</p>
+                                <p>USA 123456</p> -->
+                                <p>{{address}}</p>
+                                <!-- <p>USA 123456</p> -->
                             </div>
                         </li>
                         <li>
                             <div class="contact-icon">
                                 <img  src="assets/images/icon/email.png" alt="Generic placeholder image">
-                                <h6>Address</h6>
+                                <h6>Email Address</h6>
                             </div>
                             <div class="media-body">
-                                <p>Support@Shopcart.com</p>
-                                <p>info@shopcart.com</p>
+                                <p>{{email}}</p>
+                                <!-- <p>info@shopcart.com</p> -->
                             </div>
                         </li>
-                        <li>
+                        <!-- <li>
                             <div class="contact-icon">
                                 <i class="fa fa-fax" aria-hidden="true"></i>
                                 <h6>Fax</h6>
@@ -68,7 +73,7 @@
                                 <p>Support@Shopcart.com</p>
                                 <p>info@shopcart.com</p>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -77,28 +82,46 @@
             <div class="col-sm-12">
                 <form class="theme-form">
                     <div class="form-row">
-                        <div class="col-md-6">
-                            <label for="name">First Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter Your name" required="">
+                        <div class="col-md-12">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter Your name" [formControl]="reviewForm.controls['name']">
+                            <div *ngIf="reviewForm.controls.name.touched && reviewForm.controls.name.errors?.required"
+                            class="text text-danger">
+                            Name is required
+                          </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <label for="email">Last Name</label>
                             <input type="text" class="form-control" id="last-name" placeholder="Email" required="">
-                        </div>
+                        </div> -->
                         <div class="col-md-6">
                             <label for="review">Phone number</label>
-                            <input type="text" class="form-control" id="review" placeholder="Enter your number" required="">
+                            <input type="text" class="form-control" id="review" placeholder="Enter your number" [formControl]="reviewForm.controls['phone']">
+                            <div *ngIf="reviewForm.controls.phone.touched && reviewForm.controls.phone.errors?.required"
+                                        class="text text-danger">
+                                        Phone No is required.
+                                    </div>
                         </div>
                         <div class="col-md-6">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                            <input type="text" class="form-control" id="email" placeholder="Email" [formControl]="reviewForm.controls['email']">
+                            <div *ngIf="reviewForm.controls.email.touched && reviewForm.controls.email.errors?.required"
+                            class="text text-danger">
+                            Invalid Email
+                          </div>
                         </div>
                         <div class="col-md-12">
                             <label for="review">Write Your Message</label>
-                            <textarea class="form-control" placeholder="Write Your Message" id="exampleFormControlTextarea1" rows="6"></textarea>
+                            <textarea class="form-control" placeholder="Write Your Message" id="exampleFormControlTextarea1" rows="6" [formControl]="reviewForm.controls['text']"></textarea>
+                            <div *ngIf="reviewForm.controls.text.touched && reviewForm.controls.text.errors?.required"
+                            class="text text-danger">
+                            Message is required
+                          </div>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-solid" type="submit">Send Your Message</button>
+                            <mat-spinner color="accent" diameter="24" *ngIf="loading"></mat-spinner>
+                            <button class="btn btn-solid" (click)="submitMessage()"
+                            [disabled]="!reviewForm.valid || loading" type="submit">Send Your Message</button>
                         </div>
                     </div>
                 </form>

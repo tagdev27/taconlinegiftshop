@@ -18,7 +18,10 @@
 						<span class="tree">Tree</span>
 					</h3>
 
-					<a href="javascript:void(0)" class="btn">Start Adding</a>
+					<a href="javascript:void(0)" (click)="startAdding()" class="btn">Start Adding</a>
+					<br>
+					<small *ngIf="login"><a href="/pages/login?returnurl=pages/social-tree" style="color: white; text-decoration: underline;">Please
+							you need to login first</a></small>
 
 				</div>
 			</div>
@@ -55,8 +58,12 @@
 							<span class="trc"><img src="../../../assets/images/social-tree/gift.png"></span>
 						</li>
 
-						<li id="l_add">
-							<i class="fa fa-plus"></i>
+						<li id="l_add" (click)="startAdding()">
+							<i class="fa fa-plus" (click)="startAdding()"></i>
+						</li>
+						<li *ngIf="login">
+							<small><a href="/pages/login" style="color: black">Please you need to login
+									first</a></small>
 						</li>
 					</ul>
 
@@ -66,7 +73,6 @@
 		</div>
 	</div>
 </section>
-
 
 <!-- Stage  -->
 <section id="stage_a">
@@ -100,3 +106,192 @@
 		</div>
 	</div>
 </section>
+
+<section class="section-b-space" style="background: #ec008c" *ngIf="isAddNewUser" #scrollMe>
+	<div class="container padding-cls">
+		<div class="checkout-page">
+			<div class="checkout-form">
+				<form>
+					<div class="row">
+						<div class="col-lg-12 col-sm-12 col-xs-12">
+							<div class="checkout-title">
+								<h3>ADD A BRANCH TO YOUR TREE</h3>
+								<p>
+									<a href="javascript:void(0)" (click)="googleAdding()" class="btn">Add using google calendar</a>
+									<a href="javascript:void(0)" (click)="startAdding()" class="btn">Add using facebook</a>
+								</p>
+							</div>
+							<div class="row check-out" id="events">
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">First Name</div>
+									<input type="text" name="firstname"
+										[formControl]="checkoutForm.controls['firstname']" value="" placeholder=""
+										autocomplete="off">
+									<div *ngIf="checkoutForm.controls.firstname.touched && checkoutForm.controls.firstname.errors?.required"
+										class="text td">
+										First Name is required.
+									</div>
+									<div *ngIf="checkoutForm.controls.firstname.touched && checkoutForm.controls.firstname.errors?.pattern"
+										class="text td">
+										First Name must be an alphabates.
+									</div>
+								</div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">Last Name </div>
+									<input type="text" name="lastname" [formControl]="checkoutForm.controls['lastname']"
+										value="" placeholder="" autocomplete="off">
+									<div *ngIf="checkoutForm.controls.lastname.touched && checkoutForm.controls.lastname.errors?.required"
+										class="text td">
+										Last Name is required.
+									</div>
+									<div *ngIf="checkoutForm.controls.lastname.touched && checkoutForm.controls.lastname.errors?.pattern"
+										class="text td">
+										Last Name must be an alphabates.
+									</div>
+								</div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">Phone Number</div>
+									<input type="text" name="phone" [formControl]="checkoutForm.controls['phone']"
+										value="" placeholder="" autocomplete="off">
+									<div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.required"
+										class="text td">
+										Phone No is required.
+									</div>
+									<div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.pattern"
+										class="text td">
+										Phone No must be number.
+									</div>
+								</div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">Email Address</div>
+									<input type="text" name="email" [formControl]="checkoutForm.controls['email']"
+										value="" placeholder="" autocomplete="off">
+									<div *ngIf="checkoutForm.controls.email.touched && checkoutForm.controls.email.errors?.required"
+										class="text td">
+										Email is required
+									</div>
+									<div *ngIf="checkoutForm.controls.email.touched && checkoutForm.controls.email.errors?.email"
+										class="text td">
+										Invalid Email
+									</div>
+								</div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">Age</div>
+									<input type="number" name="age"
+										[formControl]="checkoutForm.controls['age']" value="" placeholder=""
+										autocomplete="off">
+									<div *ngIf="checkoutForm.controls.age.touched && checkoutForm.controls.age.errors?.required"
+										class="text td">
+										Age is required.
+									</div>
+									<div *ngIf="checkoutForm.controls.age.touched && checkoutForm.controls.age.errors?.pattern"
+										class="text td">
+										Age must be a positive number.
+									</div>
+								</div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">Gender</div>
+									<select name="gender" [formControl]="checkoutForm.controls['gender']">
+										<option value="" selected>Select Gender</option>
+										<option value="male">Male</option>
+										<option value="female">Female</option>
+									</select>
+									<div *ngIf="checkoutForm.controls.gender.touched && checkoutForm.controls.gender.errors?.required"
+										class="text td">
+										Gender is required
+									</div>
+								</div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">Relationship</div>
+									<input type="text" name="relationship" [formControl]="checkoutForm.controls['relationship']"
+										value="" placeholder="" autocomplete="off">
+									<div *ngIf="checkoutForm.controls.relationship.touched && checkoutForm.controls.relationship.errors?.required"
+										class="text td">
+										Relationship is required
+									</div>
+								</div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">Occupation</div>
+									<input type="text" name="occupation" [formControl]="checkoutForm.controls['occupation']"
+										value="" placeholder="" autocomplete="off">
+									<div *ngIf="checkoutForm.controls.occupation.touched && checkoutForm.controls.occupation.errors?.required"
+										class="text td">
+										Occupation is required
+									</div>
+								</div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">Address</div>
+									<input type="text" name="address" [formControl]="checkoutForm.controls['address']"
+										value="" placeholder="" autocomplete="off">
+									<div *ngIf="checkoutForm.controls.address.touched && checkoutForm.controls.address.errors?.required"
+										class="text">
+										Address is required
+									</div>
+									<div *ngIf="checkoutForm.controls.address.touched && checkoutForm.controls.address.errors?.maxlength"
+										class="text td">
+										Maximum 250 character
+									</div>
+								</div>
+								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+									<div class="field-label">Member Image</div>
+									<br>
+									<input type="file" id="member_image" value="" placeholder="" autocomplete="off">
+								</div>
+								<div class="form-group col-md-12 col-sm-12 col-xs-12">
+									<li id="l_add" (click)="addEvents()" style="cursor: pointer;">
+										<i class="fa fa-plus" (click)="addEvents()"></i> Add Events
+									</li>
+									<p></p>
+									<li id="l_add" (click)="removeEvents()" style="cursor: pointer;">
+										<i class="fa fa-minus" (click)="removeEvents()"></i> Remove Events
+									</li>
+								</div>
+							</div>
+							<mat-spinner color="primary" diameter="24" *ngIf="loading"></mat-spinner>
+							<button class="btn-solid btn" [disabled]="!checkoutForm.valid || loading"
+								(click)="submitMember()" type="submit">
+								Add Member
+                            </button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<ng-template #google_events let-c="close" let-d="dismiss">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="col-md-12">
+					<div class="card ">
+						<div class="card-header card-header-rose card-header-icon">
+							<div class="card-icon">
+								<!-- <i class="material-icons">mail_outline</i> -->
+							</div>
+							<h4 class="card-title">Your Events on Google Calendar</h4>
+							<h6>Select at least one event to be added</h6>
+						</div>
+						<div class="card-body ">
+							<form method="#" action="#">
+								<div class="row check-out" id="event_lists">
+									<!-- <div class="form-group col-md-6 col-sm-6 col-xs-12">
+										<input type="checkbox" value="" id="userNew"> Check this box if you are a new user
+										<br>
+										<div class="field-label">Member Image</div>
+									</div> -->
+								</div>
+							</form>
+						</div>
+						<div class="card-footer ">
+							<button type="button" class="btn-solid btn" (click)="submitSelection()">Submit Selection</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"
+					(click)="c('Close click')">Close</button>
+			</div>
+		</div>
+	</ng-template>

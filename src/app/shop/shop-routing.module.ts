@@ -39,113 +39,126 @@ import { SuccessComponent } from './product/success/success.component';
 // Routes
 const routes: Routes = [
   { 
-    path: 'one',
-    component: HomeComponent
-  },
-  { 
-    path: 'two',
-    component: HomeTwoComponent
-  },
-  { 
-    path: 'three',
+    path: '',
     component: HomeThreeComponent
   },
-  { 
-    path: 'four',
-    component: HomeFourComponent
-  },
-  { 
-    path: 'five',
-    component: HomeFiveComponent
-  },
-  { 
-    path: 'six',
-    component: HomeSixComponent
-  },
-  { 
-    path: 'seven',
-    component: HomeSevenComponent
-  },
-  { 
-    path: 'eight',
-    component: HomeEightComponent
-  },
-  { 
-    path: 'nine',
-    component: HomeNineComponent
-  },
-  { 
-    path: 'ten',
-    component: HomeTenComponent
-  },
-  { 
-    path: 'eleven',
-    component: HomeElevenComponent
-  },
-  { 
-    path: 'twelve',
-    component: HomeTwelveComponent
-  },
-  { 
-    path: 'thirteen',
-    component: HomeThirteenComponent
-  },
-  { 
-    path: 'fourteen',
-    component: HomeFourteenComponent
-  },
+  // { 
+  //   path: 'one',
+  //   //component: HomeComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'two',
+  //   //component: HomeTwoComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'four',
+  //   //component: HomeFourComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'five',
+  //   //component: HomeFiveComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'six',
+  //   //component: HomeSixComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'seven',
+  //   //component: HomeSevenComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'eight',
+  //   //component: HomeEightComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'nine',
+  //   //component: HomeNineComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'ten',
+  //   //component: HomeTenComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'eleven',
+  //   //component: HomeElevenComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'twelve',
+  //   //component: HomeTwelveComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'thirteen',
+  //   //component: HomeThirteenComponent
+  //   component: HomeThreeComponent
+  // },
+  // { 
+  //   path: 'fourteen',
+  //   //component: HomeFourteenComponent
+  //   component: HomeThreeComponent
+  // },
   {
     path: 'left-sidebar/collection/:category',
     component: CollectionLeftSidebarComponent
   },
-  {
-    path: 'right-sidebar/collection/:category',
-    component: CollectionRightSidebarComponent
-  },
-  {
-    path: 'no-sidebar/collection/:category',
-    component: CollectionNoSidebarComponent
-  },
+  // {
+  //   path: 'right-sidebar/collection/:category',
+  //   //component: CollectionRightSidebarComponent
+  // },
+  // {
+  //   path: 'no-sidebar/collection/:category',
+  //   //component: CollectionNoSidebarComponent
+  // },
   {
     path: 'left-sidebar/product/:id',
     component: ProductLeftSidebarComponent
   },
-  {
-    path: 'right-sidebar/product/:id',
-    component: ProductRightSidebarComponent
-  },
-  {
-    path: 'no-sidebar/product/:id',
-    component: ProductNoSidebarComponent
-  },
-  {
-    path: 'col-left/product/:id',
-    component: ProductColLeftComponent
-  },
-  {
-    path: 'col-right/product/:id',
-    component: ProductColRightComponent
-  },
-  {
-    path: 'column/product/:id',
-    component: ProductColumnComponent
-  },
-  {
-    path: 'accordian/product/:id',
-    component: ProductAccordianComponent
-  },
-  {
-    path: 'left-image/product/:id',
-    component: ProductLeftImageComponent
-  },
-  {
-    path: 'right-image/product/:id',
-    component: ProductRightImageComponent
-  },
-  {
-    path: 'vertical/product/:id',
-    component: ProductVerticalTabComponent
-  },
+  // {
+  //   path: 'right-sidebar/product/:id',
+  //   //component: ProductRightSidebarComponent
+  // },
+  // {
+  //   path: 'no-sidebar/product/:id',
+  //   //component: ProductNoSidebarComponent
+  // },
+  // {
+  //   path: 'col-left/product/:id',
+  //   //component: ProductColLeftComponent
+  // },
+  // {
+  //   path: 'col-right/product/:id',
+  //   //component: ProductColRightComponent
+  // },
+  // {
+  //   path: 'column/product/:id',
+  //   //component: ProductColumnComponent
+  // },
+  // {
+  //   path: 'accordian/product/:id',
+  //   //component: ProductAccordianComponent
+  // },
+  // {
+  //   path: 'left-image/product/:id',
+  //   //component: ProductLeftImageComponent
+  // },
+  // {
+  //   path: 'right-image/product/:id',
+  //   //component: ProductRightImageComponent
+  // },
+  // {
+  //   path: 'vertical/product/:id',
+  //   //component: ProductVerticalTabComponent
+  // },
   {
     path: 'search',
     component: SearchComponent

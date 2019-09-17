@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 import { AppConfig } from 'src/app/services/global.service';
 import { OverlayService } from 'src/app/overlay/overlay.module';
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   config = new AppConfig()
 
-  constructor(private previewProgressSpinner: OverlayService, private router: Router) { }
+  constructor(private previewProgressSpinner: OverlayService, private router: Router, private route: ActivatedRoute) { }
+
 
   ngOnInit() {
   }
@@ -93,7 +94,13 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('email', email)
       localStorage.setItem('fn', user['firstname'])
       localStorage.setItem('ln', user['lastname'])
-      this.router.navigate(['/home/three'])
+      if(location.search != ''){
+        const url = location.search.substring(11).replace('%2F','/')
+        location.href = url
+      }else {
+        location.href='/home'
+      }
+      //this.router.navigate(['/home'])
     }).catch(err => {
       this.previewProgressSpinner.close()
       this.config.displayMessage(`${err}`, false)

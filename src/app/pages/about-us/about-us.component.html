@@ -10,7 +10,7 @@
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="'/home/one'">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">About us</li>
                     </ol>
                 </nav>
@@ -29,9 +29,24 @@
                 </div>
             </div>
             <div class="col-sm-12">
-                <h4>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,</p>
-                <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.</p>
+                <h4>TAC - Online Messanger Gift Shop</h4>
+                <p>TAC “The Avid Concierge” is an e-commerce gifting services platform that aims at
+                        connecting users irrespective of their geographical locations to their loved ones
+                        through purchase and exchange of gifts and other concierge services in the
+                        celebration of notable and memorable events such as Birthdays, Wedding
+                        anniversaries, Promotions, Baby showers, special seasons etc. Other services
+                        offered by TAC include but not limited to healthcare, money remittance, property
+                        purchase etc.</p>
+                        <br>
+                <p>TAC’s desire is to provide exceptional gifts for all of life’s special occasion. With
+                        our wide range of gifts &amp; gifting Services from personalized gifts to fresh flowers
+                        to gourmet gifts, we give you variety of amazing options to create a memorable
+                        experience for your loved ones on their special day. We’re your number one
+                        Gifting destination for every special occasion.
+                        </p>
+                        <br>
+                        <p>TAC is a spin off from the Avid Prints Concepts Limited which was founded June 8 th
+                                2016 with RC number 1340788.</p>
             </div>
         </div>
     </div>
@@ -66,13 +81,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h2>Our Team</h2>
+                <h2>TAC CORE VALUES</h2>
                 <div class="team-4">
                     <ngx-slick-carousel class="team-4" #slickModal="slick-carousel" [config]="teamSliderConfig">
                     <div ngxSlickItem *ngFor="let tm of team">
-                        <img [src]="tm.image" class="img-fluid" alt=""/>
-                        <h4>{{tm.name}}</h4>
-                        <h6>{{tm.designation}}</h6>
+                        <!-- <img [src]="tm.image" class="img-fluid" alt=""/> -->
+                        <h5 style="font-weight: 700;color: #dc457e;margin-bottom: 0;margin-top: 7px;">{{tm.name}}</h5>
+                        
+                        <p style="line-height: 2;letter-spacing: 0.03em; padding: 0px 20px 0px 0px;">{{tm.designation}}</p>
                     </div>
                 </ngx-slick-carousel>
                 </div>

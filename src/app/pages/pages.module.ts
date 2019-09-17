@@ -5,6 +5,9 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { IsotopeModule } from 'ngx-isotope';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { LookbookComponent } from './lookbook/lookbook.component';
@@ -29,9 +32,14 @@ import { MasonaryTwoGridComponent } from './portfolio/masonary-two-grid/masonary
 import { MasonaryThreeGridComponent } from './portfolio/masonary-three-grid/masonary-three-grid.component';
 import { MasonaryFourGridComponent } from './portfolio/masonary-four-grid/masonary-four-grid.component';
 import { MasonaryFullwidthComponent } from './portfolio/masonary-fullwidth/masonary-fullwidth.component';
+import { ReturnPolicyComponent } from "./return-policy/return-policy.component";
+import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.component";
+import { TermsComponent } from "./terms/terms.component";
+import { OurStoryComponent } from "./our-story/our-story.component";
 
 import { SocialTreeComponent } from "./social-tree/social-tree.component";
 import { TrackComponent } from "./track/track.component";
+import { MatProgressSpinnerModule } from "@angular/material";
 
 @NgModule({
   imports: [
@@ -40,6 +48,9 @@ import { TrackComponent } from "./track/track.component";
     SlickCarouselModule,
     IsotopeModule,
     NgbModule.forRoot(),
+    MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     AboutUsComponent,
@@ -67,7 +78,11 @@ import { TrackComponent } from "./track/track.component";
     MasonaryFourGridComponent,
     MasonaryFullwidthComponent,
     SocialTreeComponent,
-    TrackComponent
+    TrackComponent,
+    ReturnPolicyComponent,
+    PrivacyPolicyComponent,
+    TermsComponent,
+    OurStoryComponent
   ]
 })
 export class PagesModule { }

@@ -101,7 +101,8 @@ export class RegisterComponent implements OnInit {
         'email': email,
         'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
         'firstname': other_result['fn'],
-        'lastname': other_result['ln']
+        'lastname': other_result['ln'],
+        'picture':'https://tacadmin.firebaseapp.com/assets/img/default-avatar.png'
       }
     } else {
       user_data = {
@@ -419,7 +420,7 @@ export class RegisterComponent implements OnInit {
               if (other_result != null) {
                 //cf.displayMessage('', true)
               }
-              rt.navigate(['/home/three'])
+              rt.navigate(['/home'])
             },
             error: function (err) {
               pd.close()
@@ -429,7 +430,7 @@ export class RegisterComponent implements OnInit {
               if (other_result != null) {
                 //cf.displayMessage('', true)
               }
-              rt.navigate(['/home/three'])
+              rt.navigate(['/home'])
             },
             data: {
               body: `${email_body}`

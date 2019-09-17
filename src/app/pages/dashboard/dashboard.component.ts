@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
   logout() {
     firebase.auth().signOut().then(r => {
       this.logged = 'false'
-      this.router.navigate(['/home/three'])
+      this.router.navigate(['/home'])
     })
   }
 

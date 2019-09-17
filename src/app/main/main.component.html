@@ -1,6 +1,6 @@
-<app-header-one *ngIf="url != '/home/two' && url != '/home/three' && url != '/home/four' && url != '/home/five' && url != '/home/ten' && url != '/home/eleven' && url != '/home/twelve' && url != '/home/thirteen' && url != '/home/fourteen'"></app-header-one>
+<!-- <app-header-one *ngIf="url != '/home/two' && url != '/home' && url != '/home/four' && url != '/home/five' && url != '/home/ten' && url != '/home/eleven' && url != '/home/twelve' && url != '/home/thirteen' && url != '/home/fourteen'"></app-header-one>
 
-<app-header-two *ngIf="url == '/home/five' || url == '/home/three'"></app-header-two>
+<app-header-two *ngIf="url == '/home/five' || url == '/home'"></app-header-two>
 
 <app-header-three *ngIf="url == '/home/two' || url == '/home/four' || url === '/home/fourteen' "></app-header-three>
 
@@ -10,18 +10,25 @@
 
 <app-left-sidebar *ngIf="url == '/home/eleven'"></app-left-sidebar>
 
-<div [class]="url == '/home/eleven' ? 'left-sidebar_space' : ''"> <!-- Left sidebar menu only -->
+<div [class]="url == '/home/eleven' ? 'left-sidebar_space' : ''"> //Left sidebar menu only
 	
 	<router-outlet></router-outlet>
 	
-	<app-footer-one *ngIf="url != '/home/three' && url != '/home/twelve' && url != '/home/thirteen' && url != '/home/fourteen'"></app-footer-one>
+	<app-footer-one *ngIf="url != '/home' && url != '/home/twelve' && url != '/home/thirteen' && url != '/home/fourteen'"></app-footer-one>
 	
-	<app-footer-two *ngIf="url == '/home/three' || url == '/home/twelve'"></app-footer-two>
+	<app-footer-two *ngIf="url == '/home' || url == '/home/twelve'"></app-footer-two>
 
 	<app-footer-three *ngIf="url == '/home/thirteen'"></app-footer-three>
 
 	<app-footer-four *ngIf="url == '/home/fourteen'"></app-footer-four>
 
+</div> -->
+
+
+<app-header-two></app-header-two>
+<div>
+	<router-outlet></router-outlet>
+	<app-footer-two></app-footer-two>
 </div>
 	
 

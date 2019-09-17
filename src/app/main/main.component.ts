@@ -26,6 +26,8 @@ export class MainComponent implements OnInit {
 
   ngOnInit() { 
    $.getScript('assets/js/script.js');
+  //  console.log('knwkfnikfwjiowjf')
+  //  location.href = "/home"
   }
 
 }

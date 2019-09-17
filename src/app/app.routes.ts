@@ -7,13 +7,17 @@ import { DemoComponent } from './demo/demo.component';
 export const rootRouterConfig: Routes = [
   {
     path: '',
-    redirectTo: '**',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
-  {
-    path: 'demo',
-    component: DemoComponent
-  },
+  // {
+  //   path: 'demo',
+  //   component: DemoComponent
+  // },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./home-3/home-three.module').then(m => m.HomeThreeModule)
+  // },
   {
     path: '',
     component: MainComponent,
@@ -26,15 +30,15 @@ export const rootRouterConfig: Routes = [
         path: 'pages',
         loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
       },
-      {
-        path: 'blog',
-        loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)
-      }
+      // {
+      //   path: 'blog',
+      //   loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)
+      // }
     ]
   },
-  {
-    path: '**',
-    redirectTo: 'home/three'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: '/home'
+  // }
 ];
 

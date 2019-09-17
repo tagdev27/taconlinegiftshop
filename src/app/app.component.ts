@@ -45,6 +45,11 @@ export class AppComponent implements OnInit {
       this.checkLoggedInAccess()
       this.checkblockeduser()
       this.recordWebsiteVisits()
+      //console.log(location.href)
+      if(location.href == 'https://tacgifts.com' || location.href == 'https://tacgifts.com/' || location.href == 'https://www.tacgifts.com/' || location.href == 'https://www.tacgifts.com'){
+         this.router.navigate(['home'])
+      }
+      //location.href = '/home'
       //this.initClient()
    }
 
@@ -71,7 +76,7 @@ export class AppComponent implements OnInit {
          if (userData) {
             this.isLoggedIn = true;
             localStorage.setItem('logged', 'true');
-            //this.router.navigate(['/home/three'])
+            //this.router.navigate(['/home'])
          } else {
             localStorage.setItem('logged', 'false');
             if (this.isLogout) {

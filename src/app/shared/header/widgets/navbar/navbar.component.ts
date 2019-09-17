@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
     //   {
     //     type: 'link',
     //     title: 'home',
-    //     path: '/home/three'
+    //     path: '/home'
     //   },
     //   {
     //     type: 'link',

@@ -29,6 +29,10 @@ import { MasonaryFourGridComponent } from './portfolio/masonary-four-grid/masona
 import { MasonaryFullwidthComponent } from './portfolio/masonary-fullwidth/masonary-fullwidth.component';
 import { LoginRouteGuard, DashboardRouteGuard } from '../route.guard';
 import { TrackComponent } from './track/track.component';
+import { ReturnPolicyComponent } from "./return-policy/return-policy.component";
+import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.component";
+import { TermsComponent } from "./terms/terms.component";
+import { OurStoryComponent } from "./our-story/our-story.component";
 
 const routes: Routes = [
   {
@@ -37,6 +41,22 @@ const routes: Routes = [
       {
         path: 'about-us',
         component: AboutUsComponent
+      },
+      {
+        path: 'return-policy',
+        component: ReturnPolicyComponent
+      },
+      {
+        path: 'privacy-policy',
+        component: PrivacyPolicyComponent
+      },
+      {
+        path: 'terms',
+        component: TermsComponent
+      },
+      {
+        path: 'our-story',
+        component: OurStoryComponent
       },
       {
         path: 'social-tree',
@@ -114,34 +134,34 @@ const routes: Routes = [
         path: 'faq',
         component: FaqComponent
       },
-      {
-        path: 'grid/two/column',
-        component: GridTwoColComponent
-      },
-      {
-        path: 'grid/three/column',
-        component: GridThreeColComponent
-      },
-      {
-        path: 'grid/four/column',
-        component: GridFourColComponent
-      },
-      {
-        path: 'grid/two/masonary',
-        component: MasonaryTwoGridComponent
-      },
-      {
-        path: 'grid/three/masonary',
-        component: MasonaryThreeGridComponent
-      },
-      {
-        path: 'grid/four/masonary',
-        component: MasonaryFourGridComponent
-      },
-      {
-        path: 'fullwidth/masonary',
-        component: MasonaryFullwidthComponent
-      }
+      // {
+      //   path: 'grid/two/column',
+      //   component: GridTwoColComponent
+      // },
+      // {
+      //   path: 'grid/three/column',
+      //   component: GridThreeColComponent
+      // },
+      // {
+      //   path: 'grid/four/column',
+      //   component: GridFourColComponent
+      // },
+      // {
+      //   path: 'grid/two/masonary',
+      //   component: MasonaryTwoGridComponent
+      // },
+      // {
+      //   path: 'grid/three/masonary',
+      //   component: MasonaryThreeGridComponent
+      // },
+      // {
+      //   path: 'grid/four/masonary',
+      //   component: MasonaryFourGridComponent
+      // },
+      // {
+      //   path: 'fullwidth/masonary',
+      //   component: MasonaryFullwidthComponent
+      // }
     ]
   }
 ];

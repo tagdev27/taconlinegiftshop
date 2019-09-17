@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <base href="/">
-  <title>TAC - Online messenger gift shop</title>
+  <title>TAC - Online Messenger Gift Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="gift basket shop online tac">
+  <meta name="description" id="metaelement" content="gifts basket shop online tac">
   <meta name="author" content="TAC">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" href="assets/images/favicon.png" type="image/x-icon" />
@@ -16,6 +17,7 @@
   <!-- <link rel="manifest" href="/src/manifest.json"> -->
   <!-- <script src="https://unpkg.com/slick-carousel@1.6.0/slick/slick.js"></script> -->
 </head>
+
 <body>
   <!-- pre-loader start -->
   <div class="loader-wrapper">
@@ -32,26 +34,35 @@
   <!-- facebook chat section start -->
   <div id="fb-root"></div>
   <script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '767937716957017',
+        xfbml: true,
+        version: 'v4.0'
+      });
+      FB.AppEvents.logPageView();
+    };
 
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   </script>
   <!-- Your customer chat code -->
-  <div class="fb-customerchat" attribution=setup_tool page_id="2123438804574660" theme_color="#ff4c3b" logged_in_greeting="Hi! Welcome to TAC gift shop  How can we help you?" logged_out_greeting="Hi! Welcome to TAC gift shop  How can we help you?">
-  </div>
+  <!-- <div class="fb-customerchat" attribution=setup_tool page_id="767937716957017" theme_color="#ff4c3b"
+    logged_in_greeting="Hi! Welcome to TAC gift shop  How can we help you?"
+    logged_out_greeting="Hi! Welcome to TAC gift shop  How can we help you?">
+  </div> -->
   <!-- facebook chat section end -->
 
   <!-- tap to top -->
   <div class="tap-top top-cls">
-      <div>
-          <i class="fa fa-angle-double-up"></i>
-      </div>
+    <div>
+      <i class="fa fa-angle-double-up"></i>
+    </div>
   </div>
   <!-- tap to top -->
   <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
@@ -64,7 +75,7 @@
         host: "https://wchat.freshchat.com"
       });
     }
-    function initialize(i,t){var e;i.getElementById(t)?initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,i.head.appendChild(e))}function initiateCall(){initialize(document,"freshchat-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);
+    function initialize(i, t) { var e; i.getElementById(t) ? initFreshChat() : ((e = i.createElement("script")).id = t, e.async = !0, e.src = "https://wchat.freshchat.com/js/widget.js", e.onload = initFreshChat, i.head.appendChild(e)) } function initiateCall() { initialize(document, "freshchat-js-sdk") } window.addEventListener ? window.addEventListener("load", initiateCall, !1) : window.attachEvent("load", initiateCall, !1);
   </script>
 </body>
 

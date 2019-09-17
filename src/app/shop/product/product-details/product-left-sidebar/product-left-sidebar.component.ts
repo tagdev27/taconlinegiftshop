@@ -40,6 +40,8 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.route.params.subscribe(params => {
       const id = +params['id'];
       this.productsService.getProduct(id).subscribe(product => this.product = product)
+      //$('head').append(`<meta name="${this.product.name}" content="${this.product.description}">`)
+      //$('#metaelement').attr('content', `${this.product.description}`);
     });
     this.reviewForm = this.fb.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
@@ -50,6 +52,10 @@ export class ProductLeftSidebarComponent implements OnInit {
   }
 
   submitReview() {
+    var _id = 0
+    this.route.params.subscribe(params => {
+      _id = +params['id'];
+    });
     this.loading = true
     const id = firebase.database().ref().push().key
     const review: Reviews = {
@@ -58,7 +64,7 @@ export class ProductLeftSidebarComponent implements OnInit {
       email: `${this.reviewForm.value.email}`,
       title: `${this.reviewForm.value.title}`,
       text: `${this.reviewForm.value.text}`,
-      product_id: this.product.key,
+      product_id: `${_id}`,//this.product.key,
       rating: this.rating,
       created_date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
     }

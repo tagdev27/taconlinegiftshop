@@ -42,7 +42,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    $('cart_qty_cls').text("0")
+    $('.cart_qty_cls').text("0")
     this.orderDetails = this.orderService.getOrderItems();
     this.OtherDetailsPayment = this.orderService.getOtherItems()
     this.locData = this.orderService.getLocationData()
@@ -147,7 +147,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
         await firebase.firestore().collection("products-in-cart").doc(`${localStorage.getItem('unique-id-for-cart')}${pro.id}`).delete()
       })
       localStorage.setItem("cartItem", "[]")
-      //location.href = "/home/three"
+      //location.href = "/home"
     })
   }
 
