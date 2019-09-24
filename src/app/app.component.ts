@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
          appId: "1:640531224553:web:a573170a7ba2a22a"
       };
       firebase.initializeApp(firebaseConfig)
+      firebase.firestore().enablePersistence()
       const perf = firebase.performance();
 
       const cart_id = localStorage.getItem('unique-id-for-cart')

@@ -1,0 +1,86 @@
+/* Facebook */
+.fb-icon-bg {
+  // background: #354f88;
+  background: #3b5998;
+	height: 37px;
+	margin: 0 0 -37px 0;
+	width: 41px; 
+}
+
+.fb-icon-bg:after {
+  content: url(https://firebasestorage.googleapis.com/v0/b/taconlinegiftshop.appspot.com/o/logos%2FiRmz9lCMBD2.ico?alt=media&token=d2fadd8b-ac06-4536-a856-77193e4af8d3);
+  display: block;
+  padding: 3px 0px 5px 5px;
+}
+
+.fb-bg {
+	background: #3b5998;
+	display: block;
+	height: 37px;
+	margin: 0 0 30px 41px;
+    width: 200px;
+    padding: 5px 0px 0px 0px;
+}
+
+.fb-bg:after {
+	color: #fff;
+	content: "sign up with facebook";
+	font-family: 'Lato', sans-serif;
+	height: 37px;
+	left: 8%;
+	position: relative;
+	text-transform: uppercase;
+	top: 22%;
+	width: 35px; 
+}
+
+.fb-bg:hover{
+  cursor: pointer;
+}
+
+.fb-bg:active{
+  background: #354f88;
+}
+
+/* Google+ Oswald*/
+.g-icon-bg:after {
+  content: url(https://firebasestorage.googleapis.com/v0/b/taconlinegiftshop.appspot.com/o/logos%2Fgoogleg_standard_color_128dp.png?alt=media&token=6eb2b56b-c618-4976-93e5-3cddf9936914);
+  display: block;
+  padding: 3px 0px 5px 5px;
+  }
+  
+  .g-icon-bg {
+      // background: #ce3e26;
+      background: #de4c34;
+      height: 37px;
+      margin: 0 0 -37px 0;
+      width: 41px; 
+  }
+   
+  .g-bg {
+      background: #de4c34;
+      height: 37px;
+      margin-left: 41px;
+      width: 200px;
+    padding: 5px 0px 0px 0px;
+  }
+   
+  .g-bg:after {
+      color: #fff;
+      content: "sign up with google";
+      font-family: 'Lato', sans-serif;
+      height: 37px;
+      left: 10%;
+      position: relative;
+      text-transform: uppercase;
+      top: 22%;
+      width: 35px; 
+  }
+  
+  .g-bg:hover {
+    cursor: pointer;
+  }
+  
+  .g-bg:active {
+    background: #ce3e26;
+  }

@@ -107,7 +107,7 @@
 	</div>
 </section>
 
-<section class="section-b-space" style="background: #ec008c" *ngIf="isAddNewUser" #scrollMe>
+<section id="add" class="section-b-space" style="background: #ec008c" *ngIf="isAddNewUser" #scrollMe>
 	<div class="container padding-cls">
 		<div class="checkout-page">
 			<div class="checkout-form">
@@ -117,13 +117,23 @@
 							<div class="checkout-title">
 								<h3>ADD A BRANCH TO YOUR TREE</h3>
 								<p>
-									<a href="javascript:void(0)" (click)="googleAdding()" class="btn">Add using google calendar</a>
-									<a href="javascript:void(0)" (click)="startAdding()" class="btn">Add using facebook</a>
+										<a href="javascript:void(0)" (click)="facebookAdding()">
+												<!-- <i class="fa fa-facebook"></i>  Sign up with
+												facebook -->
+												<div class="fb-icon-bg"></div>
+												<div class="fb-bg"></div>
+										</a>
+										<a href="javascript:void(0)" (click)="googleAdding()">
+											<div class="g-icon-bg"></div>
+											<div class="g-bg"></div>
+										</a>
+									<!-- <a href="javascript:void(0)" (click)="googleAdding()" class="btn">Add using google calendar</a>
+									<a href="javascript:void(0)" (click)="startAdding()" class="btn">Add using facebook</a> -->
 								</p>
 							</div>
 							<div class="row check-out" id="events">
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">First Name</div>
+									<div class="field-label">First Name*</div>
 									<input type="text" name="firstname"
 										[formControl]="checkoutForm.controls['firstname']" value="" placeholder=""
 										autocomplete="off">
@@ -137,7 +147,7 @@
 									</div>
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Last Name </div>
+									<div class="field-label">Last Name* </div>
 									<input type="text" name="lastname" [formControl]="checkoutForm.controls['lastname']"
 										value="" placeholder="" autocomplete="off">
 									<div *ngIf="checkoutForm.controls.lastname.touched && checkoutForm.controls.lastname.errors?.required"
@@ -150,7 +160,7 @@
 									</div>
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Phone Number</div>
+									<div class="field-label">Phone Number*</div>
 									<input type="text" name="phone" [formControl]="checkoutForm.controls['phone']"
 										value="" placeholder="" autocomplete="off">
 									<div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.required"
@@ -166,28 +176,28 @@
 									<div class="field-label">Email Address</div>
 									<input type="text" name="email" [formControl]="checkoutForm.controls['email']"
 										value="" placeholder="" autocomplete="off">
-									<div *ngIf="checkoutForm.controls.email.touched && checkoutForm.controls.email.errors?.required"
+									<!-- <div *ngIf="checkoutForm.controls.email.touched && checkoutForm.controls.email.errors?.required"
 										class="text td">
 										Email is required
 									</div>
 									<div *ngIf="checkoutForm.controls.email.touched && checkoutForm.controls.email.errors?.email"
 										class="text td">
 										Invalid Email
-									</div>
+									</div> -->
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Age</div>
-									<input type="number" name="age"
+									<div class="field-label">Date of Birth</div><br>
+									<input type="date" name="age"
 										[formControl]="checkoutForm.controls['age']" value="" placeholder=""
 										autocomplete="off">
 									<div *ngIf="checkoutForm.controls.age.touched && checkoutForm.controls.age.errors?.required"
 										class="text td">
-										Age is required.
+										Date of Birth is required.
 									</div>
-									<div *ngIf="checkoutForm.controls.age.touched && checkoutForm.controls.age.errors?.pattern"
+									<!-- <div *ngIf="checkoutForm.controls.age.touched && checkoutForm.controls.age.errors?.pattern"
 										class="text td">
 										Age must be a positive number.
-									</div>
+									</div> -->
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
 									<div class="field-label">Gender</div>

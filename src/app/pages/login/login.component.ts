@@ -28,16 +28,16 @@ export class LoginComponent implements OnInit {
     firebase.auth().signInWithPopup(provider).then(result => {
       //console.log(result)
       const user_email = result.user.email
-      this.checkFirestoreAndRedirect(user_email, result)
+      this.checkFirestoreAndRedirect('google', user_email, result)
     }).catch(err => {
-      this.previewProgressSpinner.close()
-      this.config.displayMessage(`${err}`, false)
+      //this.previewProgressSpinner.close()
+      //this.config.displayMessage(`${err}`, false)
     })
   }
 
   signinWithFacebook() {
     var provider = new firebase.auth.FacebookAuthProvider();
-    provider.addScope('user_events');
+    // provider.addScope('user_events');
     provider.addScope('email');
     provider.addScope('user_birthday');
     provider.addScope('user_friends');
@@ -45,10 +45,10 @@ export class LoginComponent implements OnInit {
     firebase.auth().signInWithPopup(provider).then(result => {
       console.log(result)
       const user_email = result.user.email
-      this.checkFirestoreAndRedirect(user_email, result)
+      this.checkFirestoreAndRedirect('facebook', user_email, result)
     }).catch(err => {
-      this.previewProgressSpinner.close()
-      this.config.displayMessage(`${err}`, false)
+      //this.previewProgressSpinner.close()
+      //this.config.displayMessage(`${err}`, false)
     })
   }
 
@@ -63,14 +63,14 @@ export class LoginComponent implements OnInit {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
     firebase.auth().signInWithEmailAndPassword(email, password).then(result => {
       this.previewProgressSpinner.close()
-      this.checkFirestoreAndRedirect(email, null)
+      this.checkFirestoreAndRedirect('email', email, null)
     }).catch(err => {
       this.previewProgressSpinner.close()
       this.config.displayMessage(`${err}`, false)
     })
   }
 
-  checkFirestoreAndRedirect(email: string, social_result: firebase.auth.UserCredential) {
+  checkFirestoreAndRedirect(method: string, email: string, social_result: firebase.auth.UserCredential) {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
     firebase.firestore().collection('users').doc(email.toLowerCase()).get().then(async result => {
       this.previewProgressSpinner.close()
@@ -87,18 +87,32 @@ export class LoginComponent implements OnInit {
         return
       }
       if (social_result != null) {
-        await firebase.firestore().collection('users').doc(email.toLowerCase()).update({
-          'Tokens': social_result.credential.toJSON()
-        })
+        if (method == 'google') {
+          await firebase.firestore().collection('users').doc(email.toLowerCase()).update({
+            'Tokens': social_result.credential.toJSON(),
+            'picture': social_result.additionalUserInfo.profile['picture']
+          })
+        }
+        if (method == 'facebook') {
+          const pic = social_result.additionalUserInfo.profile['picture']
+          const pic_data = pic['data']
+          await firebase.firestore().collection('users').doc(email.toLowerCase()).update({
+            'Facebook': social_result.credential.toJSON(),
+            'picture': pic_data['url'],
+            'birthday': social_result.additionalUserInfo.profile['birthday'],
+            'gender': social_result.additionalUserInfo.profile['gender'],
+            'facebook_id': social_result.additionalUserInfo.profile['id'],
+          })
+        }
       }
       localStorage.setItem('email', email)
       localStorage.setItem('fn', user['firstname'])
       localStorage.setItem('ln', user['lastname'])
-      if(location.search != ''){
-        const url = location.search.substring(11).replace('%2F','/')
+      if (location.search != '') {
+        const url = location.search.substring(11).replace('%2F', '/')
         location.href = url
-      }else {
-        location.href='/home'
+      } else {
+        location.href = '/home'
       }
       //this.router.navigate(['/home'])
     }).catch(err => {

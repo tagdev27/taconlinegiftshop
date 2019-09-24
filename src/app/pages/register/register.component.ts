@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   constructor(private previewProgressSpinner: OverlayService, private http: HttpClient, private router: Router, private productService: ProductsService) { }
 
   ngOnInit() {
+
   }
 
   signupWithGoogle() {
@@ -36,16 +37,16 @@ export class RegisterComponent implements OnInit {
       //   console.log(JSON.stringify(res))
       // })
       const user_email = result.user.email
-      this.uploadFirestoreAndRedirect(user_email, result, null)
+      this.uploadFirestoreAndRedirect('google', user_email, result, null)
     }).catch(err => {
-      this.previewProgressSpinner.close()
-      this.config.displayMessage(`${err}`, false)
+      //this.previewProgressSpinner.close()
+      //this.config.displayMessage(`${err}`, false)
     })
   }
 
   signupWithFacebook() {
     var provider = new firebase.auth.FacebookAuthProvider();
-    provider.addScope('user_events');
+    // provider.addScope('user_events');
     provider.addScope('email');
     provider.addScope('user_birthday');
     provider.addScope('user_friends');
@@ -53,10 +54,10 @@ export class RegisterComponent implements OnInit {
     firebase.auth().signInWithPopup(provider).then(result => {
       console.log(result)
       const user_email = result.user.email
-      this.uploadFirestoreAndRedirect(user_email, result, null)
+      this.uploadFirestoreAndRedirect('facebook', user_email, result, null)
     }).catch(err => {
-      this.previewProgressSpinner.close()
-      this.config.displayMessage(`${err}`, false)
+      //this.previewProgressSpinner.close()
+      //this.config.displayMessage(`${err}`, false)
     })
   }
 
@@ -79,7 +80,7 @@ export class RegisterComponent implements OnInit {
           fn: fname,
           ln: lname
         }
-        this.uploadFirestoreAndRedirect(email, null, data)
+        this.uploadFirestoreAndRedirect('email', email, null, data)
       })
     }).catch(err => {
       this.previewProgressSpinner.close()
@@ -87,7 +88,7 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  uploadFirestoreAndRedirect(email: string, google_result: firebase.auth.UserCredential, other_result: {}) {
+  uploadFirestoreAndRedirect(method: string, email: string, google_result: firebase.auth.UserCredential, other_result: {}) {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
 
     var user_data: {}
@@ -102,19 +103,39 @@ export class RegisterComponent implements OnInit {
         'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
         'firstname': other_result['fn'],
         'lastname': other_result['ln'],
-        'picture':'https://tacadmin.firebaseapp.com/assets/img/default-avatar.png'
+        'picture': 'https://tacadmin.firebaseapp.com/assets/img/default-avatar.png'
       }
     } else {
-      user_data = {
-        'id': id,
-        'blocked': false,
-        'country': this.productService.country,
-        'email': email,
-        'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
-        'firstname': google_result.additionalUserInfo.profile['given_name'],
-        'lastname': google_result.additionalUserInfo.profile['family_name'],
-        'picture': google_result.additionalUserInfo.profile['picture'],
-        'Tokens': google_result.credential.toJSON()
+      if (method == 'google') {
+        user_data = {
+          'id': id,
+          'blocked': false,
+          'country': this.productService.country,
+          'email': email,
+          'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+          'firstname': google_result.additionalUserInfo.profile['given_name'],
+          'lastname': google_result.additionalUserInfo.profile['family_name'],
+          'picture': google_result.additionalUserInfo.profile['picture'],
+          'Tokens': google_result.credential.toJSON()
+        }
+      }
+      if (method == 'facebook') {
+        const pic = google_result.additionalUserInfo.profile['picture']
+        const pic_data = pic['data']
+        user_data = {
+          'id': id,
+          'blocked': false,
+          'country': this.productService.country,
+          'email': email,
+          'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+          'firstname': google_result.additionalUserInfo.profile['first_name'],
+          'lastname': google_result.additionalUserInfo.profile['last_name'],
+          'picture': pic_data['url'],
+          'Facebook': google_result.credential.toJSON(),
+          'birthday': google_result.additionalUserInfo.profile['birthday'],
+          'gender': google_result.additionalUserInfo.profile['gender'],
+          'facebook_id': google_result.additionalUserInfo.profile['id'],
+        }
       }
     }
 

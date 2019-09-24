@@ -49,14 +49,20 @@ export class SocialTreeComponent implements OnInit {
 	googleEvents: SocialEvents[] = []
 	google_picture = ''
 
+	hasFacebookToken = false
+	FacebookToken = {}
+	facebook_id = ''
+	facebook_gender = ''
+	facebook_birthday = ''
+
 	constructor(private fb: FormBuilder, private previewProgressSpinner: OverlayService, private http: HttpClient, private modalService: NgbModal) {
 		this.config = new AppConfig()
 		this.checkoutForm = this.fb.group({
 			firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
 			lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
 			phone: ['', [Validators.required, Validators.pattern('[0-9]+')]],
-			email: ['', [Validators.required, Validators.email]],
-			age: ['', [Validators.required, Validators.pattern('[0-9]+')]],
+			email: ['', [Validators.email]],
+			age: ['', [Validators.required]],
 			gender: ['', [Validators.required]],
 			address: ['', [Validators.required, Validators.maxLength(250)]],
 			relationship: ['', Validators.required],
@@ -90,6 +96,14 @@ export class SocialTreeComponent implements OnInit {
 					this.GoogleToken = user['Tokens']
 					//console.log(this.GoogleToken)
 				}
+				if (user['Facebook'] != null) {
+					this.hasFacebookToken = true
+					this.FacebookToken = user['Facebook']
+					this.facebook_id = user['facebook_id']
+					this.facebook_gender = user['gender']
+					this.facebook_birthday = user['birthday']
+					//console.log(this.GoogleToken)
+				}
 				if (user['picture'] != null) {
 					this.google_picture = user['picture']
 				}
@@ -119,7 +133,8 @@ export class SocialTreeComponent implements OnInit {
 			return
 		}
 		this.isAddNewUser = true
-		this.scrollToBottom()
+		location.href = '/pages/social-tree#add'
+		// this.scrollToBottom()
 	}
 
 	scrollToBottom(): void {
@@ -178,7 +193,7 @@ export class SocialTreeComponent implements OnInit {
 		const key = firebase.database().ref().push().key
 		const email = localStorage.getItem('email')
 		const image = (<HTMLInputElement>document.getElementById("pro_images")).files
-		var image_url = ''
+		var image_url = 'https://tacadmin.firebaseapp.com/assets/img/default-avatar.png'
 		if (image.length > 0) {
 			const img = await this.uploadImageToStorage(image.item(0));
 			image_url = img
@@ -187,7 +202,7 @@ export class SocialTreeComponent implements OnInit {
 			id: key,
 			user_id: email,
 			name: `${this.checkoutForm.value.firstname} ${this.checkoutForm.value.lastname}`,
-			age: Number(`${this.checkoutForm.value.age}`),
+			age: `${this.checkoutForm.value.age}`,
 			gender: `${this.checkoutForm.value.gender}`,
 			relationship: `${this.checkoutForm.value.relationship}`,
 			occupation: `${this.checkoutForm.value.occupation}`,
@@ -210,6 +225,106 @@ export class SocialTreeComponent implements OnInit {
 			this.loading = false
 			this.config.displayMessage(`${err}`, false);
 		})
+	}
+
+	facebookAdding() {
+		if (this.reloadToken) {
+			this.signinWithFacebook()
+			return
+		}
+		if (!this.hasFacebookToken) {
+			this.signinWithFacebook()
+			return
+		}
+		this.accessUserFriendsFromFacebookResult()
+	}
+
+	signinWithFacebook() {
+		const email = localStorage.getItem('email')
+		var provider = new firebase.auth.FacebookAuthProvider();
+		provider.addScope('email');
+		provider.addScope('user_birthday');
+		provider.addScope('user_friends');
+		provider.addScope('user_gender')
+		firebase.auth().signInWithPopup(provider).then(async result => {
+			const user_email = result.user.email
+			const pic = result.additionalUserInfo.profile['picture']
+			const pic_data = pic['data']
+			await firebase.firestore().collection('users').doc(email.toLowerCase()).update({
+				'Tokens': result.credential.toJSON(),
+				'facebook_id': result.additionalUserInfo.profile['id'],
+				'picture': pic_data['url'],
+				'Facebook': result.credential.toJSON(),
+				'birthday': result.additionalUserInfo.profile['birthday'],
+				'gender': result.additionalUserInfo.profile['gender'],
+			})
+			this.FacebookToken = result.credential.toJSON()
+			this.facebook_id = result.additionalUserInfo.profile['id']
+			this.facebook_birthday = result.additionalUserInfo.profile['birthday']
+			this.facebook_gender = result.additionalUserInfo.profile['gender']
+			this.accessUserFriendsFromFacebookResult()
+		}).catch(err => {
+			//this.previewProgressSpinner.close()
+			//this.config.displayMessage(`${err}`, false)
+		})
+	}
+
+	accessUserFriendsFromFacebookResult() {
+		this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
+		const oauth_access_token = this.FacebookToken['oauthAccessToken']
+		const url = `https://graph.facebook.com/v4.0/${this.facebook_id}/friends?access_token=${oauth_access_token}`
+		this.http.get(url).toPromise().then(result => {
+			this.previewProgressSpinner.close()
+			if (result['error'] != null) {
+				this.reloadToken = true
+				this.config.displayMessage('User access token expired. Please try again.', false)
+				return
+			}
+			this.reloadToken = false
+			const items: any[] = result['items']
+			var usersEvents:SocialEvents[] = []
+			items.forEach(user => {
+				const event_name = user.name
+				const event_date = user.id
+				const event: SocialEvents = {
+					event_name: event_name,
+					event_date: event_date
+				}
+				usersEvents.push(event)
+			})
+
+			const key = firebase.database().ref().push().key
+			const email = localStorage.getItem('email')
+			const st: SocialTree = {
+				id: key,
+				user_id: email,
+				name: `${localStorage.getItem('fn')} ${localStorage.getItem('ln')}`,
+				age: this.facebook_birthday,
+				gender: this.facebook_gender,
+				relationship: '',
+				occupation: '',
+				address: '',
+				number: localStorage.getItem('phone'),
+				email: email,
+				events: usersEvents,
+				profile_image_url: this.google_picture,
+				entry_mode: 'facebook'
+			}
+			firebase.firestore().collection('social-tree').doc(key).set(st).then(d => {
+				this.modalService.dismissAll()
+				this.previewProgressSpinner.close()
+				this.config.displayMessage('Events successfully added.', true)
+			}).catch(err => {
+				this.previewProgressSpinner.close()
+				this.config.displayMessage(`${err}`, false);
+			})
+
+		}).catch(err => {
+			this.previewProgressSpinner.close()
+			this.reloadToken = true
+			this.config.displayMessage('User access token expired. Please try again.', false)
+		})
+		
 	}
 
 	googleAdding() {
@@ -245,7 +360,7 @@ export class SocialTreeComponent implements OnInit {
 			this.GoogleToken = result.credential.toJSON()
 			this.accessEventsFromGoogleResult()
 		}).catch(err => {
-			this.config.displayMessage(`${err}`, false)
+			//this.config.displayMessage(`${err}`, false)
 		})
 	}
 
@@ -263,7 +378,7 @@ export class SocialTreeComponent implements OnInit {
 			this.previewProgressSpinner.close()
 			if (result['error'] != null) {
 				this.reloadToken = true
-				this.config.displayMessage('User access expired. Please try again.', false)
+				this.config.displayMessage('User access token expired. Please try again.', false)
 				return
 			}
 			this.reloadToken = false
@@ -294,7 +409,7 @@ export class SocialTreeComponent implements OnInit {
 		}).catch(err => {
 			this.previewProgressSpinner.close()
 			this.reloadToken = true
-			this.config.displayMessage('User access expired. Please try again.', false)
+			this.config.displayMessage('User access token expired. Please try again.', false)
 		})
 	}
 
@@ -318,7 +433,7 @@ export class SocialTreeComponent implements OnInit {
 			id: key,
 			user_id: email,
 			name: `${localStorage.getItem('fn')} ${localStorage.getItem('ln')}`,
-			age: 0,
+			age: '',
 			gender: '',
 			relationship: '',
 			occupation: '',
@@ -334,7 +449,7 @@ export class SocialTreeComponent implements OnInit {
 			this.previewProgressSpinner.close()
 			this.config.displayMessage('Events successfully added.', true)
 		}).catch(err => {
-			this.loading = false
+			this.previewProgressSpinner.close()
 			this.config.displayMessage(`${err}`, false);
 		})
 	}

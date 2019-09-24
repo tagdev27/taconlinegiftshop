@@ -52,7 +52,7 @@ export class FooterOneComponent implements OnInit {
     const headerDict = {
       'Content-Type': 'application/json',
       'Authorization': 'apikey 7abc577dbf82e2c727476aa090aa07af-us3',
-      'Access-Control-Allow-Origin': 'https://taconlinegiftshop.firebaseapp.com',
+      'Access-Control-Allow-Origin': 'https://tacgifts.com',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
       'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,X-Access-Token,XKey,Authorization',
 
