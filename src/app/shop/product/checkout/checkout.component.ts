@@ -204,7 +204,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   paymentDone(paystackData: any) {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
-    this.checkIfLoggedIn()
+    //this.checkIfLoggedIn()
     const other_payment_detals = {
       tax: this.config.convertPrice(this.tax_amount),
       delivery: this.config.convertPrice(this.delivery_amount)

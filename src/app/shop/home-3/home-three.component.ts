@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../shared/classes/product';
 import { ProductsService } from '../../shared/services/products.service';
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-home-three',
@@ -14,7 +15,8 @@ export class HomeThreeComponent implements OnInit {
   constructor(private productsService: ProductsService) {   }
 
   ngOnInit() {
-  	this.productsService.getProducts().subscribe(product => this.products = product);
+    this.productsService.getProducts().subscribe(product => this.products = product);
+    $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom","35px").css("right","0px")
   }
 
 }

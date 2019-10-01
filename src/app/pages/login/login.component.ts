@@ -108,6 +108,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('email', email)
       localStorage.setItem('fn', user['firstname'])
       localStorage.setItem('ln', user['lastname'])
+      localStorage.removeItem("signInAnonymously")
       if (location.search != '') {
         const url = location.search.substring(11).replace('%2F', '/')
         location.href = url

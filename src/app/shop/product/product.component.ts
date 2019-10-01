@@ -19,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductComponent implements OnInit {
 
   @Input() product: Product;
+  //@Input() isGrid?: boolean = false;
 
   public variantImage: any = '';
   public selectedItem: any = '';

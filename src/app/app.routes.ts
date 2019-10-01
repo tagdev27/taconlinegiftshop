@@ -27,7 +27,7 @@ export const rootRouterConfig: Routes = [
         loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
       },
       {
-        path: 'pages',
+        path: '',//pages
         loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
       },
       // {

@@ -59,7 +59,9 @@ export class SettingsComponent implements OnInit {
   }
 
   public openSearch() {
-    this.show = true;
+    this.show = true
+    //location.href = "home/search"
+    //this.router.navigate(["home/search"])
   }
 
   public closeSearch() {
@@ -94,15 +96,16 @@ export class SettingsComponent implements OnInit {
       if (subcat.meta.toLowerCase().includes(this.query.toLowerCase()) || subcat.name.toLowerCase().includes(this.query.toLowerCase()) || subcat.description.toLowerCase().includes(this.query.toLowerCase())) {
         //console.log('yassss')
         result.push('okay')
-        // this.router.navigate([`/home/left-sidebar/collection/${subcat.id}`])
-        this.router.navigate([`/home/left-sidebar/collection/${subcat.id}`])
+        // this.router.navigate([`/home/collection/${subcat.id}`])
+        this.router.navigate([`/home/collection/${subcat.id}`])
       }
     })
     if(result.length == 0){
       this.productsService.getProducts().subscribe(pro => {
         pro.forEach(p => {
           if(p.name.toLowerCase().includes(this.query.toLowerCase())){
-            this.router.navigate([`/home/left-sidebar/collection/${p.category}`])
+            this.show = false
+            this.router.navigate([`/home/collection/${p.category.split(',')[0]}`])
             result.push('okay')
           }
         })
@@ -112,5 +115,13 @@ export class SettingsComponent implements OnInit {
       })
     }
   }
+
+  // getSubCategoryIDByProductCategoryID(product_category:string) {
+  //   this.categories.forEach(subcat => {
+  //     if(product_category.includes(subcat.id)){
+  //       return subcat.id
+  //     }
+  //   })
+  // }
 
 }

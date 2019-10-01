@@ -8,6 +8,7 @@ import * as firebase from "firebase";
 import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
 import { NavBarMenu } from 'src/app/models/navbar.menu';
+import { StoreService } from 'src/app/services/store.settings';
 
 export interface Menu {
   path?: string;
@@ -34,7 +35,12 @@ export class NavbarComponent implements OnInit {
 
   constructor() { }
 
+  service = new StoreService()
+  number = ''
   ngOnInit() {
+    this.service.getSettings().then(store => {
+      this.number = store.number
+    })
     // const initMenu: Menu[] = [
     //   {
     //     type: 'link',
@@ -44,17 +50,17 @@ export class NavbarComponent implements OnInit {
     //   {
     //     type: 'link',
     //     title: 'social tree',
-    //     path: '/pages/social-tree'
+    //     path: '/social-tree'
     //   },
     //   {
     //     type: 'link',
     //     title: 'about us',
-    //     path: '/pages/404'
+    //     path: '/404'
     //   },
     //   {
     //     type: 'link',
     //     title: 'contact',
-    //     path: '/pages/404'
+    //     path: '/404'
     //   }
     // ]
     // initMenu.forEach(item => {
@@ -78,7 +84,7 @@ export class NavbarComponent implements OnInit {
         sub_cat.forEach(sCat => {
           const sc = <SubCategory>sCat.data()
           const item: Menu = {
-            path: `/home/left-sidebar/collection/${sc.id}`,
+            path: `/home/collection/${sc.id}`,
             title: sc.name,
             type: 'link'
           }

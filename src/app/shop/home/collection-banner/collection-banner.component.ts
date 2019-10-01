@@ -16,12 +16,12 @@ export class CollectionBannerComponent implements OnInit {
     image: 'assets/images/sub-banner1.jpg',
     save: 'save 50%',
     title: 'men',
-    link: '/home/left-sidebar/collection/men'
+    link: '/home/collection/men'
   }, {
     image: 'assets/images/sub-banner2.jpg',
     save: 'save 50%',
     title: 'women',
-    link: '/home/left-sidebar/collection/women'
+    link: '/home/collection/women'
   }]
 
 }

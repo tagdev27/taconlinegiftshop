@@ -1,6 +1,24 @@
 <!-- Home slider -->
 <section class="p-0">
-    <ngx-slick-carousel class="home-slider" #slickModal="slick-carousel" (init)="slickInit($event)" [config]="sliderConfig">
+    <ngx-slick-carousel class="home-slider" #slickModal="slick-carousel" (init)="slickInit($event)"
+        [config]="sliderConfig">
+        <div ngxSlickItem>
+            <div class="home home111 text-center" [ngStyle]="getMyStyles1()">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="slider-contain">
+                                <div>
+                                    <!-- <h4>{{productsService.banner.slider1_title}}</h4>
+                                    <h1>{{productsService.banner.slider1_subtitle}}</h1> -->
+                                    <a [routerLink]="['/home/collection/all']" class="btn btn-solid">connect now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div ngxSlickItem>
             <div class="home home111 text-center" [ngStyle]="getMyStyles1()">
                 <div class="container">
@@ -10,7 +28,8 @@
                                 <div>
                                     <h4>{{productsService.banner.slider1_title}}</h4>
                                     <h1>{{productsService.banner.slider1_subtitle}}</h1>
-                                    <a [routerLink]="['/home/left-sidebar/collection/all']" class="btn btn-solid">shop now</a>
+                                    <a href="/home/collection/all" class="btn btn-solid">shop
+                                        now</a>
                                 </div>
                             </div>
                         </div>
@@ -27,7 +46,8 @@
                                 <div>
                                     <h4>{{productsService.banner.slider2_title}}</h4>
                                     <h1>{{productsService.banner.slider2_subtitle}}</h1>
-                                    <a [routerLink]="['/home/left-sidebar/collection/all']" class="btn btn-solid">shop now</a>
+                                    <a href="/home/collection/all" class="btn btn-solid">shop
+                                        now</a>
                                 </div>
                             </div>
                         </div>

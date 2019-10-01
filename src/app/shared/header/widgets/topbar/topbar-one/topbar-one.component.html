@@ -10,7 +10,7 @@
   <div class="col-lg-6 text-right" *ngIf="!productsService?.catalogMode">
     <ul class="header-dropdown">
       <li class="compare">
-        <a href="/pages/track-your-order"><i class="fa fa-search"
+        <a href="/track-your-order"><i class="fa fa-search"
             aria-hidden="true"></i>{{ 'track' | translate }}</a>
       </li>
       <li class="compare">
@@ -25,22 +25,22 @@
         <i class="fa fa-user" aria-hidden="true"></i> {{ 'my-account' | translate }}
         <ul class="onhover-show-div">
           <li *ngIf="logged == 'false'">
-            <a href="/pages/login" data-lng="en">
+            <a href="/login" data-lng="en">
               {{ 'login' | translate }}
             </a>
           </li>
           <li *ngIf="logged == 'false'">
-            <a href="/pages/register" data-lng="en">
+            <a href="/register" data-lng="en">
               {{ 'register' | translate }}
             </a>
           </li>
           <li *ngIf="logged == 'true'">
-            <a href="/pages/dashboard" data-lng="en">
+            <a href="/dashboard" data-lng="en">
               {{ 'dashboard' | translate }}
             </a>
           </li>
           <li>
-            <a href="/pages/track-your-order" data-lng="es">
+            <a href="/track-your-order" data-lng="es">
               {{ 'track' | translate }}
             </a>
           </li>

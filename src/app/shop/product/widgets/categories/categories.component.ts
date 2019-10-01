@@ -44,7 +44,7 @@ export class CategoriesComponent implements OnInit {
       query.forEach(data => {
         const category = <SubCategory>data.data()
         // const c:Cat = {
-        //   url: `/home/left-sidebar/collection/${category.id}`,
+        //   url: `/home/collection/${category.id}`,
         //   name: category.name
         // }
         this.sub_categories.push(category)
@@ -53,7 +53,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   gotocat(id:string){
-    this.router.navigate([`/home/left-sidebar/collection/${id}`])
+    this.router.navigate([`/home/collection/${id}`])
   }
 
   // For mobile view

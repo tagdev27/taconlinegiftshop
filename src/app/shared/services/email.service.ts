@@ -415,10 +415,10 @@ export class EmailService {
                                                                         style="height:20px;line-height:14px;font-size:12px">
                                                                         &nbsp;</div>
 
-                                                                    <a href="https://tacgifts.com/pages/login"
+                                                                    <a href="https://tacgifts.com/login"
                                                                         style="display:block;font-family:'Source Sans Pro',Verdana,Tahoma,Geneva,sans-serif;color:#ff9800;font-size:15px;line-height:18px;text-decoration:none;white-space:nowrap;text-transform:uppercase"
                                                                         target="_blank"
-                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/pages/login">
+                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/login">
 
                                                                         <font face="'Source Sans Pro', sans-serif"
                                                                             color="#ff9800"
@@ -594,10 +594,10 @@ export class EmailService {
                                                                         style="height:20px;line-height:14px;font-size:12px">
                                                                         &nbsp;</div>
 
-                                                                    <a href="https://tacgifts.com/home/left-sidebar/collection/all"
+                                                                    <a href="https://tacgifts.com/home/collection/all"
                                                                         style="display:block;font-family:'Source Sans Pro',Verdana,Tahoma,Geneva,sans-serif;color:#ff9800;font-size:15px;line-height:18px;text-decoration:none;white-space:nowrap;text-transform:uppercase"
                                                                         target="_blank"
-                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/left-sidebar/collection/all">
+                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/collection/all">
 
                                                                         <font face="'Source Sans Pro', sans-serif"
                                                                             color="#ff9800"
@@ -696,10 +696,10 @@ export class EmailService {
                                                                         style="height:20px;line-height:14px;font-size:12px">
                                                                         &nbsp;</div>
 
-                                                                    <a href="https://tacgifts.com/pages/social-tree"
+                                                                    <a href="https://tacgifts.com/social-tree"
                                                                         style="display:block;font-family:'Source Sans Pro',Verdana,Tahoma,Geneva,sans-serif;color:#ff9800;font-size:15px;line-height:18px;text-decoration:none;white-space:nowrap;text-transform:uppercase"
                                                                         target="_blank"
-                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/pages/social-tree">
+                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/social-tree">
 
                                                                         <font face="'Source Sans Pro', sans-serif"
                                                                             color="#ff9800"
@@ -914,10 +914,10 @@ export class EmailService {
 
                                                                             <td align="center" valign="top" width="23%">
 
-                                                                                <a href="https://tacgifts.com/pages/dashboard"
+                                                                                <a href="https://tacgifts.com/dashboard"
                                                                                     style="font-family:'Source Sans Pro',Arial,Tahoma,Geneva,sans-serif;color:#1a1a1a;font-size:14px;line-height:20px;text-decoration:none;white-space:nowrap;font-weight:bold"
                                                                                     target="_blank"
-                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/pages/dashboard">
+                                                                                    data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/dashboard">
 
                                                                                     <font
                                                                                         face="'Source Sans Pro', sans-serif"

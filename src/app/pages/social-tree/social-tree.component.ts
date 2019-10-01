@@ -55,6 +55,12 @@ export class SocialTreeComponent implements OnInit {
 	facebook_gender = ''
 	facebook_birthday = ''
 
+	async checkIfLoggedIn() {
+		const user = await firebase.auth().currentUser
+		this.logged = (user == null) ? 'false' : 'true'
+		//console.log(`logged ==== ${this.logged}`)
+	}
+
 	constructor(private fb: FormBuilder, private previewProgressSpinner: OverlayService, private http: HttpClient, private modalService: NgbModal) {
 		this.config = new AppConfig()
 		this.checkoutForm = this.fb.group({
@@ -123,6 +129,7 @@ export class SocialTreeComponent implements OnInit {
 				}, 500);
 			}, 10000);
 		});
+		this.checkIfLoggedIn()
 		this.getCurrentUserSocialTree()
 		this.checkGoogleToken()
 	}
@@ -133,7 +140,7 @@ export class SocialTreeComponent implements OnInit {
 			return
 		}
 		this.isAddNewUser = true
-		location.href = '/pages/social-tree#add'
+		location.href = '/social-tree#add'
 		// this.scrollToBottom()
 	}
 

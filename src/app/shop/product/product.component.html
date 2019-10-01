@@ -4,12 +4,13 @@
     <span class="lable4" *ngIf='product.sale'>on sale</span>
   </div>
   <div class="front">
-    <a [routerLink]="['/home/left-sidebar/product', product.id]"><img [src]="!variantImage ? product.pictures[0] : variantImage" class="img-fluid" alt=""></a>
+    <!--style="border: gray;border-style: solid;border-width: thin;" <a [routerLink]="['/home/product', product.id]"><img [src]="!variantImage ? product.pictures[0] : variantImage" class="img-fluid" [alt]="product.name"></a> -->
+    <a href="/home/product/{{product.id}}"><img [src]="!variantImage ? product.pictures[0] : variantImage" class="img-fluid" [alt]="product.name"></a>
   </div>
   <ul class="product-thumb-list">
     <li class="grid_thumb_img" [ngClass]="{'active': selectedItem == variant.images}" *ngFor="let variant of product.variants">
       <a [routerLink]="" (click)="changeVariantImage(variant.images)">
-          <img [src]="variant.images">
+          <img [src]="variant.images" [alt]="product.name">
        </a>
     </li>
   </ul>
@@ -38,7 +39,8 @@
 <div class="product-detail">
   <div>
     <bar-rating [rate]="product.rating" [readOnly]="true"></bar-rating>
-    <a [routerLink]="['/home/left-sidebar/product', product.id]"><h6>{{product.name}}</h6></a>
+    <!-- <a [routerLink]="['/home/product', product.id]"><h6>{{product.name}}</h6></a> -->
+    <a href="/home/product/{{product.id}}"><h6>{{product.name}}</h6></a>
     <h4 *ngIf="!productsService?.catalogMode">{{config.convertPrice(product.price) | currency:productsService?.currency:'symbol'}} 
       <del *ngIf='product.sale'><span class="money">{{config.convertPrice(product.salePrice) | currency:productsService?.currency:'symbol'}}</span></del> 
     </h4>

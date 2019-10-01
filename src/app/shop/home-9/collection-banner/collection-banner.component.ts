@@ -17,18 +17,18 @@ export class CollectionBannerNineComponent implements OnInit {
     image: 'assets/images/electronics/5.jpg',
     save: '10% off',
     title: 'speaker',
-    link: '/home/left-sidebar/collection/electronics'
+    link: '/home/collection/electronics'
   }, {
     image: 'assets/images/electronics/6.jpg',
     save: '10% off',
     title: 'earplug',
-    link: '/home/left-sidebar/collection/electronics'
+    link: '/home/collection/electronics'
   },
   {
     image: 'assets/images/electronics/7.jpg',
     save: '10% off',
     title: 'best deal',
-    link: '/home/left-sidebar/collection/electronics'
+    link: '/home/collection/electronics'
   }]
 
 }

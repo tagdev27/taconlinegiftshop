@@ -36,7 +36,7 @@ export class LeftMenuComponent implements OnInit {
   }
 
   gotoCat(id: string) {
-    this.router.navigate([`/home/left-sidebar/collection/${id}`])
+    this.router.navigate([`/home/collection/${id}`])
   }
 
   getMainCategories() {
@@ -54,7 +54,7 @@ export class LeftMenuComponent implements OnInit {
             //console.log(`sub_cat == ${sub_cat.size}`)
             const sc = <SubCategory>sCat.data()
             const item: Menu = {
-              path: `${sc.id}`,///home/left-sidebar/collection/
+              path: `${sc.id}`,///home/collection/
               title: sc.name,
               type: 'link'
             }
@@ -71,7 +71,7 @@ export class LeftMenuComponent implements OnInit {
         //   const main_item: Menu = {
         //     title: category.name,
         //     type: 'link',
-        //     path: '/home/left-sidebar/collection/all'
+        //     path: '/home/collection/all'
         //   }
         //   subMenuItems.push(main_item)
         // }

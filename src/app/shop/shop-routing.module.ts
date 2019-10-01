@@ -108,7 +108,7 @@ const routes: Routes = [
   //   component: HomeThreeComponent
   // },
   {
-    path: 'left-sidebar/collection/:category',
+    path: 'collection/:category',//left-sidebar/
     component: CollectionLeftSidebarComponent
   },
   // {
@@ -120,7 +120,7 @@ const routes: Routes = [
   //   //component: CollectionNoSidebarComponent
   // },
   {
-    path: 'left-sidebar/product/:id',
+    path: 'product/:id',//left-sidebar/
     component: ProductLeftSidebarComponent
   },
   // {

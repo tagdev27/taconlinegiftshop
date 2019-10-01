@@ -66,10 +66,10 @@ const routes: Routes = [
         path: '404',
         component: ErrorPageComponent
       },
-      {
-        path: 'lookbook',
-        component: LookbookComponent
-      },
+      // {
+      //   path: 'lookbook',
+      //   component: LookbookComponent
+      // },
       {
         path: 'login',
         component: LoginComponent,
@@ -92,10 +92,10 @@ const routes: Routes = [
         path: 'cart',
         component: CartComponent
       },
-      {
-        path: 'collection',
-        component: CollectionComponent
-      },
+      // {
+      //   path: 'collection',
+      //   component: CollectionComponent
+      // },
       {
         path: 'forgetpassword',
         component: ForgetPasswordComponent,
@@ -126,14 +126,14 @@ const routes: Routes = [
         path: 'track-your-order',
         component: TrackComponent
       },
-      {
-        path: 'typography',
-        component: TypographyComponent
-      },
-      {
-        path: 'faq',
-        component: FaqComponent
-      },
+      // {
+      //   path: 'typography',
+      //   component: TypographyComponent
+      // },
+      // {
+      //   path: 'faq',
+      //   component: FaqComponent
+      // },
       // {
       //   path: 'grid/two/column',
       //   component: GridTwoColComponent

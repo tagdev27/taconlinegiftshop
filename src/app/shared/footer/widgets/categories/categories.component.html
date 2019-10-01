@@ -2,11 +2,11 @@
     <h4>Categories</h4>
 </div>
 <div class="footer-contant">
-    <ul *ngFor="let sub of sub_categories">
-        <li><a href="javascript:void(0)" (click)="gotocat(sub.id)">{{sub.name}}</a></li>
-        <!-- <li><a [routerLink]="['/home/left-sidebar/collection/women']">Womens Fashion</a></li>
-        <li><a [routerLink]="['/home/left-sidebar/collection/men']">Mens Fashion</a></li>
-        <li><a [routerLink]="['/home/left-sidebar/collection/kids']">Kids Fashion</a></li>
-        <li><a [routerLink]="['/home/left-sidebar/collection/all']">Featured</a></li> -->
+    <ul>
+        <li *ngFor="let sub of sub_categories"><a href="javascript:void(0)" (click)="gotocat(sub.id)">{{sub.name}}</a></li>
+        <!-- <li><a href="/collection">View More</a></li> -->
+        <!-- <li><a [routerLink]="['/home/collection/men']">Mens Fashion</a></li>
+        <li><a [routerLink]="['/home/collection/kids']">Kids Fashion</a></li>
+        <li><a [routerLink]="['/home/collection/all']">Featured</a></li> -->
     </ul>
 </div>

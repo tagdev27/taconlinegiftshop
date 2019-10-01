@@ -29,7 +29,7 @@
     </li>
     <li class="onhover-div mobile-cart" *ngIf="!productsService?.catalogMode">
       <div>
-        <a [routerLink]="['/home/cart']">
+        <a href="/home/cart">
           <img src="assets/images/icon/cart.png" class="img-fluid" alt="">
           <i class="ti-shopping-cart"></i>
         </a>
@@ -41,10 +41,10 @@
       <ul class="show-div shopping-cart" *ngIf='shoppingCartItems.length'>
         <li *ngFor="let item of shoppingCartItems">
           <div class="media">
-            <a [routerLink]="['/home/left-sidebar/product', item.product.id]"><img class="mr-3"
+            <a href="/home/product/{{item.product.id}}"><img class="mr-3"
                 [src]="item.product.pictures[0]" alt="Generic placeholder image"></a>
             <div class="media-body">
-              <a [routerLink]="['/home/left-sidebar/product', item.product.id]">
+              <a href="/home/product/{{item.product.id}}">
                 <h4>{{ item.product.name }}</h4>
               </a>
               <h4><span>{{ item.quantity }} x
@@ -63,8 +63,8 @@
         </li>
         <li>
           <div class="buttons">
-            <a [routerLink]="['/home/cart']" class="view-cart">view cart</a>
-            <a [routerLink]="['/home/checkout']" class="checkout">checkout</a>
+            <a href="/home/cart" class="view-cart">view cart</a>
+            <a href="/home/checkout" class="checkout">checkout</a>
           </div>
         </li>
       </ul>

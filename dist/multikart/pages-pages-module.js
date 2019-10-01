@@ -147,9 +147,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/about-us/about-us.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/about-us/about-us.component.html":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/about-us/about-us.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/about-us/about-us.component.html ***!
   \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -158,9 +158,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/cart/cart.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/cart/cart.component.html":
 /*!**************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/cart/cart.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/cart/cart.component.html ***!
   \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -169,9 +169,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/checkout/checkout.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/checkout/checkout.component.html":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/checkout/checkout.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/checkout/checkout.component.html ***!
   \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -180,9 +180,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/collection/collection.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/collection/collection.component.html":
 /*!**************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/collection/collection.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/collection/collection.component.html ***!
   \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -191,9 +191,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/compare/compare.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/compare/compare.component.html":
 /*!********************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/compare/compare.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/compare/compare.component.html ***!
   \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -202,9 +202,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/contact/contact.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/contact/contact.component.html":
 /*!********************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/contact/contact.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/contact/contact.component.html ***!
   \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -213,9 +213,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/dashboard/dashboard.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/dashboard/dashboard.component.html":
 /*!************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/dashboard/dashboard.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/dashboard/dashboard.component.html ***!
   \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -224,9 +224,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/error-page/error-page.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/error-page/error-page.component.html":
 /*!**************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/error-page/error-page.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/error-page/error-page.component.html ***!
   \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -235,9 +235,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/faq/faq.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/faq/faq.component.html":
 /*!************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/faq/faq.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/faq/faq.component.html ***!
   \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -246,20 +246,20 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/forget-password/forget-password.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/forget-password/forget-password.component.html":
 /*!************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/forget-password/forget-password.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/forget-password/forget-password.component.html ***!
   \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-sm-6\">\n                <div class=\"page-title\">\n                    <h2>forget password</h2>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <nav aria-label=\"breadcrumb\" class=\"theme-breadcrumb\">\n                    <ol class=\"breadcrumb\">\n                        <li class=\"breadcrumb-item\"><a [routerLink]=\"'/home/one'\">Home</a></li>\n                        <li class=\"breadcrumb-item\"><a [routerLink]=\"'/pages/login'\">login</a></li>\n                        <li class=\"breadcrumb-item active\" aria-current=\"page\">forget password</li>\n                    </ol>\n                </nav>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- breadcrumb End -->\n<!-- section start -->\n<section class=\"pwd-page\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-lg-6 offset-lg-3\">\n                <h2>Forget Your Password</h2>\n                <form class=\"theme-form\">\n                    <div class=\"form-row\">\n                        <div class=\"col-md-12\">\n                            <input type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"Enter Your Email\" required=\"\">\n                        </div>\n                        <button class=\"btn btn-solid\">Submit</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</section>\n<!--Section ends-->"
+module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-sm-6\">\n                <div class=\"page-title\">\n                    <h2>forget password</h2>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <nav aria-label=\"breadcrumb\" class=\"theme-breadcrumb\">\n                    <ol class=\"breadcrumb\">\n                        <li class=\"breadcrumb-item\"><a [routerLink]=\"'/home/one'\">Home</a></li>\n                        <li class=\"breadcrumb-item\"><a [routerLink]=\"'/login'\">login</a></li>\n                        <li class=\"breadcrumb-item active\" aria-current=\"page\">forget password</li>\n                    </ol>\n                </nav>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- breadcrumb End -->\n<!-- section start -->\n<section class=\"pwd-page\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-lg-6 offset-lg-3\">\n                <h2>Forget Your Password</h2>\n                <form class=\"theme-form\">\n                    <div class=\"form-row\">\n                        <div class=\"col-md-12\">\n                            <input type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"Enter Your Email\" required=\"\">\n                        </div>\n                        <button class=\"btn btn-solid\">Submit</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</section>\n<!--Section ends-->"
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/login/login.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/login/login.component.html":
 /*!****************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/login/login.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/login/login.component.html ***!
   \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -268,9 +268,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/lookbook/lookbook.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/lookbook/lookbook.component.html":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/lookbook/lookbook.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/lookbook/lookbook.component.html ***!
   \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -279,9 +279,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/order-success/order-success.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/order-success/order-success.component.html":
 /*!********************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/order-success/order-success.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/order-success/order-success.component.html ***!
   \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -290,9 +290,9 @@ module.exports = "<!-- thank-you section start -->\n<section class=\"section-b-s
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/grid-four-col/grid-four-col.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/portfolio/grid-four-col/grid-four-col.component.html":
 /*!******************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/portfolio/grid-four-col/grid-four-col.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/portfolio/grid-four-col/grid-four-col.component.html ***!
   \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -301,9 +301,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/grid-three-col/grid-three-col.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/portfolio/grid-three-col/grid-three-col.component.html":
 /*!********************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/portfolio/grid-three-col/grid-three-col.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/portfolio/grid-three-col/grid-three-col.component.html ***!
   \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -312,9 +312,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/grid-two-col/grid-two-col.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/portfolio/grid-two-col/grid-two-col.component.html":
 /*!****************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/portfolio/grid-two-col/grid-two-col.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/portfolio/grid-two-col/grid-two-col.component.html ***!
   \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -323,9 +323,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.html":
 /*!****************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.html ***!
   \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -334,9 +334,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.html":
 /*!****************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.html ***!
   \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -345,9 +345,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.html":
 /*!******************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.html ***!
   \******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -356,9 +356,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.html":
 /*!**************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.html ***!
   \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -367,9 +367,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/register/register.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/register/register.component.html":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/register/register.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/register/register.component.html ***!
   \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -378,9 +378,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/search/search.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/search/search.component.html":
 /*!******************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/search/search.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/search/search.component.html ***!
   \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -389,9 +389,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/typography/typography.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/typography/typography.component.html":
 /*!**************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/typography/typography.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/typography/typography.component.html ***!
   \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -400,9 +400,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/index.js!./src/app/pages/wishlist/wishlist.component.html":
+/***/ "./node_modules/raw-loader/index.js!./src/app/wishlist/wishlist.component.html":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/raw-loader!./src/app/pages/wishlist/wishlist.component.html ***!
+  !*** ./node_modules/raw-loader!./src/app/wishlist/wishlist.component.html ***!
   \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -411,9 +411,9 @@ module.exports = "<!-- breadcrumb start -->\n<div class=\"breadcrumb-section\">\
 
 /***/ }),
 
-/***/ "./src/app/pages/about-us/about-us.component.scss":
+/***/ "./src/app/about-us/about-us.component.scss":
 /*!********************************************************!*\
-  !*** ./src/app/pages/about-us/about-us.component.scss ***!
+  !*** ./src/app/about-us/about-us.component.scss ***!
   \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -422,9 +422,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/about-us/about-us.component.ts":
+/***/ "./src/app/about-us/about-us.component.ts":
 /*!******************************************************!*\
-  !*** ./src/app/pages/about-us/about-us.component.ts ***!
+  !*** ./src/app/about-us/about-us.component.ts ***!
   \******************************************************/
 /*! exports provided: AboutUsComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -537,8 +537,8 @@ var AboutUsComponent = /** @class */ (function () {
     AboutUsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-about-us',
-            template: __webpack_require__(/*! raw-loader!./about-us.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/about-us/about-us.component.html"),
-            styles: [__webpack_require__(/*! ./about-us.component.scss */ "./src/app/pages/about-us/about-us.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./about-us.component.html */ "./node_modules/raw-loader/index.js!./src/app/about-us/about-us.component.html"),
+            styles: [__webpack_require__(/*! ./about-us.component.scss */ "./src/app/about-us/about-us.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], AboutUsComponent);
@@ -549,9 +549,9 @@ var AboutUsComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/cart/cart.component.scss":
+/***/ "./src/app/cart/cart.component.scss":
 /*!************************************************!*\
-  !*** ./src/app/pages/cart/cart.component.scss ***!
+  !*** ./src/app/cart/cart.component.scss ***!
   \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -560,9 +560,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/cart/cart.component.ts":
+/***/ "./src/app/cart/cart.component.ts":
 /*!**********************************************!*\
-  !*** ./src/app/pages/cart/cart.component.ts ***!
+  !*** ./src/app/cart/cart.component.ts ***!
   \**********************************************/
 /*! exports provided: CartComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -589,8 +589,8 @@ var CartComponent = /** @class */ (function () {
     CartComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-cart',
-            template: __webpack_require__(/*! raw-loader!./cart.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/cart/cart.component.html"),
-            styles: [__webpack_require__(/*! ./cart.component.scss */ "./src/app/pages/cart/cart.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./cart.component.html */ "./node_modules/raw-loader/index.js!./src/app/cart/cart.component.html"),
+            styles: [__webpack_require__(/*! ./cart.component.scss */ "./src/app/cart/cart.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], CartComponent);
@@ -601,9 +601,9 @@ var CartComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/checkout/checkout.component.scss":
+/***/ "./src/app/checkout/checkout.component.scss":
 /*!********************************************************!*\
-  !*** ./src/app/pages/checkout/checkout.component.scss ***!
+  !*** ./src/app/checkout/checkout.component.scss ***!
   \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -612,9 +612,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/checkout/checkout.component.ts":
+/***/ "./src/app/checkout/checkout.component.ts":
 /*!******************************************************!*\
-  !*** ./src/app/pages/checkout/checkout.component.ts ***!
+  !*** ./src/app/checkout/checkout.component.ts ***!
   \******************************************************/
 /*! exports provided: CheckoutComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -641,8 +641,8 @@ var CheckoutComponent = /** @class */ (function () {
     CheckoutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-checkout',
-            template: __webpack_require__(/*! raw-loader!./checkout.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/checkout/checkout.component.html"),
-            styles: [__webpack_require__(/*! ./checkout.component.scss */ "./src/app/pages/checkout/checkout.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./checkout.component.html */ "./node_modules/raw-loader/index.js!./src/app/checkout/checkout.component.html"),
+            styles: [__webpack_require__(/*! ./checkout.component.scss */ "./src/app/checkout/checkout.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], CheckoutComponent);
@@ -653,9 +653,9 @@ var CheckoutComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/collection/collection.component.scss":
+/***/ "./src/app/collection/collection.component.scss":
 /*!************************************************************!*\
-  !*** ./src/app/pages/collection/collection.component.scss ***!
+  !*** ./src/app/collection/collection.component.scss ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -664,9 +664,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/collection/collection.component.ts":
+/***/ "./src/app/collection/collection.component.ts":
 /*!**********************************************************!*\
-  !*** ./src/app/pages/collection/collection.component.ts ***!
+  !*** ./src/app/collection/collection.component.ts ***!
   \**********************************************************/
 /*! exports provided: CollectionComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -693,8 +693,8 @@ var CollectionComponent = /** @class */ (function () {
     CollectionComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-collection',
-            template: __webpack_require__(/*! raw-loader!./collection.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/collection/collection.component.html"),
-            styles: [__webpack_require__(/*! ./collection.component.scss */ "./src/app/pages/collection/collection.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./collection.component.html */ "./node_modules/raw-loader/index.js!./src/app/collection/collection.component.html"),
+            styles: [__webpack_require__(/*! ./collection.component.scss */ "./src/app/collection/collection.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], CollectionComponent);
@@ -705,9 +705,9 @@ var CollectionComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/compare/compare.component.scss":
+/***/ "./src/app/compare/compare.component.scss":
 /*!******************************************************!*\
-  !*** ./src/app/pages/compare/compare.component.scss ***!
+  !*** ./src/app/compare/compare.component.scss ***!
   \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -716,9 +716,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/compare/compare.component.ts":
+/***/ "./src/app/compare/compare.component.ts":
 /*!****************************************************!*\
-  !*** ./src/app/pages/compare/compare.component.ts ***!
+  !*** ./src/app/compare/compare.component.ts ***!
   \****************************************************/
 /*! exports provided: CompareComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -745,8 +745,8 @@ var CompareComponent = /** @class */ (function () {
     CompareComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-compare',
-            template: __webpack_require__(/*! raw-loader!./compare.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/compare/compare.component.html"),
-            styles: [__webpack_require__(/*! ./compare.component.scss */ "./src/app/pages/compare/compare.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./compare.component.html */ "./node_modules/raw-loader/index.js!./src/app/compare/compare.component.html"),
+            styles: [__webpack_require__(/*! ./compare.component.scss */ "./src/app/compare/compare.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], CompareComponent);
@@ -757,9 +757,9 @@ var CompareComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/contact/contact.component.scss":
+/***/ "./src/app/contact/contact.component.scss":
 /*!******************************************************!*\
-  !*** ./src/app/pages/contact/contact.component.scss ***!
+  !*** ./src/app/contact/contact.component.scss ***!
   \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -768,9 +768,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/contact/contact.component.ts":
+/***/ "./src/app/contact/contact.component.ts":
 /*!****************************************************!*\
-  !*** ./src/app/pages/contact/contact.component.ts ***!
+  !*** ./src/app/contact/contact.component.ts ***!
   \****************************************************/
 /*! exports provided: ContactComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -797,8 +797,8 @@ var ContactComponent = /** @class */ (function () {
     ContactComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-contact',
-            template: __webpack_require__(/*! raw-loader!./contact.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/contact/contact.component.html"),
-            styles: [__webpack_require__(/*! ./contact.component.scss */ "./src/app/pages/contact/contact.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./contact.component.html */ "./node_modules/raw-loader/index.js!./src/app/contact/contact.component.html"),
+            styles: [__webpack_require__(/*! ./contact.component.scss */ "./src/app/contact/contact.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], ContactComponent);
@@ -809,9 +809,9 @@ var ContactComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/dashboard/dashboard.component.scss":
+/***/ "./src/app/dashboard/dashboard.component.scss":
 /*!**********************************************************!*\
-  !*** ./src/app/pages/dashboard/dashboard.component.scss ***!
+  !*** ./src/app/dashboard/dashboard.component.scss ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -820,9 +820,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/dashboard/dashboard.component.ts":
+/***/ "./src/app/dashboard/dashboard.component.ts":
 /*!********************************************************!*\
-  !*** ./src/app/pages/dashboard/dashboard.component.ts ***!
+  !*** ./src/app/dashboard/dashboard.component.ts ***!
   \********************************************************/
 /*! exports provided: DashboardComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -849,8 +849,8 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-dashboard',
-            template: __webpack_require__(/*! raw-loader!./dashboard.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/dashboard/dashboard.component.html"),
-            styles: [__webpack_require__(/*! ./dashboard.component.scss */ "./src/app/pages/dashboard/dashboard.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./dashboard.component.html */ "./node_modules/raw-loader/index.js!./src/app/dashboard/dashboard.component.html"),
+            styles: [__webpack_require__(/*! ./dashboard.component.scss */ "./src/app/dashboard/dashboard.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], DashboardComponent);
@@ -861,9 +861,9 @@ var DashboardComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/error-page/error-page.component.scss":
+/***/ "./src/app/error-page/error-page.component.scss":
 /*!************************************************************!*\
-  !*** ./src/app/pages/error-page/error-page.component.scss ***!
+  !*** ./src/app/error-page/error-page.component.scss ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -872,9 +872,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/error-page/error-page.component.ts":
+/***/ "./src/app/error-page/error-page.component.ts":
 /*!**********************************************************!*\
-  !*** ./src/app/pages/error-page/error-page.component.ts ***!
+  !*** ./src/app/error-page/error-page.component.ts ***!
   \**********************************************************/
 /*! exports provided: ErrorPageComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -901,8 +901,8 @@ var ErrorPageComponent = /** @class */ (function () {
     ErrorPageComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-error-page',
-            template: __webpack_require__(/*! raw-loader!./error-page.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/error-page/error-page.component.html"),
-            styles: [__webpack_require__(/*! ./error-page.component.scss */ "./src/app/pages/error-page/error-page.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./error-page.component.html */ "./node_modules/raw-loader/index.js!./src/app/error-page/error-page.component.html"),
+            styles: [__webpack_require__(/*! ./error-page.component.scss */ "./src/app/error-page/error-page.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], ErrorPageComponent);
@@ -913,9 +913,9 @@ var ErrorPageComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/faq/faq.component.scss":
+/***/ "./src/app/faq/faq.component.scss":
 /*!**********************************************!*\
-  !*** ./src/app/pages/faq/faq.component.scss ***!
+  !*** ./src/app/faq/faq.component.scss ***!
   \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -924,9 +924,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/faq/faq.component.ts":
+/***/ "./src/app/faq/faq.component.ts":
 /*!********************************************!*\
-  !*** ./src/app/pages/faq/faq.component.ts ***!
+  !*** ./src/app/faq/faq.component.ts ***!
   \********************************************/
 /*! exports provided: FaqComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -953,8 +953,8 @@ var FaqComponent = /** @class */ (function () {
     FaqComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-faq',
-            template: __webpack_require__(/*! raw-loader!./faq.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/faq/faq.component.html"),
-            styles: [__webpack_require__(/*! ./faq.component.scss */ "./src/app/pages/faq/faq.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./faq.component.html */ "./node_modules/raw-loader/index.js!./src/app/faq/faq.component.html"),
+            styles: [__webpack_require__(/*! ./faq.component.scss */ "./src/app/faq/faq.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], FaqComponent);
@@ -965,9 +965,9 @@ var FaqComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/forget-password/forget-password.component.scss":
+/***/ "./src/app/forget-password/forget-password.component.scss":
 /*!**********************************************************************!*\
-  !*** ./src/app/pages/forget-password/forget-password.component.scss ***!
+  !*** ./src/app/forget-password/forget-password.component.scss ***!
   \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -976,9 +976,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/forget-password/forget-password.component.ts":
+/***/ "./src/app/forget-password/forget-password.component.ts":
 /*!********************************************************************!*\
-  !*** ./src/app/pages/forget-password/forget-password.component.ts ***!
+  !*** ./src/app/forget-password/forget-password.component.ts ***!
   \********************************************************************/
 /*! exports provided: ForgetPasswordComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1005,8 +1005,8 @@ var ForgetPasswordComponent = /** @class */ (function () {
     ForgetPasswordComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-forget-password',
-            template: __webpack_require__(/*! raw-loader!./forget-password.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/forget-password/forget-password.component.html"),
-            styles: [__webpack_require__(/*! ./forget-password.component.scss */ "./src/app/pages/forget-password/forget-password.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./forget-password.component.html */ "./node_modules/raw-loader/index.js!./src/app/forget-password/forget-password.component.html"),
+            styles: [__webpack_require__(/*! ./forget-password.component.scss */ "./src/app/forget-password/forget-password.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], ForgetPasswordComponent);
@@ -1017,9 +1017,9 @@ var ForgetPasswordComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/login/login.component.scss":
+/***/ "./src/app/login/login.component.scss":
 /*!**************************************************!*\
-  !*** ./src/app/pages/login/login.component.scss ***!
+  !*** ./src/app/login/login.component.scss ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1028,9 +1028,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/login/login.component.ts":
+/***/ "./src/app/login/login.component.ts":
 /*!************************************************!*\
-  !*** ./src/app/pages/login/login.component.ts ***!
+  !*** ./src/app/login/login.component.ts ***!
   \************************************************/
 /*! exports provided: LoginComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1057,8 +1057,8 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-login',
-            template: __webpack_require__(/*! raw-loader!./login.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/login/login.component.html"),
-            styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/pages/login/login.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./login.component.html */ "./node_modules/raw-loader/index.js!./src/app/login/login.component.html"),
+            styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/login/login.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], LoginComponent);
@@ -1069,9 +1069,9 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/lookbook/lookbook.component.scss":
+/***/ "./src/app/lookbook/lookbook.component.scss":
 /*!********************************************************!*\
-  !*** ./src/app/pages/lookbook/lookbook.component.scss ***!
+  !*** ./src/app/lookbook/lookbook.component.scss ***!
   \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1080,9 +1080,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/lookbook/lookbook.component.ts":
+/***/ "./src/app/lookbook/lookbook.component.ts":
 /*!******************************************************!*\
-  !*** ./src/app/pages/lookbook/lookbook.component.ts ***!
+  !*** ./src/app/lookbook/lookbook.component.ts ***!
   \******************************************************/
 /*! exports provided: LookbookComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1109,8 +1109,8 @@ var LookbookComponent = /** @class */ (function () {
     LookbookComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-lookbook',
-            template: __webpack_require__(/*! raw-loader!./lookbook.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/lookbook/lookbook.component.html"),
-            styles: [__webpack_require__(/*! ./lookbook.component.scss */ "./src/app/pages/lookbook/lookbook.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./lookbook.component.html */ "./node_modules/raw-loader/index.js!./src/app/lookbook/lookbook.component.html"),
+            styles: [__webpack_require__(/*! ./lookbook.component.scss */ "./src/app/lookbook/lookbook.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], LookbookComponent);
@@ -1121,9 +1121,9 @@ var LookbookComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/order-success/order-success.component.scss":
+/***/ "./src/app/order-success/order-success.component.scss":
 /*!******************************************************************!*\
-  !*** ./src/app/pages/order-success/order-success.component.scss ***!
+  !*** ./src/app/order-success/order-success.component.scss ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1132,9 +1132,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/order-success/order-success.component.ts":
+/***/ "./src/app/order-success/order-success.component.ts":
 /*!****************************************************************!*\
-  !*** ./src/app/pages/order-success/order-success.component.ts ***!
+  !*** ./src/app/order-success/order-success.component.ts ***!
   \****************************************************************/
 /*! exports provided: OrderSuccessComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1161,8 +1161,8 @@ var OrderSuccessComponent = /** @class */ (function () {
     OrderSuccessComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-order-success',
-            template: __webpack_require__(/*! raw-loader!./order-success.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/order-success/order-success.component.html"),
-            styles: [__webpack_require__(/*! ./order-success.component.scss */ "./src/app/pages/order-success/order-success.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./order-success.component.html */ "./node_modules/raw-loader/index.js!./src/app/order-success/order-success.component.html"),
+            styles: [__webpack_require__(/*! ./order-success.component.scss */ "./src/app/order-success/order-success.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], OrderSuccessComponent);
@@ -1173,9 +1173,9 @@ var OrderSuccessComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/pages-routing.module.ts":
+/***/ "./src/app/pages-routing.module.ts":
 /*!***********************************************!*\
-  !*** ./src/app/pages/pages-routing.module.ts ***!
+  !*** ./src/app/pages-routing.module.ts ***!
   \***********************************************/
 /*! exports provided: PagesRoutingModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1185,30 +1185,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PagesRoutingModule", function() { return PagesRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _about_us_about_us_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./about-us/about-us.component */ "./src/app/pages/about-us/about-us.component.ts");
-/* harmony import */ var _error_page_error_page_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error-page/error-page.component */ "./src/app/pages/error-page/error-page.component.ts");
-/* harmony import */ var _lookbook_lookbook_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./lookbook/lookbook.component */ "./src/app/pages/lookbook/lookbook.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login/login.component */ "./src/app/pages/login/login.component.ts");
-/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./register/register.component */ "./src/app/pages/register/register.component.ts");
-/* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./search/search.component */ "./src/app/pages/search/search.component.ts");
-/* harmony import */ var _wishlist_wishlist_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./wishlist/wishlist.component */ "./src/app/pages/wishlist/wishlist.component.ts");
-/* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cart/cart.component */ "./src/app/pages/cart/cart.component.ts");
-/* harmony import */ var _collection_collection_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./collection/collection.component */ "./src/app/pages/collection/collection.component.ts");
-/* harmony import */ var _forget_password_forget_password_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./forget-password/forget-password.component */ "./src/app/pages/forget-password/forget-password.component.ts");
-/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/pages/contact/contact.component.ts");
-/* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./checkout/checkout.component */ "./src/app/pages/checkout/checkout.component.ts");
-/* harmony import */ var _compare_compare_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./compare/compare.component */ "./src/app/pages/compare/compare.component.ts");
-/* harmony import */ var _order_success_order_success_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./order-success/order-success.component */ "./src/app/pages/order-success/order-success.component.ts");
-/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/pages/dashboard/dashboard.component.ts");
-/* harmony import */ var _typography_typography_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./typography/typography.component */ "./src/app/pages/typography/typography.component.ts");
-/* harmony import */ var _faq_faq_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./faq/faq.component */ "./src/app/pages/faq/faq.component.ts");
-/* harmony import */ var _portfolio_grid_two_col_grid_two_col_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./portfolio/grid-two-col/grid-two-col.component */ "./src/app/pages/portfolio/grid-two-col/grid-two-col.component.ts");
-/* harmony import */ var _portfolio_grid_three_col_grid_three_col_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./portfolio/grid-three-col/grid-three-col.component */ "./src/app/pages/portfolio/grid-three-col/grid-three-col.component.ts");
-/* harmony import */ var _portfolio_grid_four_col_grid_four_col_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./portfolio/grid-four-col/grid-four-col.component */ "./src/app/pages/portfolio/grid-four-col/grid-four-col.component.ts");
-/* harmony import */ var _portfolio_masonary_two_grid_masonary_two_grid_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./portfolio/masonary-two-grid/masonary-two-grid.component */ "./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.ts");
-/* harmony import */ var _portfolio_masonary_three_grid_masonary_three_grid_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./portfolio/masonary-three-grid/masonary-three-grid.component */ "./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.ts");
-/* harmony import */ var _portfolio_masonary_four_grid_masonary_four_grid_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./portfolio/masonary-four-grid/masonary-four-grid.component */ "./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.ts");
-/* harmony import */ var _portfolio_masonary_fullwidth_masonary_fullwidth_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./portfolio/masonary-fullwidth/masonary-fullwidth.component */ "./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.ts");
+/* harmony import */ var _about_us_about_us_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./about-us/about-us.component */ "./src/app/about-us/about-us.component.ts");
+/* harmony import */ var _error_page_error_page_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error-page/error-page.component */ "./src/app/error-page/error-page.component.ts");
+/* harmony import */ var _lookbook_lookbook_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./lookbook/lookbook.component */ "./src/app/lookbook/lookbook.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
+/* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./search/search.component */ "./src/app/search/search.component.ts");
+/* harmony import */ var _wishlist_wishlist_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./wishlist/wishlist.component */ "./src/app/wishlist/wishlist.component.ts");
+/* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cart/cart.component */ "./src/app/cart/cart.component.ts");
+/* harmony import */ var _collection_collection_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./collection/collection.component */ "./src/app/collection/collection.component.ts");
+/* harmony import */ var _forget_password_forget_password_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./forget-password/forget-password.component */ "./src/app/forget-password/forget-password.component.ts");
+/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
+/* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./checkout/checkout.component */ "./src/app/checkout/checkout.component.ts");
+/* harmony import */ var _compare_compare_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./compare/compare.component */ "./src/app/compare/compare.component.ts");
+/* harmony import */ var _order_success_order_success_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./order-success/order-success.component */ "./src/app/order-success/order-success.component.ts");
+/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _typography_typography_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./typography/typography.component */ "./src/app/typography/typography.component.ts");
+/* harmony import */ var _faq_faq_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./faq/faq.component */ "./src/app/faq/faq.component.ts");
+/* harmony import */ var _portfolio_grid_two_col_grid_two_col_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./portfolio/grid-two-col/grid-two-col.component */ "./src/app/portfolio/grid-two-col/grid-two-col.component.ts");
+/* harmony import */ var _portfolio_grid_three_col_grid_three_col_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./portfolio/grid-three-col/grid-three-col.component */ "./src/app/portfolio/grid-three-col/grid-three-col.component.ts");
+/* harmony import */ var _portfolio_grid_four_col_grid_four_col_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./portfolio/grid-four-col/grid-four-col.component */ "./src/app/portfolio/grid-four-col/grid-four-col.component.ts");
+/* harmony import */ var _portfolio_masonary_two_grid_masonary_two_grid_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./portfolio/masonary-two-grid/masonary-two-grid.component */ "./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.ts");
+/* harmony import */ var _portfolio_masonary_three_grid_masonary_three_grid_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./portfolio/masonary-three-grid/masonary-three-grid.component */ "./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.ts");
+/* harmony import */ var _portfolio_masonary_four_grid_masonary_four_grid_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./portfolio/masonary-four-grid/masonary-four-grid.component */ "./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.ts");
+/* harmony import */ var _portfolio_masonary_fullwidth_masonary_fullwidth_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./portfolio/masonary-fullwidth/masonary-fullwidth.component */ "./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1361,9 +1361,9 @@ var PagesRoutingModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/pages.module.ts":
+/***/ "./src/app/pages.module.ts":
 /*!***************************************!*\
-  !*** ./src/app/pages/pages.module.ts ***!
+  !*** ./src/app/pages.module.ts ***!
   \***************************************/
 /*! exports provided: PagesModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1373,34 +1373,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PagesModule", function() { return PagesModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _pages_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages-routing.module */ "./src/app/pages/pages-routing.module.ts");
+/* harmony import */ var _pages_routing_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages-routing.module */ "./src/app/pages-routing.module.ts");
 /* harmony import */ var ngx_slick_carousel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-slick-carousel */ "./node_modules/ngx-slick-carousel/fesm5/ngx-slick-carousel.js");
 /* harmony import */ var ngx_isotope__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-isotope */ "./node_modules/ngx-isotope/ngx-isotope.umd.js");
 /* harmony import */ var ngx_isotope__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(ngx_isotope__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _about_us_about_us_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./about-us/about-us.component */ "./src/app/pages/about-us/about-us.component.ts");
-/* harmony import */ var _error_page_error_page_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./error-page/error-page.component */ "./src/app/pages/error-page/error-page.component.ts");
-/* harmony import */ var _lookbook_lookbook_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lookbook/lookbook.component */ "./src/app/pages/lookbook/lookbook.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login/login.component */ "./src/app/pages/login/login.component.ts");
-/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./register/register.component */ "./src/app/pages/register/register.component.ts");
-/* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./search/search.component */ "./src/app/pages/search/search.component.ts");
-/* harmony import */ var _wishlist_wishlist_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./wishlist/wishlist.component */ "./src/app/pages/wishlist/wishlist.component.ts");
-/* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cart/cart.component */ "./src/app/pages/cart/cart.component.ts");
-/* harmony import */ var _collection_collection_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./collection/collection.component */ "./src/app/pages/collection/collection.component.ts");
-/* harmony import */ var _forget_password_forget_password_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./forget-password/forget-password.component */ "./src/app/pages/forget-password/forget-password.component.ts");
-/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/pages/contact/contact.component.ts");
-/* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./checkout/checkout.component */ "./src/app/pages/checkout/checkout.component.ts");
-/* harmony import */ var _compare_compare_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./compare/compare.component */ "./src/app/pages/compare/compare.component.ts");
-/* harmony import */ var _order_success_order_success_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./order-success/order-success.component */ "./src/app/pages/order-success/order-success.component.ts");
-/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/pages/dashboard/dashboard.component.ts");
-/* harmony import */ var _faq_faq_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./faq/faq.component */ "./src/app/pages/faq/faq.component.ts");
-/* harmony import */ var _typography_typography_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./typography/typography.component */ "./src/app/pages/typography/typography.component.ts");
-/* harmony import */ var _portfolio_grid_two_col_grid_two_col_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./portfolio/grid-two-col/grid-two-col.component */ "./src/app/pages/portfolio/grid-two-col/grid-two-col.component.ts");
-/* harmony import */ var _portfolio_grid_three_col_grid_three_col_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./portfolio/grid-three-col/grid-three-col.component */ "./src/app/pages/portfolio/grid-three-col/grid-three-col.component.ts");
-/* harmony import */ var _portfolio_grid_four_col_grid_four_col_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./portfolio/grid-four-col/grid-four-col.component */ "./src/app/pages/portfolio/grid-four-col/grid-four-col.component.ts");
-/* harmony import */ var _portfolio_masonary_two_grid_masonary_two_grid_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./portfolio/masonary-two-grid/masonary-two-grid.component */ "./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.ts");
-/* harmony import */ var _portfolio_masonary_three_grid_masonary_three_grid_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./portfolio/masonary-three-grid/masonary-three-grid.component */ "./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.ts");
-/* harmony import */ var _portfolio_masonary_four_grid_masonary_four_grid_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./portfolio/masonary-four-grid/masonary-four-grid.component */ "./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.ts");
-/* harmony import */ var _portfolio_masonary_fullwidth_masonary_fullwidth_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./portfolio/masonary-fullwidth/masonary-fullwidth.component */ "./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.ts");
+/* harmony import */ var _about_us_about_us_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./about-us/about-us.component */ "./src/app/about-us/about-us.component.ts");
+/* harmony import */ var _error_page_error_page_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./error-page/error-page.component */ "./src/app/error-page/error-page.component.ts");
+/* harmony import */ var _lookbook_lookbook_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lookbook/lookbook.component */ "./src/app/lookbook/lookbook.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
+/* harmony import */ var _search_search_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./search/search.component */ "./src/app/search/search.component.ts");
+/* harmony import */ var _wishlist_wishlist_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./wishlist/wishlist.component */ "./src/app/wishlist/wishlist.component.ts");
+/* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cart/cart.component */ "./src/app/cart/cart.component.ts");
+/* harmony import */ var _collection_collection_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./collection/collection.component */ "./src/app/collection/collection.component.ts");
+/* harmony import */ var _forget_password_forget_password_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./forget-password/forget-password.component */ "./src/app/forget-password/forget-password.component.ts");
+/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
+/* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./checkout/checkout.component */ "./src/app/checkout/checkout.component.ts");
+/* harmony import */ var _compare_compare_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./compare/compare.component */ "./src/app/compare/compare.component.ts");
+/* harmony import */ var _order_success_order_success_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./order-success/order-success.component */ "./src/app/order-success/order-success.component.ts");
+/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _faq_faq_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./faq/faq.component */ "./src/app/faq/faq.component.ts");
+/* harmony import */ var _typography_typography_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./typography/typography.component */ "./src/app/typography/typography.component.ts");
+/* harmony import */ var _portfolio_grid_two_col_grid_two_col_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./portfolio/grid-two-col/grid-two-col.component */ "./src/app/portfolio/grid-two-col/grid-two-col.component.ts");
+/* harmony import */ var _portfolio_grid_three_col_grid_three_col_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./portfolio/grid-three-col/grid-three-col.component */ "./src/app/portfolio/grid-three-col/grid-three-col.component.ts");
+/* harmony import */ var _portfolio_grid_four_col_grid_four_col_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./portfolio/grid-four-col/grid-four-col.component */ "./src/app/portfolio/grid-four-col/grid-four-col.component.ts");
+/* harmony import */ var _portfolio_masonary_two_grid_masonary_two_grid_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./portfolio/masonary-two-grid/masonary-two-grid.component */ "./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.ts");
+/* harmony import */ var _portfolio_masonary_three_grid_masonary_three_grid_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./portfolio/masonary-three-grid/masonary-three-grid.component */ "./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.ts");
+/* harmony import */ var _portfolio_masonary_four_grid_masonary_four_grid_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./portfolio/masonary-four-grid/masonary-four-grid.component */ "./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.ts");
+/* harmony import */ var _portfolio_masonary_fullwidth_masonary_fullwidth_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./portfolio/masonary-fullwidth/masonary-fullwidth.component */ "./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1482,9 +1482,9 @@ var PagesModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/grid-four-col/grid-four-col.component.scss":
+/***/ "./src/app/portfolio/grid-four-col/grid-four-col.component.scss":
 /*!****************************************************************************!*\
-  !*** ./src/app/pages/portfolio/grid-four-col/grid-four-col.component.scss ***!
+  !*** ./src/app/portfolio/grid-four-col/grid-four-col.component.scss ***!
   \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1493,9 +1493,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/grid-four-col/grid-four-col.component.ts":
+/***/ "./src/app/portfolio/grid-four-col/grid-four-col.component.ts":
 /*!**************************************************************************!*\
-  !*** ./src/app/pages/portfolio/grid-four-col/grid-four-col.component.ts ***!
+  !*** ./src/app/portfolio/grid-four-col/grid-four-col.component.ts ***!
   \**************************************************************************/
 /*! exports provided: GridFourColComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1550,8 +1550,8 @@ var GridFourColComponent = /** @class */ (function () {
     GridFourColComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-grid-four-col',
-            template: __webpack_require__(/*! raw-loader!./grid-four-col.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/grid-four-col/grid-four-col.component.html"),
-            styles: [__webpack_require__(/*! ./grid-four-col.component.scss */ "./src/app/pages/portfolio/grid-four-col/grid-four-col.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./grid-four-col.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio/grid-four-col/grid-four-col.component.html"),
+            styles: [__webpack_require__(/*! ./grid-four-col.component.scss */ "./src/app/portfolio/grid-four-col/grid-four-col.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], GridFourColComponent);
@@ -1562,9 +1562,9 @@ var GridFourColComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/grid-three-col/grid-three-col.component.scss":
+/***/ "./src/app/portfolio/grid-three-col/grid-three-col.component.scss":
 /*!******************************************************************************!*\
-  !*** ./src/app/pages/portfolio/grid-three-col/grid-three-col.component.scss ***!
+  !*** ./src/app/portfolio/grid-three-col/grid-three-col.component.scss ***!
   \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1573,9 +1573,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/grid-three-col/grid-three-col.component.ts":
+/***/ "./src/app/portfolio/grid-three-col/grid-three-col.component.ts":
 /*!****************************************************************************!*\
-  !*** ./src/app/pages/portfolio/grid-three-col/grid-three-col.component.ts ***!
+  !*** ./src/app/portfolio/grid-three-col/grid-three-col.component.ts ***!
   \****************************************************************************/
 /*! exports provided: GridThreeColComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1630,8 +1630,8 @@ var GridThreeColComponent = /** @class */ (function () {
     GridThreeColComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-grid-three-col',
-            template: __webpack_require__(/*! raw-loader!./grid-three-col.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/grid-three-col/grid-three-col.component.html"),
-            styles: [__webpack_require__(/*! ./grid-three-col.component.scss */ "./src/app/pages/portfolio/grid-three-col/grid-three-col.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./grid-three-col.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio/grid-three-col/grid-three-col.component.html"),
+            styles: [__webpack_require__(/*! ./grid-three-col.component.scss */ "./src/app/portfolio/grid-three-col/grid-three-col.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], GridThreeColComponent);
@@ -1642,9 +1642,9 @@ var GridThreeColComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/grid-two-col/grid-two-col.component.scss":
+/***/ "./src/app/portfolio/grid-two-col/grid-two-col.component.scss":
 /*!**************************************************************************!*\
-  !*** ./src/app/pages/portfolio/grid-two-col/grid-two-col.component.scss ***!
+  !*** ./src/app/portfolio/grid-two-col/grid-two-col.component.scss ***!
   \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1653,9 +1653,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/grid-two-col/grid-two-col.component.ts":
+/***/ "./src/app/portfolio/grid-two-col/grid-two-col.component.ts":
 /*!************************************************************************!*\
-  !*** ./src/app/pages/portfolio/grid-two-col/grid-two-col.component.ts ***!
+  !*** ./src/app/portfolio/grid-two-col/grid-two-col.component.ts ***!
   \************************************************************************/
 /*! exports provided: GridTwoColComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1710,8 +1710,8 @@ var GridTwoColComponent = /** @class */ (function () {
     GridTwoColComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-grid-two-col',
-            template: __webpack_require__(/*! raw-loader!./grid-two-col.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/grid-two-col/grid-two-col.component.html"),
-            styles: [__webpack_require__(/*! ./grid-two-col.component.scss */ "./src/app/pages/portfolio/grid-two-col/grid-two-col.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./grid-two-col.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio/grid-two-col/grid-two-col.component.html"),
+            styles: [__webpack_require__(/*! ./grid-two-col.component.scss */ "./src/app/portfolio/grid-two-col/grid-two-col.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], GridTwoColComponent);
@@ -1722,9 +1722,9 @@ var GridTwoColComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.scss":
+/***/ "./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.scss":
 /*!**************************************************************************************!*\
-  !*** ./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.scss ***!
+  !*** ./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.scss ***!
   \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1733,9 +1733,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.ts":
+/***/ "./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.ts":
 /*!************************************************************************************!*\
-  !*** ./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.ts ***!
+  !*** ./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.ts ***!
   \************************************************************************************/
 /*! exports provided: MasonaryFourGridComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1792,8 +1792,8 @@ var MasonaryFourGridComponent = /** @class */ (function () {
     MasonaryFourGridComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-masonary-four-grid',
-            template: __webpack_require__(/*! raw-loader!./masonary-four-grid.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.html"),
-            styles: [__webpack_require__(/*! ./masonary-four-grid.component.scss */ "./src/app/pages/portfolio/masonary-four-grid/masonary-four-grid.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./masonary-four-grid.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.html"),
+            styles: [__webpack_require__(/*! ./masonary-four-grid.component.scss */ "./src/app/portfolio/masonary-four-grid/masonary-four-grid.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], MasonaryFourGridComponent);
@@ -1804,9 +1804,9 @@ var MasonaryFourGridComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.scss":
+/***/ "./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.scss":
 /*!**************************************************************************************!*\
-  !*** ./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.scss ***!
+  !*** ./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.scss ***!
   \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1815,9 +1815,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.ts":
+/***/ "./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.ts":
 /*!************************************************************************************!*\
-  !*** ./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.ts ***!
+  !*** ./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.ts ***!
   \************************************************************************************/
 /*! exports provided: MasonaryFullwidthComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1874,8 +1874,8 @@ var MasonaryFullwidthComponent = /** @class */ (function () {
     MasonaryFullwidthComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-masonary-fullwidth',
-            template: __webpack_require__(/*! raw-loader!./masonary-fullwidth.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.html"),
-            styles: [__webpack_require__(/*! ./masonary-fullwidth.component.scss */ "./src/app/pages/portfolio/masonary-fullwidth/masonary-fullwidth.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./masonary-fullwidth.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.html"),
+            styles: [__webpack_require__(/*! ./masonary-fullwidth.component.scss */ "./src/app/portfolio/masonary-fullwidth/masonary-fullwidth.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], MasonaryFullwidthComponent);
@@ -1886,9 +1886,9 @@ var MasonaryFullwidthComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.scss":
+/***/ "./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.scss":
 /*!****************************************************************************************!*\
-  !*** ./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.scss ***!
+  !*** ./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.scss ***!
   \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1897,9 +1897,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.ts":
+/***/ "./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.ts":
 /*!**************************************************************************************!*\
-  !*** ./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.ts ***!
+  !*** ./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.ts ***!
   \**************************************************************************************/
 /*! exports provided: MasonaryThreeGridComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1956,8 +1956,8 @@ var MasonaryThreeGridComponent = /** @class */ (function () {
     MasonaryThreeGridComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-masonary-three-grid',
-            template: __webpack_require__(/*! raw-loader!./masonary-three-grid.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.html"),
-            styles: [__webpack_require__(/*! ./masonary-three-grid.component.scss */ "./src/app/pages/portfolio/masonary-three-grid/masonary-three-grid.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./masonary-three-grid.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.html"),
+            styles: [__webpack_require__(/*! ./masonary-three-grid.component.scss */ "./src/app/portfolio/masonary-three-grid/masonary-three-grid.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], MasonaryThreeGridComponent);
@@ -1968,9 +1968,9 @@ var MasonaryThreeGridComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.scss":
+/***/ "./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.scss":
 /*!************************************************************************************!*\
-  !*** ./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.scss ***!
+  !*** ./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.scss ***!
   \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -1979,9 +1979,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.ts":
+/***/ "./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.ts":
 /*!**********************************************************************************!*\
-  !*** ./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.ts ***!
+  !*** ./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.ts ***!
   \**********************************************************************************/
 /*! exports provided: MasonaryTwoGridComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2038,8 +2038,8 @@ var MasonaryTwoGridComponent = /** @class */ (function () {
     MasonaryTwoGridComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-masonary-two-grid',
-            template: __webpack_require__(/*! raw-loader!./masonary-two-grid.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.html"),
-            styles: [__webpack_require__(/*! ./masonary-two-grid.component.scss */ "./src/app/pages/portfolio/masonary-two-grid/masonary-two-grid.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./masonary-two-grid.component.html */ "./node_modules/raw-loader/index.js!./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.html"),
+            styles: [__webpack_require__(/*! ./masonary-two-grid.component.scss */ "./src/app/portfolio/masonary-two-grid/masonary-two-grid.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], MasonaryTwoGridComponent);
@@ -2050,9 +2050,9 @@ var MasonaryTwoGridComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/register/register.component.scss":
+/***/ "./src/app/register/register.component.scss":
 /*!********************************************************!*\
-  !*** ./src/app/pages/register/register.component.scss ***!
+  !*** ./src/app/register/register.component.scss ***!
   \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -2061,9 +2061,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/register/register.component.ts":
+/***/ "./src/app/register/register.component.ts":
 /*!******************************************************!*\
-  !*** ./src/app/pages/register/register.component.ts ***!
+  !*** ./src/app/register/register.component.ts ***!
   \******************************************************/
 /*! exports provided: RegisterComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2090,8 +2090,8 @@ var RegisterComponent = /** @class */ (function () {
     RegisterComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-register',
-            template: __webpack_require__(/*! raw-loader!./register.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/register/register.component.html"),
-            styles: [__webpack_require__(/*! ./register.component.scss */ "./src/app/pages/register/register.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./register.component.html */ "./node_modules/raw-loader/index.js!./src/app/register/register.component.html"),
+            styles: [__webpack_require__(/*! ./register.component.scss */ "./src/app/register/register.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], RegisterComponent);
@@ -2102,9 +2102,9 @@ var RegisterComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/search/search.component.scss":
+/***/ "./src/app/search/search.component.scss":
 /*!****************************************************!*\
-  !*** ./src/app/pages/search/search.component.scss ***!
+  !*** ./src/app/search/search.component.scss ***!
   \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -2113,9 +2113,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/search/search.component.ts":
+/***/ "./src/app/search/search.component.ts":
 /*!**************************************************!*\
-  !*** ./src/app/pages/search/search.component.ts ***!
+  !*** ./src/app/search/search.component.ts ***!
   \**************************************************/
 /*! exports provided: SearchComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2142,8 +2142,8 @@ var SearchComponent = /** @class */ (function () {
     SearchComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-search',
-            template: __webpack_require__(/*! raw-loader!./search.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/search/search.component.html"),
-            styles: [__webpack_require__(/*! ./search.component.scss */ "./src/app/pages/search/search.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./search.component.html */ "./node_modules/raw-loader/index.js!./src/app/search/search.component.html"),
+            styles: [__webpack_require__(/*! ./search.component.scss */ "./src/app/search/search.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], SearchComponent);
@@ -2154,9 +2154,9 @@ var SearchComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/typography/typography.component.scss":
+/***/ "./src/app/typography/typography.component.scss":
 /*!************************************************************!*\
-  !*** ./src/app/pages/typography/typography.component.scss ***!
+  !*** ./src/app/typography/typography.component.scss ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -2165,9 +2165,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/typography/typography.component.ts":
+/***/ "./src/app/typography/typography.component.ts":
 /*!**********************************************************!*\
-  !*** ./src/app/pages/typography/typography.component.ts ***!
+  !*** ./src/app/typography/typography.component.ts ***!
   \**********************************************************/
 /*! exports provided: TypographyComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2194,8 +2194,8 @@ var TypographyComponent = /** @class */ (function () {
     TypographyComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-typography',
-            template: __webpack_require__(/*! raw-loader!./typography.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/typography/typography.component.html"),
-            styles: [__webpack_require__(/*! ./typography.component.scss */ "./src/app/pages/typography/typography.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./typography.component.html */ "./node_modules/raw-loader/index.js!./src/app/typography/typography.component.html"),
+            styles: [__webpack_require__(/*! ./typography.component.scss */ "./src/app/typography/typography.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], TypographyComponent);
@@ -2206,9 +2206,9 @@ var TypographyComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/pages/wishlist/wishlist.component.scss":
+/***/ "./src/app/wishlist/wishlist.component.scss":
 /*!********************************************************!*\
-  !*** ./src/app/pages/wishlist/wishlist.component.scss ***!
+  !*** ./src/app/wishlist/wishlist.component.scss ***!
   \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -2217,9 +2217,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 
 /***/ }),
 
-/***/ "./src/app/pages/wishlist/wishlist.component.ts":
+/***/ "./src/app/wishlist/wishlist.component.ts":
 /*!******************************************************!*\
-  !*** ./src/app/pages/wishlist/wishlist.component.ts ***!
+  !*** ./src/app/wishlist/wishlist.component.ts ***!
   \******************************************************/
 /*! exports provided: WishlistComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -2246,8 +2246,8 @@ var WishlistComponent = /** @class */ (function () {
     WishlistComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-wishlist',
-            template: __webpack_require__(/*! raw-loader!./wishlist.component.html */ "./node_modules/raw-loader/index.js!./src/app/pages/wishlist/wishlist.component.html"),
-            styles: [__webpack_require__(/*! ./wishlist.component.scss */ "./src/app/pages/wishlist/wishlist.component.scss")]
+            template: __webpack_require__(/*! raw-loader!./wishlist.component.html */ "./node_modules/raw-loader/index.js!./src/app/wishlist/wishlist.component.html"),
+            styles: [__webpack_require__(/*! ./wishlist.component.scss */ "./src/app/wishlist/wishlist.component.scss")]
         }),
         __metadata("design:paramtypes", [])
     ], WishlistComponent);

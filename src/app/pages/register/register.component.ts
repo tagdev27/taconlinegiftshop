@@ -204,10 +204,10 @@ export class RegisterComponent implements OnInit {
                                               style="height:20px;line-height:14px;font-size:12px">
                                               &nbsp;</div>
 
-                                          <a href="https://tacgifts.com/home/left-sidebar/product/${pro.id}"
+                                          <a href="https://tacgifts.com/home/product/${pro.id}"
                                               style="display:block;font-family:'Source Sans Pro',Verdana,Tahoma,Geneva,sans-serif;color:#ff9800;font-size:15px;line-height:18px;text-decoration:none;white-space:nowrap;text-transform:uppercase"
                                               target="_blank"
-                                              data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/home/left-sidebar/product/${pro.id}">
+                                              data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/home/product/${pro.id}">
 
                                               <font face="'Source Sans Pro', sans-serif"
                                                   color="#ff9800"
@@ -379,10 +379,10 @@ export class RegisterComponent implements OnInit {
                                                                         style="height:20px;line-height:14px;font-size:12px">
                                                                         &nbsp;</div>
 
-                                                                    <a href="https://tacgifts.com/home/left-sidebar/product/${pro.id}"
+                                                                    <a href="https://tacgifts.com/home/product/${pro.id}"
                                                                         style="display:block;font-family:'Source Sans Pro',Verdana,Tahoma,Geneva,sans-serif;color:#ff9800;font-size:15px;line-height:18px;text-decoration:none;white-space:nowrap;text-transform:uppercase"
                                                                         target="_blank"
-                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/home/left-sidebar/product/${pro.id}">
+                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/home/product/${pro.id}">
 
                                                                         <font face="'Source Sans Pro', sans-serif"
                                                                             color="#ff9800"
@@ -441,17 +441,20 @@ export class RegisterComponent implements OnInit {
               if (other_result != null) {
                 //cf.displayMessage('', true)
               }
-              rt.navigate(['/home'])
+              // rt.navigate(['/home'])
+              location.href = '/home'
             },
             error: function (err) {
               pd.close()
               localStorage.setItem('email', email)
               localStorage.setItem('fn', user_data['firstname'])
               localStorage.setItem('ln', user_data['lastname'])
+              localStorage.removeItem("signInAnonymously")
               if (other_result != null) {
                 //cf.displayMessage('', true)
               }
-              rt.navigate(['/home'])
+              // rt.navigate(['/home'])
+              location.href = '/home'
             },
             data: {
               body: `${email_body}`

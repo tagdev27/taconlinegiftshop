@@ -11,11 +11,11 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 <div class="media">
-                                    <a [routerLink]="['/home/left-sidebar/product', product.id]">
+                                    <a [routerLink]="['/home/product', product.id]">
                                         <img class="img-fluid pro-img" [src]="product.pictures[0]" alt="">
                                     </a>
                                     <div class="media-body align-self-center text-center">
-                                        <a [routerLink]="['/home/left-sidebar/product', product.id]">
+                                        <a [routerLink]="['/home/product', product.id]">
                                             <h6>
                                                 <i class="fa fa-check"></i>Item
                                                 <span>{{product.name}}</span>
@@ -25,10 +25,10 @@
                                         <div class="buttons">
                                             <!-- <a [routerLink]="['/home/cart']" class="view-cart btn btn-solid">Your cart</a>
                                             <a [routerLink]="['/home/checkout']" class="checkout btn btn-solid">Check out</a>
-                                            <a [routerLink]="['/home/left-sidebar/collection/all']" class="continue btn btn-solid">Continue shopping</a> -->
+                                            <a [routerLink]="['/home/collection/all']" class="continue btn btn-solid">Continue shopping</a> -->
                                             <a href="/home/cart" class="view-cart btn btn-solid">Your cart</a>
                                             <a href="/home/checkout" class="checkout btn btn-solid">Check out</a>
-                                            <a href="/home/left-sidebar/collection/all" class="continue btn btn-solid">Continue shopping</a>
+                                            <a href="/home/collection/all" class="continue btn btn-solid">Continue shopping</a>
                                         </div>
 
                                         <div class="upsell_payment">
@@ -45,12 +45,12 @@
                                         <div class="product-box col-sm-3 col-6" *ngFor="let relatedProduct of relatedProducts(product) | slice:0:4">
                                             <div class="img-wrapper">
                                                 <div class="front">
-                                                    <a [routerLink]="['/home/left-sidebar/product', relatedProduct.id]">
+                                                    <a [routerLink]="['/home/product', relatedProduct.id]">
                                                         <img [src]="relatedProduct.pictures[0]" class="img-fluid mb-1" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="product-detail">
-                                                    <h6 class="mt-0"><a [routerLink]="['/home/left-sidebar/product', relatedProduct.id]"><span>{{relatedProduct.name}}</span></a></h6>
+                                                    <h6 class="mt-0"><a [routerLink]="['/home/product', relatedProduct.id]"><span>{{relatedProduct.name}}</span></a></h6>
                                                     <h4><span>{{config.convertPrice(relatedProduct.price) | currency:productsService?.currency:'symbol'}}</span></h4>
                                                 </div>
                                             </div>

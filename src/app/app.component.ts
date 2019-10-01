@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as firebase from "firebase"
+import * as $ from 'jquery'
 import "firebase/performance";
 import { Users } from './models/users';
 import { Router } from '@angular/router';
@@ -23,7 +24,20 @@ export class AppComponent implements OnInit {
    email: string = '';
    isLogout = true
 
+   async checkIfLoggedIn(){
+      const anon = localStorage.getItem("signInAnonymously")
+      const logged = localStorage.getItem("logged")
+      if(logged == null || logged == "false"){
+         if(anon == "true"){
+            return
+         }
+        await firebase.auth().signInAnonymously()
+        localStorage.setItem("signInAnonymously", "true")
+      }
+   }
+
    ngOnInit() {
+      $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom","35px").css("right","0px")
       const firebaseConfig = {
          apiKey: "AIzaSyAu77RE_S5__DnrmaR1LKJvqtNNyR0mSzo",
          authDomain: "taconlinegiftshop.firebaseapp.com",
@@ -34,14 +48,16 @@ export class AppComponent implements OnInit {
          appId: "1:640531224553:web:a573170a7ba2a22a"
       };
       firebase.initializeApp(firebaseConfig)
-      firebase.firestore().enablePersistence()
-      const perf = firebase.performance();
+      //firebase.firestore().enablePersistence()
+      //const perf = firebase.performance();
 
       const cart_id = localStorage.getItem('unique-id-for-cart')
       if (cart_id == null) {
          const id = firebase.database().ref().push().key
          localStorage.setItem('unique-id-for-cart', id)
       }
+
+      this.checkIfLoggedIn()
 
       this.checkLoggedInAccess()
       this.checkblockeduser()
@@ -110,7 +126,7 @@ export class AppComponent implements OnInit {
          this.isLoggedIn = false;
          firebase.auth().signOut();
          //localStorage.clear();
-         //this.router.navigate(['/pages/login'])
+         //this.router.navigate(['/login'])
       }
    }
 
