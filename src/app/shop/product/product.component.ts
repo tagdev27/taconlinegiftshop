@@ -7,7 +7,7 @@ import { WishlistService } from '../../shared/services/wishlist.service';
 import { CartService } from '../../shared/services/cart.service';
 import { Observable, of } from 'rxjs';
 import { AppConfig } from 'src/app/services/global.service';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

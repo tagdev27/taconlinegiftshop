@@ -32,4 +32,7 @@ export interface Banners {
     collection_image?:string
 
     sidebar_image?:string
+
+    banner_font_size?:number
+    banner_text_color?:string
 }

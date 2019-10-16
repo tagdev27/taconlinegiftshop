@@ -50,11 +50,13 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="top-banner-wrapper">
-                    <a [routerLink]="['/home/collection/all']"><img src="{{productsService.banner.collection_image}}" class="img-fluid" alt=""></a>
+                    <!-- <a [routerLink]="['/home/collection/all']"> -->
+                    <img src="{{(sub_category_id != 'all') ? col_image : productsService.banner.collection_image}}" class="img-fluid" alt="">
+                    <!-- </a> -->
                     <div class="top-banner-content small-section">
-                      <h4>TAC</h4>
+                      <h4>TAC{{col_title}}</h4>
                       <h5>The Online Gift Store</h5>
-                      <p>{{productsService.banner.collection_text}}</p>
+                      <p>{{(sub_category_id != 'all') ? col_sub_title : productsService.banner.collection_text}}</p>
                     </div>
                   </div>
                   <div class="collection-product-wrapper">
@@ -79,16 +81,20 @@
                               <div class="collection-grid-view">
                                 <ul>
                                   <li>
-                                    <img src="assets/images/icon/2.png" class="product-2-layout-view" (click)="twoCol()">
+                                    <img src="assets/images/icon/2.png" class="product-2-layout-view"
+                                      (click)="twoCol()">
                                   </li>
                                   <li>
-                                    <img src="assets/images/icon/3.png" class="product-3-layout-view" (click)="threeCol()">
+                                    <img src="assets/images/icon/3.png" class="product-3-layout-view"
+                                      (click)="threeCol()">
                                   </li>
                                   <li>
-                                    <img src="assets/images/icon/4.png" class="product-4-layout-view" (click)="fourCol()">
+                                    <img src="assets/images/icon/4.png" class="product-4-layout-view"
+                                      (click)="fourCol()">
                                   </li>
                                   <li>
-                                    <img src="assets/images/icon/6.png" class="product-6-layout-view" (click)="sixCol()">
+                                    <img src="assets/images/icon/6.png" class="product-6-layout-view"
+                                      (click)="sixCol()">
                                   </li>
                                 </ul>
                               </div>
@@ -113,17 +119,20 @@
                     <div class="product-wrapper-grid">
                       <div class="container-fluid">
                         <div class="row" [@Animation]="animation">
-                          <div class="col-xl-3 col-md-6 col-grid-box" *ngFor="let product of filterItems() | orderBy:sortByOrder">
+                          <div class="col-xl-3 col-md-6 col-grid-box"
+                            *ngFor="let product of filterItems() | orderBy:sortByOrder">
                             <div class="product-box">
                               <app-product [product]="product"></app-product>
                             </div>
                             <!-- Infinite Scroll -->
-                            <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="2000" (scrolled)="onScroll()" *ngIf="filterItems().length">
+                            <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="2000"
+                              (scrolled)="onScroll()" *ngIf="filterItems().length">
                             </div>
                           </div>
-                          <div class="col-sm-12 text-center section-b-space mt-5 no-found" *ngIf="!filterItems().length">
+                          <div class="col-sm-12 text-center section-b-space mt-5 no-found"
+                            *ngIf="!filterItems().length">
                             <img src="assets/images/empty-search.jpg" class="img-fluid mb-4">
-                            <h3>Sorry! Couldn't find the product you were looking For!!!    </h3>
+                            <h3>Sorry! Couldn't find the product you were looking For!!! </h3>
                             <p>Please check if you have misspelt something or try searching with other words.</p>
                             <a href="/home" class="btn btn-solid">continue shopping</a>
                           </div>
@@ -137,7 +146,8 @@
                             <div class="text-center col-sm-12">
                               <div class="infinite-scrolling mt-4 mb-4 d-inline-block">
                                 <img src="assets/images/loader.gif" *ngIf="!finished && filterItems().length">
-                                <div class="loading-more active" *ngIf="finished && filterItems().length">No More Products</div>
+                                <div class="loading-more active" *ngIf="finished && filterItems().length">No More
+                                  Products</div>
                               </div>
                             </div>
                           </div>

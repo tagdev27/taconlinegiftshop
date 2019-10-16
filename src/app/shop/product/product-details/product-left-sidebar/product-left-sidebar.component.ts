@@ -7,7 +7,7 @@ import { CartService } from '../../../../shared/services/cart.service';
 import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
 import { AppConfig } from 'src/app/services/global.service';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Reviews } from 'src/app/models/reviews';
 
@@ -39,8 +39,10 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.config = new AppConfig(productsService)
     this.route.params.subscribe(params => {
       const id = +params['id'];
-      this.productsService.getProduct(id).subscribe(product => this.product = product)
-      //$('head').append(`<meta name="${this.product.name}" content="${this.product.description}">`)
+      this.productsService.getProduct(id).subscribe(product => {
+        this.product = product
+        $('head').append(`<meta name="description" content="${product.description}">`)
+      })
       //$('#metaelement').attr('content', `${this.product.description}`);
     });
     this.reviewForm = this.fb.group({
@@ -64,7 +66,7 @@ export class ProductLeftSidebarComponent implements OnInit {
       email: `${this.reviewForm.value.email}`,
       title: `${this.reviewForm.value.title}`,
       text: `${this.reviewForm.value.text}`,
-      product_id: `${_id}`,//this.product.key,
+      product_id: _id,//this.product.key,
       rating: this.rating,
       created_date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
     }

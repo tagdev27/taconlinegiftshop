@@ -45,11 +45,13 @@ export class AppComponent implements OnInit {
          projectId: "taconlinegiftshop",
          storageBucket: "taconlinegiftshop.appspot.com",
          messagingSenderId: "640531224553",
-         appId: "1:640531224553:web:a573170a7ba2a22a"
+         appId: "1:640531224553:web:a573170a7ba2a22a",
+         measurementId: "G-JL5RFRMVSF"
       };
       firebase.initializeApp(firebaseConfig)
-      //firebase.firestore().enablePersistence()
-      //const perf = firebase.performance();
+      firebase.firestore().enablePersistence()
+      firebase.analytics()
+      const perf = firebase.performance();
 
       const cart_id = localStorage.getItem('unique-id-for-cart')
       if (cart_id == null) {
@@ -63,6 +65,7 @@ export class AppComponent implements OnInit {
       this.checkblockeduser()
       this.recordWebsiteVisits()
       //console.log(location.href)
+      
       if(location.href == 'https://tacgifts.com' || location.href == 'https://tacgifts.com/' || location.href == 'https://www.tacgifts.com/' || location.href == 'https://www.tacgifts.com'){
          this.router.navigate(['home'])
       }

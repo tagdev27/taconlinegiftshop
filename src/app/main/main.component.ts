@@ -17,11 +17,11 @@ export class MainComponent implements OnInit {
   public url : any; 
 
   constructor(private router: Router) {  
-    this.router.events.subscribe((event) => {
-          if (event instanceof NavigationEnd) {
-            this.url = event.url;
-          }
-    });
+    // this.router.events.subscribe((event) => {
+    //       if (event instanceof NavigationEnd) {
+    //         this.url = event.url;
+    //       }
+    // });
   }
 
   ngOnInit() { 

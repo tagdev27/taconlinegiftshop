@@ -9,7 +9,7 @@ import { OrderService } from '../../../shared/services/order.service';
 import { Observable, of } from 'rxjs';
 import { AppConfig } from 'src/app/services/global.service';
 import { Styles } from 'src/app/models/style';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';

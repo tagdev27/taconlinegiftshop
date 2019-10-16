@@ -6,6 +6,8 @@ import { ProductsService } from '../../../../shared/services/products.service';
 import * as _ from 'lodash'
 import * as $ from 'jquery';
 import { AppConfig } from 'src/app/services/global.service';
+import * as firebase from "firebase";
+import { SubCategory } from 'src/app/models/sub.category';
 
 @Component({
   selector: 'app-collection-left-sidebar',
@@ -40,11 +42,17 @@ export class CollectionLeftSidebarComponent implements OnInit {
   lastKey = ''      // key to offset next query from
   finished = false  // boolean when end of data is reached
   config:AppConfig
+  sub_category_id = ''
+  col_image = ''
+  col_title = ''
+  col_sub_title = ''
+
   constructor(private route: ActivatedRoute, private router: Router,
     public productsService: ProductsService) { 
       this.config = new AppConfig(productsService)
        this.route.params.subscribe(params => {
           const category = params['category'];
+          this.sub_category_id = category
           this.productsService.getProductByCategory(category).subscribe(products => {
              this.allItems = products  // all products
              this.products = products.slice(0,8)
@@ -54,8 +62,16 @@ export class CollectionLeftSidebarComponent implements OnInit {
        });
   }
 
-  ngOnInit() {  
-    
+  ngOnInit() {
+    if(this.sub_category_id != 'all'){
+      firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').doc(this.sub_category_id).get().then(snap => {
+        const subCat = <SubCategory>snap.data()
+        this.col_image = subCat.image
+        this.col_title = ` - ${subCat.name}`
+        this.col_sub_title = subCat.description
+        $('head').append(`<meta name="description" content="${subCat.description}">`)
+      })
+    }
   }
   
   // Get current product tags

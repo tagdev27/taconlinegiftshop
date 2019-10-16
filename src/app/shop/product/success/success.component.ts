@@ -5,7 +5,7 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import { AppConfig } from 'src/app/services/global.service';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/shared/services/cart.service';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import { Product } from 'src/app/shared/classes/product';
 import { EmailService } from 'src/app/shared/services/email.service';
 import { CartItem } from 'src/app/shared/classes/cart-item';
@@ -172,7 +172,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
     const trans = firebase.firestore().runTransaction(async t => {
       const doc = await t.get(itemRef);
       let newstock_level = doc.data().stock_level - 1;
-      t.update(itemRef, { stock_level: newstock_level });
+      t.update(itemRef, { stock_level: newstock_level });//firebase.firestore.FieldValue.increment(-1)
     })
   }
 

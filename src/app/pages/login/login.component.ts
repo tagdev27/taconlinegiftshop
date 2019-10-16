@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import { AppConfig } from 'src/app/services/global.service';
 import { OverlayService } from 'src/app/overlay/overlay.module';
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     provider.addScope('user_friends');
     provider.addScope('user_gender')
     firebase.auth().signInWithPopup(provider).then(result => {
-      console.log(result)
+      //console.log(result)
       const user_email = result.user.email
       this.checkFirestoreAndRedirect('facebook', user_email, result)
     }).catch(err => {

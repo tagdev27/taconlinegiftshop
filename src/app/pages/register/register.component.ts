@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppConfig } from 'src/app/services/global.service';
 import { OverlayService } from 'src/app/overlay/overlay.module';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import * as $ from 'jquery'
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
     provider.addScope('user_friends');
     provider.addScope('user_gender')
     firebase.auth().signInWithPopup(provider).then(result => {
-      console.log(result)
+      //console.log(result)
       const user_email = result.user.email
       this.uploadFirestoreAndRedirect('facebook', user_email, result, null)
     }).catch(err => {

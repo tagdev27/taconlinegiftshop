@@ -7,8 +7,8 @@ import { DemoComponent } from './demo/demo.component';
 export const rootRouterConfig: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    redirectTo: 'home'
   },
   // {
   //   path: 'demo',

@@ -13,6 +13,7 @@ import { NgxImgZoomModule } from 'ngx-img-zoom';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MatSelectModule } from "@angular/material";
 import { ExportAsModule } from 'ngx-export-as';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { MatProgressSpinnerModule } from "@angular/material";
 // Home-one components
@@ -191,7 +192,8 @@ import { NewsletterComponent } from './product/widgets/newsletter/newsletter.com
     MatProgressSpinnerModule,
     NgbModule.forRoot(),
     MatSelectModule,
-    ExportAsModule
+    ExportAsModule,
+    ColorPickerModule
   ],
   declarations: [
     // Home one

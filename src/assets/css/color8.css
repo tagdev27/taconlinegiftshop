@@ -4889,19 +4889,19 @@ footer p {
       -ms-flex-align: center;
           align-items: center;
 }
-.footer-social li,
+.footer-social li, .footer-social-a li,
 .social-white li {
   display: inline-block;
   padding-right: 45px;
 }
-.footer-social i,
+.footer-social i, .footer-social-a i,
 .social-white i {
   font-size: 20px;
   color: #000000;
   -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
 }
-.footer-social i:hover,
+.footer-social i:hover, .footer-social-a i:hover,
 .social-white i:hover {
   color: #dc457e !important;
   -webkit-transition: 0.5s ease;
@@ -9277,7 +9277,7 @@ body.rtl {
 .rtl .footer-logo {
   text-align: right;
 }
-.rtl .footer-social li,
+.rtl .footer-social li, .rtl .footer-social-a li,
 .rtl .social-white li {
   padding-right: 0;
   padding-left: 45px;

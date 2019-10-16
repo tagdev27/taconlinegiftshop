@@ -22,7 +22,7 @@ export class SocialComponent implements OnInit {
     this.store = st
     this.facebook_url = st.facebook_url
     this.twitter_url = st.twitter_url
-    this.instagram_url = this.instagram_url
+    this.instagram_url = st.instagram_url
   }
 
 }

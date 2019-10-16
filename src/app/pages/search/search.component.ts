@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubCategory } from 'src/app/models/sub.category';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import { Product } from 'src/app/shared/classes/product';
 
 @Component({

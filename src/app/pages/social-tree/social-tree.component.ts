@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as $ from 'jquery';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import { SocialTree, SocialEvents } from 'src/app/models/social-tree';
 import { AppConfig } from 'src/app/services/global.service';
 import { OverlayService } from 'src/app/overlay/overlay.module';
@@ -56,9 +56,16 @@ export class SocialTreeComponent implements OnInit {
 	facebook_birthday = ''
 
 	async checkIfLoggedIn() {
-		const user = await firebase.auth().currentUser
-		this.logged = (user == null) ? 'false' : 'true'
-		//console.log(`logged ==== ${this.logged}`)
+		firebase.auth().onAuthStateChanged(userData => {
+			if(userData){
+				this.logged = 'true'
+			}else {
+				this.logged = 'false'
+			}
+		})
+		// const user = await firebase.auth().currentUser
+		// this.logged = (user == null) ? 'false' : 'true'
+		console.log(`logged ==== ${this.logged}`)
 	}
 
 	constructor(private fb: FormBuilder, private previewProgressSpinner: OverlayService, private http: HttpClient, private modalService: NgbModal) {
@@ -199,7 +206,7 @@ export class SocialTreeComponent implements OnInit {
 		}
 		const key = firebase.database().ref().push().key
 		const email = localStorage.getItem('email')
-		const image = (<HTMLInputElement>document.getElementById("pro_images")).files
+		const image = (<HTMLInputElement>document.getElementById("member_image")).files
 		var image_url = 'https://tacadmin.firebaseapp.com/assets/img/default-avatar.png'
 		if (image.length > 0) {
 			const img = await this.uploadImageToStorage(image.item(0));

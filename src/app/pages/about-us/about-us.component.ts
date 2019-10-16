@@ -14,12 +14,12 @@ export class AboutUsComponent implements OnInit {
 
   // Testimonial Carousel
   public testimonial = [{
-     image: 'assets/images/avtar.jpg',
+     image: 'assets/images/mission.png',
      name: 'Mission Statement',
      designation: '',
      description: 'To leverage technology to deliver an online messenger gift service to cut across all age brackets, occasions and geography. To ensure an endearing customer experience while conveying their heartfelt well wishes and thoughts using the TAC app.',
    }, {
-     image: 'assets/images/2.jpg',
+     image: 'assets/images/vision.png',
      name: 'Vision Statement',
      designation: '',
      description: 'To constantly connect our diaspora and local customers to their loved ones regardless of geography and giving the user an endearing customer experience with a wide range of gifts within the online ecosystem to choose from, while doing so with a great sense of security and peace of mind.',
@@ -37,6 +37,8 @@ export class AboutUsComponent implements OnInit {
     infinite: true,
     slidesToShow: 2,
     slidesToScroll: 2,
+    autoplay: true,
+    autoplaySpeed: 3000,
     responsive: [
         {
             breakpoint: 991,

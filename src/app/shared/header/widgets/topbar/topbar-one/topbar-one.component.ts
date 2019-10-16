@@ -5,7 +5,7 @@ import { ProductsService } from '../../../../../shared/services/products.service
 import { Observable, of } from 'rxjs';
 import { StoreService } from "../../../../../services/store.settings";
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-topbar',
@@ -18,11 +18,17 @@ export class TopbarOneComponent implements OnInit {
 
   service = new StoreService()
   number = ''
+  facebook_url = '#'
+  twitter_url = '#'
+  instagram_url = '#'
   logged = (localStorage.getItem('logged') == null) ? 'false' : localStorage.getItem('logged')
 
   ngOnInit() {
     this.service.getSettings().then(store => {
       this.number = store.number
+      this.facebook_url = store.facebook_url
+      this.twitter_url = store.twitter_url
+      this.instagram_url = store.instagram_url
     })
   }
 

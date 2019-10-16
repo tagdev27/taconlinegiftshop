@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MENUITEMS } from './left-menu-items';
 import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 import { Router } from '@angular/router';
 import 'jquery';
 import 'smartmenus';
