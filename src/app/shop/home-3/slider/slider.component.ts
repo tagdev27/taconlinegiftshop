@@ -31,6 +31,13 @@ export class SliderThreeComponent implements OnInit {
     return myStyles;
   }
 
+  getMyStyles3() {
+    let myStyles = {
+      'background-image': 'url(assets/images/)'
+    };
+    return myStyles;
+  }
+
   // Slick slider config
   public sliderConfig: any = {
     autoplay: true,

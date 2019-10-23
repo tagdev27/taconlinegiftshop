@@ -36,8 +36,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   public checkOutItems: CartItem[] = [];
   public orderDetails: any[] = [];
   public amount: number;
+  fixed_amount: number;
   public tax_amount: number = 0
-  public delivery_amount: number = 2000
+  // public delivery_amount: number = 2000
+  delivery_amount: number = 0
   //other countries amount
   public other_country_amount = 0
 
@@ -50,6 +52,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   card_styles: Styles[] = []
 
   config: AppConfig
+  selected_delivery_name = ''
   // Form Validator
   constructor(private fb: FormBuilder, private cartService: CartService, private modalService: NgbModal,
     public productsService: ProductsService, private orderService: OrderService, private elementRef: ElementRef, private previewProgressSpinner: OverlayService) {
@@ -79,9 +82,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.tax_amount = (subtotal * tax) / 100
         //this.amount = (this.productsService.country == 'Nigeria') ? (this.amount + this.tax_amount) : (this.amount + this.tax_amount) * 100
         this.amount = (this.amount + this.tax_amount)
+        this.fixed_amount = this.amount
         //this.other_country_amount = Number.parseInt((this.amount*100).toFixed())
       })
     })
+  }
+
+  deliveryMethodChange(del_amt: number, del_name: string) {
+    this.selected_delivery_name = del_name
+    this.delivery_amount = del_amt
+    this.amount = this.fixed_amount + del_amt
   }
 
   getRemainingCharacter() {
@@ -97,8 +107,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.checkoutForm.controls['firstname'].setValue((localStorage.getItem('fn') != null) ? localStorage.getItem('fn') : '')
     this.checkoutForm.controls['lastname'].setValue((localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : '')
-    this.checkoutForm.controls['email'].setValue((localStorage.getItem('email') != null) ? localStorage.getItem('email') : '') 
-    this.checkoutForm.controls['phone'].setValue((localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : '') 
+    this.checkoutForm.controls['email'].setValue((localStorage.getItem('email') != null) ? localStorage.getItem('email') : '')
+    this.checkoutForm.controls['phone'].setValue((localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : '')
 
     this.cartItems = this.cartService.getItems();
     this.cartItems.subscribe(products => this.checkOutItems = products);
@@ -131,6 +141,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   // stripe payment gateway
+  /*
   stripeCheckout() {
     const other_payment_detals = {
       tax: this.config.convertPrice(this.tax_amount),
@@ -153,8 +164,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       amount: this.config.convertPrice(this.amount) * 100
     })
   }
+  */
 
   // Paypal payment gateway
+  /*
   private initConfig(): void {
     const other_payment_detals = {
       tax: this.tax_amount,
@@ -190,14 +203,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }]
     });
   }
-
+  */
   paymentCancel() {
+    this.reference = this.randomInt(1, 999999999)
     this.config.displayMessage("Payment cancelled", false)
   }
 
-  async checkIfLoggedIn(){
+  async checkIfLoggedIn() {
     const logged = localStorage.getItem("logged")
-    if(logged == null || logged == "false"){
+    if (logged == null || logged == "false") {
       await firebase.auth().signInAnonymously()
     }
   }
@@ -207,15 +221,31 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     //this.checkIfLoggedIn()
     const other_payment_detals = {
       tax: this.config.convertPrice(this.tax_amount),
-      delivery: this.config.convertPrice(this.delivery_amount)
+      delivery: this.config.convertPrice(this.delivery_amount),
+      delivery_type: this.selected_delivery_name
     }
     const locationData = {
       currency: this.productsService.currency,
-      country: this.productsService.country
+      country: this.productsService.country,
+      exchange_rate: this.productsService.exchange_rate
     }
+
+    /* 
+    message: "Approved"
+reference: "297792363"
+status: "success"
+trans: "308244191"
+transaction: "308244191"
+trxref: "297792363"
+    */
     const status = paystackData['status'];
     const message = paystackData['message'];
-    const trans = paystackData['trans'];
+    const trans = paystackData['trxref'];
+    if (status != 'success' && message != 'Approved') {
+      this.reference = this.randomInt(1, 999999999)
+      this.config.displayMessage(`Payment failed. ${message}`, false)
+      return
+    }
     const current_email = localStorage.getItem('email')
     if (current_email == null) {
       localStorage.setItem('email', this.checkoutForm.value.email)

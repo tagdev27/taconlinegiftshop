@@ -64,14 +64,17 @@ export class OrderService {
       time: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
     }
     track_details.push(mT)
+    const timestamp = firebase.firestore.FieldValue.serverTimestamp()
     const order: TacOrder = {
       carts: product,
       currency_used: locationData['currency'],
+      conversion_rate: locationData['exchange_rate'],
       transaction_id: orderId,
       id: key,
       country: locationData['country'],
       email: details.email,
       created_date: `${this.getDateNow()} - ${new Date().toLocaleTimeString()}`,
+      timestamp: timestamp,
       track_id: track,
       status: 'pending',
       total_amount: amount,

@@ -35,27 +35,27 @@ export const MENUITEMS: Menu[] = [
 	      },
 	    ]
 	},
-	{
-		title: 'Baby Gifts', type: 'sub', megaMenu: true, children: [
-	      { 
-	      	title: 'Baby Gifts',  type: 'link', children: [
-				{ path: '/home/collection/-LnS4FePA5JLLo04eMuE', title: 'Newly Born',  type: 'extLink' },
-		      	{ path: '/home/collection/-LnS4RM-F7Pf8p0eafCH', title: 'Happy 1 year',  type: 'extLink' },
-		      	{ path: '/home/collection/-LnS4Xj_rIXJ5ZIC3ss7', title: 'First Tooth',  type: 'extLink' },
-		      	{ path: '/home/collection/-LnS4ekzuZt9gKz7Nsq-', title: 'First Step',  type: 'extLink' }
-	      	]
-	      },
-	    ]
-	},
+	// {
+	// 	title: 'Baby Gifts', type: 'sub', megaMenu: true, children: [
+	//       { 
+	//       	title: 'Baby Gifts',  type: 'link', children: [
+	// 			{ path: '/home/collection/-LnS4FePA5JLLo04eMuE', title: 'Newly Born',  type: 'extLink' },
+	// 	      	{ path: '/home/collection/-LnS4RM-F7Pf8p0eafCH', title: 'Happy 1 year',  type: 'extLink' },
+	// 	      	{ path: '/home/collection/-LnS4Xj_rIXJ5ZIC3ss7', title: 'First Tooth',  type: 'extLink' },
+	// 	      	{ path: '/home/collection/-LnS4ekzuZt9gKz7Nsq-', title: 'First Step',  type: 'extLink' }
+	//       	]
+	//       },
+	//     ]
+	// },
 	{
 		title: 'Congratulations', type: 'sub', megaMenu: true, children: [
 	      { 
 	      	title: 'Congratulations',  type: 'link', children: [
-				{ path: '/home/collection/-LnS4p91Ugwl3RqyW_i7', title: 'House Warming',  type: 'extLink' },
+				// { path: '/home/collection/-LnS4p91Ugwl3RqyW_i7', title: 'House Warming',  type: 'extLink' },
 		      	{ path: '/home/collection/-LnS51b1xexbVgI4g8xv', title: 'Newly Wed',  type: 'extLink' },
 		      	{ path: '/home/collection/-LnS58YpMXKrOXLmVtTy', title: 'New Birth',  type: 'extLink' },
 		      	{ path: '/home/collection/-LnS5DVeKDo43eh4tTii', title: 'Promotion',  type: 'extLink' },
-		      	{ path: '/home/collection/-LnS5U2qHwQkM8JrYCv_', title: 'Graduation',  type: 'extLink' },
+		      	// { path: '/home/collection/-LnS5U2qHwQkM8JrYCv_', title: 'Graduation',  type: 'extLink' },
 				  { path: '/home/collection/-LnS5_62r84idERDqnFQ', title: 'Convocation',  type: 'extLink' },
 				  { path: '/home/collection/-LnS5gIqBUUGhSwN6MW2', title: 'Matriculation',  type: 'extLink' },
 				  { path: '/home/collection/-LnS5mkpn2vPiDcV-Zi5', title: 'Retirement',  type: 'extLink' }
@@ -84,8 +84,8 @@ export const MENUITEMS: Menu[] = [
 				{ path: '/home/collection/-LnT3zV7qNcBk8IVGX9l', title: 'Bath and Body',  type: 'extLink' },
 				{ path: '/home/collection/-LnS8ugtr9CWWus9GqmA', title: 'Breakfast Basket',  type: 'extLink' },
 				{ path: '/home/collection/-LnS92SFP8il4rLXnOtX', title: 'Fruit and Gourmet',  type: 'extLink' },
-				{ path: '/home/collection/-LnS99rHLBiFBJvIujpN', title: 'Spa Gift',  type: 'extLink' },
-				{ path: '/home/collection/-LnS9KZ7OkHf22QxRBkE', title: 'Tea Gift',  type: 'extLink' }
+				// { path: '/home/collection/-LnS99rHLBiFBJvIujpN', title: 'Spa Gift',  type: 'extLink' },
+				// { path: '/home/collection/-LnS9KZ7OkHf22QxRBkE', title: 'Tea Gift',  type: 'extLink' }
 	      	]
 	      },
 	    ]

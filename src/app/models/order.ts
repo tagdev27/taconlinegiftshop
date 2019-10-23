@@ -3,11 +3,13 @@ import { CartItem } from "../shared/classes/cart-item";
 export interface TacOrder {
     carts:CartItem[]
     currency_used:string
+    conversion_rate:number
     transaction_id:string
     id: string
     country: string
     email: string
     created_date:string
+    timestamp:any
     track_id:number
     status:string
     total_amount:number

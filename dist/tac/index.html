@@ -6,7 +6,8 @@
   <base href="/">
   <title>TAC - Online Messenger Gift Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Buy the perfect gifts for your loved ones online. Send gifts for Birthdays, Anniversaries, Valentine and other occasions in Nigeria.">
+  <meta name="description"
+    content="Buy the perfect gifts for your loved ones online. Send gifts for Birthdays, Anniversaries, Valentine and other occasions in Nigeria.">
   <meta name="author" content="TAC - Online Messenger Gift Shop">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" href="assets/images/favicon.png" type="image/x-icon" />
@@ -16,6 +17,27 @@
   <meta http-equiv="Expires" content="300"> -->
   <!--Google font-->
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '532679740638677');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=532679740638677&ev=PageView
+  &noscript=1" />
+  </noscript>
+  <!-- End Facebook Pixel Code -->
 <link rel="stylesheet" href="styles.a96fb95f7cbc03d05409.css"></head>
 
 <body>
@@ -25,15 +47,9 @@
   </div>
   <!-- pre-loader end -->
   <app-root></app-root>
-  <!-- color variation -->
 
   <div id="color"></div>
-  <!-- <link rel="stylesheet" type="text/css" href="assets/css/color8.css"/> -->
-
-  <!-- <script src="https://checkout.stripe.com/checkout.js"></script> -->
-  <!-- facebook chat section start -->
-  <div id="fb-root"></div>
-  <script>
+  <!-- <script>
     window.fbAsyncInit = function () {
       FB.init({
         appId: '767937716957017',
@@ -50,7 +66,7 @@
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-  </script>
+  </script> -->
   <!-- facebook chat section end -->
 
   <!-- tap to top -->
@@ -69,6 +85,6 @@
     }
     function initialize(i, t) { var e; i.getElementById(t) ? initFreshChat() : ((e = i.createElement("script")).id = t, e.async = !0, e.src = "https://wchat.freshchat.com/js/widget.js", e.onload = initFreshChat, i.head.appendChild(e)) } function initiateCall() { initialize(document, "freshchat-js-sdk") } window.addEventListener ? window.addEventListener("load", initiateCall, !1) : window.attachEvent("load", initiateCall, !1);
   </script>
-<script src="runtime.b2c81f0a3b28a37fbbb7.js"></script><script src="polyfills-es5.be0cb5ffe41e7dbda932.js" nomodule></script><script src="polyfills.14064cb96b8a1fd66d67.js"></script><script src="scripts.ebc796c71332c1e2a7c3.js"></script><script src="main.0cedf6981e41eaf850d2.js"></script></body>
+<script src="runtime.dbd534e7bd763bb04149.js"></script><script src="polyfills-es5.be0cb5ffe41e7dbda932.js" nomodule></script><script src="polyfills.14064cb96b8a1fd66d67.js"></script><script src="scripts.ebc796c71332c1e2a7c3.js"></script><script src="main.8c725fe35a8314e0ed4e.js"></script></body>
 
 </html>

@@ -320,15 +320,17 @@
                                         <li *ngIf='checkOutItems.length'>
                                             Delivery
                                             <div class="shipping">
-                                                <span>
+                                                <!-- <span>
                                                     {{ config.convertPrice(delivery_amount) | currency:productsService?.currency:'symbol' }}
-                                                </span>
-                                                <!-- <div class="shopping-option">
-                                                    <input type="radio" name="shipping" checked="checked"
-                                                        id="free-shipping">
-                                                    <label for="free-shipping">Shipping</label>
+                                                </span> -->
+                                                <form>
+                                                <div class="shopping-option" *ngFor="let del of productsService.delivery">
+                                                    <input type="radio" name="shipping" id="free-shipping" (change)="deliveryMethodChange(del.value, del.name)" value="{{del.value}}">
+                                                    <label for="free-shipping">{{del.name}} - {{config.convertPrice(del.value) | currency:productsService?.currency:'symbol'}}</label>
+                                                    <br><small>{{del.description}}</small>
                                                 </div>
-                                                <div class="shopping-option">
+                                                </form>
+                                                <!-- <div class="shopping-option">
                                                     <input type="radio" name="shipping" id="local-pickup">
                                                     <label for="local-pickup">Local Pickup</label>
                                                 </div> -->
@@ -376,8 +378,8 @@
                                             Place Order
                                         </button>
                                         <!-- <ngx-paypal [config]="payPalConfig" [ngClass]="{'btn disabled': !checkoutForm.valid}" *ngIf="payment">
-                                        </ngx-paypal> pk_test_8be8b3b21803dcb62514b6e55f3c6f90f4a74483-->
-                                        <button angular4-paystack *ngIf="!payment" [disabled]="!checkoutForm.valid"
+                                        </ngx-paypal> pk_test_8be8b3b21803dcb62514b6e55f3c6f90f4a74483 -->
+                                        <button angular4-paystack *ngIf="!payment" [disabled]="!checkoutForm.valid || delivery_amount == 0"
                                             [key]="'pk_live_fb12be6f3920137b6c951295630863c67dc47eac'"
                                             [email]="checkoutForm.value.email"
                                             [amount]="this.config.convertPrice(amount) * 100" [ref]="reference"

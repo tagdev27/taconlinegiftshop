@@ -1,5 +1,6 @@
 import swal from "sweetalert2";
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore';
 import { ProductsService } from "../shared/services/products.service";
 import { Observable } from "rxjs";
 import { Banners } from "../models/banner";

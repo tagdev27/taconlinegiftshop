@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import * as firebase from "firebase"
+import * as firebase from "firebase/app"
 import * as $ from 'jquery'
 import "firebase/performance";
+import "firebase/auth"
+import "firebase/database"
+import "firebase/firestore"
+import "firebase/analytics"
 import { Users } from './models/users';
 import { Router } from '@angular/router';
 

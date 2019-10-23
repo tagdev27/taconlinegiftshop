@@ -5,13 +5,15 @@ import { Product } from '../classes/product';
 import { BehaviorSubject, Observable, of, Subscriber } from 'rxjs';
 import { map, filter, scan, count } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/firestore"
 import { Currency } from 'src/app/models/currency';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as cors from "cors";
 import { Banners } from 'src/app/models/banner';
 import { AppConfig } from 'src/app/services/global.service';
 import { Styles } from 'src/app/models/style';
+import { Delivery } from 'src/app/models/delivery';
 
 // Get product from Localstorage
 let products = JSON.parse(localStorage.getItem("compareItem")) || [];
@@ -35,6 +37,7 @@ export class ProductsService {
   FProducts: Product[] = []
 
   my_card_styles: Styles[] = []
+  public delivery:Delivery[] = []
 
   // Initialize 
   constructor(private http: Http, private toastrService: ToastrService, private mHttp: HttpClient) {
@@ -66,16 +69,31 @@ export class ProductsService {
               this.exchange_rate = getSelectedCurrency[0].exchange_rate
             } else {
               this.currency = 'USD'
+              const getSelectedCurrency = this.currencies.filter((item, index, arr) => {
+                return item.name == 'USD'
+              })
+              this.exchange_rate = getSelectedCurrency[0].exchange_rate
             }
           }
         } else {
-          this.currency = '₦'//if country not nigeria
+          this.currency = '₦'
+          this.exchange_rate = 1
         }
         //console.log(`country == ${this.currency}`)
       });
     })
-    this.getGiftCardStyles()
-    this.getCalendarList()
+    //this.getGiftCardStyles()
+    this.getDeliveries()
+  }
+
+  getDeliveries() {
+    firebase.firestore().collection('db').doc('tacadmin').collection('delivery').get().then(query => {
+      this.delivery = []
+      query.forEach(data => {
+        const del = <Delivery>data.data()
+        this.delivery.push(del)
+      })
+    });
   }
 
   getGiftCardStyles() {
