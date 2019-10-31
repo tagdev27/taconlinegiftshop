@@ -9,6 +9,7 @@ import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
 import { NavBarMenu } from 'src/app/models/navbar.menu';
 import { StoreService } from 'src/app/services/store.settings';
+import { ProductsService } from 'src/app/shared/services/products.service';
 
 export interface Menu {
   path?: string;
@@ -33,7 +34,7 @@ export class NavbarComponent implements OnInit {
 
   MENUITEMS: Menu[] = []
 
-  constructor() { }
+  constructor(private productService:ProductsService) { }
 
   service = new StoreService()
   number = ''
@@ -69,7 +70,9 @@ export class NavbarComponent implements OnInit {
     //this.menuItems = this.MENUITEMS.filter(menuItem => menuItem);
 
     //this.getMainCategories()
+    
     this.menuItems = AMENUITEMS.filter(menuItem => menuItem);
+    //this.menuItems = this.productService.ShopDropDownMenu.filter(menuItem => menuItem)
   }
 
   getMainCategories() {

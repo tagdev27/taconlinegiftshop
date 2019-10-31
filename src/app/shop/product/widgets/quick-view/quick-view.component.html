@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-lg-6  col-xs-12">
             <div class="quick-view-img">
-              <img [src]="!variantImage ? product.pictures[0] : variantImage" alt="" class="img-fluid">
+              <img [src]="!variantImage ? product.pictures[0] : variantImage" [alt]="product.name" class="img-fluid">
              </div>
             </div>
             <div class="col-lg-6 rtl-text">
@@ -24,13 +24,13 @@
                   <p>{{product.shortDetails}}</p>
                 </div>
                 <div class="product-description border-product">
-                  <div class="size-box" *ngIf="product.size">
+                  <!-- <div class="size-box" *ngIf="product.size">
                     <ul>
                       <li [ngClass]="{'active': selectedSize == size}" *ngFor="let size of product.size">
                         <a [routerLink]="" (click)="changeVariantSize(size)">{{size}}</a>
                       </li>
                     </ul>
-                  </div>
+                  </div> -->
                   <h6 class="product-title">quantity</h6>
                   <div class="qty-box">
                     <div class="input-group">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="product-buttons">
                   <a [routerLink]="" (click)="addToCart(product, counter)" class="btn btn-solid" >add to cart</a>
-                  <a [routerLink]="['/home/product', product.id]" class="btn btn-solid">view detail</a>
+                  <a [routerLink]="['/home/product', product.menu_link]" class="btn btn-solid">view detail</a>
                 </div>
               </div>
             </div>

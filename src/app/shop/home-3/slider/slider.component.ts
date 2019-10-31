@@ -33,7 +33,7 @@ export class SliderThreeComponent implements OnInit {
 
   getMyStyles3() {
     let myStyles = {
-      'background-image': 'url(assets/images/)'
+      'background-image': `url(${this.productsService.banner.social_tree_image})`
     };
     return myStyles;
   }

@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { MENUITEMS } from './left-menu-items';
+import { MENUITEMS, Menu } from './left-menu-items';
 import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
 import * as firebase from "firebase";
 import { Router } from '@angular/router';
 import 'jquery';
 import 'smartmenus';
+import { ProductsService } from 'src/app/shared/services/products.service';
 declare var $: any;
 
-export interface Menu {
-  path?: string;
-  title?: string;
-  type?: string;
-  megaMenu?: boolean;
-  children?: Menu[];
-}
+// export interface Menu {
+//   path?: string;
+//   title?: string;
+//   type?: string;
+//   megaMenu?: boolean;
+//   children?: Menu[];
+// }
 
 @Component({
   selector: 'app-left-menu',
@@ -28,12 +29,75 @@ export class LeftMenuComponent implements OnInit {
   main_categories: MainCategory[] = []
   sub_categories: SubCategory[] = []
 
-  constructor(private router: Router) { }
+  ShopDropDownMenu:Menu[] = []
 
-  ngOnInit() {
+  constructor(private router: Router, private productService:ProductsService) { }
+
+  async ngOnInit() {
+    // console.log(this.productService.ShopDropDownMenu)
     this.menuItems = MENUITEMS.filter(menuItem => menuItem);
+    //this.menuItems = this.productService.ShopDropDownMenu.filter(menuItem => menuItem)
     //this.getMainCategories()
+
+    // await this.getMainCategoriesLeftMenu()
+    // console.log('Im done now....')
   }
+
+  /*
+  Navigation setup for left menu
+  */
+
+ async getMainCategoriesLeftMenu() {
+  this.ShopDropDownMenu = []
+  const query = await firebase.firestore().collection('db').doc('tacadmin').collection('main-categories').where("deleted", "==", false).get()
+  var index = 0
+  query.forEach(async data => {
+    const category = <MainCategory>data.data()
+    try {
+      const sub_cat = await this.getSubCategoriesByID(category.id)
+
+      const dropdown_sub_menu: Menu[] = []
+
+      sub_cat.forEach(sc => {
+        const subc = <SubCategory>sc.data()
+        let re = /\ /gi;
+        const url_path_name = subc.name.toLowerCase().replace(re, '-')
+        const scMenu: Menu = {
+          path: `/home/collection/${url_path_name}`,
+          title: subc.name,
+          type: 'extLink'
+        }
+        dropdown_sub_menu.push(scMenu)
+      })
+
+      const sub_menu: Menu[] = [
+        {
+          title: category.name,
+          type: 'link',
+          children: dropdown_sub_menu
+        }
+      ]
+      const main_menu: Menu = {
+        title: category.name,
+        type: 'sub',
+        megaMenu: true,
+        children: sub_menu
+      }
+      index = index + 1
+      this.ShopDropDownMenu.push(main_menu)
+      console.log(this.ShopDropDownMenu)
+
+      if(index == query.size){
+        this.menuItems = this.ShopDropDownMenu.filter(menuItem => menuItem);
+        $('#sub-menu').smartmenus('refresh');
+      }
+
+      // console.log(JSON.stringify(this.ShopDropDownMenu))
+    } catch (err) {
+      console.log(err)
+    }
+  })
+}
 
   gotoCat(id: string) {
     this.router.navigate([`/home/collection/${id}`])

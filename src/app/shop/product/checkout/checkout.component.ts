@@ -15,6 +15,7 @@ import { SubCategory } from 'src/app/models/sub.category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { OverlayService } from 'src/app/overlay/overlay.module';
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
+import { environment } from 'src/environments/environment';
 
 declare interface Messages {
   id: string;
@@ -53,6 +54,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   config: AppConfig
   selected_delivery_name = ''
+
+  payK = environment.paystack_key
   // Form Validator
   constructor(private fb: FormBuilder, private cartService: CartService, private modalService: NgbModal,
     public productsService: ProductsService, private orderService: OrderService, private elementRef: ElementRef, private previewProgressSpinner: OverlayService) {

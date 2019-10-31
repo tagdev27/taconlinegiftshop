@@ -185,7 +185,7 @@ export class EmailService {
                                                                         product shipping, payment and other
                                                                         technical support issues, please contact <span
                                                                             class="il">TAC</span> on
-                                                                        +2348142630028 or <a
+                                                                            +234 706 711 7723 or <a
                                                                             href="mailto:support@tacgifts.com"
                                                                             style="text-decoration:none!important;text-decoration:none;color:#0064c8"
                                                                             target="_blank">support@<span
@@ -972,7 +972,7 @@ export class EmailService {
                                                                             style="font-family:'Source Sans Pro',Arial,Tahoma,Geneva,sans-serif;color:#1a1a1a;font-size:17px;line-height:20px;text-decoration:none"
                                                                             target="_blank"
                                                                             data-saferedirecturl="#">+234
-                                                                            8142630028</a></span>
+                                                                            7067117723</a></span>
 
                                                                 </font>
 

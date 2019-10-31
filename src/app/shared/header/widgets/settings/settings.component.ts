@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CartItem } from '../../../../shared/classes/cart-item';
 import { CartService } from '../../../../shared/services/cart.service';
@@ -16,7 +16,7 @@ declare var $: any;
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, AfterViewInit {
 
   @Input() shoppingCartItems: CartItem[] = [];
 
@@ -60,6 +60,19 @@ export class SettingsComponent implements OnInit {
 
   public openSearch() {
     this.show = true
+    setTimeout(()=>{
+      const input = <HTMLInputElement>document.getElementById("searchinputquery");
+      input.addEventListener("keyup", function(event){
+        if (event.keyCode === 13) {
+          // Cancel the default action, if needed
+          event.preventDefault();
+          // Trigger the button element with a click
+          const button = <HTMLButtonElement>document.getElementById("searchbuttonclicked");
+          button.click();
+        }
+      });
+    }, 500)
+    
     //location.href = "home/search"
     //this.router.navigate(["home/search"])
   }
@@ -88,6 +101,10 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    
+  }
+
   onSearchPressed() {
     this.display_error = false
     const result: string[] = []
@@ -97,15 +114,24 @@ export class SettingsComponent implements OnInit {
         //console.log('yassss')
         result.push('okay')
         // this.router.navigate([`/home/collection/${subcat.id}`])
-        this.router.navigate([`/home/collection/${subcat.id}`])
+        let re = /\ /gi;
+        const url_path_name = subcat.name.toLowerCase().replace(re, '-')
+        this.router.navigate([`/home/collection/${url_path_name}`])
       }
     })
     if(result.length == 0){
       this.productsService.getProducts().subscribe(pro => {
-        pro.forEach(p => {
+        pro.forEach(async p => {
           if(p.name.toLowerCase().includes(this.query.toLowerCase())){
             this.show = false
-            this.router.navigate([`/home/collection/${p.category.split(',')[0]}`])
+            const subc = await this.getSubCategoryByID(p.category.split(',')[0])
+            if(subc == null){
+              this.display_error = true
+              return
+            }
+            let re = /\ /gi;
+            const url_path_name = subc.name.toLowerCase().replace(re, '-')
+            this.router.navigate([`/home/collection/${url_path_name}`])
             result.push('okay')
           }
         })
@@ -116,12 +142,13 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  // getSubCategoryIDByProductCategoryID(product_category:string) {
-  //   this.categories.forEach(subcat => {
-  //     if(product_category.includes(subcat.id)){
-  //       return subcat.id
-  //     }
-  //   })
-  // }
+  async getSubCategoryByID(id:string) {
+    const query = await firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').doc(id).get()
+    if(query.exists){
+      return <SubCategory>query.data()
+    }else {
+      return null
+    }
+  }
 
 }

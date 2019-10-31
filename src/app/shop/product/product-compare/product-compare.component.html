@@ -53,7 +53,8 @@
                                 <td class="item-row" *ngFor="let product of products">
                                     <img [src]="product.pictures[0]" width="185" class="featured-image">
                                     <div class="product-price product_price"> 
-                                    <strong>On Sale: </strong><span>{{config.convertPrice(product.price) | currency:productsService?.currency:'symbol'}}</span></div>
+                                    <strong *ngIf="product.sale">On Sale: </strong><strong *ngIf="!product.sale">Price: </strong><span>{{config.convertPrice(product.price) | currency:productsService?.currency:'symbol'}}</span>
+                                    </div>
                                     <form class="variants clearfix">
                                       <button title="Add to Cart" (click)="addToCart(product)" class="add-to-cart btn btn-solid">Add to Cart</button>
                                     </form>

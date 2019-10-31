@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as firebase from "firebase/app"
 import * as $ from 'jquery'
@@ -17,11 +17,14 @@ declare var gapi: any
    templateUrl: './app.component.html',
    styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
    constructor(translate: TranslateService, private router: Router) {
       translate.setDefaultLang('en');
       translate.addLangs(['en', 'fr']);
+      if(location.href == 'https://tacgifts.com' || location.href == 'https://tacgifts.com/' || location.href == 'https://www.tacgifts.com/' || location.href == 'https://www.tacgifts.com'){
+         this.router.navigate(['home'])
+      }
    }
 
    isLoggedIn: boolean = false;
@@ -41,7 +44,8 @@ export class AppComponent implements OnInit {
    }
 
    ngOnInit() {
-      $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom","35px").css("right","0px")
+      // $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom","35px").css("right","0px")
+      //$('#xxxfreshchat').css("bottom","35px").css("right","0px")
       const firebaseConfig = {
          apiKey: "AIzaSyAu77RE_S5__DnrmaR1LKJvqtNNyR0mSzo",
          authDomain: "taconlinegiftshop.firebaseapp.com",
@@ -70,11 +74,15 @@ export class AppComponent implements OnInit {
       this.recordWebsiteVisits()
       //console.log(location.href)
       
-      if(location.href == 'https://tacgifts.com' || location.href == 'https://tacgifts.com/' || location.href == 'https://www.tacgifts.com/' || location.href == 'https://www.tacgifts.com'){
-         this.router.navigate(['home'])
-      }
+      // if(location.href == 'https://tacgifts.com' || location.href == 'https://tacgifts.com/' || location.href == 'https://www.tacgifts.com/' || location.href == 'https://www.tacgifts.com'){
+      //    this.router.navigate(['home'])
+      // }
       //location.href = '/home'
       //this.initClient()
+   }
+
+   ngAfterViewInit() {
+      $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom","35px").css("right","0px")
    }
 
    // Initialize the Google API client with desired scopes

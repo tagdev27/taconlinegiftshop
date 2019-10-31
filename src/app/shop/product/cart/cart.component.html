@@ -43,12 +43,12 @@
           <tbody *ngFor="let item of shoppingCartItems">
             <tr>
               <td>
-                <a [routerLink]="['/home/product', item.product.id]">
+                <a [routerLink]="['/home/product', item.product.menu_link]">
                 <img [src]="item.product.pictures[0]" alt="">
               </a>
               </td>
               <td>
-                <a [routerLink]="['/home/product', item.product.id]">{{ item.product.name }}</a>
+                <a [routerLink]="['/home/product', item.product.menu_link]">{{ item.product.name }}</a>
                 <div class="mobile-cart-content row">
                   <div class="col-xs-3">
                     <div class="qty-box">

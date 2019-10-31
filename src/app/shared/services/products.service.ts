@@ -14,6 +14,10 @@ import { Banners } from 'src/app/models/banner';
 import { AppConfig } from 'src/app/services/global.service';
 import { Styles } from 'src/app/models/style';
 import { Delivery } from 'src/app/models/delivery';
+import { Menu } from "src/app/shared/header/widgets/left-menu/left-menu-items";
+import * as navbar from "src/app/shared/header/widgets/navbar/navbar-items";
+import { MainCategory } from 'src/app/models/main.category';
+import { SubCategory } from 'src/app/models/sub.category';
 
 // Get product from Localstorage
 let products = JSON.parse(localStorage.getItem("compareItem")) || [];
@@ -23,7 +27,7 @@ let products = JSON.parse(localStorage.getItem("compareItem")) || [];
 export class ProductsService {
 
   public currencies: Currency[] = []
-  public banner:Banners={}
+  public banner: Banners = {}
   public user_country = {}
   public country = ''
   //public currency : string = 'USD';
@@ -37,18 +41,20 @@ export class ProductsService {
   FProducts: Product[] = []
 
   my_card_styles: Styles[] = []
-  public delivery:Delivery[] = []
+  public delivery: Delivery[] = []
+
+  public ShopDropDownMenu: navbar.Menu[] = []
 
   // Initialize 
   constructor(private http: Http, private toastrService: ToastrService, private mHttp: HttpClient) {
     this.compareProducts.subscribe(products => products = products);
-    new AppConfig().getBanners().then(ban => {
-      //console.log(ban)
+    new AppConfig().getBanners().then(async ban => {
+      // console.log(ban)
       this.banner = ban
+      //await this.getMainCategoriesNavBar()
+      // console.log(JSON.stringify(this.ShopDropDownMenu))
     })
-    // const hd = new Headers()
-    // hd.set("", "")
-    this.mHttp.get('https://ipapi.co/json', {headers: new HttpHeaders(this.apiHeaderDict)}).subscribe(res => {//https://us-central1-taconlinegiftshop.cloudfunctions.net/get_current_ip   { headers: new HttpHeaders(this.headerDict) }
+    this.mHttp.get('https://ipapi.co/json', { headers: new HttpHeaders(this.apiHeaderDict) }).subscribe(res => {//https://us-central1-taconlinegiftshop.cloudfunctions.net/get_current_ip   { headers: new HttpHeaders(this.headerDict) }
       this.country = res['country_name']
       this.user_country = { latitude: res['latitude'], longitude: res['longitude'] }
       //const country = res['country']
@@ -196,5 +202,112 @@ export class ProductsService {
     //   console.log(res)
     // })
   }
+
+  /*
+  Navigation setup for left menu
+  */
+
+  async getMainCategoriesLeftMenu() {
+    this.ShopDropDownMenu = []
+    const query = await firebase.firestore().collection('db').doc('tacadmin').collection('main-categories').where("deleted", "==", false).get()
+    query.forEach(async data => {
+      const category = <MainCategory>data.data()
+      try {
+        const sub_cat = await this.getSubCategoriesByID(category.id)
+
+        const dropdown_sub_menu: Menu[] = []
+
+        sub_cat.forEach(sc => {
+          const subc = <SubCategory>sc.data()
+          let re = /\ /gi;
+          const url_path_name = subc.name.toLowerCase().replace(re, '-')
+          const scMenu: Menu = {
+            path: `/home/collection/${url_path_name}`,
+            title: subc.name,
+            type: 'extLink'
+          }
+          dropdown_sub_menu.push(scMenu)
+        })
+
+        const sub_menu: Menu[] = [
+          {
+            title: category.name,
+            type: 'link',
+            children: dropdown_sub_menu
+          }
+        ]
+        const main_menu: Menu = {
+          title: category.name,
+          type: 'sub',
+          megaMenu: true,
+          children: sub_menu
+        }
+        this.ShopDropDownMenu.push(main_menu)
+        // console.log(this.ShopDropDownMenu)
+
+        // console.log(JSON.stringify(this.ShopDropDownMenu))
+      } catch (err) {
+        console.log(err)
+      }
+    })
+  }
+
+  /*
+    Navigation setup for left menu
+  */
+  async getMainCategoriesNavBar() {
+    this.ShopDropDownMenu = []
+    const sub_menu: navbar.Menu[] = []
+    const query = await firebase.firestore().collection('db').doc('tacadmin').collection('main-categories').where("deleted", "==", false).get()
+    var index = 0
+    query.forEach(async data => {
+      const category = <MainCategory>data.data()
+      try {
+        const sub_cat = await this.getSubCategoriesByID(category.id)
+
+        const dropdown_sub_menu: navbar.Menu[] = []
+
+        sub_cat.forEach(sc => {
+          const subc = <SubCategory>sc.data()
+          let re = /\ /gi;
+          const url_path_name = subc.name.toLowerCase().replace(re, '-')
+          const scMenu: navbar.Menu = {
+            path: `/home/collection/${url_path_name}`,
+            title: subc.name,
+            type: 'extLink'
+          }
+          dropdown_sub_menu.push(scMenu)
+        })
+        
+        const a_sub_menu: navbar.Menu = {
+          title: category.name,
+          type: 'link',
+          children: dropdown_sub_menu
+        }
+        sub_menu.push(a_sub_menu)
+        index = index + 1
+        if(index == query.size){
+          const main_menu: navbar.Menu = {
+            title: 'shop',
+            type: 'sub',
+            megaMenu: true,
+            megaMenuType: 'large',
+            children: sub_menu
+          }
+          this.ShopDropDownMenu.push(main_menu)
+          console.log(JSON.stringify(this.ShopDropDownMenu))
+        }
+
+      } catch (err) {
+        console.log(err)
+      }
+    })
+  }
+
+  getSubCategoriesByID(main_id: string) {
+    return firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').where("deleted", "==", false).where("main_category_id", "==", main_id).get()
+  }
+
+
 
 }

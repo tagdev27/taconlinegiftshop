@@ -32,15 +32,23 @@ export class ProductLeftSidebarComponent implements OnInit {
   productReviews: Reviews[] = []
   rating = 5
 
+  product_image = ''
+
   //Get Product By Id
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
     public productsService: ProductsService, private wishlistService: WishlistService,
     private cartService: CartService) {
     this.config = new AppConfig(productsService)
-    this.route.params.subscribe(params => {
-      const id = +params['id'];
-      this.productsService.getProduct(id).subscribe(product => {
+    this.route.params.subscribe(async params => {
+      const id = params['id']; //add + sign behind params to make it a number type
+      const sel_pro = await this.getProductDetailsByMenuLink(`${id}`)
+      if(sel_pro == null){
+        location.href = '/404'
+        return
+      }
+      this.productsService.getProduct(sel_pro.id).subscribe(product => {
         this.product = product
+        this.product_image = this.product.pictures[0]
         $('head').append(`<meta name="description" content="${product.description}">`)
       })
       //$('#metaelement').attr('content', `${this.product.description}`);
@@ -51,6 +59,14 @@ export class ProductLeftSidebarComponent implements OnInit {
       title: ['', Validators.required],
       text: ['', Validators.required],
     })
+  }
+
+  async getProductDetailsByMenuLink(menu_link:string) {
+    const query = await firebase.firestore().collection('db').doc('tacadmin').collection('products').where('menu_link', '==', menu_link).get()
+    if(query.size > 0){
+      return <Product>query.docs[0].data()
+    }
+    return null
   }
 
   submitReview() {

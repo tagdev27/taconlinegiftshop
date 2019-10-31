@@ -19,7 +19,8 @@ export class PriceComponent implements OnInit {
   
   constructor() { }
   
-  ngOnInit() {  }
+  ngOnInit() { 
+   }
 
   // rangeChanged
   priceChanged(event:any) {

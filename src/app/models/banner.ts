@@ -35,4 +35,5 @@ export interface Banners {
 
     banner_font_size?:number
     banner_text_color?:string
+    social_tree_image?:string
 }

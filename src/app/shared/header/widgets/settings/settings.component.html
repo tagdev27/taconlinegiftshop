@@ -41,10 +41,10 @@
       <ul class="show-div shopping-cart" *ngIf='shoppingCartItems.length'>
         <li *ngFor="let item of shoppingCartItems">
           <div class="media">
-            <a href="/home/product/{{item.product.id}}"><img class="mr-3"
+            <a href="/home/product/{{item.product.menu_link}}"><img class="mr-3"
                 [src]="item.product.pictures[0]" alt="Generic placeholder image"></a>
             <div class="media-body">
-              <a href="/home/product/{{item.product.id}}">
+              <a href="/home/product/{{item.product.menu_link}}">
                 <h4>{{ item.product.name }}</h4>
               </a>
               <h4><span>{{ item.quantity }} x
@@ -81,10 +81,10 @@
           <div class="col-xl-12">
             <form>
               <div class="form-group">
-                <input type="text" name="q" [(ngModel)]="query" class="form-control" id="exampleInputPassword1"
+                <input type="text" name="q" [(ngModel)]="query" class="form-control" id="searchinputquery"
                   placeholder="Search a Product">
               </div>
-              <button type="button" (click)="onSearchPressed()" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              <button id="searchbuttonclicked" type="button" (click)="onSearchPressed()" class="btn btn-primary"><i class="fa fa-search"></i></button>
             </form>
           </div>
           <div class="col-xl-12 text-center" *ngIf="display_error">
