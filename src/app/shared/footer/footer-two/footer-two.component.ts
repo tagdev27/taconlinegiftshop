@@ -67,23 +67,51 @@ export class FooterTwoComponent implements OnInit {
       "location": uc
     }
 
-    const _fn = (localStorage.getItem('fn') != null) ? localStorage.getItem('fn') : ''
-    const _ln = (localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : ''
+    const _fn = (localStorage.getItem('fn') != null) ? localStorage.getItem('fn') : 'Guest'
+    const _ln = (localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : 'Guest'
     const _num = (localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : ''
-
-    this.mHttp.post(`https://avidprintsconcierge.com/emailsending/mailchimp.php?email_address=${em}`, {
+//https://avidprintsconcierge.com/emailsending/mailchimp.php
+    this.mHttp.post(`https://us-central1-taconlinegiftshop.cloudfunctions.net/mailChimpRegistration?email_address=${em}`, {
       lat: uc['latitude'], lng: uc['longitude'], fn: _fn, ln: _ln
     }).subscribe(res => {
+      //console.log(res)
       this.loading = false
       this.newsletter_email = ''
       localStorage.setItem("subcribed", "true")
       this.config.displayMessage("Thank you for subscribing", true)
-    }, err => {
+    },err => {
+      //console.log(err)
       this.loading = false
       this.newsletter_email = ''
       localStorage.setItem("subcribed", "true")
       this.config.displayMessage("Thank you for subscribing", true)
     })
+
+    // $.ajax({
+    //   url: `https://avidprintsconcierge.com/emailsending/mailchimp.php?email_address=${em}`,
+    //   type: 'post',
+    //   dataType: 'json',
+    //   data: {
+    //     lat: uc['latitude'], 
+    //     lng: uc['longitude'], 
+    //     fn: _fn, 
+    //     ln: _ln
+    //   },
+    //   success: function(data){
+    //     console.log(`success == ${data}`)
+    //     this.loading = false
+    //   this.newsletter_email = ''
+    //   localStorage.setItem("subcribed", "true")
+    //   this.config.displayMessage("Thank you for subscribing", true)
+    //   },
+    //   error: function(err){
+    //     console.log(`error == ${err}`)
+    //     this.loading = false
+    //   this.newsletter_email = ''
+    //   localStorage.setItem("subcribed", "true")
+    //   this.config.displayMessage("Thank you for subscribing", true)
+    //   }
+    // })
 
   }
 

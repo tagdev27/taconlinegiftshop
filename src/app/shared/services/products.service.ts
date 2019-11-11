@@ -30,9 +30,10 @@ export class ProductsService {
   public banner: Banners = {}
   public user_country = {}
   public country = ''
+  public country_code = ''
   //public currency : string = 'USD';
   public currency: string = '₦';
-  public exchange_rate: number = 0;
+  public exchange_rate: number = 1;
   public catalogMode: boolean = false;
 
   public compareProducts: BehaviorSubject<Product[]> = new BehaviorSubject([]);
@@ -56,6 +57,7 @@ export class ProductsService {
     })
     this.mHttp.get('https://ipapi.co/json', { headers: new HttpHeaders(this.apiHeaderDict) }).subscribe(res => {//https://us-central1-taconlinegiftshop.cloudfunctions.net/get_current_ip   { headers: new HttpHeaders(this.headerDict) }
       this.country = res['country_name']
+      this.country_code = res['country']
       this.user_country = { latitude: res['latitude'], longitude: res['longitude'] }
       //const country = res['country']
       //console.log(`country == ${this.country}`)
@@ -125,7 +127,7 @@ export class ProductsService {
   // Observable Product Array
   private products(): Observable<Product[]> {
     //return this.http.get('assets/data/products.json').map((res: any) => res.json())
-    return this.mHttp.get("https://us-central1-taconlinegiftshop.cloudfunctions.net/get_all_products?action=get", { headers: new HttpHeaders({ 'Authorization': 'api ATCNoQUGOoEvTwqWigCR' }) }).map((res: any) => res)
+    return this.mHttp.get("https://us-central1-taconlinegiftshop.cloudfunctions.net/get_all_products?action=get", { headers: new HttpHeaders({ 'Authorization': 'api ATCNoQUGOoEvTwqWigCR'}) }).map((res: any) => res)
   }
 
   // Get Products

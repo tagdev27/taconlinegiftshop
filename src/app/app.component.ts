@@ -9,6 +9,7 @@ import "firebase/firestore"
 import "firebase/analytics"
 import { Users } from './models/users';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 declare var gapi: any
 
@@ -31,6 +32,48 @@ export class AppComponent implements OnInit, AfterViewInit {
    email: string = '';
    isLogout = true
 
+   keywords:string = ''
+
+   doKeywords() {
+      firebase.firestore().collection('db').doc('tacadmin').collection('main-categories').get().then(query => {
+         var ind1 = 0
+         query.forEach(data => {
+            const dt = data.data()
+            this.keywords += `${dt['name']}, `
+            ind1 = ind1 + 1
+            console.log(ind1)
+            if(ind1 == query.size){
+               var ind2 = 0
+               firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').get().then(query2 => {
+                  query2.forEach(data => {
+                     const dt = data.data()
+                     this.keywords += `${dt['name']}, `
+                     ind2 = ind2 + 1
+                     console.log(ind2)
+                     if(ind2 == query2.size) {
+                        var ind3 = 0
+                        firebase.firestore().collection('db').doc('tacadmin').collection('products').get().then(query3 => {
+                           query3.forEach(data => {
+                              const dt = data.data()
+                              this.keywords += `${dt['name']}, ${dt['description']}, `
+                              ind3 = ind3 + 1
+                              console.log(ind3)
+                              if(ind3 == query3.size) {
+                                 console.log(this.keywords)
+                              }
+                           })
+                        })
+                     }
+                  })
+               })
+            }
+         })
+      })
+
+
+      
+   }
+
    async checkIfLoggedIn(){
       const anon = localStorage.getItem("signInAnonymously")
       const logged = localStorage.getItem("logged")
@@ -46,17 +89,8 @@ export class AppComponent implements OnInit, AfterViewInit {
    ngOnInit() {
       // $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom","35px").css("right","0px")
       //$('#xxxfreshchat').css("bottom","35px").css("right","0px")
-      const firebaseConfig = {
-         apiKey: "AIzaSyAu77RE_S5__DnrmaR1LKJvqtNNyR0mSzo",
-         authDomain: "taconlinegiftshop.firebaseapp.com",
-         databaseURL: "https://taconlinegiftshop.firebaseio.com",
-         projectId: "taconlinegiftshop",
-         storageBucket: "taconlinegiftshop.appspot.com",
-         messagingSenderId: "640531224553",
-         appId: "1:640531224553:web:a573170a7ba2a22a",
-         measurementId: "G-JL5RFRMVSF"
-      };
-      firebase.initializeApp(firebaseConfig)
+      
+      firebase.initializeApp(environment.fireConfig)
       firebase.firestore().enablePersistence()
       firebase.analytics()
       const perf = firebase.performance();
@@ -79,6 +113,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       // }
       //location.href = '/home'
       //this.initClient()
+
+      //this.doKeywords()
    }
 
    ngAfterViewInit() {

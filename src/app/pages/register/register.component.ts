@@ -50,10 +50,12 @@ export class RegisterComponent implements OnInit {
     provider.addScope('email');
     provider.addScope('user_birthday');
     provider.addScope('user_friends');
-    provider.addScope('user_gender')
+    provider.addScope('user_gender');
     firebase.auth().signInWithPopup(provider).then(result => {
       //console.log(result)
       const user_email = result.user.email
+      // console.log(user_email)
+      // console.log(result)
       this.uploadFirestoreAndRedirect('facebook', user_email, result, null)
     }).catch(err => {
       //this.previewProgressSpinner.close()
@@ -78,7 +80,8 @@ export class RegisterComponent implements OnInit {
         this.previewProgressSpinner.close()
         const data = {
           fn: fname,
-          ln: lname
+          ln: lname,
+          uid: result.user.uid
         }
         this.uploadFirestoreAndRedirect('email', email, null, data)
       })
@@ -103,7 +106,8 @@ export class RegisterComponent implements OnInit {
         'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
         'firstname': other_result['fn'],
         'lastname': other_result['ln'],
-        'picture': 'https://tacadmin.firebaseapp.com/assets/img/default-avatar.png'
+        'picture': 'https://tacadmin.firebaseapp.com/assets/img/default-avatar.png',
+        'userId': other_result['uid']
       }
     } else {
       if (method == 'google') {
@@ -116,7 +120,8 @@ export class RegisterComponent implements OnInit {
           'firstname': google_result.additionalUserInfo.profile['given_name'],
           'lastname': google_result.additionalUserInfo.profile['family_name'],
           'picture': google_result.additionalUserInfo.profile['picture'],
-          'Tokens': google_result.credential.toJSON()
+          'Tokens': google_result.credential.toJSON(),
+          'userId': google_result.user.uid
         }
       }
       if (method == 'facebook') {
@@ -132,9 +137,10 @@ export class RegisterComponent implements OnInit {
           'lastname': google_result.additionalUserInfo.profile['last_name'],
           'picture': pic_data['url'],
           'Facebook': google_result.credential.toJSON(),
-          'birthday': google_result.additionalUserInfo.profile['birthday'],
-          'gender': google_result.additionalUserInfo.profile['gender'],
+          'birthday': (google_result.additionalUserInfo.profile['birthday'] == undefined) ? '' : google_result.additionalUserInfo.profile['birthday'],
+          'gender': (google_result.additionalUserInfo.profile['gender'] == undefined) ? '' : google_result.additionalUserInfo.profile['gender'],
           'facebook_id': google_result.additionalUserInfo.profile['id'],
+          'userId': google_result.user.uid
         }
       }
     }
@@ -204,10 +210,10 @@ export class RegisterComponent implements OnInit {
                                               style="height:20px;line-height:14px;font-size:12px">
                                               &nbsp;</div>
 
-                                          <a href="https://tacgifts.com/home/product/${pro.id}"
+                                          <a href="https://tacgifts.com/home/product/${pro.menu_link}"
                                               style="display:block;font-family:'Source Sans Pro',Verdana,Tahoma,Geneva,sans-serif;color:#ff9800;font-size:15px;line-height:18px;text-decoration:none;white-space:nowrap;text-transform:uppercase"
                                               target="_blank"
-                                              data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/home/product/${pro.id}">
+                                              data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/home/product/${pro.menu_link}">
 
                                               <font face="'Source Sans Pro', sans-serif"
                                                   color="#ff9800"
@@ -379,10 +385,10 @@ export class RegisterComponent implements OnInit {
                                                                         style="height:20px;line-height:14px;font-size:12px">
                                                                         &nbsp;</div>
 
-                                                                    <a href="https://tacgifts.com/home/product/${pro.id}"
+                                                                    <a href="https://tacgifts.com/home/product/${pro.menu_link}"
                                                                         style="display:block;font-family:'Source Sans Pro',Verdana,Tahoma,Geneva,sans-serif;color:#ff9800;font-size:15px;line-height:18px;text-decoration:none;white-space:nowrap;text-transform:uppercase"
                                                                         target="_blank"
-                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/home/product/${pro.id}">
+                                                                        data-saferedirecturl="https://www.google.com/url?q=https://tacgifts.com/home/product/${pro.menu_link}">
 
                                                                         <font face="'Source Sans Pro', sans-serif"
                                                                             color="#ff9800"
@@ -438,6 +444,7 @@ export class RegisterComponent implements OnInit {
               localStorage.setItem('email', email)
               localStorage.setItem('fn', user_data['firstname'])
               localStorage.setItem('ln', user_data['lastname'])
+              localStorage.removeItem("signInAnonymously")
               if (other_result != null) {
                 //cf.displayMessage('', true)
               }

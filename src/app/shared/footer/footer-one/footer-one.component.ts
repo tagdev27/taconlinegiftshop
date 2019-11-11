@@ -93,7 +93,7 @@ export class FooterOneComponent implements OnInit {
     //   });
     // });
 
-    this.mHttp.post(`https://avidprintsconcierge.com/emailsending/mailchimp.php?email_address=${em}`, {
+    this.mHttp.post(`https://us-central1-taconlinegiftshop.cloudfunctions.net/mailChimpRegistration?email_address=${em}`, {
       lat: uc['latitude'], lng: uc['longitude'], fn: _fn, ln: _ln
     }).subscribe(res => {
       this.loading = false

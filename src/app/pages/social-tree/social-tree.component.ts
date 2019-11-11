@@ -29,7 +29,7 @@ export class SocialTreeComponent implements OnInit {
 
 	login = false
 
-	logged = (localStorage.getItem('logged') == null) ? 'false' : localStorage.getItem('logged')
+	logged = (localStorage.getItem('logged') == null || localStorage.getItem('email') == null) ? 'false' : localStorage.getItem('logged')
 
 	mySocialTree: SocialTree[] = []
 
@@ -56,16 +56,16 @@ export class SocialTreeComponent implements OnInit {
 	facebook_birthday = ''
 
 	async checkIfLoggedIn() {
-		firebase.auth().onAuthStateChanged(userData => {
-			if(userData){
-				this.logged = 'true'
-			}else {
-				this.logged = 'false'
-			}
-		})
+		// firebase.auth().onAuthStateChanged(userData => {
+		// 	if(userData){
+		// 		this.logged = 'true'
+		// 	}else {
+		// 		this.logged = 'false'
+		// 	}
+		// })
 		// const user = await firebase.auth().currentUser
 		// this.logged = (user == null) ? 'false' : 'true'
-		console.log(`logged ==== ${this.logged}`)
+		//console.log(`logged ==== ${this.logged}`)
 	}
 
 	constructor(private fb: FormBuilder, private previewProgressSpinner: OverlayService, private http: HttpClient, private modalService: NgbModal) {
@@ -136,7 +136,7 @@ export class SocialTreeComponent implements OnInit {
 				}, 500);
 			}, 10000);
 		});
-		this.checkIfLoggedIn()
+		//this.checkIfLoggedIn()
 		this.getCurrentUserSocialTree()
 		this.checkGoogleToken()
 	}
@@ -225,7 +225,8 @@ export class SocialTreeComponent implements OnInit {
 			email: `${this.checkoutForm.value.email}`,
 			events: socialEvents,
 			profile_image_url: image_url,
-			entry_mode: 'manual'
+			entry_mode: 'manual',
+			created_date: firebase.firestore.FieldValue.serverTimestamp()
 		}
 		firebase.firestore().collection('social-tree').doc(key).set(st).then(d => {
 			for (var i = 0; i < this.eventCount; i++) {
@@ -265,12 +266,12 @@ export class SocialTreeComponent implements OnInit {
 			const pic = result.additionalUserInfo.profile['picture']
 			const pic_data = pic['data']
 			await firebase.firestore().collection('users').doc(email.toLowerCase()).update({
-				'Tokens': result.credential.toJSON(),
+				//'Tokens': result.credential.toJSON(),
 				'facebook_id': result.additionalUserInfo.profile['id'],
 				'picture': pic_data['url'],
 				'Facebook': result.credential.toJSON(),
-				'birthday': result.additionalUserInfo.profile['birthday'],
-				'gender': result.additionalUserInfo.profile['gender'],
+				'birthday': (result.additionalUserInfo.profile['birthday'] == undefined) ? '' : result.additionalUserInfo.profile['birthday'],
+          		'gender': (result.additionalUserInfo.profile['gender'] == undefined) ? '' : result.additionalUserInfo.profile['gender'],
 			})
 			this.FacebookToken = result.credential.toJSON()
 			this.facebook_id = result.additionalUserInfo.profile['id']
@@ -285,8 +286,8 @@ export class SocialTreeComponent implements OnInit {
 
 	accessUserFriendsFromFacebookResult() {
 		this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
-		const oauth_access_token = this.FacebookToken['oauthAccessToken']
-		const url = `https://graph.facebook.com/v4.0/${this.facebook_id}/friends?access_token=${oauth_access_token}`
+		const oauth_access_token = this.FacebookToken['oauthAccessToken']//${this.facebook_id}
+		const url = `https://graph.facebook.com/v5.0/me/friends?access_token=${oauth_access_token}`
 		this.http.get(url).toPromise().then(result => {
 			this.previewProgressSpinner.close()
 			if (result['error'] != null) {
@@ -295,7 +296,7 @@ export class SocialTreeComponent implements OnInit {
 				return
 			}
 			this.reloadToken = false
-			const items: any[] = result['items']
+			const items: any[] = result['data']
 			var usersEvents:SocialEvents[] = []
 			items.forEach(user => {
 				const event_name = user.name
@@ -322,7 +323,8 @@ export class SocialTreeComponent implements OnInit {
 				email: email,
 				events: usersEvents,
 				profile_image_url: this.google_picture,
-				entry_mode: 'facebook'
+				entry_mode: 'facebook',
+				created_date: firebase.firestore.FieldValue.serverTimestamp()
 			}
 			firebase.firestore().collection('social-tree').doc(key).set(st).then(d => {
 				this.modalService.dismissAll()
@@ -456,7 +458,8 @@ export class SocialTreeComponent implements OnInit {
 			email: email,
 			events: google_Social_Tree,
 			profile_image_url: this.google_picture,
-			entry_mode: 'google'
+			entry_mode: 'google',
+			created_date: firebase.firestore.FieldValue.serverTimestamp()
 		}
 		firebase.firestore().collection('social-tree').doc(key).set(st).then(d => {
 			this.modalService.dismissAll()

@@ -4,6 +4,10 @@ export interface TacOrder {
     carts:CartItem[]
     currency_used:string
     conversion_rate:number
+    payment_gateway_fee:any
+    merchant_fee:any
+    payment_gateway_used:string
+    order_platform:string
     transaction_id:string
     id: string
     country: string

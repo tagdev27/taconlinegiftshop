@@ -168,12 +168,12 @@ export class SuccessComponent implements OnInit, OnDestroy {
   }
 
   runFireStoreTransaction(id:string) {
-    const itemRef = firebase.firestore().collection('db').doc('tacadmin').collection('items').doc(id)
-    const trans = firebase.firestore().runTransaction(async t => {
-      const doc = await t.get(itemRef);
-      let newstock_level = doc.data().stock_level - 1;
-      t.update(itemRef, { stock_level: newstock_level });//firebase.firestore.FieldValue.increment(-1)
-    })
+    const itemRef = firebase.firestore().collection('db').doc('tacadmin').collection('items').doc(id).update({'stock_level':firebase.firestore.FieldValue.increment(-1)})
+    // const trans = firebase.firestore().runTransaction(async t => {
+    //   const doc = await t.get(itemRef);
+    //   let newstock_level = doc.data().stock_level - 1;
+    //   t.update(itemRef, { stock_level: newstock_level });//firebase.firestore.FieldValue.increment(-1)
+    // })
   }
 
 }

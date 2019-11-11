@@ -70,7 +70,7 @@ export class FooterFourComponent implements OnInit {
     const _ln = (localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : ''
     const _num = (localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : ''
 
-    this.mHttp.post(`https://avidprintsconcierge.com/emailsending/mailchimp.php?email_address=${em}`, {
+    this.mHttp.post(`https://us-central1-taconlinegiftshop.cloudfunctions.net/mailChimpRegistration?email_address=${em}`, {
       lat: uc['latitude'], lng: uc['longitude'], fn: _fn, ln: _ln
     }).subscribe(res => {
       this.loading = false

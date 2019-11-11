@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import { ProductsService } from "../shared/services/products.service";
 import { Observable } from "rxjs";
 import { Banners } from "../models/banner";
+import * as $ from 'jquery'
 
 export class AppConfig {
 
@@ -66,5 +67,10 @@ export class AppConfig {
   async getBanners() {
     const b = await firebase.firestore().collection('db').doc('tacadmin').collection('settings').doc('banners').get()
     return <Banners>b.data()
+  }
+
+  registerUserForNewsletter(email:string) {
+    
+
   }
 }

@@ -9,11 +9,13 @@ import { RangeSliderModule  } from 'ngx-rangeslider-component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { Angular4PaystackModule } from 'angular4-paystack';
+import { RavepaymentModule } from 'angular4-ravepayment';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MatSelectModule } from "@angular/material";
 import { ExportAsModule } from 'ngx-export-as';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { HttpClientModule } from "@angular/common/http";
 
 import { MatProgressSpinnerModule } from "@angular/material";
 // Home-one components
@@ -189,11 +191,13 @@ import { NewsletterComponent } from './product/widgets/newsletter/newsletter.com
     NgxPayPalModule,
     NgxImgZoomModule,
     Angular4PaystackModule,
+    RavepaymentModule,
     MatProgressSpinnerModule,
     NgbModule.forRoot(),
     MatSelectModule,
     ExportAsModule,
-    ColorPickerModule
+    ColorPickerModule,
+    HttpClientModule
   ],
   declarations: [
     // Home one

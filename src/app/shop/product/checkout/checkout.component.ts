@@ -16,6 +16,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { OverlayService } from 'src/app/overlay/overlay.module';
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
 import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 declare interface Messages {
   id: string;
@@ -56,8 +57,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   selected_delivery_name = ''
 
   payK = environment.paystack_key
+  flutterWaveKey = environment.flutter_wave_public_key
+
+  o_currency = ''
+  o_country = ''
+
+  gift_card_section = false
+
   // Form Validator
-  constructor(private fb: FormBuilder, private cartService: CartService, private modalService: NgbModal,
+  constructor(private http: HttpClient, private fb: FormBuilder, private cartService: CartService, private modalService: NgbModal,
     public productsService: ProductsService, private orderService: OrderService, private elementRef: ElementRef, private previewProgressSpinner: OverlayService) {
     this.config = new AppConfig(productsService)
     this.checkoutForm = this.fb.group({
@@ -107,7 +115,20 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   slickInit(e) { }
 
+  async checkIfLoggedIn(){
+    const anon = localStorage.getItem("signInAnonymously")
+    const logged = localStorage.getItem("logged")
+    if(logged == null || logged == "false"){
+       if(anon == "true"){
+          return
+       }
+      await firebase.auth().signInAnonymously()
+      localStorage.setItem("signInAnonymously", "true")
+    }
+ }
+
   ngOnInit() {
+    this.checkIfLoggedIn()
     this.checkoutForm.controls['firstname'].setValue((localStorage.getItem('fn') != null) ? localStorage.getItem('fn') : '')
     this.checkoutForm.controls['lastname'].setValue((localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : '')
     this.checkoutForm.controls['email'].setValue((localStorage.getItem('email') != null) ? localStorage.getItem('email') : '')
@@ -120,12 +141,39 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.getTaxValue()
     //this.initConfig();
     ////this.card_styles = JSON.parse(localStorage.getItem("card_styles"))
-    this.getGiftCardMessages()
-    this.getMainCategories()
+    
+    //this.getGiftCardMessages()
+    //this.getMainCategories()
   }
 
   ngOnDestroy() {
-    this.previewProgressSpinner.close()
+    if (this.previewProgressSpinner != null) {
+      this.previewProgressSpinner.close()
+    }
+  }
+
+  setupCurrencyAndCountry() {
+    this.o_currency = (this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency
+    this.o_country = this.productsService.country_code
+    switch (this.o_currency) {
+      case 'KES':
+        this.o_country = 'KE';
+        break;
+      case 'GHS':
+        this.o_country = 'GH';
+        break;
+      case 'ZAR':
+        this.o_country = 'ZA';
+        break;
+      case 'TZS':
+        this.o_country = 'TZ';
+        break;
+
+      default:
+        this.o_country = 'NG';
+        break;
+    }
+    return this.o_country
   }
 
   trackStyle(index, style) {
@@ -212,51 +260,74 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.config.displayMessage("Payment cancelled", false)
   }
 
-  async checkIfLoggedIn() {
-    const logged = localStorage.getItem("logged")
-    if (logged == null || logged == "false") {
-      await firebase.auth().signInAnonymously()
-    }
-  }
-
   paymentDone(paystackData: any) {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
-    //this.checkIfLoggedIn()
-    const other_payment_detals = {
-      tax: this.config.convertPrice(this.tax_amount),
-      delivery: this.config.convertPrice(this.delivery_amount),
-      delivery_type: this.selected_delivery_name
+    const order_currency = (this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency
+    const order_amount = this.config.convertPrice(this.amount)
+    const body = {
+      "txref": this.reference,
+      "SECKEY": environment.flutter_wave_secret_key
     }
-    const locationData = {
-      currency: this.productsService.currency,
-      country: this.productsService.country,
-      exchange_rate: this.productsService.exchange_rate
-    }
+    this.http.post('https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify', body, { headers: { "Content-Type": "application/json" } }).toPromise().then(res => {
 
-    /* 
-    message: "Approved"
-reference: "297792363"
-status: "success"
-trans: "308244191"
-transaction: "308244191"
-trxref: "297792363"
-    */
-    const status = paystackData['status'];
-    const message = paystackData['message'];
-    const trans = paystackData['trxref'];
-    if (status != 'success' && message != 'Approved') {
+      const data = res['data']
+      const message = data['status']
+      const cc = data['chargecode']
+      const amt = data['amount']
+      const curr = data['currency']
+      const appfee = data['appfee']
+      const _mf = data['amountsettledforthistransaction']
+
+      if (message == 'successful' && (cc == '00' || cc == '0') && amt == order_amount && order_currency == curr) {
+        //this.checkIfLoggedIn()
+        const other_payment_detals = {
+          tax: this.config.convertPrice(this.tax_amount),
+          delivery: this.config.convertPrice(this.delivery_amount),
+          delivery_type: this.selected_delivery_name
+        }
+        const locationData = {
+          currency: this.productsService.currency,
+          country: this.productsService.country,
+          exchange_rate: this.productsService.exchange_rate,
+          payment_gateway_fee: appfee,
+          mf: _mf
+        }
+        /* 
+        message: "Approved"
+        reference: "297792363"
+        status: "success"
+        trans: "308244191"
+        transaction: "308244191"
+        trxref: "297792363"
+   
+        const status = paystackData['status'];
+        const message = paystackData['message'];
+        const trans = paystackData['trxref'];
+        if (status != 'success' && message != 'Approved') {
+          this.reference = this.randomInt(1, 999999999)
+          this.config.displayMessage(`Payment failed. ${message}`, false)
+          return
+        }
+         */
+        const current_email = localStorage.getItem('email')
+        if (current_email == null) {
+          localStorage.setItem('email', this.checkoutForm.value.email)
+        }
+        localStorage.setItem('phone', this.checkoutForm.value.phone)
+        localStorage.setItem('fn', this.checkoutForm.value.firstname)
+        localStorage.setItem('ln', this.checkoutForm.value.lastname)
+        this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, this.reference, this.config.convertPrice(this.amount), this.selected_card_style, locationData);
+      } else {
+        this.previewProgressSpinner.close()
+        this.reference = this.randomInt(1, 999999999)
+        this.config.displayMessage('Payment not successful. Please try again.', false)
+      }
+
+    }).catch(err => {
+      this.previewProgressSpinner.close()
       this.reference = this.randomInt(1, 999999999)
-      this.config.displayMessage(`Payment failed. ${message}`, false)
-      return
-    }
-    const current_email = localStorage.getItem('email')
-    if (current_email == null) {
-      localStorage.setItem('email', this.checkoutForm.value.email)
-    }
-    localStorage.setItem('phone', this.checkoutForm.value.phone)
-    localStorage.setItem('fn', this.checkoutForm.value.firstname)
-    localStorage.setItem('ln', this.checkoutForm.value.lastname)
-    this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, trans, this.config.convertPrice(this.amount), this.selected_card_style, locationData);
+      this.config.displayMessage('An error occured', false)
+    })
   }
 
   public slideNavConfig = {
@@ -269,7 +340,7 @@ trxref: "297792363"
   }
 
   getGiftCardMessages() {
-    firebase.firestore().collection('db').doc('tacadmin').collection('gift-card-messages').onSnapshot(query => {
+    firebase.firestore().collection('db').doc('tacadmin').collection('gift-card-messages').get().then(query => {
       this.messages = []
       query.forEach(data => {
         const msg = <Messages>data.data()

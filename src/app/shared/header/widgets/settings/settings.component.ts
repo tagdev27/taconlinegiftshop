@@ -114,6 +114,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
         //console.log('yassss')
         result.push('okay')
         // this.router.navigate([`/home/collection/${subcat.id}`])
+        this.show = false;
         let re = /\ /gi;
         const url_path_name = subcat.name.toLowerCase().replace(re, '-')
         this.router.navigate([`/home/collection/${url_path_name}`])
@@ -129,6 +130,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
               this.display_error = true
               return
             }
+            this.show = false;
             let re = /\ /gi;
             const url_path_name = subc.name.toLowerCase().replace(re, '-')
             this.router.navigate([`/home/collection/${url_path_name}`])

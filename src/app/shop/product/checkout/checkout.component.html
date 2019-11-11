@@ -173,15 +173,15 @@
                                 </div>
                                 <div class="form-group col-md-12 col-sm-6 col-xs-12">
                                     <div class="field-label">Special Instructions</div>
-                                    <textarea name="specialinstructions"
+                                    <textarea rows="5" name="specialinstructions"
                                         [formControl]="checkoutForm.controls['specialinstructions']" value=""
-                                        placeholder="" autocomplete="off" rows="4"></textarea>
+                                        placeholder="" autocomplete="off" style="height: 150px;"></textarea>
                                 </div>
                             </div>
-                            <div class="checkout-title">
+                            <div class="checkout-title" *ngIf="gift_card_section">
                                 <h3>Gift Card Message</h3>
                             </div>
-                            <div class="row check-out">
+                            <div class="row check-out" *ngIf="gift_card_section">
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                     <!-- <div class="field-label">GIFT CARD MESSAGE</div> -->
                                     <textarea rows="5" name="card_message"
@@ -324,11 +324,15 @@
                                                     {{ config.convertPrice(delivery_amount) | currency:productsService?.currency:'symbol' }}
                                                 </span> -->
                                                 <form>
-                                                <div class="shopping-option" *ngFor="let del of productsService.delivery">
-                                                    <input type="radio" name="shipping" id="free-shipping" (change)="deliveryMethodChange(del.value, del.name)" value="{{del.value}}">
-                                                    <label for="free-shipping">{{del.name}} - {{config.convertPrice(del.value) | currency:productsService?.currency:'symbol'}}</label>
-                                                    <br><small>{{del.description}}</small>
-                                                </div>
+                                                    <div class="shopping-option"
+                                                        *ngFor="let del of productsService.delivery">
+                                                        <input type="radio" name="shipping" id="free-shipping"
+                                                            (change)="deliveryMethodChange(del.value, del.name)"
+                                                            value="{{del.value}}">
+                                                        <label for="free-shipping">{{del.name}} -
+                                                            {{config.convertPrice(del.value) | currency:productsService?.currency:'symbol'}}</label>
+                                                        <br><small>{{del.description}}</small>
+                                                    </div>
                                                 </form>
                                                 <!-- <div class="shopping-option">
                                                     <input type="radio" name="shipping" id="local-pickup">
@@ -373,20 +377,34 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button class="btn-solid btn" [disabled]="!checkoutForm.valid"
+                                        <!-- <button class="btn-solid btn" [disabled]="!checkoutForm.valid"
                                             (click)="stripeCheckout()" type="submit" *ngIf="payment">
                                             Place Order
-                                        </button>
+                                        </button> -->
                                         <!-- <ngx-paypal [config]="payPalConfig" [ngClass]="{'btn disabled': !checkoutForm.valid}" *ngIf="payment">
                                         </ngx-paypal> pk_test_8be8b3b21803dcb62514b6e55f3c6f90f4a74483 -->
-                                        <button angular4-paystack *ngIf="!payment" [disabled]="!checkoutForm.valid || delivery_amount == 0"
-                                            [key]="payK"
+                                        <!-- <button angular4-paystack *ngIf="!payment"
+                                            [disabled]="!checkoutForm.valid || delivery_amount == 0" [key]="payK"
                                             [email]="checkoutForm.value.email"
                                             [amount]="this.config.convertPrice(amount) * 100" [ref]="reference"
                                             [channels]="['card','bank']"
                                             [currency]="(productsService.currency == '₦') ? 'NGN' : this.productsService.currency"
                                             class="btn-solid btn" (close)="paymentCancel()"
-                                            (callback)="paymentDone($event)">Place Order</button>
+                                            (callback)="paymentDone($event)">Place Order</button> -->
+                                        <button *ngIf="!checkoutForm.valid || delivery_amount == 0" class="btn-solid btn" [disabled]="true"
+                                            type="submit">
+                                            Place Order
+                                        </button>
+                                            <rave-pay-button *ngIf="checkoutForm.valid && delivery_amount > 0" [text]="'Place Order'"
+                                                [className]="'btn-solid btn'" (callback)="paymentDone($event)"
+                                                (close)="paymentCancel()" [key]="flutterWaveKey"
+                                                [currency]="(this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency"
+                                                [country]="setupCurrencyAndCountry()"
+                                                [customer_firstname]="checkoutForm.value.firstname"
+                                                [customer_lastname]="checkoutForm.value.lastname"
+                                                [customer_phone]="checkoutForm.value.phone" [reference]="reference"
+                                                [amount]="this.config.convertPrice(amount)"
+                                                [email]="checkoutForm.value.email"></rave-pay-button>
                                     </div>
                                 </div>
                             </div>

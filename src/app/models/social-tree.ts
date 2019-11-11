@@ -12,6 +12,7 @@ export interface SocialTree {
     events:SocialEvents[]
     profile_image_url:string
     entry_mode:string
+    created_date:any
 }
 
 export interface SocialEvents {

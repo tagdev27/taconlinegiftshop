@@ -21,7 +21,7 @@ export class TopbarOneComponent implements OnInit {
   facebook_url = '#'
   twitter_url = '#'
   instagram_url = '#'
-  logged = (localStorage.getItem('logged') == null) ? 'false' : localStorage.getItem('logged')
+  logged = (localStorage.getItem('logged') == null || localStorage.getItem('email') == null) ? 'false' : localStorage.getItem('logged')
 
   ngOnInit() {
     this.service.getSettings().then(store => {
