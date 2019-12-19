@@ -42,13 +42,15 @@
                 <!-- <ngx-slick-carousel class="product-slick" id="p-zoom" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"> -->
                   <!-- <div ngxSlickItem *ngFor="let image of product.pictures"> -->
                     <div>
-                      <ngx-img-zoom id="p-zoom" [previewImageSrc]="product_image" [zoomImageSrc]="product_image"
+                      <mat-spinner color="accent" diameter="24" *ngIf="preloading"></mat-spinner>
+                      <ngx-img-zoom *ngIf="!isMobileView()" id="p-zoom" [previewImageSrc]="product_image" [zoomImageSrc]="product_image"
                         [imgStyle]="'width:100%; height:100%;'"
                         [resultStyle]="'background-repeat: no-repeat; z-index: 2; position:absolute;background-size: 1614px 2064px;
                        -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); top: 0;left: 100%;'"
                         [lensStyle]="'width:100px; height:100px'" [containerStyle]="'position: relative;'"
                         (mouseover)="onMouseOver()" (mouseout)="onMouseOut()">
                       </ngx-img-zoom>
+                      <img *ngIf="isMobileView()" [src]="product_image" [alt]="pro_name" style="width:100%; height:100%;">
                     </div>
                   <!-- </div> -->
                 <!-- </ngx-slick-carousel> -->
@@ -121,9 +123,9 @@
                   </div>
                   <div class="product-buttons" *ngIf="!productsService?.catalogMode">
                     <a [routerLink]="" (click)="addToCart(product, counter)" class="btn btn-solid"
-                      [class.disabled]="counter > product.stock">add to cart</a>
+                      [class.disabled]="counter > product.stock || preloading">add to cart</a>
                     <a [routerLink]="" (click)="buyNow(product, counter)" class="btn btn-solid"
-                      [class.disabled]="counter > product.stock">buy now</a>
+                      [class.disabled]="counter > product.stock || preloading">buy now</a>
                   </div>
                   <div class="border-product">
                     <h6 class="product-title">product details</h6>
@@ -196,7 +198,7 @@
                   <li class="nav-item">
                     <a class="nav-link" id="review-top-tab" data-toggle="tab" href="#top-review" role="tab"
                       aria-selected="false">
-                      <i class="icofont icofont-contacts"></i>Write Review</a>
+                      <i class="icofont icofont-contacts"></i>Reviews</a>
                     <div class="material-border"></div>
                   </li>
                 </ul>

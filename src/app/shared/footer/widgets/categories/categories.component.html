@@ -3,7 +3,9 @@
 </div>
 <div class="footer-contant">
     <ul>
-        <li *ngFor="let sub of sub_categories"><a href="javascript:void(0)" (click)="gotocat(sub.id)">{{sub.name}}</a></li>
+        <li *ngFor="let sub of sub_categories">
+            <a href="javascript:void(0)" (click)="gotocat(sub.link)">{{sub.name}}</a>
+        </li>
         <!-- <li><a href="/collection">View More</a></li> -->
         <!-- <li><a [routerLink]="['/home/collection/men']">Mens Fashion</a></li>
         <li><a [routerLink]="['/home/collection/kids']">Kids Fashion</a></li>

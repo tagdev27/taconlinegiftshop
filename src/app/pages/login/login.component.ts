@@ -14,10 +14,16 @@ export class LoginComponent implements OnInit {
 
   config = new AppConfig()
 
+  next_url = ''
+
   constructor(private previewProgressSpinner: OverlayService, private router: Router, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
+    // if (location.search != '') {
+    //   const url = location.search.substring(11).replace('%2F', '/')
+    //   this.next_url = url
+    // }
   }
 
   signinWithGoogle() {
@@ -39,12 +45,17 @@ export class LoginComponent implements OnInit {
     var provider = new firebase.auth.FacebookAuthProvider();
     // provider.addScope('user_events');
     provider.addScope('email');
-    provider.addScope('user_birthday');
-    provider.addScope('user_friends');
-    provider.addScope('user_gender')
+    // provider.addScope('user_birthday');
+    // provider.addScope('user_friends');
+    // provider.addScope('user_gender')
     firebase.auth().signInWithPopup(provider).then(result => {
       //console.log(result)
       const user_email = result.user.email
+      if(user_email == null){
+        firebase.auth().signOut()
+        this.config.displayMessage(`Your facebook account doesn't have an email address. Please try with another account`, false)
+        return;
+      }
       this.checkFirestoreAndRedirect('facebook', user_email, result)
     }).catch(err => {
       //this.previewProgressSpinner.close()
@@ -86,11 +97,12 @@ export class LoginComponent implements OnInit {
         this.config.displayMessage('Sorry, user has been blocked. Please contact support.', false)
         return
       }
+      firebase.analytics().logEvent('login', { email: `${email}`, user_data: user, platform : 'web'});
       if (social_result != null) {
         if (method == 'google') {
           await firebase.firestore().collection('users').doc(email.toLowerCase()).update({
             'Tokens': social_result.credential.toJSON(),
-            'picture': social_result.additionalUserInfo.profile['picture']
+            // 'picture': social_result.additionalUserInfo.profile['picture']
           })
         }
         if (method == 'facebook') {
@@ -98,9 +110,9 @@ export class LoginComponent implements OnInit {
           const pic_data = pic['data']
           await firebase.firestore().collection('users').doc(email.toLowerCase()).update({
             'Facebook': social_result.credential.toJSON(),
-            'picture': pic_data['url'],
-            'birthday': social_result.additionalUserInfo.profile['birthday'],
-            'gender': social_result.additionalUserInfo.profile['gender'],
+            // 'picture': pic_data['url'],
+            'birthday': (social_result.additionalUserInfo.profile['birthday'] == undefined) ? '' : social_result.additionalUserInfo.profile['birthday'],
+            'gender': (social_result.additionalUserInfo.profile['gender'] == undefined) ? '' : social_result.additionalUserInfo.profile['gender'],
             'facebook_id': social_result.additionalUserInfo.profile['id'],
           })
         }

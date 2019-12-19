@@ -8,7 +8,7 @@
 
 					<div class="annot_con">
 						<span></span>
-						<p>Never Forget to send another Anniversary Gift.</p>
+						<p>Never Forget to send another, a Memorable Gift.</p>
 					</div>
 
 
@@ -62,7 +62,7 @@
 							<i class="fa fa-plus" (click)="startAdding()"></i>
 						</li>
 						<li *ngIf="login">
-							<small><a href="/login" style="color: black">Please you need to login
+							<small><a href="/login?returnurl=social-tree" style="color: black">Please you need to login
 									first</a></small>
 						</li>
 					</ul>
@@ -87,7 +87,7 @@
 					<div class="btm">
 						<p>Our Social Tree Feature is designed for you to ensure you are connected with your loved ones for those
 							special moments without the need of you remembering the dates and occasion. When you sign up simply
-							input the required details and we would do the rest!</p>
+							 input the required details and we would do the rest!</p>
 
 						<p>
 							So kindly do us the honour of filling in necessary
@@ -145,51 +145,51 @@ TAC it!
 										class="text td">
 										First Name is required.
 									</div>
-									<div *ngIf="checkoutForm.controls.firstname.touched && checkoutForm.controls.firstname.errors?.pattern"
+									<!-- <div *ngIf="checkoutForm.controls.firstname.touched && checkoutForm.controls.firstname.errors?.pattern"
 										class="text td">
 										First Name must be an alphabates.
-									</div>
+									</div> -->
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Last Name* </div>
+									<div class="field-label" id="l_add">Last Name* </div>
 									<input type="text" name="lastname" [formControl]="checkoutForm.controls['lastname']"
 										value="" placeholder="" autocomplete="off">
 									<div *ngIf="checkoutForm.controls.lastname.touched && checkoutForm.controls.lastname.errors?.required"
 										class="text td">
 										Last Name is required.
 									</div>
-									<div *ngIf="checkoutForm.controls.lastname.touched && checkoutForm.controls.lastname.errors?.pattern"
+									<!-- <div *ngIf="checkoutForm.controls.lastname.touched && checkoutForm.controls.lastname.errors?.pattern"
 										class="text td">
 										Last Name must be an alphabates.
-									</div>
+									</div> -->
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Phone Number*</div>
+									<div class="field-label">Phone Number <small> (optional)</small></div>
 									<input type="text" name="phone" [formControl]="checkoutForm.controls['phone']"
 										value="" placeholder="" autocomplete="off">
-									<div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.required"
+									<!-- <div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.required"
 										class="text td">
 										Phone No is required.
 									</div>
 									<div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.pattern"
 										class="text td">
 										Phone No must be number.
-									</div>
+									</div> -->
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Email Address</div>
+									<div class="field-label">Email Address <small> (optional)</small></div>
 									<input type="text" name="email" [formControl]="checkoutForm.controls['email']"
 										value="" placeholder="" autocomplete="off">
 									<!-- <div *ngIf="checkoutForm.controls.email.touched && checkoutForm.controls.email.errors?.required"
 										class="text td">
 										Email is required
-									</div>
+									</div> -->
 									<div *ngIf="checkoutForm.controls.email.touched && checkoutForm.controls.email.errors?.email"
 										class="text td">
 										Invalid Email
-									</div> -->
+									</div>
 								</div>
-								<div class="form-group col-md-6 col-sm-6 col-xs-12">
+								<!-- <div class="form-group col-md-6 col-sm-6 col-xs-12">
 									<div class="field-label">Date of Birth</div><br>
 									<input type="date" name="age"
 										[formControl]="checkoutForm.controls['age']" value="" placeholder=""
@@ -198,13 +198,13 @@ TAC it!
 										class="text td">
 										Date of Birth is required.
 									</div>
-									<!-- <div *ngIf="checkoutForm.controls.age.touched && checkoutForm.controls.age.errors?.pattern"
+									<div *ngIf="checkoutForm.controls.age.touched && checkoutForm.controls.age.errors?.pattern"
 										class="text td">
 										Age must be a positive number.
-									</div> -->
-								</div>
+									</div>
+								</div> -->
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Gender</div>
+									<div class="field-label">Gender*</div>
 									<select name="gender" [formControl]="checkoutForm.controls['gender']">
 										<option value="" selected>Select Gender</option>
 										<option value="male">Male</option>
@@ -216,7 +216,7 @@ TAC it!
 									</div>
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Relationship</div>
+									<div class="field-label">Relationship*</div>
 									<input type="text" name="relationship" [formControl]="checkoutForm.controls['relationship']"
 										value="" placeholder="" autocomplete="off">
 									<div *ngIf="checkoutForm.controls.relationship.touched && checkoutForm.controls.relationship.errors?.required"
@@ -225,29 +225,29 @@ TAC it!
 									</div>
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Occupation</div>
+									<div class="field-label">Occupation <small> (optional)</small></div>
 									<input type="text" name="occupation" [formControl]="checkoutForm.controls['occupation']"
 										value="" placeholder="" autocomplete="off">
-									<div *ngIf="checkoutForm.controls.occupation.touched && checkoutForm.controls.occupation.errors?.required"
+									<!-- <div *ngIf="checkoutForm.controls.occupation.touched && checkoutForm.controls.occupation.errors?.required"
 										class="text td">
 										Occupation is required
-									</div>
+									</div> -->
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Address</div>
+									<div class="field-label">Address <small> (optional)</small></div>
 									<input type="text" name="address" [formControl]="checkoutForm.controls['address']"
 										value="" placeholder="" autocomplete="off">
-									<div *ngIf="checkoutForm.controls.address.touched && checkoutForm.controls.address.errors?.required"
+									<!-- <div *ngIf="checkoutForm.controls.address.touched && checkoutForm.controls.address.errors?.required"
 										class="text">
 										Address is required
-									</div>
+									</div> -->
 									<div *ngIf="checkoutForm.controls.address.touched && checkoutForm.controls.address.errors?.maxlength"
 										class="text td">
-										Maximum 250 character
+										Maximum 500 character
 									</div>
 								</div>
 								<div class="form-group col-md-6 col-sm-6 col-xs-12">
-									<div class="field-label">Member Image</div>
+									<div class="field-label">Member Image <small> (optional)</small></div>
 									<br>
 									<input type="file" id="member_image" value="" placeholder="" autocomplete="off">
 								</div>

@@ -34,11 +34,16 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   display_error = false
 
   ngOnInit() {
-    firebase.firestore().collection('db').doc('tacadmin').collection('currency').onSnapshot(query => {
+    firebase.firestore().collection('db').doc('tacadmin').collection('currency').get().then(query => {
       this.currencies = []
       query.forEach(q => {
         const cur = <Currency>q.data()
-        this.currencies.push(cur)
+        const serach_curr = this.currencies.filter((c, i, a) => {
+          return c.name == cur.name
+        })
+        if(serach_curr.length == 0){
+          this.currencies.push(cur)
+        }
       })
     });
     this.getAllSubCategories()
@@ -90,7 +95,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   }
 
   getAllSubCategories() {
-    firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').where("deleted", "==", false).onSnapshot(query => {
+    firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').where("deleted", "==", false).get().then(query => {
       this.categories = []
       var index = 0
       query.forEach(async data => {
@@ -108,6 +113,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   onSearchPressed() {
     this.display_error = false
     const result: string[] = []
+    firebase.analytics().logEvent('search', { query: `${this.query}`, platform : 'web'});
     this.categories.forEach(subcat => {
       //console.log(subcat.meta)
       if (subcat.meta.toLowerCase().includes(this.query.toLowerCase()) || subcat.name.toLowerCase().includes(this.query.toLowerCase()) || subcat.description.toLowerCase().includes(this.query.toLowerCase())) {

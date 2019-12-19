@@ -31,7 +31,7 @@
                             </div>
                             <div class="row check-out">
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <div class="field-label">First Name</div>
+                                    <div class="field-label">First Name *</div>
                                     <input type="text" name="firstname"
                                         [formControl]="checkoutForm.controls['firstname']" value="" placeholder=""
                                         autocomplete="off">
@@ -39,39 +39,26 @@
                                         class="text text-danger">
                                         First Name is required.
                                     </div>
-                                    <div *ngIf="checkoutForm.controls.firstname.touched && checkoutForm.controls.firstname.errors?.pattern"
+                                    <!-- <div *ngIf="checkoutForm.controls.firstname.touched && checkoutForm.controls.firstname.errors?.pattern"
                                         class="text text-danger">
                                         First Name must be an alphabates.
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <div class="field-label">Last Name </div>
+                                    <div class="field-label">Last Name * </div>
                                     <input type="text" name="lastname" [formControl]="checkoutForm.controls['lastname']"
                                         value="" placeholder="" autocomplete="off">
                                     <div *ngIf="checkoutForm.controls.lastname.touched && checkoutForm.controls.lastname.errors?.required"
                                         class="text text-danger">
                                         Last Name is required.
                                     </div>
-                                    <div *ngIf="checkoutForm.controls.lastname.touched && checkoutForm.controls.lastname.errors?.pattern"
+                                    <!-- <div *ngIf="checkoutForm.controls.lastname.touched && checkoutForm.controls.lastname.errors?.pattern"
                                         class="text text-danger">
                                         Last Name must be an alphabates.
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <div class="field-label">Phone Number</div>
-                                    <input type="text" name="phone" [formControl]="checkoutForm.controls['phone']"
-                                        value="" placeholder="" autocomplete="off">
-                                    <div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.required"
-                                        class="text text-danger">
-                                        Phone No is required.
-                                    </div>
-                                    <div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.pattern"
-                                        class="text text-danger">
-                                        Phone No must be number.
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <div class="field-label">Email Address</div>
+                                    <div class="field-label">Email Address *</div>
                                     <input type="text" name="email" [formControl]="checkoutForm.controls['email']"
                                         value="" placeholder="" autocomplete="off">
                                     <div *ngIf="checkoutForm.controls.email.touched && checkoutForm.controls.email.errors?.required"
@@ -83,38 +70,51 @@
                                         Invalid Email
                                     </div>
                                 </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <div class="field-label">Phone Number<small> (optional)</small></div>
+                                    <input type="tel" name="phone" [formControl]="checkoutForm.controls['phone']"
+                                        value="" placeholder="" autocomplete="off">
+                                    <!-- <div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.required"
+                                        class="text text-danger">
+                                        Phone No is required.
+                                    </div> -->
+                                    <!-- <div *ngIf="checkoutForm.controls.phone.touched && checkoutForm.controls.phone.errors?.pattern"
+                                        class="text text-danger">
+                                        Phone No must be number.
+                                    </div> -->
+                                </div>
                                 <div class="checkout-title">
                                     <h3>Recipient Details</h3>
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <div class="field-label">Full Name</div>
+                                    <div class="field-label">Full Name *</div>
                                     <input type="text" name="fullname" [formControl]="checkoutForm.controls['fullname']"
                                         value="" placeholder="" autocomplete="off">
                                     <div *ngIf="checkoutForm.controls.fullname.touched && checkoutForm.controls.fullname.errors?.required"
                                         class="text text-danger">
                                         Full Name is required.
                                     </div>
-                                    <div *ngIf="checkoutForm.controls.fullname.touched && checkoutForm.controls.fullname.errors?.pattern"
+                                    <!-- <div *ngIf="checkoutForm.controls.fullname.touched && checkoutForm.controls.fullname.errors?.pattern"
                                         class="text text-danger">
                                         Full Name must be an alphabates.
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <div class="field-label">Phone Number</div>
-                                    <input type="text" name="recipientphone"
+                                    <div class="field-label">Phone Number *<small> (required to confirm recipient's details)</small></div>
+                                    <input type="tel" name="recipientphone"
                                         [formControl]="checkoutForm.controls['recipientphone']" value="" placeholder=""
                                         autocomplete="off">
                                     <div *ngIf="checkoutForm.controls.recipientphone.touched && checkoutForm.controls.recipientphone.errors?.required"
                                         class="text text-danger">
                                         Recipient Phone No is required.
                                     </div>
-                                    <div *ngIf="checkoutForm.controls.recipientphone.touched && checkoutForm.controls.recipientphone.errors?.pattern"
+                                    <!-- <div *ngIf="checkoutForm.controls.recipientphone.touched && checkoutForm.controls.recipientphone.errors?.pattern"
                                         class="text text-danger">
                                         Recipient Phone No must be number.
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <div class="field-label">Address</div>
+                                    <div class="field-label">Address *</div>
                                     <input type="text" name="address" [formControl]="checkoutForm.controls['address']"
                                         value="" placeholder="" autocomplete="off">
                                     <div *ngIf="checkoutForm.controls.address.touched && checkoutForm.controls.address.errors?.required"
@@ -123,11 +123,11 @@
                                     </div>
                                     <div *ngIf="checkoutForm.controls.address.touched && checkoutForm.controls.address.errors?.maxlength"
                                         class="text text-danger">
-                                        Maximum 250 character
+                                        Maximum 500 character
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <div class="field-label">Town/City</div>
+                                    <div class="field-label">Town/City *</div>
                                     <input type="text" name="town" [formControl]="checkoutForm.controls['town']"
                                         value="" placeholder="" autocomplete="off">
                                     <div *ngIf="checkoutForm.controls.town.touched && checkoutForm.controls.town.errors?.required"
@@ -136,7 +136,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12 col-sm-6 col-xs-12">
-                                    <div class="field-label">State<small> More states will be added soon</small></div>
+                                    <div class="field-label">State *<small> More states will be added soon</small></div>
                                     <select name="state" [formControl]="checkoutForm.controls['state']">
                                         <option value="" selected>Select State</option>
                                         <option value="Lagos">Lagos</option>
@@ -159,7 +159,7 @@
                                     </div>
                                 </div> -->
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <div class="field-label">Country</div>
+                                    <div class="field-label">Country *</div>
                                     <select name="country" [formControl]="checkoutForm.controls['country']">
                                         <option value="" selected>Select Country</option>
                                         <option value="Nigeria">Nigeria</option>
@@ -381,8 +381,10 @@
                                             (click)="stripeCheckout()" type="submit" *ngIf="payment">
                                             Place Order
                                         </button> -->
-                                        <!-- <ngx-paypal [config]="payPalConfig" [ngClass]="{'btn disabled': !checkoutForm.valid}" *ngIf="payment">
-                                        </ngx-paypal> pk_test_8be8b3b21803dcb62514b6e55f3c6f90f4a74483 -->
+                                        <!-- <ngx-paypal [config]="payPalConfig">
+                                        </ngx-paypal> "site": "tac-staging-website",-->
+                                        
+                                        <!-- pk_test_8be8b3b21803dcb62514b6e55f3c6f90f4a74483 -->
                                         <!-- <button angular4-paystack *ngIf="!payment"
                                             [disabled]="!checkoutForm.valid || delivery_amount == 0" [key]="payK"
                                             [email]="checkoutForm.value.email"
@@ -391,20 +393,22 @@
                                             [currency]="(productsService.currency == '₦') ? 'NGN' : this.productsService.currency"
                                             class="btn-solid btn" (close)="paymentCancel()"
                                             (callback)="paymentDone($event)">Place Order</button> -->
-                                        <button *ngIf="!checkoutForm.valid || delivery_amount == 0" class="btn-solid btn" [disabled]="true"
-                                            type="submit">
+                                        <button *ngIf="!checkoutForm.valid || delivery_amount == 0"
+                                            class="btn-solid btn" [disabled]="true" type="submit">
                                             Place Order
                                         </button>
-                                            <rave-pay-button *ngIf="checkoutForm.valid && delivery_amount > 0" [text]="'Place Order'"
-                                                [className]="'btn-solid btn'" (callback)="paymentDone($event)"
-                                                (close)="paymentCancel()" [key]="flutterWaveKey"
-                                                [currency]="(this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency"
-                                                [country]="setupCurrencyAndCountry()"
-                                                [customer_firstname]="checkoutForm.value.firstname"
-                                                [customer_lastname]="checkoutForm.value.lastname"
-                                                [customer_phone]="checkoutForm.value.phone" [reference]="reference"
-                                                [amount]="this.config.convertPrice(amount)"
-                                                [email]="checkoutForm.value.email"></rave-pay-button>
+                                        <rave-pay-button *ngIf="checkoutForm.valid && delivery_amount > 0"
+                                            [text]="'Place Order'" [className]="'btn-solid btn'"
+                                            (callback)="paymentDone($event)" (close)="paymentCancel()"
+                                            [key]="flutterWaveKey"
+                                            [currency]="(this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency"
+                                            [country]="setupCurrencyAndCountry()"
+                                            [customer_firstname]="checkoutForm.value.firstname"
+                                            [customer_lastname]="checkoutForm.value.lastname"
+                                            [customer_phone]="checkoutForm.value.phone" [reference]="reference"
+                                            [redirect_url]="'http://localhost:4200/home/checkout'"
+                                            [amount]="this.config.convertPrice(amount)"
+                                            [email]="checkoutForm.value.email"></rave-pay-button>
                                     </div>
                                 </div>
                             </div>

@@ -72,7 +72,7 @@ export class FooterTwoComponent implements OnInit {
     const _num = (localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : ''
 //https://avidprintsconcierge.com/emailsending/mailchimp.php
     this.mHttp.post(`https://us-central1-taconlinegiftshop.cloudfunctions.net/mailChimpRegistration?email_address=${em}`, {
-      lat: uc['latitude'], lng: uc['longitude'], fn: _fn, ln: _ln
+      'lat': uc['latitude'], 'lng': uc['longitude'], 'fn': _fn, 'ln': _ln
     }).subscribe(res => {
       //console.log(res)
       this.loading = false

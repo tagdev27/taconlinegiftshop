@@ -52,6 +52,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
   col_title = ''
   col_sub_title = ''
 
+  preloading = true
+
   init_sub_cats:SubCategoryInit[] = []
 
   constructor(private route: ActivatedRoute, private router: Router,
@@ -68,6 +70,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
           return
         }
         selected_category = sc.id
+      }else {
+        this.preloading = false
       }
       // const getSubCat = (category == 'all') ? 'all' : this.getSubCategoryIDByName()
       this.productsService.getProductByCategory(selected_category).subscribe(products => {
@@ -80,12 +84,14 @@ export class CollectionLeftSidebarComponent implements OnInit {
         // const id = this.getSubCategoryIDByName()
         //firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').where('name', '==', name).get().then(snap => {
         firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').doc(selected_category).get().then(snap => {
+          this.preloading = false
           const subCat = <SubCategory>snap.data()
           // console.log(`hello here = ${subCat.description}`)
           this.col_image = subCat.image
           this.col_title = ` - ${subCat.name}`
           this.col_sub_title = subCat.description
           $('head').append(`<meta name="description" content="${subCat.description}">`)
+          firebase.analytics().logEvent('collection_views', { name: `${subCat.name}`, platform : 'web'});
         })
       }
     });

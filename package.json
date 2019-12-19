@@ -58,7 +58,7 @@
     "ngx-img-zoom": "^3.1.2",
     "ngx-infinite-scroll": "^7.2.0",
     "ngx-isotope": "^0.1.7",
-    "ngx-paypal": "^3.2.1",
+    "ngx-paypal": "^5.0.0",
     "ngx-rangeslider-component": "^1.0.6",
     "ngx-slick-carousel": "^0.4.4",
     "ngx-sticky": "^2.0.1",

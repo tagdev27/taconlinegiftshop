@@ -85,7 +85,7 @@ export class OrderService {
       shipping_details: details,
       gift_card_style: gcs,
       tracking_details: track_details,
-      other_payment_detals: other_payment_detals
+      other_payment_details: other_payment_detals
     }
 
     firebase.firestore().collection("alert-new-order").doc(key).set({

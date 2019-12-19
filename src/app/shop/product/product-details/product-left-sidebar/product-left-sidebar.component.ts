@@ -29,10 +29,12 @@ export class ProductLeftSidebarComponent implements OnInit {
 
   public reviewForm: FormGroup;
   loading = false
+  preloading = true
   productReviews: Reviews[] = []
   rating = 5
 
   product_image = ''
+  pro_name = ''
 
   //Get Product By Id
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
@@ -41,15 +43,19 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.config = new AppConfig(productsService)
     this.route.params.subscribe(async params => {
       const id = params['id']; //add + sign behind params to make it a number type
+      this.pro_name = id
       const sel_pro = await this.getProductDetailsByMenuLink(`${id}`)
       if(sel_pro == null){
         location.href = '/404'
         return
       }
       this.productsService.getProduct(sel_pro.id).subscribe(product => {
+        this.preloading = false
         this.product = product
         this.product_image = this.product.pictures[0]
+        this.getProductReviews()
         $('head').append(`<meta name="description" content="${product.description}">`)
+        firebase.analytics().logEvent('product_views', { name: `${product.name}`, platform : 'web'});
       })
       //$('#metaelement').attr('content', `${this.product.description}`);
     });
@@ -70,10 +76,10 @@ export class ProductLeftSidebarComponent implements OnInit {
   }
 
   submitReview() {
-    var _id = 0
-    this.route.params.subscribe(params => {
-      _id = +params['id'];
-    });
+    // var _id = 0
+    // this.route.params.subscribe(params => {
+    //   _id = +params['id'];
+    // });
     this.loading = true
     const id = firebase.database().ref().push().key
     const review: Reviews = {
@@ -82,9 +88,10 @@ export class ProductLeftSidebarComponent implements OnInit {
       email: `${this.reviewForm.value.email}`,
       title: `${this.reviewForm.value.title}`,
       text: `${this.reviewForm.value.text}`,
-      product_id: _id,//this.product.key,
+      product_key: this.product.key,//this.product.key,
       rating: this.rating,
       created_date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }
     firebase.firestore().collection('reviews').doc(id).set(review).then(snap => {
       this.loading = false
@@ -98,12 +105,12 @@ export class ProductLeftSidebarComponent implements OnInit {
   }
 
   getProductReviews() {
-    var _id = 0
-    this.route.params.subscribe(params => {
-      _id = +params['id'];
-    });
+    // var _id = 0
+    // this.route.params.subscribe(params => {
+    //   _id = +params['id'];
+    // });
     //console.log(`pro id = ${_id}`)
-    firebase.firestore().collection('reviews').where("product_id", "==", _id).onSnapshot(query => {
+    firebase.firestore().collection('reviews').where("product_key", "==", this.product.key).onSnapshot(query => {
       //if(query.empty){return}
       this.productReviews = []
       query.forEach(data => {
@@ -117,10 +124,17 @@ export class ProductLeftSidebarComponent implements OnInit {
   slickInit(e){}
 
   ngOnInit() {
+    //console.log(`width = ${$(window).width()} = ${this.isMobileView()}`)
     this.productsService.getProducts().subscribe(product => this.products = product);
     this.getStockLevel()
-    this.getProductReviews()
   }
+
+  isMobileView() {
+    if ($(window).width() > 450) {
+        return false;
+    }
+    return true;
+};
 
   getStockLevel() {
     firebase.firestore().collection('db').doc('tacadmin').collection('settings').doc('store').get().then(snap => {

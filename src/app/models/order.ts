@@ -18,7 +18,7 @@ export interface TacOrder {
     status:string
     total_amount:number
     shipping_details:any
-    other_payment_detals:any
+    other_payment_details:any
     gift_card_style:string
     tracking_details:Tracking[]
 }

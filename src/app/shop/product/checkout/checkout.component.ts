@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
+import { IPayPalConfig, ICreateOrderRequest, IPayer, IApplicationContext } from 'ngx-paypal';
 // import {  IPayPalConfig,  ICreateOrderRequest } from 'ngx-paypal';
 import { CartItem } from '../../../shared/classes/cart-item';
 import { ProductsService } from '../../../shared/services/products.service';
@@ -17,6 +17,7 @@ import { OverlayService } from 'src/app/overlay/overlay.module';
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 declare interface Messages {
   id: string;
@@ -45,7 +46,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   //other countries amount
   public other_country_amount = 0
 
-  public payPalConfig?: PayPalConfig;
+  public payPalConfig?: IPayPalConfig;
 
   showDummy = false
   reference = this.randomInt(1, 999999999)
@@ -65,17 +66,17 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   gift_card_section = false
 
   // Form Validator
-  constructor(private http: HttpClient, private fb: FormBuilder, private cartService: CartService, private modalService: NgbModal,
+  constructor(private toastrService: ToastrService, private http: HttpClient, private fb: FormBuilder, private cartService: CartService, private modalService: NgbModal,
     public productsService: ProductsService, private orderService: OrderService, private elementRef: ElementRef, private previewProgressSpinner: OverlayService) {
     this.config = new AppConfig(productsService)
     this.checkoutForm = this.fb.group({
-      firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
-      lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
-      phone: ['', [Validators.required, Validators.pattern('[0-9]+')]],
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      phone: [''],
       email: ['', [Validators.required, Validators.email]],
-      fullname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
-      recipientphone: ['', [Validators.required, Validators.pattern('[0-9]+')]],
-      address: ['', [Validators.required, Validators.maxLength(250)]],
+      fullname: ['', [Validators.required]],//, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')
+      recipientphone: ['', [Validators.required]], //Validators.pattern('[0-9]+')
+      address: ['', [Validators.required, Validators.maxLength(500)]],
       country: ['', Validators.required],
       town: ['', Validators.required],
       state: ['', Validators.required],
@@ -115,19 +116,27 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   slickInit(e) { }
 
-  async checkIfLoggedIn(){
+  async checkIfLoggedIn() {
     const anon = localStorage.getItem("signInAnonymously")
     const logged = localStorage.getItem("logged")
-    if(logged == null || logged == "false"){
-       if(anon == "true"){
-          return
-       }
+    if (logged == null || logged == "false") {
+      if (anon == "true") {
+        return
+      }
       await firebase.auth().signInAnonymously()
       localStorage.setItem("signInAnonymously", "true")
     }
- }
+  }
 
   ngOnInit() {
+    const url = location.search.substring(6).replace('%2F','/')
+    const fw = decodeURI(url)
+    const json = JSON.parse(fw)
+    console.log(json)
+    // const fw = JSON.parse(location.search)
+    // const a = btoa('e2:62:28:86:a4:3e:48:8b:6f:33:7d:cd:fe:f2:05:68:d2:1e:bf:9d'.split(':').map(hc => String.fromCharCode(parseInt(hc, 16))).join(''))
+    // console.log(a)
+    //this.initConfig()
     this.checkIfLoggedIn()
     this.checkoutForm.controls['firstname'].setValue((localStorage.getItem('fn') != null) ? localStorage.getItem('fn') : '')
     this.checkoutForm.controls['lastname'].setValue((localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : '')
@@ -139,9 +148,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     // this.getTotal().subscribe(amount => this.amount = (amount + this.tax_amount + this.delivery_amount));
     this.cartService.getTotalAmount().subscribe(amount => this.amount = (amount + this.tax_amount + this.delivery_amount));
     this.getTaxValue()
-    //this.initConfig();
     ////this.card_styles = JSON.parse(localStorage.getItem("card_styles"))
-    
+
     //this.getGiftCardMessages()
     //this.getMainCategories()
   }
@@ -191,6 +199,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     return this.config.convertTotalPrice(this.cartService.getTotalAmount());
   }
 
+  //Get total to pay
+  // public getTotalPay(): Observable<number> {
+  //   return this.config.convertPrice(this.amount);
+  // }
+
   // stripe payment gateway
   /*
   stripeCheckout() {
@@ -218,58 +231,100 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   */
 
   // Paypal payment gateway
-  /*
+
   private initConfig(): void {
-    const other_payment_detals = {
-      tax: this.tax_amount,
-      delivery: this.delivery_amount
-    }
-    this.payPalConfig = new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, {
-      commit: true,
-      client: {
-        sandbox: 'CLIENT_ID', // client Id
+    // const other_payment_detals = {
+    //   tax: this.tax_amount,
+    //   delivery: this.delivery_amount
+    // }
+    this.payPalConfig = {//new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, 
+      advanced: {
+        commit: 'true',
+        //extraQueryParams: [{name: 'environment', value: 'sandbox'}]
       },
-      button: {
+      currency: 'EUR',//(this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency,
+      clientId: 'ASAQKRc9sz64GxrFJLsQ2BJx2Ft_W1F2L5AaPpS9cSi0Yco9-bUuxFloxcBWN0_Z_Ia09AF0292iWoPn',
+      style: {
         label: 'paypal',
-        size: 'small',    // small | medium | large | responsive
-        shape: 'rect',     // pill | rect
-        //color: 'blue',   // gold | blue | silver | black
-        //tagline: false  
+        layout: 'horizontal',
+        size: 'responsive',
+        shape: 'pill',
+        color: 'gold',
+        tagline: true
       },
-      onPaymentComplete: (data, actions) => {
-        this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, data.orderID, this.config.convertPrice(this.amount), this.selected_card_style, null);
+      createOrderOnClient: (data) => <ICreateOrderRequest> {
+        intent: 'CAPTURE',
+        purchase_units: [{
+            amount: {
+                currency_code: 'EUR',
+                value: '9.99',
+                breakdown: {
+                    item_total: {
+                        currency_code: 'EUR',
+                        value: '9.99'
+                    }
+                }
+            },
+            items: [{
+                name: 'Enterprise Subscription',
+                quantity: '1',
+                category: 'DIGITAL_GOODS',
+                unit_amount: {
+                    currency_code: 'EUR',
+                    value: '9.99',
+                },
+            }]
+        }]
+    },
+      onApprove: (data, actions) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then(details => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+
+      },
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        //this.showSuccess = true;
       },
       onCancel: (data, actions) => {
-        this.config.displayMessage("Payment cancelled", false)
+        console.log('OnCancel', data, actions);
+        //this.showCancel = true;
+
       },
-      onError: (err) => {
-        console.log(err);
-        this.config.displayMessage("An error occurred. Please try again", false)
+      onError: err => {
+        console.log('OnError', err);
+        //this.showError = true;
       },
-      transactions: [{
-        amount: {
-          currency: this.productsService.currency,
-          total: this.config.convertPrice(this.amount)
-        }
-      }]
-    });
-  }
-  */
-  paymentCancel() {
-    this.reference = this.randomInt(1, 999999999)
-    this.config.displayMessage("Payment cancelled", false)
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+        //this.resetStatus();
+      },
+    }
   }
 
-  paymentDone(paystackData: any) {
+  paymentCancel() {
+    this.reference = this.randomInt(1, 999999999)
+    this.toastrService.error('Payment cancelled');
+    // this.config.displayMessage("Payment cancelled", false)
+  }
+
+  paymentDone(fw: any) {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
     const order_currency = (this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency
     const order_amount = this.config.convertPrice(this.amount)
-    const body = {
-      "txref": this.reference,
-      "SECKEY": environment.flutter_wave_secret_key
-    }
-    this.http.post('https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify', body, { headers: { "Content-Type": "application/json" } }).toPromise().then(res => {
+    // const body = {
+    //   "txref": this.reference,
+    //   "SECKEY": environment.flutter_wave_secret_key
+    // }
+    this.http.get(`https://us-central1-taconlinegiftshop.cloudfunctions.net/verifyTransaction?ref=${this.reference}`, { headers: { "Authorization": "api ATCNoQUGOoEvTwqWigCR" } }).toPromise().then(res => {
 
+      if (res['error'] != null) {
+        this.previewProgressSpinner.close()
+        this.reference = this.randomInt(1, 999999999)
+        this.toastrService.error('Payment not successful. Please try again.');
+        return
+      }
       const data = res['data']
       const message = data['status']
       const cc = data['chargecode']
@@ -316,17 +371,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         localStorage.setItem('phone', this.checkoutForm.value.phone)
         localStorage.setItem('fn', this.checkoutForm.value.firstname)
         localStorage.setItem('ln', this.checkoutForm.value.lastname)
+        firebase.analytics().logEvent('checkout', { email: `${current_email}`, cart: this.checkOutItems, platform: 'web' });
         this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, this.reference, this.config.convertPrice(this.amount), this.selected_card_style, locationData);
       } else {
         this.previewProgressSpinner.close()
         this.reference = this.randomInt(1, 999999999)
-        this.config.displayMessage('Payment not successful. Please try again.', false)
+        this.toastrService.error('Payment not successful. Please try again.');
       }
 
     }).catch(err => {
       this.previewProgressSpinner.close()
       this.reference = this.randomInt(1, 999999999)
-      this.config.displayMessage('An error occured', false)
+      this.toastrService.error('An error occured');
     })
   }
 

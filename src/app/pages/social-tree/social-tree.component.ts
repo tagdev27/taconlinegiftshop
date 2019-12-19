@@ -55,6 +55,33 @@ export class SocialTreeComponent implements OnInit {
 	facebook_gender = ''
 	facebook_birthday = ''
 
+	google_social_tree_key = ''
+
+	async getTree() {
+		// const query = await firebase.firestore().collection('social-tree').get()
+		// // query.forEach(d => {
+		// // 	const tree = <SocialTree>d.data()
+		// // 	tree.events.forEach(ev => {
+		// // 		const date = new Date(ev.event_timestamp)
+		// // 		console.log(`${ev.event_date} ======= ${date.toDateString()}`)
+		// // 	})
+		// // })
+		// const tree = <SocialTree>query.docs[0].data()
+		// const ev = tree.events
+		// const t0 = ev[0].event_timestamp
+		// const t1 = ev[1].event_timestamp
+		
+		// const date0 = new Date() 
+		// const date1 = new Date(t1)
+		// const diffMs = date1.getTime() - date0.getTime()
+		// console.log(date0.getUTCMonth())
+		// // console.log(new Date(diff).toDateString())
+		// let diffDays = Math.floor(diffMs / 86400000); // days
+		// let diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+		// let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+		// console.log(diffDays + " days, " + diffHrs + " hours, " + diffMins + " minutes");
+	}
+
 	async checkIfLoggedIn() {
 		// firebase.auth().onAuthStateChanged(userData => {
 		// 	if(userData){
@@ -71,31 +98,31 @@ export class SocialTreeComponent implements OnInit {
 	constructor(private fb: FormBuilder, private previewProgressSpinner: OverlayService, private http: HttpClient, private modalService: NgbModal) {
 		this.config = new AppConfig()
 		this.checkoutForm = this.fb.group({
-			firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
-			lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
-			phone: ['', [Validators.required, Validators.pattern('[0-9]+')]],
+			firstname: ['', [Validators.required]],//Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')
+			lastname: ['', [Validators.required]],
+			phone: [''],
 			email: ['', [Validators.email]],
-			age: ['', [Validators.required]],
+			// age: ['', [Validators.required]],
 			gender: ['', [Validators.required]],
-			address: ['', [Validators.required, Validators.maxLength(250)]],
+			address: ['', [Validators.maxLength(500)]],//, [Validators.required, Validators.maxLength(250)]
 			relationship: ['', Validators.required],
-			occupation: ['', Validators.required],
+			occupation: [''],// Validators.required
 		})
 	}
 
 	getCurrentUserSocialTree() {
 		if (this.logged == 'true') {
 			const email = localStorage.getItem('email')
-			firebase.firestore().collection('social-tree').where("user_id", "==", email).onSnapshot(query => {
-				this.mySocialTree = []
-				if (query.size > 0) {
-					this.hasSocialTreeAdded = true
-				}
-				query.forEach(st => {
-					const mst = <SocialTree>st.data()
-					this.mySocialTree.push(mst)
-				})
-			})
+			// firebase.firestore().collection('social-tree').where("user_id", "==", email).get().then(query => {
+			// 	this.mySocialTree = []
+			// 	if (query.size > 0) {
+			// 		this.hasSocialTreeAdded = true
+			// 	}
+			// 	query.forEach(st => {
+			// 		const mst = <SocialTree>st.data()
+			// 		this.mySocialTree.push(mst)
+			// 	})
+			// })
 		}
 	}
 
@@ -125,6 +152,8 @@ export class SocialTreeComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		//this.getTree()
+		this.google_social_tree_key = firebase.database().ref().push().key
 		$(document).ready(function (e) {
 			setInterval(function () {
 				$('#l_a').addClass('infinite');
@@ -195,17 +224,25 @@ export class SocialTreeComponent implements OnInit {
 		}
 		this.loading = true
 		var socialEvents: SocialEvents[] = []
+		const email = localStorage.getItem('email')
+		const key = firebase.database().ref().push().key
 		for (var i = 0; i < this.eventCount; i++) {
 			const event_name = (<HTMLInputElement>document.getElementById(`event_name_${i}`)).value
 			const event_date = (<HTMLInputElement>document.getElementById(`event_date_${i}`)).value
+			const date = new Date(event_date)
 			const event: SocialEvents = {
 				event_name: event_name,
-				event_date: event_date
+				event_date: event_date,
+				event_timestamp: date.getTime(),
+				event_day: date.getUTCDate(),
+				event_month: date.getUTCMonth(),
+				event_year: date.getUTCFullYear(),
+				social_tree_id: key,
+				user_id: email
 			}
 			socialEvents.push(event)
 		}
-		const key = firebase.database().ref().push().key
-		const email = localStorage.getItem('email')
+		
 		const image = (<HTMLInputElement>document.getElementById("member_image")).files
 		var image_url = 'https://tacadmin.firebaseapp.com/assets/img/default-avatar.png'
 		if (image.length > 0) {
@@ -216,26 +253,37 @@ export class SocialTreeComponent implements OnInit {
 			id: key,
 			user_id: email,
 			name: `${this.checkoutForm.value.firstname} ${this.checkoutForm.value.lastname}`,
-			age: `${this.checkoutForm.value.age}`,
+			// age: `${this.checkoutForm.value.age}`,
 			gender: `${this.checkoutForm.value.gender}`,
 			relationship: `${this.checkoutForm.value.relationship}`,
 			occupation: `${this.checkoutForm.value.occupation}`,
 			address: `${this.checkoutForm.value.address}`,
 			number: `${this.checkoutForm.value.phone}`,
 			email: `${this.checkoutForm.value.email}`,
-			events: socialEvents,
+			// events: socialEvents,
 			profile_image_url: image_url,
 			entry_mode: 'manual',
 			created_date: firebase.firestore.FieldValue.serverTimestamp()
 		}
+		firebase.analytics().logEvent('social-tree', { method: `manual`, platform : 'web'});
 		firebase.firestore().collection('social-tree').doc(key).set(st).then(d => {
-			for (var i = 0; i < this.eventCount; i++) {
-				$(`#e_${i}`).remove()
-				$(`#e_${i}`).remove()
-			}
-			this.loading = false
-			this.config.displayMessage('Member successfully added.', true)
-			this.checkoutForm.reset()
+			var index = 0
+			socialEvents.forEach(async se => {
+				const id = firebase.database().ref().push().key
+				await firebase.firestore().collection('social-tree-events').doc(id).set(se)
+
+				index = index + 1
+
+				if(index == socialEvents.length){
+					for (var i = 0; i < this.eventCount; i++) {
+						$(`#e_${i}`).remove()
+						$(`#e_${i}`).remove()
+					}
+					this.loading = false
+					this.config.displayMessage('Member successfully added.', true)
+					this.checkoutForm.reset()
+				}
+			})
 		}).catch(err => {
 			this.loading = false
 			this.config.displayMessage(`${err}`, false);
@@ -258,9 +306,9 @@ export class SocialTreeComponent implements OnInit {
 		const email = localStorage.getItem('email')
 		var provider = new firebase.auth.FacebookAuthProvider();
 		provider.addScope('email');
-		provider.addScope('user_birthday');
-		provider.addScope('user_friends');
-		provider.addScope('user_gender')
+		// provider.addScope('user_birthday');
+		// provider.addScope('user_friends');
+		// provider.addScope('user_gender')
 		firebase.auth().signInWithPopup(provider).then(async result => {
 			const user_email = result.user.email
 			const pic = result.additionalUserInfo.profile['picture']
@@ -303,7 +351,13 @@ export class SocialTreeComponent implements OnInit {
 				const event_date = user.id
 				const event: SocialEvents = {
 					event_name: event_name,
-					event_date: event_date
+					event_date: event_date,
+					event_timestamp: new Date(event_date).getTime(),//error here
+					event_day: 0,
+					event_month: 0,
+					event_year: 0,
+					social_tree_id: '',
+					user_id: ''
 				}
 				usersEvents.push(event)
 			})
@@ -314,14 +368,14 @@ export class SocialTreeComponent implements OnInit {
 				id: key,
 				user_id: email,
 				name: `${localStorage.getItem('fn')} ${localStorage.getItem('ln')}`,
-				age: this.facebook_birthday,
+				// age: this.facebook_birthday,
 				gender: this.facebook_gender,
 				relationship: '',
 				occupation: '',
 				address: '',
 				number: localStorage.getItem('phone'),
 				email: email,
-				events: usersEvents,
+				// events: usersEvents,
 				profile_image_url: this.google_picture,
 				entry_mode: 'facebook',
 				created_date: firebase.firestore.FieldValue.serverTimestamp()
@@ -371,7 +425,7 @@ export class SocialTreeComponent implements OnInit {
 			// }
 			await firebase.firestore().collection('users').doc(email.toLowerCase()).update({
 				'Tokens': result.credential.toJSON(),
-				'picture': result.additionalUserInfo.profile['picture']
+				// 'picture': result.additionalUserInfo.profile['picture']
 			})
 			this.GoogleToken = result.credential.toJSON()
 			this.accessEventsFromGoogleResult()
@@ -395,12 +449,13 @@ export class SocialTreeComponent implements OnInit {
 			if (result['error'] != null) {
 				this.reloadToken = true
 				this.config.displayMessage('User access token expired. Please try again.', false)
+				this.modalService.dismissAll()
 				return
 			}
 			this.reloadToken = false
 			this.google_events_list = result
 			const items: any[] = result['items']
-
+			const email = localStorage.getItem('email')
 			items.forEach(ms => {
 				const event_name = ms.summary
 				const start_date = ms.start
@@ -408,9 +463,16 @@ export class SocialTreeComponent implements OnInit {
 				if (event_date == undefined) {
 					event_date = start_date['date']
 				}
+				const date = new Date(event_date)
 				const event: SocialEvents = {
 					event_name: event_name,
-					event_date: event_date
+					event_date: event_date,
+					event_timestamp: date.getTime(),
+					event_day: date.getUTCDate(),
+					event_month: date.getUTCMonth(),
+					event_year: date.getUTCFullYear(),
+					social_tree_id: this.google_social_tree_key,
+					user_id: email
 				}
 				this.googleEvents.push(event)
 				$('#event_lists').append(`
@@ -426,6 +488,7 @@ export class SocialTreeComponent implements OnInit {
 			this.previewProgressSpinner.close()
 			this.reloadToken = true
 			this.config.displayMessage('User access token expired. Please try again.', false)
+			this.modalService.dismissAll()
 		})
 	}
 
@@ -443,28 +506,39 @@ export class SocialTreeComponent implements OnInit {
 		}
 
 		this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
-		const key = firebase.database().ref().push().key
+		// const key = firebase.database().ref().push().key
 		const email = localStorage.getItem('email')
 		const st: SocialTree = {
-			id: key,
+			id: this.google_social_tree_key,
 			user_id: email,
 			name: `${localStorage.getItem('fn')} ${localStorage.getItem('ln')}`,
-			age: '',
+			// age: '',
 			gender: '',
 			relationship: '',
 			occupation: '',
 			address: '',
 			number: localStorage.getItem('phone'),
 			email: email,
-			events: google_Social_Tree,
+			// events: google_Social_Tree,
 			profile_image_url: this.google_picture,
 			entry_mode: 'google',
 			created_date: firebase.firestore.FieldValue.serverTimestamp()
 		}
-		firebase.firestore().collection('social-tree').doc(key).set(st).then(d => {
-			this.modalService.dismissAll()
-			this.previewProgressSpinner.close()
-			this.config.displayMessage('Events successfully added.', true)
+		firebase.analytics().logEvent('social-tree', { method: `google`, platform : 'web'});
+		firebase.firestore().collection('social-tree').doc(this.google_social_tree_key).set(st).then(d => {
+			var index = 0
+			google_Social_Tree.forEach(async se => {
+				const id = firebase.database().ref().push().key
+				await firebase.firestore().collection('social-tree-events').doc(id).set(se)
+
+				index = index + 1
+
+				if(index == google_Social_Tree.length){
+					this.modalService.dismissAll()
+					this.previewProgressSpinner.close()
+					this.config.displayMessage('Events successfully added.', true)
+				}
+			})
 		}).catch(err => {
 			this.previewProgressSpinner.close()
 			this.config.displayMessage(`${err}`, false);

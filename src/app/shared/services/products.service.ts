@@ -52,7 +52,7 @@ export class ProductsService {
     new AppConfig().getBanners().then(async ban => {
       // console.log(ban)
       this.banner = ban
-      //await this.getMainCategoriesNavBar()
+      //await this.getMainCategoriesLeftMenu()
       // console.log(JSON.stringify(this.ShopDropDownMenu))
     })
     this.mHttp.get('https://ipapi.co/json', { headers: new HttpHeaders(this.apiHeaderDict) }).subscribe(res => {//https://us-central1-taconlinegiftshop.cloudfunctions.net/get_current_ip   { headers: new HttpHeaders(this.headerDict) }
@@ -247,7 +247,7 @@ export class ProductsService {
         this.ShopDropDownMenu.push(main_menu)
         // console.log(this.ShopDropDownMenu)
 
-        // console.log(JSON.stringify(this.ShopDropDownMenu))
+        console.log(JSON.stringify(this.ShopDropDownMenu))
       } catch (err) {
         console.log(err)
       }

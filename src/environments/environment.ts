@@ -17,8 +17,7 @@ export const environment = {
   production: false,
   paystack_key: 'pk_test_8be8b3b21803dcb62514b6e55f3c6f90f4a74483',
   fireConfig: firebaseConfig,
-  flutter_wave_public_key: 'FLWPUBK_TEST-7009c2baf4176e75795b55a8eb3c74c3-X',
-  flutter_wave_secret_key: 'FLWSECK_TEST-ee6997928d4342262fdda896ee3266d7-X'
+  flutter_wave_public_key: 'FLWPUBK_TEST-407af7e7116f735e90d8f87c23b2d205-X'//'FLWPUBK-a3d73a4adca90132e01f38840e603aab-X'//
 };
 
 /*

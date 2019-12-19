@@ -48,12 +48,17 @@ export class RegisterComponent implements OnInit {
     var provider = new firebase.auth.FacebookAuthProvider();
     // provider.addScope('user_events');
     provider.addScope('email');
-    provider.addScope('user_birthday');
-    provider.addScope('user_friends');
-    provider.addScope('user_gender');
+    // provider.addScope('user_birthday');
+    // provider.addScope('user_friends');
+    // provider.addScope('user_gender');
     firebase.auth().signInWithPopup(provider).then(result => {
       //console.log(result)
       const user_email = result.user.email
+      if(user_email == null){
+        firebase.auth().signOut()
+        this.config.displayMessage(`Your facebook account doesn't have an email address. Please try with another account`, false)
+        return;
+      }
       // console.log(user_email)
       // console.log(result)
       this.uploadFirestoreAndRedirect('facebook', user_email, result, null)
@@ -104,6 +109,7 @@ export class RegisterComponent implements OnInit {
         'country': this.productService.country,
         'email': email,
         'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+        'timestamp': firebase.firestore.FieldValue.serverTimestamp(),
         'firstname': other_result['fn'],
         'lastname': other_result['ln'],
         'picture': 'https://tacadmin.firebaseapp.com/assets/img/default-avatar.png',
@@ -117,6 +123,7 @@ export class RegisterComponent implements OnInit {
           'country': this.productService.country,
           'email': email,
           'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+          'timestamp': firebase.firestore.FieldValue.serverTimestamp(),
           'firstname': google_result.additionalUserInfo.profile['given_name'],
           'lastname': google_result.additionalUserInfo.profile['family_name'],
           'picture': google_result.additionalUserInfo.profile['picture'],
@@ -133,6 +140,7 @@ export class RegisterComponent implements OnInit {
           'country': this.productService.country,
           'email': email,
           'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+          'timestamp': firebase.firestore.FieldValue.serverTimestamp(),
           'firstname': google_result.additionalUserInfo.profile['first_name'],
           'lastname': google_result.additionalUserInfo.profile['last_name'],
           'picture': pic_data['url'],
@@ -432,6 +440,8 @@ export class RegisterComponent implements OnInit {
       const pd = this.previewProgressSpinner
       const rt = this.router
       const cf = this.config
+
+      firebase.analytics().logEvent('sign_up', { email: `${email}`, user_data: user_data, platform : 'web'});
 
       firebase.firestore().collection('users').doc(email.toLowerCase()).set(user_data).then(result => {
         $(function () {
