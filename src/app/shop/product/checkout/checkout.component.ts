@@ -32,6 +32,7 @@ declare interface Messages {
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
 
+  shownow = false
   showPaymentOption = false
   // form group
   public checkoutForm: FormGroup;
@@ -41,6 +42,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   public amount: number;
   fixed_amount: number;
   public tax_amount: number = 0
+  tax_value = 7.5
   // public delivery_amount: number = 2000
   delivery_amount: number = 0
   //other countries amount
@@ -89,14 +91,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   getTaxValue() {
     firebase.firestore().collection('db').doc('tacadmin').collection('settings').doc('tax').get().then(snap => {
-      const tax: number = snap.data()['tax_value']
-      this.cartService.getTotalAmount().subscribe(subtotal => {
-        this.tax_amount = (subtotal * tax) / 100
-        //this.amount = (this.productsService.country == 'Nigeria') ? (this.amount + this.tax_amount) : (this.amount + this.tax_amount) * 100
-        this.amount = (this.amount + this.tax_amount)
-        this.fixed_amount = this.amount
-        //this.other_country_amount = Number.parseInt((this.amount*100).toFixed())
-      })
+      this.tax_value = snap.data()['tax_value']
+      // const tax: number = snap.data()['tax_value']
+      // this.cartService.getTotalAmount().subscribe(subtotal => {
+      //   this.tax_amount = (subtotal * tax) / 100
+      //   //this.amount = (this.productsService.country == 'Nigeria') ? (this.amount + this.tax_amount) : (this.amount + this.tax_amount) * 100
+      //   this.amount = (this.amount + this.tax_amount)
+      //   this.fixed_amount = this.amount
+      //   //this.other_country_amount = Number.parseInt((this.amount*100).toFixed())
+      // })
     })
   }
 
@@ -129,10 +132,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const url = location.search.substring(6).replace('%2F','/')
-    const fw = decodeURI(url)
-    const json = JSON.parse(fw)
-    console.log(json)
+    // const url = location.search.substring(6).replace('%2F','/')
+    // const fw = decodeURI(url)
+    // const json = JSON.parse(fw)
+    // console.log(json)
     // const fw = JSON.parse(location.search)
     // const a = btoa('e2:62:28:86:a4:3e:48:8b:6f:33:7d:cd:fe:f2:05:68:d2:1e:bf:9d'.split(':').map(hc => String.fromCharCode(parseInt(hc, 16))).join(''))
     // console.log(a)
@@ -148,6 +151,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     // this.getTotal().subscribe(amount => this.amount = (amount + this.tax_amount + this.delivery_amount));
     this.cartService.getTotalAmount().subscribe(amount => this.amount = (amount + this.tax_amount + this.delivery_amount));
     this.getTaxValue()
+
     ////this.card_styles = JSON.parse(localStorage.getItem("card_styles"))
 
     //this.getGiftCardMessages()
@@ -252,30 +256,30 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         color: 'gold',
         tagline: true
       },
-      createOrderOnClient: (data) => <ICreateOrderRequest> {
+      createOrderOnClient: (data) => <ICreateOrderRequest>{
         intent: 'CAPTURE',
         purchase_units: [{
-            amount: {
+          amount: {
+            currency_code: 'EUR',
+            value: '9.99',
+            breakdown: {
+              item_total: {
                 currency_code: 'EUR',
-                value: '9.99',
-                breakdown: {
-                    item_total: {
-                        currency_code: 'EUR',
-                        value: '9.99'
-                    }
-                }
+                value: '9.99'
+              }
+            }
+          },
+          items: [{
+            name: 'Enterprise Subscription',
+            quantity: '1',
+            category: 'DIGITAL_GOODS',
+            unit_amount: {
+              currency_code: 'EUR',
+              value: '9.99',
             },
-            items: [{
-                name: 'Enterprise Subscription',
-                quantity: '1',
-                category: 'DIGITAL_GOODS',
-                unit_amount: {
-                    currency_code: 'EUR',
-                    value: '9.99',
-                },
-            }]
+          }]
         }]
-    },
+      },
       onApprove: (data, actions) => {
         console.log('onApprove - transaction was approved, but not authorized', data, actions);
         actions.order.get().then(details => {
@@ -303,10 +307,40 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
   }
 
+  placeOrderButtonClicked() {
+    this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);
+    const order_currency = (this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency
+    const order_amount = this.config.convertPrice(this.amount)
+
+    const ttax = (this.tax_value * this.amount) / 100
+
+    const other_payment_detals = {
+      tax_value: this.tax_value,
+      tax: this.config.convertPrice(ttax),//this.tax_amount),
+      delivery: this.config.convertPrice(this.delivery_amount),
+      delivery_type: this.selected_delivery_name
+    }
+    const locationData = {
+      currency: this.productsService.currency,
+      country: this.productsService.country,
+      exchange_rate: this.productsService.exchange_rate,
+      payment_gateway_fee: 0,
+      mf: 0
+    }
+    const current_email = localStorage.getItem('email')
+    if (current_email == null) {
+      localStorage.setItem('email', this.checkoutForm.value.email)
+    }
+    localStorage.setItem('phone', this.checkoutForm.value.phone)
+    localStorage.setItem('fn', this.checkoutForm.value.firstname)
+    localStorage.setItem('ln', this.checkoutForm.value.lastname)
+    firebase.analytics().logEvent('checkout', { email: `${current_email}`, cart: this.checkOutItems, platform: 'web' });
+    this.orderService.createOrder(this.checkOutItems, this.checkoutForm.value, other_payment_detals, this.reference, this.config.convertPrice(this.amount), this.selected_card_style, locationData);
+  }
+
   paymentCancel() {
     this.reference = this.randomInt(1, 999999999)
     this.toastrService.error('Payment cancelled');
-    // this.config.displayMessage("Payment cancelled", false)
   }
 
   paymentDone(fw: any) {

@@ -177,6 +177,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   // Animation Effect fadeOut
   public fadeOut() {
     this.animation = 'fadeOut';
+    // this.filterItems().length
   }
 
 

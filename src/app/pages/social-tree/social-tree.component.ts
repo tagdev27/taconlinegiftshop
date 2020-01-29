@@ -428,6 +428,7 @@ export class SocialTreeComponent implements OnInit {
 				// 'picture': result.additionalUserInfo.profile['picture']
 			})
 			this.GoogleToken = result.credential.toJSON()
+			this.reloadToken = false
 			this.accessEventsFromGoogleResult()
 		}).catch(err => {
 			//this.config.displayMessage(`${err}`, false)

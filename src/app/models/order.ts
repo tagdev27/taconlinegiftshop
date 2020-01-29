@@ -9,6 +9,7 @@ export interface TacOrder {
     payment_gateway_used:string
     order_platform:string
     transaction_id:string
+    payment_status:string
     id: string
     country: string
     email: string

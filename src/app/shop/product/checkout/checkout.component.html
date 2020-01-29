@@ -300,13 +300,13 @@
                                             Subtotal <span
                                                 class="count">{{ getTotal() | async | currency:productsService?.currency:'symbol'}}</span>
                                         </li>
-                                        <li *ngIf='checkOutItems.length'>
+                                        <li *ngIf='shownow'>
                                             Tax
                                             <div class="shipping">
                                                 <span>
                                                     {{ config.convertPrice(tax_amount) | currency:productsService?.currency:'symbol' }}
                                                 </span>
-                                                <!-- <div class="shopping-option">
+                                                <!-- checkOutItems.length <div class="shopping-option">
                                                     <input type="radio" name="shipping" checked="checked"
                                                         id="free-shipping">
                                                     <label for="free-shipping">Shipping</label>
@@ -317,7 +317,7 @@
                                                 </div> -->
                                             </div>
                                         </li>
-                                        <li *ngIf='checkOutItems.length'>
+                                        <li *ngIf='shownow'>
                                             Delivery
                                             <div class="shipping">
                                                 <!-- <span>
@@ -326,10 +326,10 @@
                                                 <form>
                                                     <div class="shopping-option"
                                                         *ngFor="let del of productsService.delivery">
-                                                        <input type="radio" name="shipping" id="free-shipping"
+                                                        <input type="radio" name="shipping" id="free-shipping-{{del.id}}"
                                                             (change)="deliveryMethodChange(del.value, del.name)"
                                                             value="{{del.value}}">
-                                                        <label for="free-shipping">{{del.name}} -
+                                                        <label for="free-shipping-{{del.id}}">{{del.name}} -
                                                             {{config.convertPrice(del.value) | currency:productsService?.currency:'symbol'}}</label>
                                                         <br><small>{{del.description}}</small>
                                                     </div>
@@ -392,12 +392,11 @@
                                             [channels]="['card','bank']"
                                             [currency]="(productsService.currency == '₦') ? 'NGN' : this.productsService.currency"
                                             class="btn-solid btn" (close)="paymentCancel()"
-                                            (callback)="paymentDone($event)">Place Order</button> -->
-                                        <button *ngIf="!checkoutForm.valid || delivery_amount == 0"
-                                            class="btn-solid btn" [disabled]="true" type="submit">
+                                            (callback)="paymentDone($event)">Place Order</button> *ngIf="!checkoutForm.valid || delivery_amount == 0"-->
+                                        <button class="btn-solid btn" [disabled]="!checkoutForm.valid" type="button" (click)="placeOrderButtonClicked()">
                                             Place Order
                                         </button>
-                                        <rave-pay-button *ngIf="checkoutForm.valid && delivery_amount > 0"
+                                        <!-- <rave-pay-button *ngIf="checkoutForm.valid && delivery_amount > 0"
                                             [text]="'Place Order'" [className]="'btn-solid btn'"
                                             (callback)="paymentDone($event)" (close)="paymentCancel()"
                                             [key]="flutterWaveKey"
@@ -408,7 +407,7 @@
                                             [customer_phone]="checkoutForm.value.phone" [reference]="reference"
                                             [redirect_url]="'http://localhost:4200/home/checkout'"
                                             [amount]="this.config.convertPrice(amount)"
-                                            [email]="checkoutForm.value.email"></rave-pay-button>
+                                            [email]="checkoutForm.value.email"></rave-pay-button> -->
                                     </div>
                                 </div>
                             </div>

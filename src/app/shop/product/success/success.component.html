@@ -35,24 +35,79 @@
 </section>
 <!-- Section ends -->
 
-<!-- thank-you section start -->
-<section class="section-b-space light-layout" *ngIf="orderDetails">
+<!-- after payment section section start Payment has been received -->
+<section class="section-b-space light-layout" *ngIf="isError">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="success-text">
-                    <i class="fa fa-check-circle" aria-hidden="true"></i>
-                    <h2>thank you</h2>
-                    <p>Payment has been received Order Placed Successfully</p>
-                    <p>Transaction ID:{{orderDetails.orderId}}</p>
+                    <i class="fa fa-close" aria-hidden="true"></i>
+                    <h2>transaction failed</h2>
+                    <p>Payment Not Successfully.</p>
+                    <p><a class="btn-solid btn" href="{{retry_url}}">
+                        RETRY PAYMENT
+                    </a></p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- Section ends -->
+
+<!-- after payment section section start Payment has been received -->
+<section class="section-b-space light-layout" *ngIf="isReloaded">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="success-text">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <h2>thank you</h2>
+                    <p>Payment Received Successfully.</p>
+                    <p>Your order is now been processed.<br/>Check your email for order details</p>
+                    <p>redirecting to home...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+
+<!-- thank-you section start Payment has been received -->
+<section class="section-b-space light-layout" *ngIf="orderDetails && !isReloaded">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="success-text">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <h2>thank you</h2>
+                    <p>Transaction ID: {{orderDetails.orderId}}</p>
+                    <p>Order Received Successfully</p>
+                    <p>To process your order, please make payment below</p>
+                    <p *ngIf="is2co"><button class="btn-solid btn" type="button" (click)="paynowClicked()">
+                        PAY NOW
+                    </button></p>
+                    <p *ngIf="isFlutterWave">
+                        <rave-pay-button [text]="'PAY NOW'" [className]="'btn-solid btn'"
+                            (callback)="paymentDone($event)" (close)="paymentCancel()"
+                            [key]="flutterWaveKey"
+                            [currency]="flwCurr"
+                            [country]="setupCurrencyAndCountry()"
+                            [customer_firstname]="orderDetails.shippingDetails.firstname"
+                            [customer_lastname]="orderDetails.shippingDetails.lastname"
+                            [customer_phone]="orderDetails.shippingDetails.phone" [reference]="reference"
+                            [redirect_url]="'https://tacgifts.com/home/checkout/success'"
+                            [amount]="orderDetails.totalAmount"
+                            [email]="orderDetails.shippingDetails.email"></rave-pay-button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+
 <!-- order-detail section start -->
-<section class="section-b-space" *ngIf="orderDetails">
+<section class="section-b-space" *ngIf="orderDetails  && !isReloaded">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -88,8 +143,9 @@
                             <li>Subtotal <span>{{getSubTotal() | async | currency:productsService?.currency:'symbol'}}</span></li>
                             <!-- <li>Shipping <span>{{config.convertPrice(OtherDetailsPayment.delivery) | currency:productsService?.currency:'symbol'}}</span></li>
                             <li>Tax <span>{{config.convertPrice(OtherDetailsPayment.tax) | currency:productsService?.currency:'symbol'}}</span></li> -->
+
                             <li>Shipping <span>{{OtherDetailsPayment.delivery | currency:productsService?.currency:'symbol'}}</span></li>
-                            <li>Tax <span>{{OtherDetailsPayment.tax | currency:productsService?.currency:'symbol'}}</span></li>
+                            <!-- <li>Tax <span>{{OtherDetailsPayment.tax | currency:productsService?.currency:'symbol'}}</span></li> -->
                         </ul>
                     </div>
                     <div class="final-total">
@@ -101,7 +157,7 @@
             <div class="col-lg-6">
                 <div class="row order-success-sec">
                     <div class="col-sm-6">
-                        <h4>summery</h4>
+                        <h4>summary</h4>
                         <ul class="order-detail">
                             <!-- <li><b>tracking ID: {{orderDetails.tracking_id}}</b></li> -->
                             <li>order ID: {{orderDetails.orderId}}</li>
@@ -120,14 +176,14 @@
                         </ul>
                     </div>
 
-                    <div class="col-sm-12 payment-mode">
+                    <!-- <div class="col-sm-12 payment-mode">
                         <h4>payment method</h4>
-                        <p>Online Paystack Payment</p>
-                    </div>
+                        <p>2Checkout</p>
+                    </div> -->
                     <div class="col-md-12">
                         <div class="delivery-sec">
                             <!-- <h3>expected date of delivery</h3>
-                            <h2>{{getDateNow()}}</h2> -->
+                            <h2>3 - 5 days</h2> -->
                             <h3>tracking ID</h3>
                             <h2>{{orderDetails.tracking_id}}</h2>
                         </div>
@@ -138,5 +194,6 @@
         </div>
     </div>
 </section>
+<div id="paymentW" style="display:none;"></div>
 <div id="thehtml" style="display:none;"></div>
 <!-- Section ends -->

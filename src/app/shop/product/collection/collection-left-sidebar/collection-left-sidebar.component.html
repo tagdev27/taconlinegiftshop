@@ -50,7 +50,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="top-banner-wrapper">
-                    <mat-spinner color="accent" diameter="24" *ngIf="preloading"></mat-spinner>
+                    <div *ngIf="preloading"><mat-spinner color="accent" diameter="24"></mat-spinner><br><h4>Please wait...</h4></div>
                     <!-- <a [routerLink]="['/home/collection/all']"> -->
                     <img src="{{(sub_category_id != 'all') ? col_image : productsService.banner.collection_image}}" class="img-fluid" alt="">
                     <!-- </a> -->
@@ -135,7 +135,7 @@
                             <img src="assets/images/empty-search.jpg" class="img-fluid mb-4">
                             <h3>Sorry! Couldn't find the product you were looking For!!! </h3>
                             <p>Please check if you have misspelt something or try searching with other words.</p>
-                            <a href="/home" class="btn btn-solid">continue shopping</a>
+                            <a href="/home/collection/all" class="btn btn-solid">continue shopping</a>
                           </div>
                         </div>
                       </div>

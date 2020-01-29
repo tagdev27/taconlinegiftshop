@@ -36,4 +36,7 @@ export interface Banners {
     banner_font_size?:number
     banner_text_color?:string
     social_tree_image?:string
+
+    slider_one_category?:string
+    slider_two_category?:string
 }

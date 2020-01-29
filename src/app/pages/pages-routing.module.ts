@@ -92,10 +92,10 @@ const routes: Routes = [
         path: 'cart',
         component: CartComponent
       },
-      // {
-      //   path: 'collection',
-      //   component: CollectionComponent
-      // },
+      {
+        path: 'collections/:id',
+        component: CollectionComponent
+      },
       {
         path: 'forgetpassword',
         component: ForgetPasswordComponent,

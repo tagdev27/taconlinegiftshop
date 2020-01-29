@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "dist/tac",
+    "site": "tac-staging-website",
     "ignore": [
       "firebase.json",
       "**/.*",

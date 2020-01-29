@@ -10,6 +10,7 @@ import "firebase/analytics"
 import { Users } from './models/users';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import {Md5} from 'ts-md5/dist/md5';
 
 declare var gapi: any
 

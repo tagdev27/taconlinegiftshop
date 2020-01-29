@@ -56,6 +56,7 @@ export class ProductLeftSidebarComponent implements OnInit {
         this.getProductReviews()
         $('head').append(`<meta name="description" content="${product.description}">`)
         firebase.analytics().logEvent('product_views', { name: `${product.name}`, platform : 'web'});
+        //this.getProductId(this.product.key, this.product.created_date) - NOT USEFUL
       })
       //$('#metaelement').attr('content', `${this.product.description}`);
     });
@@ -123,8 +124,37 @@ export class ProductLeftSidebarComponent implements OnInit {
 
   slickInit(e){}
 
+  //method used to generate created_timestamp from created_date and update it on firestore
+  async getProductId(key:string, pdt:string){
+    console.log(`key is ${key}`)
+    const d1 = pdt.split('-')[0].trim()
+    const d2 = pdt.split('-')[1].trim()
+    const t1 = d1.split('/')
+    const t2 = d2.split(':')
+    var month = 0, day = 0
+
+    var dt = null
+    if(t2[2].includes("AM")){
+      dt = new Date(Number(t1[2]), Number(t1[0]) - 1, Number(t1[1]), Number(t2[0]),Number(t2[1]))
+    }else if (t2[2].includes("PM")){
+      dt = new Date(Number(t1[2]), Number(t1[0]) - 1, Number(t1[1]), Number(t2[0]) + 12,Number(t2[1]))
+    }else{
+      dt = new Date(Number(t1[2]), Number(t1[0]) - 1, Number(t1[1]), Number(t2[0]),Number(t2[1]))
+    }
+    await firebase.firestore().collection('db').doc('tacadmin').collection('products').doc(key).update({'created_timestamp':firebase.firestore.Timestamp.fromDate(dt)})
+  }
+
   ngOnInit() {
     //console.log(`width = ${$(window).width()} = ${this.isMobileView()}`)
+    // firebase.firestore().collection('db').doc('tacadmin').collection('products').get().then(d => {//.where('deleted', '==', false).orderBy('created_timestamp', 'desc')
+    //   d.forEach(async p => {
+    //     const a = <Product>p.data()
+    //     await firebase.firestore().collection('db').doc('tacadmin').collection('products').doc(a.key).update({'stock':100})
+    //     // console.log(a.name)
+    //     //this.getProductId(a.key, a.created_date)
+    //   })
+    // })
+
     this.productsService.getProducts().subscribe(product => this.products = product);
     this.getStockLevel()
   }

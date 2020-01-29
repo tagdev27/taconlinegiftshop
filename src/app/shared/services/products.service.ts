@@ -46,13 +46,22 @@ export class ProductsService {
 
   public ShopDropDownMenu: navbar.Menu[] = []
 
+  public slider_one_link = '#'
+  public slider_two_link = '#'
+
   // Initialize 
   constructor(private http: Http, private toastrService: ToastrService, private mHttp: HttpClient) {
     this.compareProducts.subscribe(products => products = products);
     new AppConfig().getBanners().then(async ban => {
       // console.log(ban)
       this.banner = ban
-      //await this.getMainCategoriesLeftMenu()
+      this.getSubCategoryLinkByID(this.banner.slider_one_category).then(res => {
+        this.slider_one_link = res
+      })
+      this.getSubCategoryLinkByID(this.banner.slider_two_category).then(res => {
+        this.slider_two_link = res
+      })
+      // await this.getMainCategoriesNavBar()
       // console.log(JSON.stringify(this.ShopDropDownMenu))
     })
     this.mHttp.get('https://ipapi.co/json', { headers: new HttpHeaders(this.apiHeaderDict) }).subscribe(res => {//https://us-central1-taconlinegiftshop.cloudfunctions.net/get_current_ip   { headers: new HttpHeaders(this.headerDict) }
@@ -92,6 +101,15 @@ export class ProductsService {
     })
     //this.getGiftCardStyles()
     this.getDeliveries()
+  }
+
+  async getSubCategoryLinkByID(id:string){
+    if(id == 'all'){
+      return '/home/collection/all'
+    }
+    const sub = await firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').doc(id).get()
+    const s = <SubCategory>sub.data()
+    return `/home/collection/${s.link}`
   }
 
   getDeliveries() {

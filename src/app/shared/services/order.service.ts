@@ -55,6 +55,7 @@ export class OrderService {
 
   addOrderToFirebase(product: any, details: any, other_payment_detals: any, orderId: any, amount: any, gcs: any, locationData:any) {
     const key = firebase.database().ref().push().key
+    localStorage.setItem("currentOrder", key)
     const track = this.randomInt(0, 999999999999)
     const track_details: Tracking[] = []
     const mT: Tracking = {
@@ -71,9 +72,10 @@ export class OrderService {
       conversion_rate: locationData['exchange_rate'],
       payment_gateway_fee: locationData['payment_gateway_fee'],
       merchant_fee: locationData['mf'],
-      payment_gateway_used: 'flutterwave',
+      payment_gateway_used: 'none',//flutterwave
       order_platform: 'web',
       transaction_id: orderId,
+      payment_status: 'unpaid',
       id: key,
       country: locationData['country'],
       email: details.email,
@@ -88,30 +90,32 @@ export class OrderService {
       other_payment_details: other_payment_detals
     }
 
-    firebase.firestore().collection("alert-new-order").doc(key).set({
-      'country': locationData['country'],
-      'product_image': product[0].product['pictures'][0],
-      'product_link': product[0].product['dynamic_link'],
-      'product_name': product[0].product['name'],
-      'product_price': product[0].product['price'],
-      'username': details,
-    }).then((d) => {
-      firebase.firestore().collection('orders').doc(order.id).set(order).then(done => {
-        var item: Order = {
-          shippingDetails: details,
-          product: product,
-          orderId: orderId,
-          totalAmount: amount,
-          tracking_id: track
-        };
-        this.OrderDetails = item;
-        this.OtherDetailsPayment = other_payment_detals
-        this.locData = locationData
-        this.router.navigate(['/home/checkout/success']);
-      })
+    firebase.firestore().collection('orders').doc(order.id).set(order).then(done => {
+      var item: Order = {
+        shippingDetails: details,
+        product: product,
+        orderId: orderId,
+        totalAmount: amount,
+        tracking_id: track
+      };
+      this.OrderDetails = item;
+      this.OtherDetailsPayment = other_payment_detals
+      this.locData = locationData
+      localStorage.setItem('_item', JSON.stringify(item))
+      localStorage.setItem('other_payment_detals', JSON.stringify(other_payment_detals))
+      localStorage.setItem('locationData', JSON.stringify(locationData))
+      this.router.navigate(['/home/checkout/success']);
     })
-
-    
+    // firebase.firestore().collection("alert-new-order").doc(key).set({
+    //   'country': locationData['country'],
+    //   'product_image': product[0].product['pictures'][0],
+    //   'product_link': product[0].product['dynamic_link'],
+    //   'product_name': product[0].product['name'],
+    //   'product_price': product[0].product['price'],
+    //   'username': details,
+    // }).then((d) => {
+    //   //enter here
+    // })
   }
 
 }

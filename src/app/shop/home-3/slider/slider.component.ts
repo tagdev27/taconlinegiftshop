@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/shared/services/products.service';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
+import { SubCategory } from 'src/app/models/sub.category';
 
 @Component({
   selector: 'app-slider-three',
@@ -7,6 +10,8 @@ import { ProductsService } from 'src/app/shared/services/products.service';
   styleUrls: ['./slider.component.scss']
 })
 export class SliderThreeComponent implements OnInit {
+
+  
 
   constructor(public productsService: ProductsService) { }
 
