@@ -3,7 +3,7 @@ import { CartItem } from './cart-item';
 // Order
 export interface Order {
     shippingDetails?: any;
-    product?: CartItem;
+    product?: CartItem[];
     orderId?: any;
     totalAmount?: any;
     tracking_id?:any

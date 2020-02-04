@@ -87,7 +87,8 @@ export class OrderService {
       shipping_details: details,
       gift_card_style: gcs,
       tracking_details: track_details,
-      other_payment_details: other_payment_detals
+      other_payment_details: other_payment_detals,
+      retry_url: `https://tacgifts.com/home/checkout/success?orderrefno=${orderId}&orderkey=${key}`,
     }
 
     firebase.firestore().collection('orders').doc(order.id).set(order).then(done => {

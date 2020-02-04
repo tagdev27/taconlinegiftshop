@@ -33,6 +33,8 @@ import { ReturnPolicyComponent } from "./return-policy/return-policy.component";
 import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.component";
 import { TermsComponent } from "./terms/terms.component";
 import { OurStoryComponent } from "./our-story/our-story.component";
+import { PresellBirthday } from "./presell-birthday/presell-birthday.component";
+import { PresellValentine } from "./presell-valentine/presell-valentine.component";
 
 const routes: Routes = [
   {
@@ -57,6 +59,14 @@ const routes: Routes = [
       {
         path: 'our-story',
         component: OurStoryComponent
+      },
+      {
+        path: 'presell/birthday',
+        component: PresellBirthday
+      },
+      {
+        path: 'presell/valentine',
+        component: PresellValentine
       },
       {
         path: 'social-tree',

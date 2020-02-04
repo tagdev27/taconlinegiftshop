@@ -21,7 +21,8 @@ export interface TacOrder {
     shipping_details:any
     other_payment_details:any
     gift_card_style:string
-    tracking_details:Tracking[]
+    tracking_details:Tracking[],
+    retry_url:string
 }
 
 export interface Tracking {

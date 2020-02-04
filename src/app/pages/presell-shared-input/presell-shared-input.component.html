@@ -1,0 +1,26 @@
+<div class="col-lg-6 subscribe-wrapper" style="max-width: 100%;">
+    <div class="subscribe-block">
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control" id="exampleFormControlInput2"
+                    placeholder="Enter your name *" name="yn" [(ngModel)]="your_name">
+                    <br>
+                <input type="email" class="form-control" id="exampleFormControlInput3"
+                    placeholder="Enter your email *" name="em" [(ngModel)]="your_email">
+                <div class="row">
+                    <div class="col-lg-6"><small style="color: red;" *ngIf="errorShown">All fields are required</small></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <mat-spinner color="accent" diameter="24" *ngIf="loading"></mat-spinner>
+                    </div>
+                    <div class="col-lg-4"></div>
+                </div>
+                <br>
+                <button type="button" class="btn btn-solid" *ngIf="!loading"
+                    (click)="submitForm()">submit</button>
+            </div>
+        </form>
+    </div>
+</div>

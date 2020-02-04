@@ -40,13 +40,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="success-text">
+                <div class="success-text order-fail">
                     <i class="fa fa-close" aria-hidden="true"></i>
                     <h2>transaction failed</h2>
                     <p>Payment Not Successfully.</p>
                     <p><a class="btn-solid btn" href="{{retry_url}}">
-                        RETRY PAYMENT
-                    </a></p>
+                            RETRY PAYMENT
+                        </a></p>
                 </div>
             </div>
         </div>
@@ -63,8 +63,8 @@
                     <i class="fa fa-check-circle" aria-hidden="true"></i>
                     <h2>thank you</h2>
                     <p>Payment Received Successfully.</p>
-                    <p>Your order is now been processed.<br/>Check your email for order details</p>
-                    <p>redirecting to home...</p>
+                    <p>Your order is now been processed.<br />Check your email for order details</p>
+                    <p>redirecting you back to home. Please wait...</p>
                 </div>
             </div>
         </div>
@@ -73,127 +73,137 @@
 <!-- Section ends -->
 
 <!-- thank-you section start Payment has been received -->
-<section class="section-b-space light-layout" *ngIf="orderDetails && !isReloaded">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="success-text">
-                    <i class="fa fa-check-circle" aria-hidden="true"></i>
-                    <h2>thank you</h2>
-                    <p>Transaction ID: {{orderDetails.orderId}}</p>
-                    <p>Order Received Successfully</p>
-                    <p>To process your order, please make payment below</p>
-                    <p *ngIf="is2co"><button class="btn-solid btn" type="button" (click)="paynowClicked()">
-                        PAY NOW
-                    </button></p>
-                    <p *ngIf="isFlutterWave">
-                        <rave-pay-button [text]="'PAY NOW'" [className]="'btn-solid btn'"
-                            (callback)="paymentDone($event)" (close)="paymentCancel()"
-                            [key]="flutterWaveKey"
-                            [currency]="flwCurr"
-                            [country]="setupCurrencyAndCountry()"
-                            [customer_firstname]="orderDetails.shippingDetails.firstname"
-                            [customer_lastname]="orderDetails.shippingDetails.lastname"
-                            [customer_phone]="orderDetails.shippingDetails.phone" [reference]="reference"
-                            [redirect_url]="'https://tacgifts.com/home/checkout/success'"
-                            [amount]="orderDetails.totalAmount"
-                            [email]="orderDetails.shippingDetails.email"></rave-pay-button>
-                    </p>
+<div *ngIf="display_div">
+    <section class="section-b-space light-layout" *ngIf="orderDetails && !isError && !isReloaded">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="success-text">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        <h2>thank you</h2>
+                        <p>Transaction ID: {{orderDetails.orderId}}</p>
+                        <p>Order Received Successfully</p>
+                        <p>To process your order, please make payment below</p>
+                        <p *ngIf="is2co"><button class="btn-solid btn" type="button" (click)="paynowClicked()">
+                                PAY NOW
+                            </button></p>
+                        <p *ngIf="isFlutterWave">
+                            <rave-pay-button [text]="'PAY NOW'" [className]="'btn-solid btn'"
+                                (callback)="paymentDone($event)" (close)="paymentCancel()" [key]="flutterWaveKey"
+                                [currency]="flwCurr" [country]="setupCurrencyAndCountry()"
+                                [customer_firstname]="orderDetails.shippingDetails.firstname"
+                                [customer_lastname]="orderDetails.shippingDetails.lastname"
+                                [customer_phone]="orderDetails.shippingDetails.phone" [reference]="reference"
+                                [redirect_url]="'https://tacgifts.com/home/checkout/success'"
+                                [amount]="orderDetails.totalAmount" [email]="orderDetails.shippingDetails.email">
+                            </rave-pay-button>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 <!-- Section ends -->
 
 <!-- order-detail section start -->
-<section class="section-b-space" *ngIf="orderDetails  && !isReloaded">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="product-order">
-                    <h3>your order details</h3>
-                    <div class="row product-order-detail" *ngFor="let item of orderDetails.product">
-                        <div class="col-3">
-                            <img [src]="item.product.pictures[0]" alt="" class="img-fluid">
-                        </div>
-                        <div class="col-3 order_detail">
-                            <div>
-                                <h4>product name</h4>
-                                <h5>{{item.product.name}}</h5>
+<div *ngIf="display_div">
+    <section class="section-b-space" *ngIf="orderDetails && !isReloaded">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-order">
+                        <h3>your order details</h3>
+                        <div class="row product-order-detail" *ngFor="let item of orderDetails.product">
+                            <div class="col-3">
+                                <img [src]="item.product.pictures[0]" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-3 order_detail">
+                                <div>
+                                    <h4>product name</h4>
+                                    <h5>{{item.product.name}}</h5>
+                                </div>
+                            </div>
+                            <div class="col-3 order_detail">
+                                <div>
+                                    <h4>quantity</h4>
+                                    <h5>{{item.quantity}}</h5>
+                                </div>
+                            </div>
+                            <div class="col-3 order_detail">
+                                <div>
+                                    <h4>price</h4>
+                                    <h5>{{(item.product.price / locData.exchange_rate) | currency:locData.currency:'symbol'}}
+                                    </h5>
+                                    <!-- <h5>{{config.convertPrice(item.product.price) | currency:locData.currency:'symbol'}}</h5> -->
+                                </div>
                             </div>
                         </div>
-                        <div class="col-3 order_detail">
-                            <div>
-                                <h4>quantity</h4>
-                                <h5>{{item.quantity}}</h5>
-                            </div>
-                        </div>
-                        <div class="col-3 order_detail">
-                            <div>
-                                <h4>price</h4>
-                                <h5>{{config.convertPrice(item.product.price) | currency:productsService?.currency:'symbol'}}</h5>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="total-sec">
-                        <ul>
-                            <!-- <li>Subtotal <span>{{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</span></li> -->
-                            <li>Subtotal <span>{{getSubTotal() | async | currency:productsService?.currency:'symbol'}}</span></li>
-                            <!-- <li>Shipping <span>{{config.convertPrice(OtherDetailsPayment.delivery) | currency:productsService?.currency:'symbol'}}</span></li>
+                        <div class="total-sec">
+                            <ul>
+                                <!-- <li>Subtotal <span>{{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</span></li> -->
+                                <!-- <li>Subtotal <span>{{getSubTotal() | async | currency:locData.currency:'symbol'}}</span></li> -->
+                                <!-- <li>Shipping <span>{{config.convertPrice(OtherDetailsPayment.delivery) | currency:productsService?.currency:'symbol'}}</span></li>
                             <li>Tax <span>{{config.convertPrice(OtherDetailsPayment.tax) | currency:productsService?.currency:'symbol'}}</span></li> -->
-
-                            <li>Shipping <span>{{OtherDetailsPayment.delivery | currency:productsService?.currency:'symbol'}}</span></li>
-                            <!-- <li>Tax <span>{{OtherDetailsPayment.tax | currency:productsService?.currency:'symbol'}}</span></li> -->
-                        </ul>
-                    </div>
-                    <div class="final-total">
-                        <!-- <h3>total <span>{{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</span></h3> -->
-                        <h3>total <span>{{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</span></h3>
+                                <li>Subtotal
+                                    <span>{{orderDetails.totalAmount | currency:locData.currency:'symbol'}}</span></li>
+                                <li>Shipping
+                                    <span>{{OtherDetailsPayment.delivery | currency:locData.currency:'symbol'}}</span>
+                                </li>
+                                <!-- <li>Tax <span>{{OtherDetailsPayment.tax | currency:productsService?.currency:'symbol'}}</span></li> -->
+                            </ul>
+                        </div>
+                        <div class="final-total">
+                            <!-- <h3>total <span>{{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</span></h3> -->
+                            <h3>total <span>{{orderDetails.totalAmount | currency:locData.currency:'symbol'}}</span>
+                            </h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="row order-success-sec">
-                    <div class="col-sm-6">
-                        <h4>summary</h4>
-                        <ul class="order-detail">
-                            <!-- <li><b>tracking ID: {{orderDetails.tracking_id}}</b></li> -->
-                            <li>order ID: {{orderDetails.orderId}}</li>
-                            <li>Order Date: {{getDateNow()}}</li>
-                            <!-- <li>Order Total: {{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</li> -->
-                            <li>Order Total: {{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6">
-                        <h4>shipping address</h4>
-                        <ul class="order-detail">
-                            <li>{{orderDetails.shippingDetails.address}}</li>
-                            <li>{{orderDetails.shippingDetails.state}}</li>
-                            <li>{{orderDetails.shippingDetails.country}}, {{orderDetails.shippingDetails.postalcode}}</li>
-                            <li>Contact No. {{orderDetails.shippingDetails.recipientphone}}</li>
-                        </ul>
-                    </div>
+                <div class="col-lg-6">
+                    <div class="row order-success-sec">
+                        <div class="col-sm-6">
+                            <h4>summary</h4>
+                            <ul class="order-detail">
+                                <!-- <li><b>tracking ID: {{orderDetails.tracking_id}}</b></li> -->
+                                <li>order ID: {{orderDetails.orderId}}</li>
+                                <li>Order Date: {{order_date}}</li>
+                                <!-- <li>Order Total: {{config.convertPrice(orderDetails.totalAmount) | currency:productsService?.currency:'symbol'}}</li> -->
+                                <li>Order Total: {{orderDetails.totalAmount | currency:locData.currency:'symbol'}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4>shipping address</h4>
+                            <ul class="order-detail">
+                                <li>{{orderDetails.shippingDetails.fullname}}</li>
+                                <li>{{orderDetails.shippingDetails.address}}</li>
+                                <li>{{orderDetails.shippingDetails.state}}</li>
+                                <li>{{orderDetails.shippingDetails.country}},
+                                    {{orderDetails.shippingDetails.postalcode}}</li>
+                                <li>Contact No. {{orderDetails.shippingDetails.recipientphone}}</li>
+                            </ul>
+                        </div>
 
-                    <!-- <div class="col-sm-12 payment-mode">
+                        <!-- <div class="col-sm-12 payment-mode">
                         <h4>payment method</h4>
                         <p>2Checkout</p>
                     </div> -->
-                    <div class="col-md-12">
-                        <div class="delivery-sec">
-                            <!-- <h3>expected date of delivery</h3>
+                        <div class="col-md-12">
+                            <div class="delivery-sec">
+                                <!-- <h3>expected date of delivery</h3>
                             <h2>3 - 5 days</h2> -->
-                            <h3>tracking ID</h3>
-                            <h2>{{orderDetails.tracking_id}}</h2>
+                                <h3>tracking ID</h3>
+                                <h2>{{orderDetails.tracking_id}}</h2>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 <div id="paymentW" style="display:none;"></div>
 <div id="thehtml" style="display:none;"></div>
 <!-- Section ends -->

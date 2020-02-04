@@ -312,7 +312,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     const order_currency = (this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency
     const order_amount = this.config.convertPrice(this.amount)
 
-    const ttax = (this.tax_value * this.amount) / 100
+    const ttax = Number(((this.tax_value * this.amount) / 100).toFixed(2))
 
     const other_payment_detals = {
       tax_value: this.tax_value,

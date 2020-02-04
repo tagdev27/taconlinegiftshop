@@ -35,7 +35,10 @@ import { MasonaryFullwidthComponent } from './portfolio/masonary-fullwidth/mason
 import { ReturnPolicyComponent } from "./return-policy/return-policy.component";
 import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.component";
 import { TermsComponent } from "./terms/terms.component";
+import { PresellBirthday } from "./presell-birthday/presell-birthday.component";
+import { PresellValentine } from "./presell-valentine/presell-valentine.component";
 import { OurStoryComponent } from "./our-story/our-story.component";
+import { PresellSharedInput } from "./presell-shared-input/presell-shared-input.component";
 
 import { SocialTreeComponent } from "./social-tree/social-tree.component";
 import { TrackComponent } from "./track/track.component";
@@ -82,7 +85,10 @@ import { MatProgressSpinnerModule } from "@angular/material";
     ReturnPolicyComponent,
     PrivacyPolicyComponent,
     TermsComponent,
-    OurStoryComponent
+    OurStoryComponent,
+    PresellBirthday,
+    PresellValentine,
+    PresellSharedInput
   ]
 })
 export class PagesModule { }
