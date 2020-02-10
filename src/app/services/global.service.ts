@@ -4,7 +4,7 @@ import 'firebase/firestore';
 import { ProductsService } from "../shared/services/products.service";
 import { Observable } from "rxjs";
 import { Banners } from "../models/banner";
-import * as $ from 'jquery'
+// import * as $ from 'jquery'
 
 export class AppConfig {
 

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
-import { DemoComponent } from './demo/demo.component';
+// import { DemoComponent } from './demo/demo.component';
 //import { HomeThreeComponent } from "./shop/home-3/home-three.component";
 
 export const rootRouterConfig: Routes = [
@@ -38,7 +38,7 @@ export const rootRouterConfig: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/home'
+    redirectTo: '/404'
   }
 ];
 

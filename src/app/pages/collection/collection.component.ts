@@ -5,11 +5,12 @@ import { SubCategory } from 'src/app/models/sub.category';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { MainCategory } from 'src/app/models/main.category';
+import * as $ from 'jquery'
 
 declare interface Collections {
   //id:string
   name: string
-  desc:string
+  desc: string
   image: string
   link: string
   //number_of_products:number
@@ -51,6 +52,26 @@ export class CollectionComponent implements OnInit {
     //     }
     //   })
     // })
+    
+    // this.addEvent(document, 'mouseout', function (evt) {
+    //   if (evt.toElement == null && evt.relatedTarget == null) {
+    //     if (location.href.includes(`valentine's-spree`)) {
+    //       $('.lightbox').slideDown();
+    //     }
+    //   };
+    // });
+  }
+
+  addEvent(obj, evt, fn) {
+    if (obj.addEventListener) {
+      obj.addEventListener(evt, fn, false);
+    } else if (obj.attachEvent) {
+      obj.attachEvent("on" + evt, fn);
+    }
+  }
+
+  closePopup() {
+    $('.lightbox').slideUp();
   }
 
   getSubCategoriesFromMainCategoryID(category: string) {
@@ -63,7 +84,7 @@ export class CollectionComponent implements OnInit {
 
   async getSubCategoriesByID(cat: string) {
     const get_main_cat_id = await firebase.firestore().collection('db').doc('tacadmin').collection('main-categories').where('link', '==', cat).get()
-    if(get_main_cat_id == null){
+    if (get_main_cat_id == null) {
       this.getAllSubCategories()
       return
     }

@@ -5,7 +5,8 @@ import { CartService } from '../../../../shared/services/cart.service';
 import { ProductsService } from '../../../../shared/services/products.service';
 import { Observable, of } from 'rxjs';
 import { Currency } from "../../../../models/currency";
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
 import { AppConfig } from 'src/app/services/global.service';
 import { SubCategory } from 'src/app/models/sub.category';
 import { Router } from '@angular/router';

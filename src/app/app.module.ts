@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-import { Http, HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import {  HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShopModule } from "./shop/shop.module";
 import { SharedModule } from "./shared/shared.module";
@@ -15,7 +15,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 // components
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { DemoComponent } from './demo/demo.component';
+// import { DemoComponent } from './demo/demo.component';
 //import * as $ from 'jquery';
 
 import { AppOverlayModule } from './overlay/overlay.module';
@@ -31,7 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     MainComponent,
-    DemoComponent
+    // DemoComponent
   ],
   imports: [
     BrowserModule,

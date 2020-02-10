@@ -23,7 +23,10 @@
 <section class="collection section-b-space">
     <div class="container">
         <div class="row partition-collection">
-            <div *ngIf="loading"><mat-spinner color="accent" diameter="64"></mat-spinner> <br> <h3>Please wait...</h3></div>
+            <div *ngIf="loading">
+                <mat-spinner color="accent" diameter="64"></mat-spinner> <br>
+                <h3>Please wait...</h3>
+            </div>
             <div class="col-lg-3 col-md-6" *ngFor="let col of collections">
                 <div class="collection-block">
                     <img src="{{col.image}}" class="img-fluid" alt="{{col.name}}">
@@ -116,6 +119,21 @@
                     </div>
                 </div>
             </div> -->
+    </div>
+    <div class="lightbox">
+        <div class="box">
+            <p style="font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 23px; font-weight: 300; letter-spacing: -0.2px; color: #9B9B9B; text-align: center;"
+                valign="top"><span style="color: #ffffff;"><b><span
+                            style="color: #ffffff; font-size: 30px;">WAIT!</span></b> Don't be that "boring lover",
+                    unlock
+                    our<br><br> highly thoughtful and romantic list of the <br><br><b>10 Ways To <br><br>Spice Up Your
+                        Relationship<br><br> This Valentine</b>
+                    <br><br><small style="font-size: 14px;">Quickly fill in your details to access these Romantic
+                        No'brainers.</small><br><br></span></p>
+            <app-presell-shared-input presellCategory="valentine">
+            </app-presell-shared-input>
+            <a href="javascript:void(0)" (click)="closePopup()">X</a>
+        </div>
     </div>
 </section>
 <!--Section ends-->

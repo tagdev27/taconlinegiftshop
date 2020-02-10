@@ -1,10 +1,8 @@
 {
   "hosting": {
     "public": "dist/tac",
-    "site": "tac-staging-website",
     "ignore": [
       "firebase.json",
-      "src/firestore.rules",
       "**/.*",
       "**/node_modules/**"
     ],
@@ -25,13 +23,5 @@
         ]
       }
     ]
-  },
-  "emulators": {
-    "firestore": {
-      "port": "8080"
-    }
-  },
-  "firestore": {
-    "rules": "src/firestore.rules"
   }
 }

@@ -6,7 +6,9 @@ import { ProductsService } from '../../../../shared/services/products.service';
 import * as _ from 'lodash'
 import * as $ from 'jquery';
 import { AppConfig } from 'src/app/services/global.service';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
+import 'firebase/analytics';
 import { SubCategory } from 'src/app/models/sub.category';
 
 export interface SubCategoryInit {
@@ -53,6 +55,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   col_sub_title = ''
 
   preloading = true
+  display_empty = false
 
   init_sub_cats:SubCategoryInit[] = []
 
@@ -67,6 +70,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
       if(selected_category != 'all'){
         const sc = await this.getSubCategoryIdByName()
         if(sc == null){
+          this.preloading = false
+          this.display_empty = true
           return
         }
         selected_category = sc.id
@@ -75,6 +80,9 @@ export class CollectionLeftSidebarComponent implements OnInit {
       }
       // const getSubCat = (category == 'all') ? 'all' : this.getSubCategoryIDByName()
       this.productsService.getProductByCategory(selected_category).subscribe(products => {
+        if(products.length == 0){
+          this.display_empty = true
+        }
         this.allItems = products  // all products
         this.products = products.slice(0, 8)
         this.getTags(products)

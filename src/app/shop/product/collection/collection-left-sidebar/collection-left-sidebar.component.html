@@ -50,9 +50,13 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="top-banner-wrapper">
-                    <div *ngIf="preloading"><mat-spinner color="accent" diameter="24"></mat-spinner><br><h4>Please wait...</h4></div>
+                    <div *ngIf="preloading">
+                      <mat-spinner color="accent" diameter="24"></mat-spinner><br>
+                      <h4>Please wait...</h4>
+                    </div>
                     <!-- <a [routerLink]="['/home/collection/all']"> -->
-                    <img src="{{(sub_category_id != 'all') ? col_image : productsService.banner.collection_image}}" class="img-fluid" alt="">
+                    <img src="{{(sub_category_id != 'all') ? col_image : productsService.banner.collection_image}}"
+                      class="img-fluid" alt="">
                     <!-- </a> -->
                     <div class="top-banner-content small-section">
                       <h4>TAC{{col_title}}</h4>
@@ -130,12 +134,14 @@
                               (scrolled)="onScroll()" *ngIf="filterItems().length">
                             </div>
                           </div>
-                          <div class="col-sm-12 text-center section-b-space mt-5 no-found"
-                            *ngIf="!filterItems().length">
-                            <img src="assets/images/empty-search.jpg" class="img-fluid mb-4">
-                            <h3>Sorry! Couldn't find the product you were looking For!!! </h3>
-                            <p>Please check if you have misspelt something or try searching with other words.</p>
-                            <a href="/home/collection/all" class="btn btn-solid">continue shopping</a>
+                          <div *ngIf="display_empty">
+                            <div class="col-sm-12 text-center section-b-space mt-5 no-found"
+                              *ngIf="!filterItems().length">
+                              <img src="assets/images/empty-search.jpg" class="img-fluid mb-4">
+                              <h3>Sorry! Couldn't find the product you were looking For!!! </h3>
+                              <p>Please check if you have misspelt something or try searching with other words.</p>
+                              <a href="/home/collection/all" class="btn btn-solid">continue shopping</a>
+                            </div>
                           </div>
                         </div>
                       </div>

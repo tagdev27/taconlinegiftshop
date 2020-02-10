@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/services/store.settings';
 import { StoreSettings } from 'src/app/models/store';
-import { Http } from '@angular/http';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+// import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { AppConfig } from "src/app/services/global.service";
 import { ProductsService } from '../../services/products.service';
 
@@ -13,7 +13,7 @@ import { ProductsService } from '../../services/products.service';
 })
 export class FooterTwoComponent implements OnInit {
 
-  constructor(private http: Http, private mHttp: HttpClient, private productService: ProductsService) { }
+  constructor(private mHttp: HttpClient, private productService: ProductsService) { }
 
   service = new StoreService()
   store: StoreSettings
@@ -71,9 +71,7 @@ export class FooterTwoComponent implements OnInit {
     const _ln = (localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : 'Guest'
     const _num = (localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : ''
 //https://avidprintsconcierge.com/emailsending/mailchimp.php
-    this.mHttp.post(`https://us-central1-taconlinegiftshop.cloudfunctions.net/mailChimpRegistration?email_address=${em}`, {
-      'lat': uc['latitude'], 'lng': uc['longitude'], 'fn': _fn, 'ln': _ln
-    }).subscribe(res => {
+    this.mHttp.get(`https://us-central1-taconlinegiftshop.cloudfunctions.net/mailChimpRegistration?email_address=${em}&fn=${_fn}&ln=${_ln}&lat=${uc['latitude']}&lng=${uc['longitude']}`).subscribe(res => {
       //console.log(res)
       this.loading = false
       this.newsletter_email = ''

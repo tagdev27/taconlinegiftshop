@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as $ from 'jquery';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
 import { SocialTree, SocialEvents } from 'src/app/models/social-tree';
 import { AppConfig } from 'src/app/services/global.service';
 import { OverlayService } from 'src/app/overlay/overlay.module';

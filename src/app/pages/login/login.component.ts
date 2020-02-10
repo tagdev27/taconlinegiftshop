@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
 import { AppConfig } from 'src/app/services/global.service';
 import { OverlayService } from 'src/app/overlay/overlay.module';
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';

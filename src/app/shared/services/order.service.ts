@@ -6,7 +6,8 @@ import { map, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ProductsService } from './products.service';
 import { TacOrder, Tracking } from 'src/app/models/order';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
 import { Order } from '../classes/order';
 
 @Injectable({

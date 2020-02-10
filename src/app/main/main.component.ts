@@ -13,21 +13,21 @@ import * as $ from 'jquery'
   providers: [ProductsService, CartService, WishlistService]
 })
 export class MainComponent implements OnInit {
-  
-  public url : any; 
 
-  constructor(private router: Router) {  
+  public url: any;
+
+  constructor(private router: Router) {
     this.router.events.subscribe((event) => {
-          if (event instanceof NavigationEnd) {
-            this.url = event.url.toLowerCase();
-          }
+      if (event instanceof NavigationEnd) {
+        this.url = event.url.toLowerCase();
+      }
     });
   }
 
-  ngOnInit() { 
-   $.getScript('assets/js/script.js');
-  //  console.log('knwkfnikfwjiowjf')
-  //  location.href = "/home"
+  ngOnInit() {
+    $.getScript('assets/js/script.js');
+    //  console.log('knwkfnikfwjiowjf')
+    //  location.href = "/home"
   }
 
 }

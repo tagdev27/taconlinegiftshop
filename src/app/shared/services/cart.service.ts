@@ -4,7 +4,8 @@ import { CartItem } from '../classes/cart-item';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, Subscriber } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
 import { ProductsService } from './products.service';
 
 // Get product from Localstorage

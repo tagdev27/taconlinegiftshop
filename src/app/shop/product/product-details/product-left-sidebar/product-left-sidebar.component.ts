@@ -4,10 +4,12 @@ import { Product } from '../../../../shared/classes/product';
 import { ProductsService } from '../../../../shared/services/products.service';
 import { WishlistService } from '../../../../shared/services/wishlist.service';
 import { CartService } from '../../../../shared/services/cart.service';
-import { Observable, of } from 'rxjs';
+// import { Observable, of } from 'rxjs';
 import * as $ from 'jquery';
 import { AppConfig } from 'src/app/services/global.service';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
+import 'firebase/analytics';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Reviews } from 'src/app/models/reviews';
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SubCategory } from 'src/app/models/sub.category';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
 import { Router } from '@angular/router';
 import { MainCategory } from 'src/app/models/main.category';
 

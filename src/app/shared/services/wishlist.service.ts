@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../classes/product';
 import { BehaviorSubject, Observable, Subscriber } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+// import { map, filter } from 'rxjs/operators';
 
 // Get product from Localstorage
 let products = JSON.parse(localStorage.getItem("wishlistItem")) || [];

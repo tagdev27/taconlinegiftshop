@@ -5,7 +5,8 @@ import { ProductsService } from '../../../../../shared/services/products.service
 import { Observable, of } from 'rxjs';
 import { StoreService } from "../../../../../services/store.settings";
 import { Router } from '@angular/router';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
 
 @Component({
   selector: 'app-topbar',

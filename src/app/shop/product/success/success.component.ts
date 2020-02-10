@@ -5,7 +5,9 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import { AppConfig } from 'src/app/services/global.service';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/shared/services/cart.service';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
+import 'firebase/storage'
 import { Product } from 'src/app/shared/classes/product';
 import { EmailService } from 'src/app/shared/services/email.service';
 import { CartItem } from 'src/app/shared/classes/cart-item';
@@ -13,8 +15,6 @@ import { HttpClient } from '@angular/common/http';
 import * as $ from 'jquery'
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 
-import * as jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { OverlayService } from 'src/app/overlay/overlay.module';
@@ -53,6 +53,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
   retry_url = ''
 
   display_div = true
+  isErrorOccurred = false
 
   constructor(private toastrService: ToastrService, private orderService: OrderService, public productsService: ProductsService, public cartService: CartService, private http: HttpClient, private exportAsService: ExportAsService, private previewProgressSpinner: OverlayService) {
     this.config = new AppConfig(productsService)
@@ -316,6 +317,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
       const order = await firebase.firestore().collection('orders').doc(key).get()
       if (order.data() == null) {
         this.previewProgressSpinner.close()
+        location.href = "/404"
         this.isError = true
         this.toastrService.error('An error occurred. Please try again.');
         return
@@ -379,6 +381,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
       const order = await firebase.firestore().collection('orders').doc(key).get()
       if (order.data() == null) {
         this.previewProgressSpinner.close()
+        location.href = "/404"
         this.isError = true
         this.toastrService.error('An error occurred. Please try again.');
         return
@@ -388,6 +391,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
       const order_amount = mOrder.total_amount
 
       this.retry_url = mOrder.retry_url
+      //console.log(`url == ${this.retry_url}`)
 
       this.http.get(`https://us-central1-taconlinegiftshop.cloudfunctions.net/verify2CheckoutTransaction?ref=${ref}`, { headers: { "Authorization": "api ATCNoQUGOoEvTwqWigCR" } }).toPromise().then(async resp => {
 
@@ -406,11 +410,11 @@ export class SuccessComponent implements OnInit, OnDestroy {
         const _mf = mOrder.total_amount - appfee
 
         const extra = res['ExtraInformation']
-        this.retry_url = extra['RetryFailedPaymentLink']
+        //this.retry_url = extra['RetryFailedPaymentLink']
 
-        console.log(`status = ${status}\n_as = ${_as}\nvas = ${vas}`)
-
-        if (status == "COMPLETE" && _as == "OK" && vas == "OK") {
+        //console.log(`status = ${status}\n_as = ${_as}\nvas = ${vas}`)
+        //status == "COMPLETE" || status == "AUTHRECEIVED" && _as == "OK" || _as == "WAITING" && 
+        if ((status == "COMPLETE" || status == "AUTHRECEIVED") && (_as == "OK" || _as == "WAITING") && vas == "OK") {
           await firebase.firestore().collection('orders').doc(key).update(
             {
               'payment_gateway_fee': appfee,
@@ -434,6 +438,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
           this.toastrService.error('Payment not successful. Please try again.');
         }
       }).catch(err => {
+        console.log(err)
         this.previewProgressSpinner.close()
         this.isError = true
         this.toastrService.error('An error occured');
@@ -451,9 +456,33 @@ export class SuccessComponent implements OnInit, OnDestroy {
     }
   }
 
+  retryUrl() {
+    location.href = this.retry_url
+  }
+
   ngOnInit() {
-    $('.cart_qty_cls').text("0")
-    this.order_date = this.getDateNow()
+    $('#prescript').append(`<!-- 2checkout integration-->
+    <script>
+        (function (document, src, libName, config) {
+            var script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            var firstScriptElement = document.getElementsByTagName('script')[0];
+            script.onload = function () {
+                for (var namespace in config) {
+                    if (config.hasOwnProperty(namespace)) {
+                        window[libName].setup.setConfig(namespace, config[namespace]);
+                    }
+                }
+                window[libName].register();
+            };
+    
+            firstScriptElement.parentNode.insertBefore(script, firstScriptElement);
+        })(document, 'https://secure.2checkout.com/checkout/client/twoCoInlineCart.js', 'TwoCoInlineCart', { "app": { "merchant": "250265504666", "iframeLoad": "checkout" }, "cart": { "host": "https:\/\/secure.2checkout.com", "customization": "inline" } });
+    </script>
+    <!-- end 2checkout integration-->
+    <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+    `)
     /**
      * if the customer open a new success page with the available parameters provided
      */
@@ -472,7 +501,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
           return
         }
         const mOrder = <TacOrder>order.data()
-        if(mOrder.payment_status == 'paid'){
+        if (mOrder.payment_status == 'paid') {
           this.display_div = false
           this.isReloaded = true
           setTimeout(() => {
@@ -481,6 +510,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
           return
         }
         this.display_div = true
+        localStorage.setItem('currentOrder', mOrder.transaction_id)
         const item: Order = {
           shippingDetails: mOrder.shipping_details,
           product: mOrder.carts,
@@ -510,6 +540,9 @@ export class SuccessComponent implements OnInit, OnDestroy {
       })
       return
     }
+
+    $('.cart_qty_cls').text("0")
+    this.order_date = this.getDateNow()
 
     /**
      * when the customer is routed from the checkout page to the success page
@@ -736,7 +769,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    
+
   }
 
   /**

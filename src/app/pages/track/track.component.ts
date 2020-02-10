@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OverlayService } from 'src/app/overlay/overlay.module';
 import { AppConfig } from 'src/app/services/global.service';
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore';
 import { TacOrder } from 'src/app/models/order';
 import { ProductsService } from 'src/app/shared/services/products.service';
 

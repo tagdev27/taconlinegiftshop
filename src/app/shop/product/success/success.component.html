@@ -1,3 +1,4 @@
+<div id="prescript"></div>
 <!-- breadcrumb start -->
 <div class="breadcrumb-section" *ngIf="!orderDetails">
     <div class="container">
@@ -44,9 +45,12 @@
                     <i class="fa fa-close" aria-hidden="true"></i>
                     <h2>transaction failed</h2>
                     <p>Payment Not Successfully.</p>
-                    <p><a class="btn-solid btn" href="{{retry_url}}">
+                    <p><a class="btn-solid btn" href="javascript:void(0)" (click)="retryUrl()">
                             RETRY PAYMENT
                         </a></p>
+                        <!-- <p *ngIf="isErrorOccurred">
+                            <button class="btn-solid btn" (click)=""></button>
+                        </p> -->
                 </div>
             </div>
         </div>

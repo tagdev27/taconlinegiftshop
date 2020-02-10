@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IPayPalConfig, ICreateOrderRequest, IPayer, IApplicationContext } from 'ngx-paypal';
+// import { IPayPalConfig, ICreateOrderRequest, IPayer, IApplicationContext } from 'ngx-paypal';
 // import {  IPayPalConfig,  ICreateOrderRequest } from 'ngx-paypal';
 import { CartItem } from '../../../shared/classes/cart-item';
 import { ProductsService } from '../../../shared/services/products.service';
@@ -9,7 +9,10 @@ import { OrderService } from '../../../shared/services/order.service';
 import { Observable, of } from 'rxjs';
 import { AppConfig } from 'src/app/services/global.service';
 import { Styles } from 'src/app/models/style';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
+import 'firebase/auth'
+import 'firebase/analytics';
 import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -48,7 +51,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   //other countries amount
   public other_country_amount = 0
 
-  public payPalConfig?: IPayPalConfig;
+  // public payPalConfig?: IPayPalConfig;
 
   showDummy = false
   reference = this.randomInt(1, 999999999)
@@ -236,76 +239,72 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   // Paypal payment gateway
 
-  private initConfig(): void {
-    // const other_payment_detals = {
-    //   tax: this.tax_amount,
-    //   delivery: this.delivery_amount
-    // }
-    this.payPalConfig = {//new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, 
-      advanced: {
-        commit: 'true',
-        //extraQueryParams: [{name: 'environment', value: 'sandbox'}]
-      },
-      currency: 'EUR',//(this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency,
-      clientId: 'ASAQKRc9sz64GxrFJLsQ2BJx2Ft_W1F2L5AaPpS9cSi0Yco9-bUuxFloxcBWN0_Z_Ia09AF0292iWoPn',
-      style: {
-        label: 'paypal',
-        layout: 'horizontal',
-        size: 'responsive',
-        shape: 'pill',
-        color: 'gold',
-        tagline: true
-      },
-      createOrderOnClient: (data) => <ICreateOrderRequest>{
-        intent: 'CAPTURE',
-        purchase_units: [{
-          amount: {
-            currency_code: 'EUR',
-            value: '9.99',
-            breakdown: {
-              item_total: {
-                currency_code: 'EUR',
-                value: '9.99'
-              }
-            }
-          },
-          items: [{
-            name: 'Enterprise Subscription',
-            quantity: '1',
-            category: 'DIGITAL_GOODS',
-            unit_amount: {
-              currency_code: 'EUR',
-              value: '9.99',
-            },
-          }]
-        }]
-      },
-      onApprove: (data, actions) => {
-        console.log('onApprove - transaction was approved, but not authorized', data, actions);
-        actions.order.get().then(details => {
-          console.log('onApprove - you can get full order details inside onApprove: ', details);
-        });
+  // private initConfig(): void {
+  //   this.payPalConfig = {//new PayPalConfig(PayPalIntegrationType.ClientSideREST, PayPalEnvironment.Sandbox, 
+  //     advanced: {
+  //       commit: 'true',
+  //       //extraQueryParams: [{name: 'environment', value: 'sandbox'}]
+  //     },
+  //     currency: 'EUR',//(this.productsService.currency == '₦') ? 'NGN' : this.productsService.currency,
+  //     clientId: 'ASAQKRc9sz64GxrFJLsQ2BJx2Ft_W1F2L5AaPpS9cSi0Yco9-bUuxFloxcBWN0_Z_Ia09AF0292iWoPn',
+  //     style: {
+  //       label: 'paypal',
+  //       layout: 'horizontal',
+  //       size: 'responsive',
+  //       shape: 'pill',
+  //       color: 'gold',
+  //       tagline: true
+  //     },
+  //     createOrderOnClient: (data) => <ICreateOrderRequest>{
+  //       intent: 'CAPTURE',
+  //       purchase_units: [{
+  //         amount: {
+  //           currency_code: 'EUR',
+  //           value: '9.99',
+  //           breakdown: {
+  //             item_total: {
+  //               currency_code: 'EUR',
+  //               value: '9.99'
+  //             }
+  //           }
+  //         },
+  //         items: [{
+  //           name: 'Enterprise Subscription',
+  //           quantity: '1',
+  //           category: 'DIGITAL_GOODS',
+  //           unit_amount: {
+  //             currency_code: 'EUR',
+  //             value: '9.99',
+  //           },
+  //         }]
+  //       }]
+  //     },
+  //     onApprove: (data, actions) => {
+  //       console.log('onApprove - transaction was approved, but not authorized', data, actions);
+  //       actions.order.get().then(details => {
+  //         console.log('onApprove - you can get full order details inside onApprove: ', details);
+  //       });
 
-      },
-      onClientAuthorization: (data) => {
-        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        //this.showSuccess = true;
-      },
-      onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
-        //this.showCancel = true;
+  //     },
+  //     onClientAuthorization: (data) => {
+  //       console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+  //       //this.showSuccess = true;
+  //     },
+  //     onCancel: (data, actions) => {
+  //       console.log('OnCancel', data, actions);
+  //       //this.showCancel = true;
 
-      },
-      onError: err => {
-        console.log('OnError', err);
-        //this.showError = true;
-      },
-      onClick: (data, actions) => {
-        console.log('onClick', data, actions);
-        //this.resetStatus();
-      },
-    }
-  }
+  //     },
+  //     onError: err => {
+  //       console.log('OnError', err);
+  //       //this.showError = true;
+  //     },
+  //     onClick: (data, actions) => {
+  //       console.log('onClick', data, actions);
+  //       //this.resetStatus();
+  //     },
+  //   }
+  // }
 
   placeOrderButtonClicked() {
     this.previewProgressSpinner.open({ hasBackdrop: true }, ProgressSpinnerComponent);

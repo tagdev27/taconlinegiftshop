@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore';
+import 'firebase/auth';
 import { Router } from '@angular/router';
 import { OverlayService } from 'src/app/overlay/overlay.module';
 import { AppConfig } from 'src/app/services/global.service';
@@ -7,7 +9,7 @@ import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spin
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { HttpClient } from '@angular/common/http';
 import { TacOrder } from 'src/app/models/order';
-import * as $ from 'jquery'
+// import * as $ from 'jquery'
 
 @Component({
   selector: 'app-dashboard',
@@ -108,9 +110,8 @@ export class DashboardComponent implements OnInit {
     const _ln = (localStorage.getItem('ln') != null) ? localStorage.getItem('ln') : ''
     const _num = (localStorage.getItem('phone') != null) ? localStorage.getItem('phone') : ''
 
-    this.mHttp.post(`https://avidprintsconcierge.com/emailsending/mailchimp.php?email_address=${em}`, {
-      lat: uc['latitude'], lng: uc['longitude'], fn: _fn, ln: _ln
-    }).subscribe(res => {
+    this.mHttp.get(`https://avidprintsconcierge.com/emailsending/mailchimp.php?email_address=${em}&lat=${uc['latitude']}&lng=${uc['longitude']}&fn=${_fn}&ln=${_ln}`
+    ).subscribe(res => {
       this.loading = false
       this.isSubscribed = true
       localStorage.setItem("subcribed", "true")

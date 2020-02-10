@@ -18,6 +18,7 @@ import { Menu } from "src/app/shared/header/widgets/left-menu/left-menu-items";
 import * as navbar from "src/app/shared/header/widgets/navbar/navbar-items";
 import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
+import * as axios from 'axios';
 
 // Get product from Localstorage
 let products = JSON.parse(localStorage.getItem("compareItem")) || [];
@@ -62,12 +63,13 @@ export class ProductsService {
         this.slider_two_link = res
       })
       // await this.getMainCategoriesNavBar()
-      // console.log(JSON.stringify(this.ShopDropDownMenu))
+      // console.log(JSON.stringify(this.ShopDropDownMenu))https://ipapi.co/json
     })
-    this.mHttp.get('https://ipapi.co/json', { headers: new HttpHeaders(this.apiHeaderDict) }).subscribe(res => {//https://us-central1-taconlinegiftshop.cloudfunctions.net/get_current_ip   { headers: new HttpHeaders(this.headerDict) }
-      this.country = res['country_name']
-      this.country_code = res['country']
-      this.user_country = { latitude: res['latitude'], longitude: res['longitude'] }
+    //axios.default.get('http://ip-api.com/json/').then(res => {
+    this.mHttp.get('https://api.ipgeolocation.io/ipgeo?apiKey=a23332feb4844df0a060106a7659c982', { headers: new HttpHeaders(this.apiHeaderDict) }).subscribe(res => {//https://us-central1-taconlinegiftshop.cloudfunctions.net/get_current_ip   { headers: new HttpHeaders(this.headerDict) }
+      this.country = res['country_name']//res['country_name']
+      this.country_code = res['country_code2']//res['country'] latitude longitude
+      this.user_country = { latitude: Number(res['latitude']), longitude: Number(res['longitude']) }
       //const country = res['country']
       //console.log(`country == ${this.country}`)
       firebase.firestore().collection('db').doc('tacadmin').collection('currency').get().then(query => {//where("country", "==", country)
@@ -100,11 +102,11 @@ export class ProductsService {
       });
     })
     //this.getGiftCardStyles()
-    this.getDeliveries()
+    //this.getDeliveries()
   }
 
-  async getSubCategoryLinkByID(id:string){
-    if(id == 'all'){
+  async getSubCategoryLinkByID(id: string) {
+    if (id == 'all') {
       return '/home/collection/all'
     }
     const sub = await firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').doc(id).get()
@@ -145,7 +147,7 @@ export class ProductsService {
   // Observable Product Array
   private products(): Observable<Product[]> {
     //return this.http.get('assets/data/products.json').map((res: any) => res.json())
-    return this.mHttp.get("https://us-central1-taconlinegiftshop.cloudfunctions.net/get_all_products?action=get", { headers: new HttpHeaders({ 'Authorization': 'api ATCNoQUGOoEvTwqWigCR'}) }).map((res: any) => res)
+    return this.mHttp.get("https://us-central1-taconlinegiftshop.cloudfunctions.net/get_all_products?action=get", { headers: new HttpHeaders({ 'Authorization': 'api ATCNoQUGOoEvTwqWigCR' }) }).map((res: any) => res)
   }
 
   // Get Products
@@ -298,7 +300,7 @@ export class ProductsService {
           }
           dropdown_sub_menu.push(scMenu)
         })
-        
+
         const a_sub_menu: navbar.Menu = {
           title: category.name,
           type: 'link',
@@ -306,7 +308,7 @@ export class ProductsService {
         }
         sub_menu.push(a_sub_menu)
         index = index + 1
-        if(index == query.size){
+        if (index == query.size) {
           const main_menu: navbar.Menu = {
             title: 'shop',
             type: 'sub',
@@ -327,7 +329,5 @@ export class ProductsService {
   getSubCategoriesByID(main_id: string) {
     return firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').where("deleted", "==", false).where("main_category_id", "==", main_id).get()
   }
-
-
 
 }

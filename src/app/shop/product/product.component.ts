@@ -5,9 +5,10 @@ import { CartItem } from '../../shared/classes/cart-item';
 import { ProductsService } from '../../shared/services/products.service';
 import { WishlistService } from '../../shared/services/wishlist.service';
 import { CartService } from '../../shared/services/cart.service';
-import { Observable, of } from 'rxjs';
+// import { Observable, of } from 'rxjs';
 import { AppConfig } from 'src/app/services/global.service';
-import * as firebase from "firebase";
+// import * as firebase from "firebase/app";
+// import 'firebase/firestore';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -42,9 +43,9 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  getItemById(id: string) {
-    return firebase.firestore().collection('db').doc('tacadmin').collection('items').where("deleted", "==", false).where("id", "==", id).get()
-  }
+  // getItemById(id: string) {
+  //   return firebase.firestore().collection('db').doc('tacadmin').collection('items').where("deleted", "==", false).where("id", "==", id).get()
+  // }
 
   ngOnInit() {
     //this.getProductItems()

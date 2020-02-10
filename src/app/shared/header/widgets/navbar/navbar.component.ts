@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AMENUITEMS } from './navbar-items';
-import { Router, ActivatedRoute } from "@angular/router";
+// import { Router, ActivatedRoute } from "@angular/router";
 declare var $: any;
 import 'jquery';
 import 'smartmenus';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore'
 import { MainCategory } from 'src/app/models/main.category';
 import { SubCategory } from 'src/app/models/sub.category';
-import { NavBarMenu } from 'src/app/models/navbar.menu';
+// import { NavBarMenu } from 'src/app/models/navbar.menu';
 import { StoreService } from 'src/app/services/store.settings';
 import { ProductsService } from 'src/app/shared/services/products.service';
 

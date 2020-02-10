@@ -2,15 +2,14 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as firebase from "firebase/app"
 import * as $ from 'jquery'
-import "firebase/performance";
+// import "firebase/performance";
 import "firebase/auth"
-import "firebase/database"
 import "firebase/firestore"
 import "firebase/analytics"
+import 'firebase/database'
 import { Users } from './models/users';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.prod';
-import {Md5} from 'ts-md5/dist/md5';
+import { environment } from 'src/environments/environment';
 
 declare var gapi: any
 
@@ -24,8 +23,9 @@ export class AppComponent implements OnInit, AfterViewInit {
    constructor(translate: TranslateService, private router: Router) {
       translate.setDefaultLang('en');
       translate.addLangs(['en', 'fr']);
-      if(location.href == 'https://tacgifts.com' || location.href == 'https://tacgifts.com/' || location.href == 'https://www.tacgifts.com/' || location.href == 'https://www.tacgifts.com'){
-         this.router.navigate(['home'])
+      if (location.href == 'https://tacgifts.com' || location.href == 'https://tacgifts.com/' || location.href == 'https://www.tacgifts.com/' || location.href == 'https://www.tacgifts.com') {
+         //http://localhost:4200/ console.log('hey yo')
+         this.router.navigate(['/home'])
       }
    }
 
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, AfterViewInit {
    email: string = '';
    isLogout = true
 
-   keywords:string = ''
+   keywords: string = ''
 
    doKeywords() {
       firebase.firestore().collection('db').doc('tacadmin').collection('main-categories').get().then(query => {
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit, AfterViewInit {
             this.keywords += `${dt['name']}, `
             ind1 = ind1 + 1
             console.log(ind1)
-            if(ind1 == query.size){
+            if (ind1 == query.size) {
                var ind2 = 0
                firebase.firestore().collection('db').doc('tacadmin').collection('sub-categories').get().then(query2 => {
                   query2.forEach(data => {
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                      this.keywords += `${dt['name']}, `
                      ind2 = ind2 + 1
                      console.log(ind2)
-                     if(ind2 == query2.size) {
+                     if (ind2 == query2.size) {
                         var ind3 = 0
                         firebase.firestore().collection('db').doc('tacadmin').collection('products').get().then(query3 => {
                            query3.forEach(data => {
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                               this.keywords += `${dt['name']}, ${dt['description']}, `
                               ind3 = ind3 + 1
                               console.log(ind3)
-                              if(ind3 == query3.size) {
+                              if (ind3 == query3.size) {
                                  console.log(this.keywords)
                               }
                            })
@@ -72,54 +72,51 @@ export class AppComponent implements OnInit, AfterViewInit {
       })
 
 
-      
+
    }
 
-   async checkIfLoggedIn(){
+   async checkIfLoggedIn() {
       const anon = localStorage.getItem("signInAnonymously")
       const logged = localStorage.getItem("logged")
-      if(logged == null || logged == "false"){
-         if(anon == "true"){
+      if (logged == null || logged == "false") {
+         if (anon == "true") {
             return
          }
-        await firebase.auth().signInAnonymously()
-        localStorage.setItem("signInAnonymously", "true")
+         await firebase.auth().signInAnonymously()
+         localStorage.setItem("signInAnonymously", "true")
       }
    }
 
    ngOnInit() {
-      // $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom","35px").css("right","0px")
-      //$('#xxxfreshchat').css("bottom","35px").css("right","0px")
-      
       firebase.initializeApp(environment.fireConfig)
-      firebase.firestore().enablePersistence()
+      // firebase.firestore().sett
+      // firebase.firestore().enablePersistence()
       firebase.analytics()
-      const perf = firebase.performance();
+      // const perf = firebase.performance();
 
+
+      // if(location.href == 'https://tacgifts.com' || location.href == 'https://tacgifts.com/' || location.href == 'https://www.tacgifts.com/' || location.href == 'https://www.tacgifts.com'){
+      //    this.router.navigate(['home'])
+      // }
+   }
+
+   ngAfterViewInit() {
+      $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom", "35px").css("right", "0px")
       const cart_id = localStorage.getItem('unique-id-for-cart')
       if (cart_id == null) {
          const id = firebase.database().ref().push().key
          localStorage.setItem('unique-id-for-cart', id)
       }
-
       this.checkIfLoggedIn()
 
       this.checkLoggedInAccess()
       this.checkblockeduser()
-      this.recordWebsiteVisits()
-      //console.log(location.href)
-      
-      // if(location.href == 'https://tacgifts.com' || location.href == 'https://tacgifts.com/' || location.href == 'https://www.tacgifts.com/' || location.href == 'https://www.tacgifts.com'){
-      //    this.router.navigate(['home'])
-      // }
-      //location.href = '/home'
-      //this.initClient()
 
-      //this.doKeywords()
-   }
-
-   ngAfterViewInit() {
-      $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom","35px").css("right","0px")
+//       $('#pscriptp').append(`
+//   <!-- mailchimp code -->
+//   <script
+//       id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/a05b586ba62d218eac5d32811/8ee1385f55c5c3795440b8751.js");</script>
+//   <!-- end mailchimp code -->`)
    }
 
    // Initialize the Google API client with desired scopes
@@ -162,7 +159,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (this.email == null) {
          return
       }
-      firebase.firestore().collection('users').doc(this.email).onSnapshot(user => {
+      firebase.firestore().collection('users').doc(this.email).get().then(user => {
          const m = <Users>user.data()
          if (m != null) {
             const blocked: boolean = m.blocked
@@ -180,38 +177,6 @@ export class AppComponent implements OnInit, AfterViewInit {
          //localStorage.clear();
          //this.router.navigate(['/login'])
       }
-   }
-
-   recordWebsiteVisits() {
-      const date = new Date()
-      const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-
-      const year = date.getUTCFullYear()
-      const month = months[date.getUTCMonth()]
-      const day = date.getUTCDate()
-
-      const firebase_ref = firebase.database().ref("website-views").child(`${year}`).child(month).child(`${day}`)
-      firebase_ref.child("metric").once('value', snap => {
-         if (snap.exists()) {
-            const current_metric: number = snap.val()
-            firebase_ref.update({ 'metric': current_metric + 1 })
-         } else {
-            firebase_ref.update({ 'metric': 1 })
-         }
-      })
-
-      // firebase.database().ref("website-views").child(`${year}`).child(month).transaction((views) => {
-      //    console.log(`views ==== ${views}`)
-      //    console.log('tayo')
-      //    views.metric++;
-      //    return views;
-      //    // if (views) {
-
-      //    // }else {
-      //    //    console.log('derin')
-      //    //    firebase.database().ref("website-views").child(`${year}`).child(month).set({'metric':1})
-      //    // }
-      // })
    }
 
 }

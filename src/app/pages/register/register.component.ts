@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AppConfig } from 'src/app/services/global.service';
 import { OverlayService } from 'src/app/overlay/overlay.module';
 import { Router } from '@angular/router';
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import * as $ from 'jquery'
 import { EmailService } from 'src/app/shared/services/email.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
