@@ -131,14 +131,14 @@ export class CollectionLeftSidebarComponent implements OnInit {
     })
   }
 
-  getSubCategoryIDByName() {
-    let re = /\-/gi;
-    const name = this.sub_category_id.replace(re, ' ')
-    const search_result = this.init_sub_cats.filter((val, ind, arr) => {
-      return val.name == name
-    })
-    return search_result[0].id
-  }
+  // getSubCategoryIDByName() {
+  //   let re = /\-/gi;
+  //   const name = this.sub_category_id.replace(re, ' ')
+  //   const search_result = this.init_sub_cats.filter((val, ind, arr) => {
+  //     return val.name == name
+  //   })
+  //   return search_result[0].id
+  // }
 
   // Get current product tags
   public getTags(products) {

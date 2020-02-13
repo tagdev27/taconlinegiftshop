@@ -53,10 +53,10 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  gotocat(name:string){
-    let re = /\ /gi;
-    const url_path_name = name.toLowerCase().replace(re, '-')
-    this.router.navigate([`/home/collection/${url_path_name}`])
+  gotocat(link:string){
+    // let re = /\ /gi;
+    // const url_path_name = name.toLowerCase().replace(re, '-')
+    this.router.navigate([`/home/collection/${link}`])
   }
 
   // For mobile view

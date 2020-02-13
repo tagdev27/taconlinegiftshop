@@ -115,22 +115,23 @@ export class SettingsComponent implements OnInit, AfterViewInit {
     this.display_error = false
     const result: string[] = []
     firebase.analytics().logEvent('search', { query: `${this.query}`, platform : 'web'});
+    const q = this.query.split(' ')[0]
     this.categories.forEach(subcat => {
       //console.log(subcat.meta)
-      if (subcat.meta.toLowerCase().includes(this.query.toLowerCase()) || subcat.name.toLowerCase().includes(this.query.toLowerCase()) || subcat.description.toLowerCase().includes(this.query.toLowerCase())) {
+      if (subcat.meta.toLowerCase().includes(q.toLowerCase()) || subcat.name.toLowerCase().includes(q.toLowerCase()) || subcat.description.toLowerCase().includes(q.toLowerCase())) {
         //console.log('yassss')
         result.push('okay')
         // this.router.navigate([`/home/collection/${subcat.id}`])
         this.show = false;
-        let re = /\ /gi;
-        const url_path_name = subcat.name.toLowerCase().replace(re, '-')
-        this.router.navigate([`/home/collection/${url_path_name}`])
+        // let re = /\ /gi;
+        // const url_path_name = subcat.name.toLowerCase().replace(re, '-')
+        this.router.navigate([`/home/collection/${subcat.link}`])
       }
     })
     if(result.length == 0){
       this.productsService.getProducts().subscribe(pro => {
         pro.forEach(async p => {
-          if(p.name.toLowerCase().includes(this.query.toLowerCase())){
+          if(p.name.toLowerCase().includes(q.toLowerCase())){
             this.show = false
             const subc = await this.getSubCategoryByID(p.category.split(',')[0])
             if(subc == null){
@@ -138,9 +139,9 @@ export class SettingsComponent implements OnInit, AfterViewInit {
               return
             }
             this.show = false;
-            let re = /\ /gi;
-            const url_path_name = subc.name.toLowerCase().replace(re, '-')
-            this.router.navigate([`/home/collection/${url_path_name}`])
+            // let re = /\ /gi;
+            // const url_path_name = subc.name.toLowerCase().replace(re, '-')
+            this.router.navigate([`/home/collection/${subc.link}`])
             result.push('okay')
           }
         })

@@ -510,7 +510,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
           return
         }
         this.display_div = true
-        localStorage.setItem('currentOrder', mOrder.transaction_id)
+        localStorage.setItem('currentOrder', mOrder.id)
         const item: Order = {
           shippingDetails: mOrder.shipping_details,
           product: mOrder.carts,

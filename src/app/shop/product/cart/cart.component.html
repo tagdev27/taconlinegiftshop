@@ -44,8 +44,8 @@
             <tr>
               <td>
                 <a [routerLink]="['/home/product', item.product.menu_link]">
-                <img [src]="item.product.pictures[0]" alt="">
-              </a>
+                  <img [src]="item.product.pictures[0]" [alt]="item.name">
+                </a>
               </td>
               <td>
                 <a [routerLink]="['/home/product', item.product.menu_link]">{{ item.product.name }}</a>
@@ -53,48 +53,68 @@
                   <div class="col-xs-3">
                     <div class="qty-box">
                       <div class="input-group">
-                        <input type="text" name="quantity" class="form-control input-number" disabled [value]="item.quantity">
+                        <span class="input-group-prepend">
+                          <button type="button" class="btn quantity-left-minus" (click)="decrement(item.product)"
+                            data-type="minus" data-field="">
+                            <i class="ti-minus"></i>
+                          </button>
+                        </span>
+                        <input type="number" name="quantity" class="form-control input-number" disabled
+                          [value]="item.quantity">
+                        <span class="input-group-prepend">
+                          <button type="button" class="btn quantity-right-plus" (click)="increment(item.product)"
+                            data-type="plus" data-field="">
+                            <i class="ti-plus"></i>
+                          </button>
+                        </span>
                       </div>
                     </div>
                   </div>
                   <div class="col-xs-3">
-                    <h2 class="td-color">{{ config.convertPrice(item.product.price) | currency:productsService?.currency:'symbol' }}</h2>
+                    <h2 class="td-color">
+                      {{ config.convertPrice(item.product.price) | currency:productsService?.currency:'symbol' }}</h2>
                   </div>
                   <div class="col-xs-3">
                     <h2 class="td-color">
-                    <a (click)="removeItem(item)" class="icon">
-                      <i class="ti-close"></i>
-                    </a>
-                  </h2>
+                      <a (click)="removeItem(item)" class="icon">
+                        <i class="ti-close"></i>
+                      </a>
+                    </h2>
                   </div>
                 </div>
               </td>
-              <td><h2>{{ config.convertPrice(item.product.price) | currency:productsService?.currency:'symbol' }}</h2>
+              <td>
+                <h2>{{ config.convertPrice(item.product.price) | currency:productsService?.currency:'symbol' }}</h2>
               </td>
               <td>
                 <div class="qty-box">
                   <div class="input-group">
                     <span class="input-group-prepend">
-                    <button type="button" class="btn quantity-left-minus" (click)="decrement(item.product)" data-type="minus" data-field="">
-                      <i class="ti-angle-left"></i>
-                    </button>
-                  </span>
-                    <input type="text" name="quantity" disabled class="form-control input-number" [(ngModel)]="item.quantity">
+                      <button type="button" class="btn quantity-left-minus" (click)="decrement(item.product)"
+                        data-type="minus" data-field="">
+                        <i class="ti-minus"></i>
+                      </button>
+                    </span>
+                    <input type="number" name="quantity" disabled class="form-control input-number"
+                      [(ngModel)]="item.quantity">
                     <span class="input-group-prepend">
-                    <button type="button" class="btn quantity-right-plus" (click)="increment(item.product)" data-type="plus" data-field="">
-                      <i class="ti-angle-right"></i>
-                    </button>
-                  </span>
+                      <button type="button" class="btn quantity-right-plus" (click)="increment(item.product)"
+                        data-type="plus" data-field="">
+                        <i class="ti-plus"></i>
+                      </button>
+                    </span>
                   </div>
                 </div>
               </td>
               <td>
                 <a [routerLink]="" (click)="removeItem(item)" class="icon">
-                <i class="ti-close"></i>
-              </a>
+                  <i class="ti-close"></i>
+                </a>
               </td>
               <td>
-                <h2 class="td-color">{{ config.convertPrice(item.product.price) * item.quantity | currency:productsService?.currency:'symbol' }}</h2>
+                <h2 class="td-color">
+                  {{ config.convertPrice(item.product.price) * item.quantity | currency:productsService?.currency:'symbol' }}
+                </h2>
               </td>
             </tr>
           </tbody>

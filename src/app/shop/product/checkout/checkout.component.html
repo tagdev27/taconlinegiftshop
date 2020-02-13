@@ -291,13 +291,16 @@
                                                 {{ config.convertPrice(item.product.price) * item.quantity | currency:productsService?.currency:'symbol' }}
                                             </span>
                                         </li>
+                                        <li>
+                                            <a href="/home/cart"><small>Edit Cart</small></a>
+                                        </li>
                                     </ul>
                                     <ul class="qty" *ngIf='!checkOutItems.length'>
                                         <li class="empty-checkout"> There are no products in cart </li>
                                     </ul>
                                     <ul class="sub-total">
                                         <li>
-                                            Subtotal <span
+                                            Total <span
                                                 class="count">{{ getTotal() | async | currency:productsService?.currency:'symbol'}}</span>
                                         </li>
                                         <li *ngIf='shownow'>
@@ -341,12 +344,12 @@
                                             </div>
                                         </li>
                                     </ul>
-                                    <ul class="total">
+                                    <!-- <ul class="total">
                                         <li>Total <span
                                                 class="count">{{ config.convertPrice(amount) | currency:productsService?.currency:'symbol'}}
                                             </span>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
 
                                 <div class="payment-box" *ngIf='checkOutItems.length'>
