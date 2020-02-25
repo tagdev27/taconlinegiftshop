@@ -176,6 +176,9 @@ import { ExitPopupComponent } from './product/widgets/exit-popup/exit-popup.comp
 import { AgeVerificationComponent } from './product/widgets/age-verification/age-verification.component';
 import { NewsletterComponent } from './product/widgets/newsletter/newsletter.component';
 
+import { AngularRaveModule } from 'angular-rave';
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   exports: [ExitPopupComponent],
@@ -193,6 +196,10 @@ import { NewsletterComponent } from './product/widgets/newsletter/newsletter.com
     NgxImgZoomModule,
     // Angular4PaystackModule,
     RavepaymentModule,
+    AngularRaveModule.forRoot({
+      key: environment.flutter_wave_public_key,
+      isTest: false
+    }),
     MatProgressSpinnerModule,
     NgbModule.forRoot(),
     MatSelectModule,

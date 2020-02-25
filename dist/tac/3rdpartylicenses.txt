@@ -369,6 +369,9 @@ MIT
 @ngx-translate/http-loader
 MIT
 
+angular-rave
+MIT
+
 angular4-ravepayment
 MIT
 MIT License

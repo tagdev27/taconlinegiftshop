@@ -21,6 +21,8 @@ import { OverlayService } from 'src/app/overlay/overlay.module';
 import { ProgressSpinnerComponent } from 'src/app/progress-spinner/progress-spinner.module';
 import { TacOrder } from 'src/app/models/order';
 
+// import {  } from "angular4-ravepayment";
+
 // declare var TwoCoInlineCart: any
 
 @Component({
@@ -796,8 +798,8 @@ export class SuccessComponent implements OnInit, OnDestroy {
    * Also generates a new reference number for payment
    */
   paymentCancel() {
-    this.reference = this.randomInt(1, 999999999)
-    this.toastrService.error('Payment cancelled');
+    //this.reference = this.randomInt(1, 999999999)
+    this.toastrService.info('Please wait...');
   }
 
   /**

@@ -48,7 +48,7 @@
                     <p><a class="btn-solid btn" href="javascript:void(0)" (click)="retryUrl()">
                             RETRY PAYMENT
                         </a></p>
-                        <!-- <p *ngIf="isErrorOccurred">
+                    <!-- <p *ngIf="isErrorOccurred">
                             <button class="btn-solid btn" (click)=""></button>
                         </p> -->
                 </div>
@@ -92,7 +92,7 @@
                                 PAY NOW
                             </button></p>
                         <p *ngIf="isFlutterWave">
-                            <rave-pay-button [text]="'PAY NOW'" [className]="'btn-solid btn'"
+                            <!-- <rave-pay-button [text]="'PAY NOW'" [className]="'btn-solid btn'"
                                 (callback)="paymentDone($event)" (close)="paymentCancel()" [key]="flutterWaveKey"
                                 [currency]="flwCurr" [country]="setupCurrencyAndCountry()"
                                 [customer_firstname]="orderDetails.shippingDetails.firstname"
@@ -100,7 +100,17 @@
                                 [customer_phone]="orderDetails.shippingDetails.phone" [reference]="reference"
                                 [redirect_url]="'https://tacgifts.com/home/checkout/success'"
                                 [amount]="orderDetails.totalAmount" [email]="orderDetails.shippingDetails.email">
-                            </rave-pay-button>
+                            </rave-pay-button> -->
+
+                            <button angular-rave [customer_email]="orderDetails.shippingDetails.email"
+                                [customer_phone]="orderDetails.shippingDetails.phone"
+                                [amount]="orderDetails.totalAmount" [txref]="reference" [currency]="flwCurr"
+                                [country]="setupCurrencyAndCountry()"
+                                [customer_firstname]="orderDetails.shippingDetails.firstname"
+                                [customer_lastname]="orderDetails.shippingDetails.lastname" [autoClose]="true"
+                                [redirect_url]="'https://tacgifts.com/home/checkout/success'"
+                                (callback)="paymentDone($event)" (onclose)="paymentCancel()" class="btn-solid btn">PAY
+                                NOW</button>
                         </p>
                     </div>
                 </div>
