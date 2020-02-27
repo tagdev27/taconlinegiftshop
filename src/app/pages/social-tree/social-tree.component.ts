@@ -17,7 +17,7 @@ declare var gapi: any
 @Component({
 	selector: 'app-social-tree',
 	templateUrl: './social-tree.component.html',
-	styleUrls: ['./social-tree.component.less']
+	styleUrls: ['./social-tree.component.scss']
 })
 export class SocialTreeComponent implements OnInit {
 

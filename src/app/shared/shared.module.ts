@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { TranslateModule } from '@ngx-translate/core';
-import { MatProgressSpinnerModule } from "@angular/material";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Services

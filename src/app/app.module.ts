@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {  HttpModule } from '@angular/http';
+// import {  HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShopModule } from "./shop/shop.module";
 import { SharedModule } from "./shared/shared.module";
 import { ToastrModule } from 'ngx-toastr';
 import { rootRouterConfig } from './app.routes';
-import { MatProgressSpinnerModule } from "@angular/material";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 // import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -22,7 +22,9 @@ import { AppOverlayModule } from './overlay/overlay.module';
 import { ProgressSpinnerModule,ProgressSpinnerComponent } from './progress-spinner/progress-spinner.module';
 import { LoginRouteGuard, DashboardRouteGuard } from './route.guard';
 
-// AoT requires an exported function for factories
+// AoT requires an exported function for factories Unexpected end of JSON input while parsing near '...UnSLWVI9ZCYiDd\nTXDX1'
+    //"@angular/http": "^7.2.16",
+    //"@angular/localize": "~9.0.2",
 export function HttpLoaderFactory(http: HttpClient) {
    return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
@@ -35,7 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    // HttpModule,
     BrowserAnimationsModule,
     ShopModule,
     SharedModule,

@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+// import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../classes/product';
 import { BehaviorSubject, Observable, of, Subscriber } from 'rxjs';
@@ -51,7 +51,7 @@ export class ProductsService {
   public slider_two_link = '#'
 
   // Initialize 
-  constructor(private http: Http, private toastrService: ToastrService, private mHttp: HttpClient) {
+  constructor(private toastrService: ToastrService, private mHttp: HttpClient) {
     this.compareProducts.subscribe(products => products = products);
     new AppConfig().getBanners().then(async ban => {
       // console.log(ban)
@@ -62,7 +62,7 @@ export class ProductsService {
       this.getSubCategoryLinkByID(this.banner.slider_two_category).then(res => {
         this.slider_two_link = res
       })
-      // await this.getMainCategoriesNavBar()
+      // await this.getMainCategoriesLeftMenu()
       // console.log(JSON.stringify(this.ShopDropDownMenu))https://ipapi.co/json
     })
     //axios.default.get('http://ip-api.com/json/').then(res => {
@@ -244,7 +244,7 @@ export class ProductsService {
           let re = /\ /gi;
           const url_path_name = subc.name.toLowerCase().replace(re, '-')
           const scMenu: Menu = {
-            path: `/home/collection/${url_path_name}`,
+            path: `/home/collection/${subc.link}`,
             title: subc.name,
             type: 'extLink'
           }
@@ -294,7 +294,7 @@ export class ProductsService {
           let re = /\ /gi;
           const url_path_name = subc.name.toLowerCase().replace(re, '-')
           const scMenu: navbar.Menu = {
-            path: `/home/collection/${url_path_name}`,
+            path: `/home/collection/${subc.link}`,
             title: subc.name,
             type: 'extLink'
           }

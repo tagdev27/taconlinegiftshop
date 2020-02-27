@@ -12,12 +12,12 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RavepaymentModule } from 'angular4-ravepayment';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { MatSelectModule } from "@angular/material";
+import { MatSelectModule } from "@angular/material/select";
 import { ExportAsModule } from 'ngx-export-as';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { HttpClientModule } from "@angular/common/http";
 
-import { MatProgressSpinnerModule } from "@angular/material";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 // Home-one components
 import { HomeComponent } from './home/home.component';
 // import { SliderComponent } from './home/slider/slider.component';
@@ -201,7 +201,7 @@ import { environment } from 'src/environments/environment';
       isTest: false
     }),
     MatProgressSpinnerModule,
-    NgbModule.forRoot(),
+    NgbModule,
     MatSelectModule,
     ExportAsModule,
     ColorPickerModule,

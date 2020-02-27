@@ -14,7 +14,7 @@ export class InstagramThreeComponent implements OnInit {
   constructor(private instaService: InstagramService) { }
 
   ngOnInit() {
-      this.instaService.getInstagramData().subscribe(res => { this.instagram = res.json().data });
+      //this.instaService.getInstagramData().subscribe(res => { this.instagram = res.json().data });
   }
 
   // Slick slider config

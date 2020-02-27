@@ -28,12 +28,7 @@ export class HomeThreeComponent implements OnInit, AfterViewInit {
     this.productsService.getProducts().subscribe(product => this.products = product);
     $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom", "35px").css("right", "0px")
 
-    this.sendReminderToUsersFromSocialTree()
-    // firebase.firestore().collection('orders').where('payment_status', '==', 'unpaid').where('status', '==', 'canceled').get().then(d => {
-    //   d.forEach(r => {
-    //     console.log(r.data())
-    //   })
-    // })
+    //this.sendReminderToUsersFromSocialTree()
   }
 
   async sendReminderToUsersFromSocialTree() {

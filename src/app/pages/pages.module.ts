@@ -42,7 +42,7 @@ import { PresellSharedInput } from "./presell-shared-input/presell-shared-input.
 
 import { SocialTreeComponent } from "./social-tree/social-tree.component";
 import { TrackComponent } from "./track/track.component";
-import { MatProgressSpinnerModule } from "@angular/material";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
   imports: [
@@ -50,7 +50,7 @@ import { MatProgressSpinnerModule } from "@angular/material";
     PagesRoutingModule,
     SlickCarouselModule,
     IsotopeModule,
-    NgbModule.forRoot(),
+    NgbModule,
     MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,

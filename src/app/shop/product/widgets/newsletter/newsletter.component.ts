@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Http } from '@angular/http';
+// import { Http } from '@angular/http';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { StoreService } from 'src/app/services/store.settings';
 import { StoreSettings } from 'src/app/models/store';
@@ -15,7 +15,7 @@ import 'jquery'
 })
 export class NewsletterComponent implements OnInit {
 
-  constructor(private http: Http, private mHttp: HttpClient, private productService: ProductsService) { }
+  constructor(private mHttp: HttpClient, private productService: ProductsService) { }
 
   service = new StoreService()
   store: StoreSettings
