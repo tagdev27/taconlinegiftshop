@@ -125,7 +125,7 @@
                     <a [routerLink]="" (click)="addToCart(product, counter)" class="btn btn-solid"
                       [class.disabled]="counter > product.stock || preloading">add to cart</a>
                     <a [routerLink]="" (click)="buyNow(product, counter)" class="btn btn-solid"
-                      [class.disabled]="counter > product.stock || preloading">buy now</a>
+                      [class.disabled]="counter > product.stock || preloading">{{ (product.pre_order) ? 'pre order' : 'buy now' }}</a>
                   </div>
                   <div class="border-product">
                     <h6 class="product-title">product details</h6>

@@ -7,6 +7,7 @@ import "firebase/auth"
 import "firebase/firestore"
 import "firebase/analytics"
 import 'firebase/database'
+import 'firebase/messaging'
 import { Users } from './models/users';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -111,12 +112,13 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       this.checkLoggedInAccess()
       this.checkblockeduser()
+      this.requestMessagingPermissionAndGetToken()
 
-//       $('#pscriptp').append(`
-//   <!-- mailchimp code -->
-//   <script
-//       id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/a05b586ba62d218eac5d32811/8ee1385f55c5c3795440b8751.js");</script>
-//   <!-- end mailchimp code -->`)
+      //       $('#pscriptp').append(`
+      //   <!-- mailchimp code -->
+      //   <script
+      //       id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/a05b586ba62d218eac5d32811/8ee1385f55c5c3795440b8751.js");</script>
+      //   <!-- end mailchimp code -->`)
    }
 
    // Initialize the Google API client with desired scopes
@@ -177,6 +179,33 @@ export class AppComponent implements OnInit, AfterViewInit {
          //localStorage.clear();
          //this.router.navigate(['/login'])
       }
+   }
+
+   requestMessagingPermissionAndGetToken() {
+      const email = localStorage.getItem('email')
+      firebase.messaging().usePublicVapidKey("BIEJm9PSEZjxmgT1pitSdtEFQAWCwUEBGNOdY1Dr1cRGMLX93v5Dd9Gq-6O8K8H4-b35p3tCleLFjnPgiBaLVpI")
+      firebase.messaging().requestPermission().then(done => {
+         firebase.messaging().getToken().then(async userToken => {
+            localStorage.setItem('ut', userToken)
+            await firebase.firestore().collection('browser-msg-ids').doc('HxK2S1rSNZHKBim38qei').update({ 'ids': firebase.firestore.FieldValue.arrayUnion(userToken) })
+            const usr = await firebase.firestore().collection('users').doc(email).get()
+            if (usr.exists) {
+               firebase.firestore().collection("users").doc(email).set({
+                  'browserID': userToken
+               })
+            }
+         })
+      })
+      firebase.messaging().onTokenRefresh(async userToken => {
+         localStorage.setItem('ut', userToken)
+         await firebase.firestore().collection('browser-msg-ids').doc('HxK2S1rSNZHKBim38qei').update({ 'ids': firebase.firestore.FieldValue.arrayUnion(userToken) })
+         const usr = await firebase.firestore().collection('users').doc(email).get()
+         if (usr.exists) {
+            firebase.firestore().collection("users").doc(email).set({
+               'browserID': userToken
+            })
+         }
+      })
    }
 
 }

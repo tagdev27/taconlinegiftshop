@@ -27,7 +27,9 @@
               "src/assets",
               "src/robots.txt",
               "src/sitemap.xml",
-              "src/google704df96a65e95770.html"
+              "src/google704df96a65e95770.html",
+              "src/firebase-messaging-sw.js",
+              "src/manifest.json"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

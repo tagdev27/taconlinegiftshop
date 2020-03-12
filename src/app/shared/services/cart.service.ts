@@ -116,7 +116,9 @@ export class CartService {
       'product': item['product'],
       'country': this.productService.country,
       'email': (email == null) ? 'not signed in' : email,
-      'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`
+      'created_date': `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+      'timestamp': firebase.firestore.FieldValue.serverTimestamp(),
+      'browserID': localStorage.getItem('ut')
     })
   }
 

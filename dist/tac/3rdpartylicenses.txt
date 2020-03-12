@@ -329,6 +329,9 @@ Apache-2.0
 @firebase/logger
 Apache-2.0
 
+@firebase/messaging
+Apache-2.0
+
 @firebase/storage
 Apache-2.0
 
@@ -479,6 +482,8 @@ firebase/database
 
 firebase/firestore
 
+firebase/messaging
+
 firebase/storage
 
 font-awesome
@@ -596,7 +601,7 @@ MIT
 
 lodash
 MIT
-Copyright JS Foundation and other contributors <https://js.foundation/>
+Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
 
 Based on Underscore.js, copyright Jeremy Ashkenas,
 DocumentCloud and Investigative Reporters & Editors <http://underscorejs.org/>
