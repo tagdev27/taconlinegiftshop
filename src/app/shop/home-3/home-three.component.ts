@@ -7,6 +7,7 @@ import "firebase/firestore"
 import { EmailService } from "../../shared/services/email.service";
 import * as axios from 'axios'
 import * as FormData from 'form-data'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home-three',
@@ -22,13 +23,13 @@ export class HomeThreeComponent implements OnInit, AfterViewInit {
   public products: Product[] = [];
 
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private http: HttpClient) { }
 
   ngOnInit() {
     this.productsService.getProducts().subscribe(product => this.products = product);
     $('#fc_frame, #fc_frame.fc-widget-normal').css("bottom", "35px").css("right", "0px")
 
-    //this.sendReminderToUsersFromSocialTree()
+    // this.sendReminderToUsersFromSocialTree()
   }
 
   async sendReminderToUsersFromSocialTree() {
@@ -67,10 +68,10 @@ export class HomeThreeComponent implements OnInit, AfterViewInit {
           const user_email = tree['user_id']
           const socialTreeID = tree['social_tree_id']
           const getSocialTreeData = await firebase.firestore().collection('social-tree').doc(socialTreeID).get()
-          const getUserData = await firebase.firestore().collection('users').doc(user_email).get()
-          const user = getUserData.data()
+          // const getUserData = await firebase.firestore().collection('users').doc(user_email).get()
+          // const user = getUserData.data()
           const st = getSocialTreeData.data()
-          if (st != undefined && user != undefined) {
+          if (st != undefined){//} && user != undefined) {
             const gender = `${st['gender']}`
             const name = st['name']
             const relationship = st['relationship']
@@ -97,7 +98,7 @@ export class HomeThreeComponent implements OnInit, AfterViewInit {
               })
             }
             console.log(`category found 2 == ${searched_cat_id}`)
-            const resultPro: firebase.firestore.DocumentData[] = []
+            const resultPro = []//firebase.firestore.DocumentData[]
             products.forEach(q => {
               const pro = q.data()
               const cat = `${pro['category']}`.split(',')
@@ -137,7 +138,7 @@ export class HomeThreeComponent implements OnInit, AfterViewInit {
                 }
               }
             })
-            const user_name = user['firstname']
+            const user_name = 'Tayo'//user['firstname']
             const textMessage = `Hi ${user_name}, <br><br>You have an upcoming event <b>${evName}</b> ${(dayDiff == 3 || dayDiff == 1) ? `in ${dayDiff} day(s) time` : `happening today`}. <br><br>Below are suggested gift baskets you can send to ${(gender.toLowerCase() == 'male') ? 'him' : 'her'}.<br><br>Don't just gift it, TAC it!`
             const emailBody = new EmailService().getSocialTreeReminderHTMLBody(textMessage, image, name, relationship, evName, product_columns)
             const url = `https://avidprintsconcierge.com/emailsending/socialtree.php?sender_email=${user_email}&sender_name=${user_name}`
@@ -145,13 +146,14 @@ export class HomeThreeComponent implements OnInit, AfterViewInit {
             $('#st').append(emailBody)
             const fd1 = new FormData()
             fd1.append("body", emailBody)
-            const promise = axios.default.post(url, fd1)
+            // const promise = axios.default.post(url, fd1)
+            const promise = this.http.post(url, fd1, { headers: fd1.getHeaders() })
             promises.push(promise)
           }
         }
       })
       console.log(`i dey here now`)
-      axios.default.all(promises).then((result) => {
+      Promise.all(promises).then((result) => {
         console.log(result)
         result.forEach(res => {
           console.log(res)

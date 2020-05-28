@@ -190,7 +190,7 @@ export class AppComponent implements OnInit, AfterViewInit {
             await firebase.firestore().collection('browser-msg-ids').doc('HxK2S1rSNZHKBim38qei').update({ 'ids': firebase.firestore.FieldValue.arrayUnion(userToken) })
             const usr = await firebase.firestore().collection('users').doc(email).get()
             if (usr.exists) {
-               firebase.firestore().collection("users").doc(email).set({
+               firebase.firestore().collection("users").doc(email).update({
                   'browserID': userToken
                })
             }
@@ -201,7 +201,7 @@ export class AppComponent implements OnInit, AfterViewInit {
          await firebase.firestore().collection('browser-msg-ids').doc('HxK2S1rSNZHKBim38qei').update({ 'ids': firebase.firestore.FieldValue.arrayUnion(userToken) })
          const usr = await firebase.firestore().collection('users').doc(email).get()
          if (usr.exists) {
-            firebase.firestore().collection("users").doc(email).set({
+            firebase.firestore().collection("users").doc(email).update({
                'browserID': userToken
             })
          }

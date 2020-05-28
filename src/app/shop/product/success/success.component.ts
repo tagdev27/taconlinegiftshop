@@ -126,7 +126,6 @@ export class SuccessComponent implements OnInit, OnDestroy {
         address2: ''
       });
       TwoCoInlineCart.cart.setSource('Web');
-      TwoCoInlineCart.cart.setCustomerReference('${this.orderDetails.shippingDetails.specialinstructions}');
       TwoCoInlineCart.cart.setOrderExternalRef('${this.orderDetails.orderId}');
       TwoCoInlineCart.cart.setCartLockedFlag(true);
       TwoCoInlineCart.cart.setReturnMethod({
@@ -137,7 +136,9 @@ export class SuccessComponent implements OnInit, OnDestroy {
     });
     </script>
     `
-    /** ?payment_key=${key}
+    /** 
+      TwoCoInlineCart.cart.setCustomerReference('${this.orderDetails.shippingDetails.specialinstructions}');
+      ?payment_key=${key}
     const script = document.createElement('script')
     script.type = 'text/javascript'
     script.innerText = scriptContent

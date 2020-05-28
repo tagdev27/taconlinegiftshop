@@ -1,0 +1,18 @@
+#tac_covid_bar_con {
+    background: #dc457e;
+    height: 40px;
+    line-height: 40px;
+    color: #ffffff;
+    font-family: "Lato";
+    font-weight: 100;
+
+    span {
+        font-size: 15px;
+
+        a {
+            color: #ffffff;
+            font-weight: normal;
+            text-decoration: underline;
+        }
+    }
+}
