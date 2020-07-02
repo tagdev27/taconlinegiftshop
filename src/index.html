@@ -42,12 +42,36 @@
     <img height="1" width="1" src="https://www.facebook.com/tr?id=191966935186612&ev=PageView
   &noscript=1" />
   </noscript>
+  <!-- Jquery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    
+     <!--Floating WhatsApp javascript-->
+   <script type="text/javascript"
+   src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
+  
+  <!--Floating WhatsApp css-->
+  <link rel="stylesheet"
+    href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
   <!-- End Facebook Pixel Code -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
 </head>
 
 <body>
+  <style>
+    @media screen and (max-width:525px) {
+      .floating-wpp-button {
+        width: 35px;
+        height: 35px;
+      }
+
+      #WAButton {
+        bottom: 50px;
+        right: 20px;
+      }
+    }
+  </style>
   <!-- pre-loader start -->
   <!-- <div class="loader-wrapper">
     <div class="loader"></div>
@@ -65,14 +89,27 @@
   </div>
   <!-- tap to top -->
 
+  <!--Div where the WhatsApp will be rendered-->
+  <div id="WAButton"></div>
   <script>
-    function initFreshChat() {
-      window.fcWidget.init({
-        token: "0c93f235-404a-48fc-9c27-d04592f2ff74",
-        host: "https://wchat.freshchat.com"
+    $('#WAButton').floatingWhatsApp({
+         phone: '2347067117723', //WhatsApp Business phone number International format-
+         //Get it with Toky at https://toky.co/en/features/whatsapp.
+         headerTitle: 'Chat with us on WhatsApp!', //Popup Title
+         popupMessage: 'Hello, how can we help you?', //Popup Message
+         showPopup: true, //Enables popup display
+         buttonImage: '<img src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/whatsapp.svg" />', //Button Image
+         //headerColor: 'crimson', //Custom header color
+         //backgroundColor: 'crimson', //Custom background button color
+         position: "right"
       });
-    }
-    function initialize(i, t) { var e; i.getElementById(t) ? initFreshChat() : ((e = i.createElement("script")).id = t, e.async = !0, e.src = "https://wchat.freshchat.com/js/widget.js", e.onload = initFreshChat, i.head.appendChild(e)) } function initiateCall() { initialize(document, "freshchat-js-sdk") } window.addEventListener ? window.addEventListener("load", initiateCall, !1) : window.attachEvent("load", initiateCall, !1);
+    // function initFreshChat() {
+    //   window.fcWidget.init({
+    //     token: "0c93f235-404a-48fc-9c27-d04592f2ff74",
+    //     host: "https://wchat.freshchat.com"
+    //   });
+    // }
+    // function initialize(i, t) { var e; i.getElementById(t) ? initFreshChat() : ((e = i.createElement("script")).id = t, e.async = !0, e.src = "https://wchat.freshchat.com/js/widget.js", e.onload = initFreshChat, i.head.appendChild(e)) } function initiateCall() { initialize(document, "freshchat-js-sdk") } window.addEventListener ? window.addEventListener("load", initiateCall, !1) : window.attachEvent("load", initiateCall, !1);
   </script>
 </body>
 

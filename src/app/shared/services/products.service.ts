@@ -62,7 +62,7 @@ export class ProductsService {
       this.getSubCategoryLinkByID(this.banner.slider_two_category).then(res => {
         this.slider_two_link = res
       })
-      // await this.getMainCategoriesNavBar()
+      // await this.getMainCategoriesLeftMenu()
       // console.log(JSON.stringify(this.ShopDropDownMenu))https://ipapi.co/json
     })
     //axios.default.get('http://ip-api.com/json/').then(res => {
