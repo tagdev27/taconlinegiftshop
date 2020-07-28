@@ -63,6 +63,7 @@ export class ProductsService {
         this.slider_two_link = res
       })
       // await this.getMainCategoriesLeftMenu()
+      await this.getMainCategoriesNavBar()
       // console.log(JSON.stringify(this.ShopDropDownMenu))https://ipapi.co/json
     })
     //axios.default.get('http://ip-api.com/json/').then(res => {
