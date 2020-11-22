@@ -763,7 +763,7 @@ export class SuccessComponent implements OnInit, OnDestroy {
               },
               data: {
                 body: `${email_body}`
-              }
+              },
             });
           });
         })
