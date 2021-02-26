@@ -127,13 +127,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <div class="field-label">Town/City *</div>
+                                    <div class="field-label">Town/City </div>
                                     <input type="text" name="town" [formControl]="checkoutForm.controls['town']"
                                         value="" placeholder="" autocomplete="off">
-                                    <div *ngIf="checkoutForm.controls.town.touched && checkoutForm.controls.town.errors?.required"
+                                    <!-- <div *ngIf="checkoutForm.controls.town.touched && checkoutForm.controls.town.errors?.required"
                                         class="text text-danger">
                                         City is required
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="form-group col-md-12 col-sm-6 col-xs-12">
                                     <div class="field-label">State *<small> More states will be added soon</small></div>
@@ -141,8 +141,6 @@
                                         <option value="" selected>Select State</option>
                                         <option value="Lagos">Lagos</option>
                                     </select>
-                                    <!-- <input type="text" name="state" [formControl]="checkoutForm.controls['state']"
-                                        value="" placeholder="" autocomplete="off"> -->
                                     <div *ngIf="checkoutForm.controls.state.touched && checkoutForm.controls.state.errors?.required"
                                         class="text text-danger">
                                         State is required

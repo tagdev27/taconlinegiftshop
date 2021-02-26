@@ -95,7 +95,7 @@ export const get_all_products = functions.https.onRequest((greq, gresp) => {
     }
 })
 
-export const onOrderCreated = functions.firestore.document("orders/{orderId}").onCreate((snapshot, context) => {
+export const onOrderCreated = functions.firestore.document("orders/{orderId}").onCreate(async (snapshot, context) => {
     //const orderId = context.params.orderId
     if (snapshot.exists) {
         const _data = snapshot.data()
@@ -105,12 +105,10 @@ export const onOrderCreated = functions.firestore.document("orders/{orderId}").o
             const amount = _data['total_amount']
             const email = _data['email']
             //console.log(`${country} ================ ${amount}`)
-            return sendNotification("New Order From TAC", `Order worth of ${curr}${amount} has been placed from ${country}`).then(() => {
-                return sendNotificationToUserDevice(email, 'Order from TAC', 'Your order has been received by TAC. ')
-            })
+            await sendNotification("New Order From TAC", `Order worth of ${curr}${amount} has been placed from ${country}`)
+            await sendNotificationToUserDevice(email, 'Order from TAC', 'Your order has been received by TAC. ')
         }
     }
-    return null
 })
 
 async function sendNotificationToUserDevice(email: string, title: string, body: string): Promise<any> {
@@ -127,7 +125,6 @@ async function sendNotificationToUserDevice(email: string, title: string, body: 
             return admin.messaging().sendToDevice(`${_data['msgId']}`, payload)
         }
     }
-    return null;
 }
 
 function sendNotification(title: string, body: string): Promise<any> {
@@ -160,7 +157,6 @@ export const onAlertNewOrderCreated = functions.firestore.document("alert-new-or
             return admin.firestore().collection("alert-new-order").doc(orderId).delete()
         }, 1000)
     }
-    return null
 })
 
 export const mailChimpRegistrationOnAuthCreated = functions.auth.user().onCreate((user) => {
@@ -310,7 +306,7 @@ function getExchangeRate(from_currency: any, document_id: any) {
         },
     }
 
-    mHttp.post('https://api.ravepay.co/v2/services/confluence', { headers: _headers, body: flw_body, form: flw_body }).on('data', (res) => {
+    mHttp.post('https://api.ravepay.co/v2/services/confluence', { headers: _headers, body: flw_body, form: flw_body }).on('data', async (res) => {
 
         const resp = JSON.parse(res.toString())
 
@@ -322,11 +318,9 @@ function getExchangeRate(from_currency: any, document_id: any) {
             if (dt['Rate'] !== null) {
                 const amount = Number(dt['Rate']).toFixed(2)
 
-                return db.collection('db').doc('tacadmin').collection('currency').doc(document_id).update({ 'exchange_rate': Number(amount) })
+                await db.collection('db').doc('tacadmin').collection('currency').doc(document_id).update({ 'exchange_rate': Number(amount) })
             }
         }
-
-        return null
 
     }).on('error', (err) => {
         console.log(`${from_currency}: Error: ${err}`)

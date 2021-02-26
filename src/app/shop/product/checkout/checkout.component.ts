@@ -82,13 +82,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       fullname: ['', [Validators.required]],//, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')
       recipientphone: ['', [Validators.required]], //Validators.pattern('[0-9]+')
       address: ['', [Validators.required, Validators.maxLength(500)]],
-      country: ['', Validators.required],
-      town: ['', Validators.required],
-      state: ['', Validators.required],
+      country: ['', [Validators.required]],
+      town: [''],
+      state: ['', [Validators.required]],
       card_message: ['', [Validators.maxLength(250)]],
       specialinstructions: ['']
       //postalcode: ['', Validators.required]
     })
+    this.checkoutForm["state"].setValue("Lagos")
+    this.checkoutForm["country"].setValue("Nigeria")
     //this.character_left = 450 - `${this.checkoutForm.value.card_message}`.length
   }
 
